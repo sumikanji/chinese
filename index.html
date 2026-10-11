@@ -12,7 +12,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Zen+Maru+Gothic:wght@700;900&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script>window.SE_LANG = "zh";</script>
+  <script>window.SE_LANG = "zh";
+    try { var _t = ((JSON.parse(localStorage.getItem('sumiChinese.v1')) || {}).cfg || {}).theme; if (_t === 'light' || _t === 'dark') document.documentElement.dataset.theme = _t; } catch (e) { }</script>
   <script src="data/levels.js" defer></script>
   <script src="data/hsk1.js" defer></script>
   <script src="data/hsk2.js" defer></script>
@@ -22,17 +23,19 @@
   <script src="data/hsk6.js" defer></script>
   <script src="data/stats.js" defer></script>
   <script src="data/py.js" defer></script>
-  <script src="data/sounds.js" defer></script>
   <script src="data/vocab.js" defer></script>
-  <script src="data/scene_py.js" defer></script>
+  <script src="data/shadow.js" defer></script>
+  <script src="data/grammar.js" defer></script>
+  <script src="data/qa.js" defer></script>
   <script src="data/audio.js" defer></script>
   <script src="hiyo.js" defer></script>
   <script src="speech.js" defer></script>
   <script src="store.js" defer></script>
   <script src="firebase-config.js" defer></script>
   <script src="cloud.js" defer></script>
-  <script src="scenes.js" defer></script>
   <script src="vocab.js" defer></script>
+  <script src="extra.js" defer></script>
+  <script src="shadow.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -55,9 +58,9 @@
   <nav class="tabs" aria-label="Điều hướng">
     <a href="#/" data-tab="home">Học</a>
     <a href="#/vocab" data-tab="vocab">Từ vựng</a>
+    <a href="#/shadow" data-tab="shadow">Shadowing</a>
     <a href="#/review" data-tab="review">Ôn tập<b class="badge" id="tab-due" hidden></b></a>
-    <a href="#/sounds" data-tab="sounds">Phát âm</a>
-    <a href="#/guide" data-tab="guide">Cách học</a>
+    <a href="#/settings" data-tab="settings">Cài đặt</a>
   </nav>
   <div class="toast" id="toast"></div>
 </body>

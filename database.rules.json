@@ -5,6 +5,17 @@
         ".read": "auth != null && auth.uid === $uid",
         ".write": "auth != null && auth.uid === $uid"
       }
+    },
+    "feedback": {
+      "$site": {
+        ".read": true,
+        "$item": {
+          "$cid": {
+            ".write": "auth != null && ((!data.exists() && newData.child('uid').val() === auth.uid) || (data.exists() && !newData.exists() && data.child('uid').val() === auth.uid))",
+            ".validate": "newData.hasChildren(['uid', 'msg', 's', 'at']) && newData.child('msg').isString() && newData.child('msg').val().length > 0 && newData.child('msg').val().length <= 500 && newData.child('s').isString() && newData.child('s').val().length <= 400 && newData.child('at').val() <= now"
+          }
+        }
+      }
     }
   }
 }

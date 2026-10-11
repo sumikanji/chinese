@@ -1,0 +1,67 @@
+// Hỏi – đáp phản xạ.  ## cấp   rồi các dòng  câu hỏi|nghĩa|câu trả lời mẫu|nghĩa
+## hsk1
+你叫什么名字？|Bạn tên là gì?|我叫阿兰。认识你很高兴。|Mình tên là Lan. Rất vui được làm quen.
+你是哪国人？|Bạn là người nước nào?|我是越南人，我是河内人。|Mình là người Việt Nam, mình là người Hà Nội.
+你今年多大？|Năm nay bạn bao nhiêu tuổi?|我今年二十五岁。|Năm nay mình hai mươi lăm tuổi.
+你住在哪儿？|Bạn sống ở đâu?|我住在日本福冈。我住在一个小房子里。|Mình sống ở Fukuoka, Nhật Bản. Mình sống trong một căn nhà nhỏ.
+你做什么工作？|Bạn làm công việc gì?|我在饭店工作。我的工作很有意思。|Mình làm ở khách sạn. Công việc của mình rất thú vị.
+你家有几口人？|Nhà bạn có mấy người?|我家有五口人：爸爸、妈妈、哥哥、妹妹和我。|Nhà mình có năm người: bố, mẹ, anh trai, em gái và mình.
+你每天几点起床？|Mỗi ngày bạn dậy lúc mấy giờ?|我每天早上七点起床。|Mỗi ngày mình dậy lúc bảy giờ sáng.
+你喜欢吃什么？|Bạn thích ăn gì?|我喜欢吃米饭，也喜欢吃水果。|Mình thích ăn cơm, cũng thích ăn hoa quả.
+你有猫吗？|Bạn có nuôi mèo không?|有，我有一只小猫，它叫小白。|Có, mình có một con mèo nhỏ, nó tên là Tiểu Bạch.
+周末你喜欢做什么？|Cuối tuần bạn thích làm gì?|周末我喜欢看电影，也喜欢和朋友吃饭。|Cuối tuần mình thích xem phim, cũng thích đi ăn với bạn bè.
+## hsk2
+上个周末你做什么了？|Cuối tuần trước bạn đã làm gì?|上个周末我和朋友去海边玩儿了，我们玩得很开心。|Cuối tuần trước mình đi biển chơi với bạn, bọn mình chơi rất vui.
+你每天怎么去上班？|Mỗi ngày bạn đi làm bằng gì?|我坐火车去上班，大概要三十分钟。|Mình đi tàu đi làm, mất khoảng ba mươi phút.
+你那儿的天气怎么样？|Thời tiết chỗ bạn thế nào?|夏天很热，冬天有点儿冷，六月常常下雨。|Mùa hè rất nóng, mùa đông hơi lạnh, tháng Sáu hay mưa.
+你的老家在哪儿？|Quê bạn ở đâu?|我的老家在越南北部，那里很安静，菜也很好吃。|Quê mình ở miền Bắc Việt Nam, ở đó rất yên tĩnh, đồ ăn cũng rất ngon.
+你为什么学汉语？|Vì sao bạn học tiếng Trung?|因为我工作的时候常常用汉语，我也想去中国旅游。|Vì lúc làm việc mình thường dùng tiếng Trung, mình cũng muốn đi du lịch Trung Quốc.
+你今天早饭吃了什么？|Sáng nay bạn ăn gì?|我吃了面包，喝了一杯咖啡。|Mình ăn bánh mì, uống một cốc cà phê.
+你会做饭吗？|Bạn có biết nấu ăn không?|会，我会做一些越南菜，也会做鸡蛋炒饭。|Biết, mình biết nấu vài món Việt, cũng biết làm cơm rang trứng.
+今天晚上你打算做什么？|Tối nay bạn định làm gì?|我打算学一个小时汉语，然后看电视。|Mình định học tiếng Trung một tiếng, sau đó xem tivi.
+你最好的朋友是谁？|Bạn thân nhất của bạn là ai?|我最好的朋友叫小美，我们是大学同学。|Bạn thân nhất của mình tên là Tiểu Mỹ, bọn mình là bạn học đại học.
+你最喜欢哪个季节？为什么？|Bạn thích mùa nào nhất? Vì sao?|我最喜欢秋天，因为秋天不冷也不热。|Mình thích mùa thu nhất, vì mùa thu không lạnh cũng không nóng.
+## hsk3
+你在这个城市住了多长时间了？|Bạn sống ở thành phố này bao lâu rồi?|我在这儿住了三年了。刚来的时候不太习惯，现在很喜欢这里。|Mình ở đây ba năm rồi. Lúc mới đến chưa quen lắm, giờ thì rất thích nơi này.
+你最喜欢你工作的哪一点？|Bạn thích điểm nào nhất ở công việc của mình?|我最喜欢认识来自不同国家的人，每天都不一样。|Mình thích nhất là được quen người đến từ nhiều nước khác nhau, ngày nào cũng khác.
+如果有一个星期的假，你会做什么？|Nếu được nghỉ một tuần, bạn sẽ làm gì?|我会回越南看家人，还要吃很多好吃的东西。|Mình sẽ về Việt Nam thăm gia đình, còn phải ăn thật nhiều món ngon nữa.
+你一个人旅行过吗？|Bạn đã từng đi du lịch một mình chưa?|旅行过。去年我一个人去了京都，感觉很自由。|Rồi. Năm ngoái mình đi Kyoto một mình, cảm giác rất tự do.
+学汉语最难的是什么？|Học tiếng Trung khó nhất là gì?|我觉得声调和汉字最难，不过我每天都练习。|Mình thấy thanh điệu và chữ Hán khó nhất, nhưng ngày nào mình cũng luyện.
+下班以后你一般怎么放松？|Tan làm bạn thường thư giãn thế nào?|我一般洗个热水澡，听听音乐，有时候去散步。|Mình thường tắm nước nóng, nghe nhạc, đôi khi đi dạo.
+说说一个对你影响很大的人。|Hãy kể về một người ảnh hưởng lớn đến bạn.|我奶奶对我影响很大。她自己学会了认字，从来不放弃。|Bà mình ảnh hưởng rất lớn đến mình. Bà tự học biết chữ, chưa bao giờ bỏ cuộc.
+你以后有什么打算？|Sau này bạn có dự định gì?|我希望以后能当经理，也想开一家自己的咖啡馆。|Mình mong sau này được làm quản lý, cũng muốn mở một quán cà phê của riêng mình.
+你们国家有什么有名的菜？|Nước bạn có món ăn nổi tiếng nào?|越南最有名的菜是米粉，我们常常早上吃。|Món nổi tiếng nhất Việt Nam là phở, chúng mình thường ăn vào buổi sáng.
+出国以后，你的生活有什么变化？|Sau khi ra nước ngoài, cuộc sống của bạn thay đổi thế nào?|我变得更独立了，自己做饭，也不怕试新的东西了。|Mình trở nên tự lập hơn, tự nấu ăn, cũng không còn ngại thử điều mới.
+## hsk4
+你喜欢一个人工作还是跟别人一起工作？|Bạn thích làm việc một mình hay làm cùng người khác?|我更喜欢团队合作，因为可以向同事学到很多。不过有时候我也需要安静的时间。|Mình thích làm việc nhóm hơn, vì học được nhiều từ đồng nghiệp. Tuy nhiên đôi khi mình cũng cần thời gian yên tĩnh.
+你收到过的最好的建议是什么？|Lời khuyên hay nhất bạn từng nhận là gì?|我的第一个经理告诉我，别人生气的时候要多听少说。这个建议对我帮助很大。|Quản lý đầu tiên bảo mình khi người khác tức giận thì nghe nhiều nói ít. Lời khuyên này giúp mình rất nhiều.
+压力大的时候你怎么办？|Lúc áp lực lớn bạn làm thế nào?|我会去运动，保证睡眠。如果心里有事，我就跟朋友聊聊。|Mình đi tập thể dục, đảm bảo ngủ đủ. Nếu trong lòng có chuyện, mình tâm sự với bạn bè.
+你想在哪方面提高自己？|Bạn muốn nâng cao bản thân ở mặt nào?|我想提高在很多人面前讲话的能力，现在我还是会紧张。|Mình muốn nâng cao khả năng nói trước đông người, bây giờ mình vẫn còn hồi hộp.
+科技给你的工作带来了什么变化？|Công nghệ mang lại thay đổi gì cho công việc của bạn?|很多工作变快了，比如电脑系统可以同时管理几百个预订。|Nhiều việc nhanh hơn, ví dụ hệ thống máy tính có thể quản lý cùng lúc mấy trăm lượt đặt phòng.
+你最想念家乡的什么？|Bạn nhớ điều gì nhất ở quê nhà?|我最想念家乡的菜和热闹的街道，更想念跟全家人一起吃饭。|Mình nhớ nhất đồ ăn quê và những con phố náo nhiệt, càng nhớ những bữa cơm cùng cả nhà.
+说说一次让你学到东西的错误。|Hãy kể về một lỗi lầm giúp bạn học được điều gì đó.|有一次我忘了给客人发邮件。我诚实地告诉了经理，从那以后我每天都写计划。|Có lần mình quên gửi email cho khách. Mình thành thật nói với quản lý, từ đó ngày nào mình cũng lên kế hoạch.
+住在大城市好还是住在农村好？|Sống ở thành phố lớn tốt hay sống ở nông thôn tốt?|这要看情况。大城市机会多，农村比较安静，更适合有孩子的家庭。|Còn tùy. Thành phố lớn nhiều cơ hội, nông thôn yên tĩnh hơn, hợp với gia đình có con nhỏ hơn.
+你觉得什么样的人是好朋友？|Bạn thấy người thế nào là bạn tốt?|好朋友是对你诚实的人，就算生活很忙，也会跟你保持联系。|Bạn tốt là người thành thật với bạn, dù cuộc sống bận rộn vẫn giữ liên lạc với bạn.
+你现在正在为什么目标努力？|Bây giờ bạn đang nỗ lực vì mục tiêu gì?|我正在准备汉语水平考试，每天晚上学习一个小时。|Mình đang chuẩn bị thi năng lực tiếng Trung, mỗi tối học một tiếng.
+## hsk5
+哪些文化差异让你最吃惊？|Những khác biệt văn hoá nào làm bạn ngạc nhiên nhất?|最让我吃惊的是这里的人非常重视守时，哪怕迟到几分钟也可能被认为不礼貌。|Điều làm mình ngạc nhiên nhất là người ở đây rất coi trọng đúng giờ, dù muộn vài phút cũng có thể bị coi là bất lịch sự.
+你认为好的领导应该具备什么品质？|Bạn cho rằng lãnh đạo giỏi cần có phẩm chất gì?|我认为好的领导要善于倾听，给团队创造发挥能力的条件，而不是控制一切。|Mình cho rằng lãnh đạo giỏi phải biết lắng nghe, tạo điều kiện cho cả nhóm phát huy năng lực, chứ không phải kiểm soát mọi thứ.
+你觉得社交网络的坏处多还是好处多？|Bạn thấy mạng xã hội hại nhiều hay lợi nhiều?|关键看怎么用。它让我跟远方的家人保持联系，但也很容易浪费时间。|Mấu chốt là dùng thế nào. Nó giúp mình giữ liên lạc với gia đình ở xa, nhưng cũng rất dễ lãng phí thời gian.
+工作和生活的平衡对你来说重要吗？|Cân bằng công việc và cuộc sống có quan trọng với bạn không?|非常重要。我以前经常加班，结果身心都很疲劳。现在我分清工作和私人时间，效率反而更高了。|Rất quan trọng. Trước đây mình hay làm thêm giờ, kết quả cả thân lẫn tâm đều mệt mỏi. Giờ mình tách bạch công việc và thời gian riêng, hiệu quả lại còn cao hơn.
+如果能改变教育中的一件事，你会改变什么？|Nếu được thay đổi một điều trong giáo dục, bạn sẽ đổi gì?|我会给学生更多提问和独立思考的机会，好奇心跟知识一样重要。|Mình sẽ cho học sinh nhiều cơ hội đặt câu hỏi và tư duy độc lập hơn, sự tò mò cũng quan trọng như kiến thức.
+说说你的一次失败和你学到的东西。|Hãy kể về một lần thất bại và điều bạn học được.|我开过一家网店，不到一年就关门了。虽然很难受，但我学到了很多营销知识，也不再那么害怕冒险。|Mình từng mở một cửa hàng online, chưa đến một năm đã đóng cửa. Tuy rất buồn, nhưng mình học được nhiều kiến thức marketing, cũng không còn sợ mạo hiểm như thế.
+你怎么看简单的生活方式？|Bạn nghĩ gì về lối sống tối giản?|我越来越喜欢这种方式。搬到小公寓以后，扔掉很多东西反而让我觉得轻松。|Mình ngày càng thích lối sống này. Sau khi chuyển đến căn hộ nhỏ, bỏ bớt nhiều đồ lại khiến mình thấy nhẹ nhõm.
+你觉得什么是最好的服务？|Bạn thấy thế nào là dịch vụ tốt nhất?|最好的服务是提前想到客人的需要，在客人开口之前就能看出他需要什么。|Dịch vụ tốt nhất là nghĩ trước nhu cầu của khách, nhìn ra khách cần gì trước khi khách mở lời.
+学习遇到困难的时候，你怎么保持动力？|Khi học gặp khó khăn, bạn giữ động lực thế nào?|我关注小小的进步。每个月给自己录一次音，就能听出自己进步了多少。|Mình chú ý những tiến bộ nhỏ. Mỗi tháng tự ghi âm một lần là nghe ra mình đã tiến bộ bao nhiêu.
+在家工作有什么好处和坏处？|Làm việc ở nhà có lợi và hại gì?|最大的好处是灵活，坏处是容易觉得孤单。我觉得一个星期在家工作两天最理想。|Lợi lớn nhất là linh hoạt, hại là dễ thấy cô đơn. Mình thấy mỗi tuần làm ở nhà hai ngày là lý tưởng nhất.
+## hsk6
+说另一种语言的时候，你会觉得自己变成了另一个人吗？|Khi nói ngôn ngữ khác, bạn có thấy mình thành người khác không?|在某种程度上会。说汉语时我更含蓄，说英语时更直接。我把这看作同一个人的不同侧面。|Ở mức độ nào đó thì có. Nói tiếng Trung mình hàm súc hơn, nói tiếng Anh thì thẳng thắn hơn. Mình coi đó là những mặt khác nhau của cùng một người.
+社会应该怎样面对人工智能的发展？|Xã hội nên đối mặt với sự phát triển của trí tuệ nhân tạo thế nào?|与其拒绝，不如制定透明的规则，同时让公众足够了解技术，敢于提出质疑。|Thay vì bác bỏ, chi bằng đặt ra quy tắc minh bạch, đồng thời giúp công chúng đủ hiểu công nghệ và dám đặt câu hỏi.
+你怎么定义成功？|Bạn định nghĩa thành công thế nào?|我以前用收入和职位来衡量成功，现在我觉得成功就是有足够的自由，以不后悔的方式度过时间。|Trước đây mình đo thành công bằng thu nhập và chức vụ, giờ mình thấy thành công là có đủ tự do để sử dụng thời gian theo cách không hối tiếc.
+全球化会威胁本土文化吗？|Toàn cầu hoá có đe doạ văn hoá bản địa không?|有可能，但它也能让本土文化走向世界。对自身文化有信心的社会，能吸收外来影响而不被吞没。|Có thể, nhưng nó cũng giúp văn hoá bản địa vươn ra thế giới. Xã hội tự tin vào văn hoá của mình có thể hấp thụ ảnh hưởng bên ngoài mà không bị nuốt chửng.
+为什么年纪越大，觉得时间过得越快？|Vì sao càng lớn tuổi càng thấy thời gian trôi nhanh?|部分原因是生活越来越重复，大脑记住的独特片段变少了，日子就好像连在一起了。|Một phần là vì cuộc sống ngày càng lặp lại, não nhớ được ít khoảnh khắc riêng biệt hơn, những ngày như dính liền vào nhau.
+我们对未来的人有什么责任？|Chúng ta có trách nhiệm gì với người của tương lai?|至少要留给他们一个适合生活的地球。他们在今天的决定中没有发言权，所以我们必须主动考虑他们的利益。|Ít nhất phải để lại cho họ một trái đất còn sống được. Họ không có tiếng nói trong quyết định hôm nay, nên chúng ta phải chủ động nghĩ đến lợi ích của họ.
+艺术在你的生活中有什么意义？|Nghệ thuật có ý nghĩa gì trong cuộc sống của bạn?|艺术给那些难以言说的经历赋予了形状，提醒我有价值的东西不一定要有用。|Nghệ thuật định hình những trải nghiệm khó nói thành lời, nhắc mình rằng thứ có giá trị không nhất thiết phải hữu dụng.
+选择越多，人就越幸福吗？|Càng nhiều lựa chọn thì con người càng hạnh phúc sao?|不一定。选择太多反而让人焦虑，所以在不重要的事情上，我有意减少自己的选择。|Không hẳn. Quá nhiều lựa chọn lại khiến người ta lo âu, nên ở những việc không quan trọng, mình chủ động giảm bớt lựa chọn.
+对你来说，家是什么？|Với bạn, nhà là gì?|对我来说，家与其说是一个地方，不如说是一些关系和习惯，是需要不断建造的东西。|Với mình, nhà nói là một nơi chốn, chi bằng nói là những mối quan hệ và thói quen, là thứ cần không ngừng xây dựng.
+怀旧是一种健康的情绪吗？|Hoài niệm có phải là cảm xúc lành mạnh không?|适度的话是。它让我们感到人生的连续性，但如果相信过去一定更好，就有害了。|Nếu vừa phải thì có. Nó giúp ta cảm nhận sự liền mạch của cuộc đời, nhưng nếu tin rằng quá khứ chắc chắn tốt đẹp hơn thì có hại.

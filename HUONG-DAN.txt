@@ -27,20 +27,44 @@ TỪ VỰNG THEO CHỦ ĐỀ (tab "Từ vựng")
   Bài luyện 10 câu: nghe chọn thanh điệu · nghe chọn pinyin · nghe số gõ chữ số · nhìn số đọc to ·
   nghe giờ chọn đồng hồ · nghe ngày tháng · nghe chọn nghĩa · nghe chọn chữ Hán · nhìn nghĩa nói từ.
 
-PHÁT ÂM
-  10 nhóm khó cho người Việt, mỗi nhóm 6 câu: bốn thanh, hai thanh 3 liền nhau, 不/一 đổi thanh,
-  zh ch sh r, z c s, j q x, ü, -n/-ng, e/er/儿, thanh nhẹ.
+SHADOWING · TỰ KỂ CHUYỆN (tab "Shadowing")
+  72 đoạn văn ngắn kể ở ngôi "tôi", 12 đoạn mỗi cấp HSK 1 → HSK 6, có chữ Hán, pinyin, nghĩa:
+  giới thiệu bản thân, gia đình, nhà và nơi mình sống, một ngày của tôi, công việc, quê hương,
+  chuyến đi, Tết, sống ở nước ngoài, đổi nghề, nhà là gì…
+  Mỗi đoạn có 3 cách luyện:
+    Nghe & nói đuổi: phát cả đoạn, bật "Chừa lúc để nói" để có khoảng lặng nói lại sau mỗi câu;
+      có Đọc chậm, Lặp lại, bật/tắt chữ Hán, pinyin, nghĩa, chạm một câu để nghe riêng.
+    Nói từng câu: máy chấm từng chữ và thanh điệu.
+    Kể lại cả đoạn: nhìn dàn ý tiếng Việt, tự kể cả đoạn, bấm Dừng để chấm cả đoạn.
+  Nút "Thêm vào Ôn tập" đưa các câu của đoạn vào hộp ôn tập ngắt quãng.
+  Thêm đoạn mới: mở content/shadow-1.txt (HSK 1–2), shadow-2.txt (HSK 3–4) hoặc shadow-3.txt (HSK 5–6):
+       ## hsk1 | Tên tiếng Việt | Tên tiếng Trung
+       Câu tiếng Trung|Nghĩa tiếng Việt
+     rồi chạy python3 tools/build.py (ghi ra data/shadow.js).
 
-KHÁM PHÁ BẰNG HÌNH (đầu tab "Từ vựng")
-  11 cảnh 2.5D: nhà bếp, phòng tắm, phòng khách, phòng ngủ, lớp học, khu rừng, nông trại,
-  dưới biển, đường phố, chợ rau quả, công viên – khoảng 160 đồ vật và con vật.
-  Khám phá: chạm vào đồ vật → sáng lên, hiện chữ Hán + pinyin + nghĩa, đọc to.
-  Tìm đồ vật: nghe tên rồi chạm đúng đồ vật trong hình (10 câu, lưu điểm cao nhất).
-  Trên điện thoại có nút "Phóng to" để xem hình to hơn.
+LUYỆN THÊM (trang chủ → "Luyện thêm")
+  Nghe liên tục: chọn nguồn (bài đã học, hội thoại một cấp, Shadowing, Hỏi – đáp), đọc mỗi câu 1–3 lần,
+    nghỉ giữa câu để nói theo, tốc độ, xáo trộn, lặp lại, hẹn giờ tắt. Tắt màn hình vẫn nghe,
+    điều khiển bằng nút trên màn hình khoá.
+  Hỏi – đáp phản xạ: 60 câu hỏi về bản thân (10 câu mỗi cấp HSK 1 → 6). Nghe câu hỏi, bấm Trả lời và nói
+    tự do; máy ghi lại lời bạn, đếm số chữ, gợi ý nói dài hơn; xem câu trả lời mẫu có pinyin và giọng AI.
+    Thêm câu hỏi: content/qa.txt (câu hỏi|nghĩa|câu trả lời mẫu|nghĩa) rồi chạy python3 tools/build.py.
+  Mẫu câu: 49 cấu trúc (是, 了, 过, 把, 被, 比, 虽然…但是…), tự nhận diện trong câu của bài; mỗi bài hiện
+    tối đa 3 mẫu mới ở bước Nghe. Sửa / thêm mẫu: data/grammar.js.
+  Ghi âm để so: có trong mọi ô luyện nói. Ghi giọng mình rồi bấm So sánh để nghe giọng mẫu, ngay sau đó
+    là giọng mình. Rất hợp để tự nghe thanh điệu.
+  Góp ý: bật chip "Góp ý" ở bước Nghe của bài hoặc trong Shadowing rồi chạm vào câu, hoặc bấm
+    "Góp ý câu này" dưới ô luyện nói. Có loại "Pinyin sai". Cần đăng nhập để viết.
+    Xem tất cả: Cài đặt → Xem góp ý của mọi người. Lưu ở Realtime Database, nhánh feedback/zh.
+    Luật trong database.rules.json dùng chung với Sumi English (cùng dự án Firebase), chỉ cần dán một lần.
+
+CÀI ĐẶT (tab "Cài đặt")
+  Giao diện Theo máy / Sáng / Tối · bật/tắt pinyin · giọng Nữ / Nam / Nam – Nữ · tốc độ đọc ·
+  giọng dự phòng của máy · tài khoản · xoá tiến độ.
 
 GIỌNG ĐỌC
-  Mọi câu cố định (bài học, từ vựng, phát âm, tên đồ vật) có giọng AI thu sẵn trong thư mục audio/:
-    audio/f = giọng nữ, audio/m = giọng nam. Chọn ở tab Cách học hoặc bước 1 của bài:
+  Mọi câu cố định (bài học, từ vựng, shadowing) có giọng AI thu sẵn trong thư mục audio/:
+    audio/f = giọng nữ, audio/m = giọng nam. Chọn ở tab Cài đặt hoặc bước 1 của bài:
     Nữ · Nam · Nam – Nữ (người nói chuyện giọng nam, bạn giọng nữ).
   Giọng AI tạo bằng Kokoro (mô hình mã nguồn mở, giấy phép Apache 2.0, dùng miễn phí).
   Câu sinh ngẫu nhiên (số, giờ, ngày tháng trong bài luyện) dùng giọng có sẵn trong máy.

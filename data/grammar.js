@@ -1,0 +1,58 @@
+/*! © 2026 Sumi Chinese — Mẫu câu: tự nhận diện trong câu của bài */
+// Mỗi mẫu: id, t (tên), f (công thức), n (giải thích ngắn), re (nhận diện trong câu chữ Hán).
+// Mẫu xuất hiện lần đầu ở bài nào thì được giới thiệu ở bài đó (tối đa 3 mẫu mỗi bài).
+(function () {
+  const G = (id, t, f, n, re) => ({ id, t, f, n, re });
+  const T = (fn) => ({ test: fn });
+  window.SE_GRAMMAR = [
+    G('shi', 'Câu với 是', 'A + 是 + B', '是 (shì) nghĩa là "là", nối hai danh từ: 我是越南人。Phủ định: 不是 (bú shì). Không dùng 是 trước tính từ.', /是/),
+    G('ma', 'Câu hỏi với 吗', 'Câu kể + 吗？', 'Thêm 吗 (ma) vào cuối câu kể là thành câu hỏi có / không: 你是学生吗？', /吗[？?]/),
+    G('ne', 'Hỏi lại với 呢', '… + 呢？', '呢 (ne) dùng để hỏi lại cùng câu hỏi: 我很好，你呢？(Còn bạn?)', /呢[？?]/),
+    G('hen', 'Tính từ làm vị ngữ', 'Chủ ngữ + 很 + tính từ', 'Tiếng Trung không dùng 是 trước tính từ, mà thêm 很 (hěn): 我很好。今天很冷。', /很/),
+    G('de', 'Sở hữu với 的', 'A + 的 + B', '的 (de) giống "của" nhưng đặt trước: 我的书 (sách của tôi). Người thân, quan hệ gần có thể bỏ 的: 我妈妈.', /的/),
+    G('ye-dou', 'Cũng / đều: 也 và 都', 'Chủ ngữ + 也 / 都 + động từ', '也 (yě) cũng, 都 (dōu) đều; luôn đứng sau chủ ngữ, trước động từ: 我也是学生。我们都很好。', /也|都/),
+    G('you', 'Có / không có: 有 và 没有', 'A + 有 / 没有 + B', 'Phủ định của 有 luôn là 没有, không nói 不有: 我没有时间。', /有/),
+    G('bu-mei', 'Phủ định: 不 và 没', '不 + động từ (hiện tại, ý muốn) · 没 + động từ (chưa / đã không)', '不 phủ định thói quen, ý muốn: 我不喝咖啡。没 phủ định việc đã xảy ra: 我没去。', T(s => /没(?!有|什么)|不/.test(s.replace(/对不起|不客气|不好意思|不错|不用谢|来不及|差不多/g, '').replace(/(.)不\1/g, '')))),
+    G('ji', 'Hỏi số lượng: 几 và 多少', '几 + lượng từ + danh từ · 多少 (+ danh từ)', '几 (jǐ) cho số nhỏ dưới 10, cần lượng từ: 几个人？多少 (duōshao) cho số lớn, giá tiền: 多少钱？', /几|多少/),
+    G('zai', 'Ở đâu: 在', 'Chủ ngữ + 在 + nơi chốn (+ động từ)', '在 (zài) đứng trước nơi chốn, và nơi chốn đứng trước động từ: 我在饭店工作。(Tôi làm ở khách sạn.)', /在(这儿|那儿|哪儿|家|学校|公司|饭店|酒店|医院|北京|日本|中国|越南|.{1,4}(里|上|下|边|旁边|前面|后面|附近))/),
+    G('xiang-yao', 'Muốn: 想 và 要', '想 / 要 + động từ', '想 (xiǎng) muốn, nhẹ nhàng; 要 (yào) muốn / cần, mạnh hơn và có thể chỉ tương lai: 我想喝茶。我要去北京。', /想[^念到法起]|要(?!求|是)/),
+    G('hui-neng', 'Có thể: 会, 能, 可以', '会 / 能 / 可以 + động từ', '会 biết làm (do học): 我会说汉语。能 có khả năng / điều kiện. 可以 được phép: 我可以坐这儿吗？', /会[^议]|能|可以/),
+    G('ba-q', 'Gợi ý với 吧', '… + 吧', '吧 (ba) cuối câu: rủ rê "nhé" (我们走吧), hoặc đoán "chắc là… nhỉ" (你是老师吧？).', /吧/),
+    G('le', 'Hoàn thành với 了', 'Động từ + 了 · … + 了 (thay đổi)', '了 (le) sau động từ: việc đã xong (我买了一本书). Cuối câu: tình huống đã thay đổi (下雨了).', /[^为除到]了/),
+    G('zenme', 'Hỏi cách thức, lý do', '怎么 + động từ · 为什么', '怎么 (zěnme) hỏi làm thế nào: 怎么去？为什么 (wèishénme) hỏi tại sao.', /怎么|为什么/),
+    G('tai', 'Quá…: 太…了', '太 + tính từ + 了', 'Nhấn mạnh mức độ cao, thường cảm thán: 太贵了！太好了！', /太.{1,3}了/),
+    G('zui', 'So sánh nhất: 最', '最 + tính từ / động từ', '最 (zuì) nhất: 我最喜欢秋天。', /最/),
+    G('guo', 'Trải nghiệm với 过', 'Động từ + 过', '过 (guo) sau động từ: đã từng làm. Phủ định: 没 + V + 过: 我没去过北京。', /[去吃看听来见做学用到住喝玩]过(?![来去年])/),
+    G('zhengzai', 'Đang làm: 在 / 正在', '(正)在 + động từ (+ 呢)', 'Việc đang diễn ra: 我在看书。他正在开会呢。', /正在|在(看|听|做|学|吃|写|打|睡|玩|开|工作|休息|准备)/),
+    G('bi', 'So sánh với 比', 'A + 比 + B + tính từ', 'A 比 B 贵 (A đắt hơn B). Không thêm 很 sau 比; muốn nói "hơn nhiều" thì thêm 多了 ở cuối.', /比(?!较|赛)/),
+    G('yiyang', 'Giống nhau', 'A + 跟 / 和 + B + 一样 (+ tính từ)', '跟…一样 nghĩa là "giống như…": 我跟你一样高。', /(跟|和).{1,8}一样/),
+    G('yinwei', 'Vì… nên…', '因为…，所以…', 'Tiếng Trung thường dùng cả cặp: 因为下雨，所以我没去。', /因为|所以/),
+    G('suiran', 'Tuy… nhưng…', '虽然…，但是 / 可是…', '虽然很累，但是很高兴。Hay dùng cả cặp, khác tiếng Việt có thể bỏ một vế.', /虽然|但是|可是/),
+    G('ruguo', 'Nếu… thì…', '如果…（的话），就…', '如果明天下雨，我们就不去了。就 đứng sau chủ ngữ của vế sau.', /如果|要是/),
+    G('xian', 'Trình tự: trước… sau đó…', '先…，然后 / 再…', '先 (xiān) trước tiên, 然后 (ránhòu) sau đó, 再 (zài) rồi mới, 最后 cuối cùng.', /先.*(然后|再)|首先|然后/),
+    G('yibian', 'Vừa… vừa…', '一边 + V1，一边 + V2', 'Hai hành động cùng lúc: 我一边喝咖啡，一边看书。', /一边.*一边/),
+    G('youyou', 'Vừa… vừa… (tính chất)', '又 + tính từ + 又 + tính từ', '又便宜又好吃 (vừa rẻ vừa ngon).', /又.{1,4}又/),
+    G('de-buyu', 'Bổ ngữ trạng thái với 得', 'Động từ + 得 + tính từ', 'Đánh giá cách làm: 他说得很快。你汉语说得很好。', /[说跑做写唱吃睡起玩学讲过来走听变]得(很|非常|太|特别|不|好|快|慢|早|晚|清楚|开心|多|更)/),
+    G('shi-de', 'Nhấn mạnh với 是…的', '是 + thời gian / cách thức / nơi chốn + động từ + 的', 'Nhấn mạnh chi tiết của việc đã xảy ra: 我们是坐飞机去的。', /是.{0,6}(坐|骑|开车|走路|昨天|去年|上个|什么时候|怎么|在|跟|和|从|一个人|一起|几点).{0,10}的[。！？]/),
+    G('yijing', 'Đã… rồi', '已经 + động từ + 了', '已经 (yǐjīng) đã: 我已经吃了。Thường đi với 了 ở cuối.', /已经/),
+    G('kuai-le', 'Sắp… rồi', '快 / 快要 / 就要 + … + 了', 'Việc sắp xảy ra: 快到了 (sắp tới rồi)。', /(就要|快要)|快.{1,3}了/),
+    G('yuelaiyue', 'Càng ngày càng', '越来越 + tính từ', '天气越来越冷。(Trời ngày càng lạnh.)', /越来越/),
+    G('yue-yue', 'Càng… càng…', '越 + A，越 + B', '越学越喜欢 (càng học càng thích).', T(s => /越.+越/.test(s) && !/越来越/.test(s))),
+    G('ba', 'Câu chữ 把', 'Chủ ngữ + 把 + tân ngữ + động từ + phần khác', 'Nhấn vào việc xử lý một vật: 我把书放在桌子上。Động từ sau 把 không đứng một mình.', T(s => /把/.test(s) && !/[一两几三四五六七八九十这那每]把|把握/.test(s))),
+    G('bei', 'Câu bị động với 被', 'A + 被 (+ B) + động từ + phần khác', 'Thường dùng cho việc không mong muốn: 我的钱包被偷了。', /被/),
+    G('chule', 'Ngoài… ra', '除了…以外，…都 / 还 / 也…', '除了他以外，大家都来了 (trừ). 除了汉语，我还学日语 (ngoài ra còn).', /除了/),
+    G('budan', 'Không những… mà còn…', '不但 / 不仅…，而且 / 还…', '他不但会说汉语，而且说得很好。', /不但|不仅|而且/),
+    G('lian', 'Ngay cả… cũng…', '连 + A + 都 / 也 + …', 'Nhấn mạnh trường hợp cực đoan: 他连饭都没吃。', /连.{1,10}(都|也)/),
+    G('yi-jiu', 'Hễ… là…', '一 + V1，就 + V2', 'Việc thứ hai xảy ra ngay sau việc thứ nhất: 我一到家就睡觉了。', /一(到|开门|听|看|回|拿|离开|有|下班|进|出|起床|毕业|见).{0,8}就/),
+    G('zhiyao', 'Chỉ cần… là…', '只要…，就…', '只要努力，就能成功。', /只要/),
+    G('zhiyou', 'Chỉ có… mới…', '只有…，才…', 'Điều kiện duy nhất: 只有多练习，才能说得好。', /只有.*才/),
+    G('wulun', 'Bất kể… đều…', '无论 / 不管…，都…', '无论多忙，我都会给妈妈打电话。', /无论|不管/),
+    G('jishi', 'Dù… cũng…', '即使 / 哪怕 / 就算…，也…', 'Giả định nhượng bộ: 即使下雨，我也去。', /即使|哪怕|就算|尽管/),
+    G('dui-laishuo', 'Đối với… mà nói', '对 + người + 来说，…', '对我来说，家人最重要。', /对.{1,6}来说/),
+    G('weile', 'Để…, vì…', '为了 + mục đích，…', '为了学好汉语，我每天练习。', /为了/),
+    G('ji-you', 'Vừa… lại…', '既…又 / 也…', 'Văn trang trọng hơn 又…又: 既方便又便宜。', /既.{1,8}(又|也)/),
+    G('yuqi', 'Thay vì… chi bằng…', '与其 A，不如 B', 'So sánh và chọn B: 与其在家等，不如出去找。', /与其|不如/),
+    G('fan-er', 'Trái lại, ngược lại', '…，反而…', 'Kết quả trái với mong đợi: 休息以后，效率反而提高了。', /反而|甚至|竟然/),
+    G('chengyu', 'Thành ngữ bốn chữ', 'Cụm cố định 4 chữ', 'Thành ngữ làm câu ngắn gọn, trang trọng: 半信半疑 (bán tín bán nghi), 必不可少 (không thể thiếu).', /半信半疑|必不可少|各种各样|一片空白|无人知晓|不无道理|身心疲惫/)
+  ];
+})();

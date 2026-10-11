@@ -29,7 +29,6 @@
   function viewList(app) {
     const basic = T().filter(t => t.kind !== 'word').length;
     app.innerHTML = '<section class="card panel pop"><div class="panel-h"><h2>Từ vựng theo chủ đề</h2><p>Thanh điệu, pinyin, chữ số, ngày giờ và ' + (T().length - basic) + ' chủ đề đời thường. Mỗi từ có chữ Hán, pinyin, nghĩa và một câu ví dụ. Chạm vào từ để nghe từ, chạm vào câu ví dụ để nghe câu.</p></div></section>' +
-      (window.SEScenes ? window.SEScenes.cardsHtml() + '<h2 class="sec">Học theo chủ đề</h2>' : '') +
       '<div class="voc-grid">' + T().map((t, i) => {
         const done = (MODES[t.kind] || MODES.word).slice(1).map(m => best(t.id, m[0])).filter(v => v != null);
         return '<a class="card voc-card" href="#/vocab/' + t.id + '"><span class="num">' + (i + 1) + '</span><b>' + esc(t.t) + '</b><small class="en zh-t">' + esc(t.en) + '</small><small class="muted">' + t.items.length + (t.kind === 'num' ? ' số' : t.kind === 'tone' || t.kind === 'init' ? ' âm' : ' từ') + (done.length ? ' · cao nhất ' + Math.max(...done) + '/' + QN : '') + '</small></a>';

@@ -99,6 +99,14 @@
       if (p && p.catch) p.catch(() => { if (!done) { done = true; clearTimeout(tm); if (my === token) speakTTS(text, o).then(res); else res(false); } });
     });
   }
+  // Tải trước file mp3 của câu sắp phát để không bị khựng
+  const pre = new Set();
+  function prefetch(text, who) {
+    const key = keyOf(who, text); if (!AKEYS.has(key)) return;
+    const url = 'audio/' + genderFor(who) + '/' + key + '.mp3';
+    if (pre.has(url)) return; if (pre.size > 200) pre.clear(); pre.add(url);
+    try { fetch(url).catch(() => { }); } catch (e) { }
+  }
   function unlockAudio() { try { const a = player(); a.muted = true; a.src = 'data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjYwLjE2LjEwMAAAAAAAAAAAAAAA//OEwAAAAAAAAAAAAEluZm8AAAAPAAAABwAAA2AAVVVVVVVVVVVVVVVVVVVxcXFxcXFxcXFxcXFxcY6Ojo6Ojo6Ojo6Ojo6Oqqqqqqqqqqqqqqqqqqqqx8fHx8fHx8fHx8fHx8fj4+Pj4+Pj4+Pj4+Pj4///////////////////AAAAAExhdmM2MC4zMQAAAAAAAAAAAAAAACQEIAAAAAAAAANgmVBi7QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//NExAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMu//NExFMAAANIAAAAADEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMu//NExKYAAANIAAAAADEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMu//NExKwAAANIAAAAADEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVTEFNRTMu//NExKwAAANIAAAAADEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NExKwAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV//NExKwAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV'; const p = a.play(); if (p && p.then) p.then(() => { a.pause(); a.muted = false; }).catch(() => { a.muted = false; }); } catch (e) { } }
   function stop() { token++; if (audioEl) { try { audioEl.pause(); } catch (e) { } } if (synth && (synth.speaking || synth.pending)) synth.cancel(); }
   let unlocked = false;
@@ -218,10 +226,18 @@
       try { if (rec) rec.abort(); } catch (e) { }
       const r = new SR();
       rec = r;
-      r.lang = 'zh-CN'; r.interimResults = true; r.maxAlternatives = 5; r.continuous = false;
+      r.lang = 'zh-CN'; r.interimResults = true; r.maxAlternatives = o.continuous ? 1 : 5; r.continuous = !!o.continuous;
       let best = null, finished = false, lastText = '';
       const done = (v) => { if (finished) return; finished = true; clearTimeout(cap); resolve(v); };
       r.onresult = e => {
+        if (o.continuous) {
+          // Kể cả đoạn: gộp mọi đoạn đã nhận dạng từ đầu phiên
+          let all = '';
+          for (let i = 0; i < e.results.length; i++) all += e.results[i][0].transcript;
+          lastText = all.trim();
+          if (lastText) o.onInterim && o.onInterim(lastText);
+          return;
+        }
         let interim = '';
         for (let i = e.resultIndex; i < e.results.length; i++) {
           const R = e.results[i];
@@ -236,6 +252,7 @@
       };
       r.onerror = e => done({ error: e.error || 'error' });
       r.onend = () => {
+        if (o.continuous) return done(lastText ? compare(target, lastText) : { error: 'no-speech' });
         if (best) done(best);
         else if (lastText) done(compare(target, lastText));
         else done({ error: 'no-speech' });
@@ -247,7 +264,7 @@
   function stopListening() { try { rec && rec.stop(); } catch (e) { } }
 
   window.SESpeech = {
-    speak, stop, listen, stopListening, canListen, compare, markWords, norm, units, tone3, charPy, numToHan, numVal,
+    speak, stop, listen, stopListening, prefetch, urlOf: (text, who) => { const k = keyOf(who, text); return AKEYS.has(k) ? 'audio/' + genderFor(who) + '/' + k + '.mp3' : null; }, canListen, compare, markWords, norm, units, tone3, charPy, numToHan, numVal,
     canSpeak: () => !!synth,
     hasVoice: () => voices.length > 0,
     setRate: r => { rate = r; }, getRate: () => rate,

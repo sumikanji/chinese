@@ -38,7 +38,7 @@ FIX = {
     '以史为镜': 'yǐ shǐ wéi jìng', '尤为重要': 'yóu wéi zhòng yào', '一场': 'yì chǎng', '下一场': 'xià yì chǎng', '我教': 'wǒ jiāo', '教得': 'jiāo de',
     '不好意思': 'bù hǎo yì si', '差点儿': 'chà diǎn r', '一是': 'yī shì', '一刻': 'yí kè', '照张': 'zhào zhāng', '名字': 'míng zi',
     '只长': 'zhī cháng', '长时间': 'cháng shí jiān', '更长': 'gèng cháng', '越长': 'yuè cháng', '地里': 'dì li', '营地': 'yíng dì',
-    '还车': 'huán chē', '背上': 'bēi shàng', '你种': 'nǐ zhòng',
+    '还车': 'huán chē', '太长': 'tài cháng', '很长': 'hěn cháng', '长住': 'cháng zhù', '不得不': 'bù dé bù', '背上': 'bēi shàng', '你种': 'nǐ zhòng',
     '睡觉': 'shuì jiào', '早上': 'zǎo shang', '晚上': 'wǎn shang', '上班': 'shàng bān', '早上好': 'zǎo shang hǎo', '名字': 'míng zi', '妹妹': 'mèi mei', '哥哥': 'gē ge', '姐姐': 'jiě jie', '弟弟': 'dì di', '爸爸': 'bà ba', '妈妈': 'mā ma', '儿子': 'ér zi', '女儿': 'nǚ ér', '桌子': 'zhuō zi', '椅子': 'yǐ zi', '杯子': 'bēi zi', '个子': 'gè zi', '孩子': 'hái zi', '日子': 'rì zi', '房子': 'fáng zi', '饺子': 'jiǎo zi', '包子': 'bāo zi', '橘子': 'jú zi', '鼻子': 'bí zi', '眼睛': 'yǎn jing', '耳朵': 'ěr duo', '脑袋': 'nǎo dai', '舌头': 'shé tou', '石头': 'shí tou', '木头': 'mù tou', '馒头': 'mán tou', '枕头': 'zhěn tou', '他们': 'tā men', '我们': 'wǒ men', '你们': 'nǐ men', '咱们': 'zán men', '她们': 'tā men', '怎么': 'zěn me', '怎么样': 'zěn me yàng', '这么': 'zhè me', '那么': 'nà me', '看看': 'kàn kan', '试试': 'shì shi', '说说': 'shuō shuo', '想想': 'xiǎng xiang', '聊聊': 'liáo liao', '尝尝': 'cháng chang', '学生': 'xué sheng', '医生': 'yī shēng', '身体': 'shēn tǐ', '月亮': 'yuè liang', '太阳': 'tài yáng', '窗户': 'chuāng hu', '豆腐': 'dòu fu', '葡萄': 'pú tao', '萝卜': 'luó bo', '西瓜': 'xī guā', '玻璃': 'bō li', '清楚': 'qīng chu', '聪明': 'cōng ming', '热闹': 'rè nao', '高兴': 'gāo xìng', '漂亮': 'piào liang', '凉快': 'liáng kuai', '舒服': 'shū fu', '干净': 'gān jìng', '商量': 'shāng liang', '消息': 'xiāo xi', '生意': 'shēng yi', '名气': 'míng qi', '脾气': 'pí qi', '力气': 'lì qi', '精神': 'jīng shen', '答应': 'dā ying', '应该': 'yīng gāi', '大夫': 'dài fu', '丈夫': 'zhàng fu', '姑娘': 'gū niang', '老实': 'lǎo shi', '结实': 'jiē shi', '踏实': 'tā shi', '主意': 'zhǔ yi', '护士': 'hù shi', '这个': 'zhè ge', '那个': 'nà ge', '哪个': 'nǎ ge', '几个': 'jǐ ge', '两个': 'liǎng ge', '一个': 'yí gè', '觉': 'jiào', '得': 'de', '地': 'de', '了': 'le', '着': 'zhe', '的': 'de', '还': 'hái', '都': 'dōu',
 }
 FIX.pop('不See', None)
@@ -220,7 +220,8 @@ def main():
         o.write('window.SE_VOCAB=%s;\n' % json.dumps({k: v['words'] for k, v in stats.items()}))
 
     # Tên đồ vật trong các cảnh 2.5D (scenes.js) → pinyin
-    sc = open(os.path.join(ROOT, 'scenes.js'), encoding='utf-8').read()
+    scf = os.path.join(ROOT, 'scenes.js')
+    sc = open(scf, encoding='utf-8').read() if os.path.exists(scf) else ''
     words = sorted(set(re.findall(r"itF?\('[^']+', '[^']+', [^']*?, '[^']*', '[^']*', '([^']+)'", sc)))
     spy = {}
     for w in words:
@@ -283,6 +284,48 @@ def build_extra():
             o.write('window.SE_VOCAB_TOPICS=%s;\n' % json.dumps(topics, ensure_ascii=False, separators=(',', ':')))
             o.write('window.SE_VOCAB_TOPICS.forEach(function(t){t.items=t.items.map(function(r){return {w:r[0],py:r[1],vi:r[2],ex:r[3],exvi:r[4],tk:window.SE_TOK(r[5])}})});\n')
         print('vocab', len(topics), 'chủ đề', sum(len(t['items']) for t in topics), 'từ')
+    # shadow-*.txt:  ## cấp | Tên tiếng Việt | Tên tiếng Trung   rồi các dòng  中文|nghĩa
+    sh, cur, cnt = [], None, collections.Counter()
+    for f in sorted(x for x in os.listdir(C) if re.match(r'shadow-\d+\.txt$', x)):
+        for raw in open(os.path.join(C, f), encoding='utf-8'):
+            line = raw.strip()
+            if not line or line.startswith('//'):
+                continue
+            if line.startswith('##'):
+                a = [x.strip() for x in line[2:].split('|')]
+                cnt[a[0]] += 1
+                cur = dict(id='sh-%s-%02d' % (a[0], cnt[a[0]]), lv=a[0], t=a[1], en=a[2], s=[])
+                sh.append(cur)
+            else:
+                cn, vi = [x.strip() for x in line.split('|')]
+                tk = toks(cn)
+                chars.update(''.join(w for w, p in tk if p))
+                cur['s'].append([cn, vi, enc(tk)])
+    if sh:
+        with open(os.path.join(D, 'shadow.js'), 'w', encoding='utf-8') as o:
+            o.write('/*! © 2026 Sumi Chinese — Shadowing: đoạn văn tự kể chuyện (tự sinh từ content/shadow-*.txt) */\n')
+            o.write('window.SE_SHADOW=%s;\n' % json.dumps(sh, ensure_ascii=False, separators=(',', ':')))
+            o.write('window.SE_SHADOW.forEach(function(x){x.s=x.s.map(function(r){return [r[0],r[1],window.SE_TOK(r[2])]})});\n')
+        print('shadow', len(sh), 'đoạn', sum(len(x['s']) for x in sh), 'câu', dict(cnt))
+    # qa.txt:  ## cấp   rồi các dòng  câu hỏi|nghĩa|câu trả lời mẫu|nghĩa
+    fn = os.path.join(C, 'qa.txt')
+    if os.path.exists(fn):
+        qa, lv, cnt = [], None, collections.Counter()
+        for raw in open(fn, encoding='utf-8'):
+            line = raw.strip()
+            if not line or line.startswith('//'):
+                continue
+            if line.startswith('##'):
+                lv = line[2:].strip(); continue
+            q, qv, a, av = [x.strip() for x in line.split('|')]
+            cnt[lv] += 1
+            tq, ta = toks(q), toks(a)
+            chars.update(''.join(w for w, p in tq + ta if p))
+            qa.append([('qa-%s-%02d' % (lv, cnt[lv])), lv, q, qv, enc(tq), a, av, enc(ta)])
+        with open(os.path.join(D, 'qa.js'), 'w', encoding='utf-8') as o:
+            o.write('/*! © 2026 Sumi Chinese — hỏi – đáp phản xạ (tự sinh từ content/qa.txt) */\n')
+            o.write('window.SE_QA=%s.map(function(r){return {id:r[0],lv:r[1],q:r[2],qv:r[3],qt:window.SE_TOK(r[4]),a:r[5],av:r[6],at:window.SE_TOK(r[7])}});\n' % json.dumps(qa, ensure_ascii=False, separators=(',', ':')))
+        print('qa', len(qa), 'câu hỏi', dict(cnt))
     return chars
 
 def build_pymap(chars):

@@ -1,0 +1,242 @@
+// Shadowing: đoạn văn tự kể chuyện.  ## cấp | Tên tiếng Việt | Tên tiếng Trung   rồi các câu  中文|nghĩa
+// ===================== HSK 1 =====================
+## hsk1 | Giới thiệu bản thân | 介绍自己
+大家好，我叫阿兰。|Chào mọi người, mình tên là Lan.
+我今年二十五岁。|Năm nay mình hai mươi lăm tuổi.
+我是越南人。|Mình là người Việt Nam.
+我现在住在日本。|Bây giờ mình sống ở Nhật Bản.
+我在一家饭店工作。|Mình làm việc ở một khách sạn.
+我会说一点儿汉语。|Mình biết nói một chút tiếng Trung.
+我很喜欢学汉语。|Mình rất thích học tiếng Trung.
+认识你们很高兴！|Rất vui được làm quen với mọi người!
+
+## hsk1 | Gia đình tôi | 我的家
+我家有五口人。|Nhà mình có năm người.
+爸爸、妈妈、哥哥、妹妹和我。|Bố, mẹ, anh trai, em gái và mình.
+我爸爸是医生。|Bố mình là bác sĩ.
+我妈妈是老师。|Mẹ mình là giáo viên.
+我哥哥在北京工作。|Anh trai mình làm việc ở Bắc Kinh.
+我妹妹是学生，她十八岁。|Em gái mình là học sinh, em ấy mười tám tuổi.
+我们都很爱我们的家。|Cả nhà đều rất yêu gia đình mình.
+我很想我的家人。|Mình rất nhớ người thân.
+
+## hsk1 | Nhà của tôi | 我的房子
+我住在一个小房子里。|Mình sống trong một căn nhà nhỏ.
+房子不大，但是很漂亮。|Nhà không lớn, nhưng rất đẹp.
+家里有一张桌子和四把椅子。|Trong nhà có một cái bàn và bốn cái ghế.
+桌子上有很多书。|Trên bàn có rất nhiều sách.
+我的电脑也在桌子上。|Máy tính của mình cũng ở trên bàn.
+窗户前面有一只小猫。|Trước cửa sổ có một con mèo nhỏ.
+我很喜欢在家看书。|Mình rất thích ở nhà đọc sách.
+我爱我的家。|Mình yêu nhà của mình.
+
+## hsk1 | Nơi tôi sống | 我住的地方
+我住在福冈。|Mình sống ở Fukuoka.
+我家前面有一个商店。|Trước nhà mình có một cửa hàng.
+商店里的东西很多。|Đồ trong cửa hàng rất nhiều.
+我家后面有一个饭馆。|Sau nhà mình có một quán ăn.
+饭馆的菜很好吃。|Đồ ăn ở quán rất ngon.
+火车站离我家不远。|Ga tàu cách nhà mình không xa.
+我每天坐火车去工作。|Mình đi tàu đi làm mỗi ngày.
+我很喜欢这个地方。|Mình rất thích nơi này.
+
+## hsk1 | Một ngày của tôi | 我的一天
+我每天早上七点起床。|Sáng nào mình cũng dậy lúc bảy giờ.
+我喝一杯茶，吃一点儿米饭。|Mình uống một cốc trà, ăn một chút cơm.
+八点我去工作。|Tám giờ mình đi làm.
+中午十二点我吃午饭。|Mười hai giờ trưa mình ăn cơm trưa.
+下午五点我回家。|Năm giờ chiều mình về nhà.
+晚上我做饭，看电视。|Buổi tối mình nấu cơm, xem tivi.
+有时候我给妈妈打电话。|Đôi khi mình gọi điện cho mẹ.
+十一点我睡觉。|Mười một giờ mình đi ngủ.
+
+## hsk1 | Bạn thân của tôi | 我的好朋友
+我有一个好朋友。|Mình có một người bạn thân.
+她叫小美，是中国人。|Cô ấy tên là Tiểu Mỹ, là người Trung Quốc.
+她是我的同学。|Cô ấy là bạn cùng lớp của mình.
+小美很漂亮，也很喜欢笑。|Tiểu Mỹ rất xinh, cũng rất hay cười.
+她会说汉语，也会说日语。|Cô ấy biết nói tiếng Trung, cũng biết nói tiếng Nhật.
+我们常常一起吃饭。|Bọn mình thường ăn cơm cùng nhau.
+星期六我们去看电影。|Thứ bảy bọn mình đi xem phim.
+我很高兴有这么好的朋友。|Mình rất vui vì có người bạn tốt như vậy.
+
+## hsk1 | Món ăn tôi thích | 我喜欢吃的东西
+我很喜欢吃米饭。|Mình rất thích ăn cơm.
+我也喜欢吃水果。|Mình cũng thích ăn hoa quả.
+我最喜欢的水果是苹果。|Loại hoa quả mình thích nhất là táo.
+我不太喜欢吃肉。|Mình không thích ăn thịt lắm.
+我每天喝很多水。|Mỗi ngày mình uống rất nhiều nước.
+我也喜欢喝茶。|Mình cũng thích uống trà.
+中国菜很好吃。|Đồ ăn Trung Quốc rất ngon.
+你喜欢吃什么？|Bạn thích ăn gì?
+
+## hsk1 | Con mèo của tôi | 我的猫
+我有一只猫。|Mình có một con mèo.
+它叫小白。|Nó tên là Tiểu Bạch.
+小白今年三岁了。|Tiểu Bạch năm nay ba tuổi rồi.
+它很小，也很漂亮。|Nó rất nhỏ, cũng rất đẹp.
+它喜欢在椅子上睡觉。|Nó thích ngủ trên ghế.
+我回家的时候，它很高兴。|Khi mình về nhà, nó rất vui.
+我每天和它一起玩儿。|Ngày nào mình cũng chơi với nó.
+小白是我的好朋友。|Tiểu Bạch là bạn tốt của mình.
+
+## hsk1 | Cuối tuần của tôi | 我的周末
+星期六我不工作。|Thứ bảy mình không đi làm.
+我九点起床。|Mình dậy lúc chín giờ.
+上午我去商店买东西。|Buổi sáng mình đi cửa hàng mua đồ.
+中午我和朋友在饭馆吃饭。|Buổi trưa mình ăn cơm với bạn ở quán.
+下午我们去看电影。|Buổi chiều bọn mình đi xem phim.
+星期天我在家看书。|Chủ nhật mình ở nhà đọc sách.
+晚上我给家人打电话。|Buổi tối mình gọi điện cho gia đình.
+我很喜欢周末。|Mình rất thích cuối tuần.
+
+## hsk1 | Thời tiết ở đây | 这里的天气
+今天天气很好。|Hôm nay thời tiết rất đẹp.
+不冷也不热。|Không lạnh cũng không nóng.
+昨天下雨了。|Hôm qua trời mưa.
+我没有出去，在家看电视。|Mình không ra ngoài, ở nhà xem tivi.
+明天会很热。|Ngày mai trời sẽ rất nóng.
+我想去外面喝茶。|Mình muốn ra ngoài uống trà.
+这里冬天很冷。|Ở đây mùa đông rất lạnh.
+我喜欢天气好的时候。|Mình thích những lúc trời đẹp.
+
+## hsk1 | Sở thích của tôi | 我的爱好
+我有很多爱好。|Mình có nhiều sở thích.
+我喜欢看书。|Mình thích đọc sách.
+我也喜欢看电影。|Mình cũng thích xem phim.
+我会做中国菜。|Mình biết nấu món Trung Quốc.
+我常常给朋友做饭。|Mình thường nấu cơm cho bạn bè.
+我还喜欢听歌。|Mình còn thích nghe nhạc.
+我不会开车。|Mình không biết lái xe.
+我想学开车。|Mình muốn học lái xe.
+
+## hsk1 | Công việc của tôi | 我的工作
+我在一家大饭店工作。|Mình làm việc ở một khách sạn lớn.
+饭店在飞机场旁边。|Khách sạn ở cạnh sân bay.
+我每天和很多人说话。|Mỗi ngày mình nói chuyện với rất nhiều người.
+有中国人，也有日本人。|Có người Trung Quốc, cũng có người Nhật.
+我的工作不太累。|Công việc của mình không mệt lắm.
+我的同事都很好。|Đồng nghiệp của mình đều rất tốt.
+我很喜欢我的工作。|Mình rất thích công việc của mình.
+我想在这里工作很多年。|Mình muốn làm việc ở đây nhiều năm.
+
+// ===================== HSK 2 =====================
+## hsk2 | Quê hương tôi | 我的老家
+我的老家在越南北部的一个小城市。|Quê mình ở một thành phố nhỏ miền Bắc Việt Nam.
+那里离河内不远，坐车两个小时就到了。|Nơi đó cách Hà Nội không xa, đi xe hai tiếng là tới.
+我的爷爷奶奶还住在那里。|Ông bà mình vẫn sống ở đó.
+那里的人都很热情。|Người ở đó đều rất nhiệt tình.
+早上大家喜欢在河边跑步。|Buổi sáng mọi người thích chạy bộ bên bờ sông.
+那里的米粉特别好吃，也很便宜。|Phở ở đó đặc biệt ngon, cũng rất rẻ.
+每次回家，我都觉得很快乐。|Mỗi lần về nhà, mình đều thấy rất vui.
+我希望以后能经常回去看看。|Mình mong sau này có thể thường xuyên về thăm.
+
+## hsk2 | Một chuyến đi đáng nhớ | 一次难忘的旅行
+去年夏天，我和朋友去了北京。|Mùa hè năm ngoái, mình và bạn đã đi Bắc Kinh.
+我们是坐飞机去的。|Bọn mình đi bằng máy bay.
+第一天，我们去看了很多老房子。|Ngày đầu, bọn mình đi xem rất nhiều nhà cổ.
+第二天，我们吃了很有名的北京烤鸭。|Ngày thứ hai, bọn mình ăn vịt quay Bắc Kinh rất nổi tiếng.
+那里的天气很热，可是我们玩得很开心。|Thời tiết ở đó rất nóng, nhưng bọn mình chơi rất vui.
+我用汉语跟服务员说话，她听懂了。|Mình nói tiếng Trung với nhân viên phục vụ, cô ấy hiểu được.
+我觉得我的汉语有进步了。|Mình thấy tiếng Trung của mình đã tiến bộ.
+我还想再去一次北京。|Mình còn muốn đi Bắc Kinh thêm một lần nữa.
+
+## hsk2 | Tôi học tiếng Trung thế nào | 我怎么学汉语
+我学汉语已经一年了。|Mình học tiếng Trung đã một năm rồi.
+每天早上，我听二十分钟的汉语。|Mỗi sáng, mình nghe tiếng Trung hai mươi phút.
+在火车上，我用手机学新词。|Trên tàu, mình dùng điện thoại học từ mới.
+晚上，我大声读课文。|Buổi tối, mình đọc to bài khoá.
+我觉得汉字有点儿难。|Mình thấy chữ Hán hơi khó.
+但是我的中国朋友常常帮助我。|Nhưng bạn bè Trung Quốc của mình thường giúp đỡ mình.
+我们一起说汉语，一起看中国电影。|Bọn mình cùng nói tiếng Trung, cùng xem phim Trung Quốc.
+我希望明年能去中国留学。|Mình mong năm sau có thể đi du học Trung Quốc.
+
+## hsk2 | Đi mua sắm | 去商店买东西
+上个星期天，我去商店买衣服。|Chủ nhật tuần trước, mình đi cửa hàng mua quần áo.
+商店里人很多，衣服也很多。|Trong cửa hàng rất đông người, quần áo cũng rất nhiều.
+我看到一件红色的衣服，非常漂亮。|Mình thấy một chiếc áo màu đỏ, cực kỳ đẹp.
+我问服务员：“这件多少钱？”|Mình hỏi nhân viên: "Cái này bao nhiêu tiền?"
+她说三百块，有点儿贵。|Cô ấy nói ba trăm tệ, hơi đắt.
+我又找了一件白色的，只要一百五。|Mình lại tìm một chiếc màu trắng, chỉ một trăm năm mươi.
+我穿了一下，觉得很合适，就买了。|Mình mặc thử, thấy rất vừa, liền mua.
+回家以后，妈妈说这件衣服很好看。|Về nhà, mẹ nói chiếc áo này rất đẹp.
+
+## hsk2 | Nấu món tôi thích | 做我喜欢的菜
+我最喜欢做的菜是鸡蛋炒饭。|Món mình thích nấu nhất là cơm rang trứng.
+这个菜很简单，大家都会做。|Món này rất đơn giản, ai cũng biết làm.
+先准备一碗米饭和两个鸡蛋。|Đầu tiên chuẩn bị một bát cơm và hai quả trứng.
+然后把鸡蛋炒一下。|Sau đó xào trứng một chút.
+再放米饭，一起炒五分钟。|Rồi cho cơm vào, xào cùng năm phút.
+最后放一点儿盐就可以吃了。|Cuối cùng cho một chút muối là ăn được rồi.
+我常常给我的同事做这个菜。|Mình thường nấu món này cho đồng nghiệp.
+他们都说很好吃，这让我很高兴。|Họ đều nói rất ngon, điều đó làm mình rất vui.
+
+## hsk2 | Ngày đầu đi làm | 第一天上班
+我还记得第一天上班的时候。|Mình vẫn nhớ ngày đầu tiên đi làm.
+那天我六点就起床了。|Hôm đó mình dậy từ sáu giờ.
+我穿上新衣服，早早地出门了。|Mình mặc quần áo mới, ra khỏi nhà từ sớm.
+到了饭店，我有点儿紧张。|Đến khách sạn, mình hơi căng thẳng.
+经理给我介绍了新同事。|Quản lý giới thiệu đồng nghiệp mới cho mình.
+大家都对我很好，还教我怎么工作。|Mọi người đều rất tốt với mình, còn dạy mình cách làm việc.
+晚上回家的时候，我又累又高兴。|Tối về nhà, mình vừa mệt vừa vui.
+现在我已经在那里工作两年了。|Bây giờ mình đã làm ở đó hai năm rồi.
+
+## hsk2 | Mùa tôi thích nhất | 我最喜欢的季节
+一年有四个季节，我最喜欢秋天。|Một năm có bốn mùa, mình thích mùa thu nhất.
+秋天不冷也不热，天气很舒服。|Mùa thu không lạnh cũng không nóng, thời tiết rất dễ chịu.
+树上的叶子变成了红色和黄色。|Lá trên cây chuyển sang màu đỏ và vàng.
+周末我喜欢去公园走一走。|Cuối tuần mình thích ra công viên đi dạo.
+秋天的水果也特别多。|Mùa thu hoa quả cũng đặc biệt nhiều.
+夏天太热了，我常常不想出门。|Mùa hè nóng quá, mình thường không muốn ra ngoài.
+冬天虽然冷，但是可以看雪。|Mùa đông tuy lạnh, nhưng có thể ngắm tuyết.
+你最喜欢哪个季节？|Bạn thích mùa nào nhất?
+
+## hsk2 | Phòng của tôi | 我的房间
+我的房间不大，但是很干净。|Phòng của mình không lớn, nhưng rất sạch sẽ.
+进门的左边是我的床。|Bên trái cửa ra vào là giường của mình.
+床旁边有一个小桌子。|Cạnh giường có một cái bàn nhỏ.
+桌子上放着电脑和几本书。|Trên bàn để máy tính và vài quyển sách.
+右边有一个很大的窗户。|Bên phải có một cái cửa sổ rất lớn.
+早上太阳从窗户进来，房间很亮。|Buổi sáng mặt trời chiếu qua cửa sổ, căn phòng rất sáng.
+我在房间里学习、休息，也听音乐。|Mình học bài, nghỉ ngơi, cũng nghe nhạc trong phòng.
+这是我最喜欢的地方。|Đây là nơi mình thích nhất.
+
+## hsk2 | Một sinh nhật đáng nhớ | 一个难忘的生日
+去年我过了一个难忘的生日。|Năm ngoái mình đã có một sinh nhật khó quên.
+那天我要工作，所以觉得有点儿不高兴。|Hôm đó mình phải làm việc, nên thấy hơi buồn.
+下班的时候，同事们叫我去会议室。|Lúc tan làm, các đồng nghiệp gọi mình vào phòng họp.
+我一开门，大家都说：“生日快乐！”|Mình vừa mở cửa, mọi người đều nói: "Chúc mừng sinh nhật!"
+桌子上有一个很大的蛋糕。|Trên bàn có một chiếc bánh kem rất to.
+他们还送给我一本汉语书。|Họ còn tặng mình một quyển sách tiếng Trung.
+我太高兴了，差点儿哭了。|Mình vui quá, suýt nữa thì khóc.
+那是我最开心的一个生日。|Đó là sinh nhật vui nhất của mình.
+
+## hsk2 | Điện thoại và tôi | 我和手机
+现在我每天都离不开手机。|Bây giờ ngày nào mình cũng không rời được điện thoại.
+早上我用手机看新闻和天气。|Buổi sáng mình dùng điện thoại xem tin tức và thời tiết.
+坐车的时候，我用手机听音乐。|Lúc đi xe, mình dùng điện thoại nghe nhạc.
+我也用手机给家里人打电话。|Mình cũng dùng điện thoại gọi về cho gia đình.
+买东西的时候，我用手机付钱。|Lúc mua đồ, mình dùng điện thoại trả tiền.
+但是我觉得看手机的时间太长了。|Nhưng mình thấy thời gian xem điện thoại quá nhiều.
+晚上十点以后，我就不玩儿手机了。|Sau mười giờ tối, mình không chơi điện thoại nữa.
+现在我睡得比以前好多了。|Bây giờ mình ngủ ngon hơn trước nhiều.
+
+## hsk2 | Một ngày Chủ nhật | 一个普通的星期天
+星期天我一般起得比较晚。|Chủ nhật mình thường dậy khá muộn.
+起床以后，我先打扫房间。|Sau khi dậy, mình dọn phòng trước.
+然后我去附近的咖啡馆喝咖啡。|Sau đó mình đến quán cà phê gần nhà uống cà phê.
+我一边喝咖啡，一边看书。|Mình vừa uống cà phê, vừa đọc sách.
+下午我跟朋友去公园跑步。|Buổi chiều mình đi chạy bộ ở công viên với bạn.
+晚上我们一起去吃火锅。|Buổi tối bọn mình cùng đi ăn lẩu.
+回家以后，我准备下个星期的工作。|Về nhà, mình chuẩn bị công việc cho tuần sau.
+这样的星期天让我觉得很放松。|Chủ nhật như vậy làm mình thấy rất thư thái.
+
+## hsk2 | Đi khám bệnh | 去医院看病
+上个月我生病了。|Tháng trước mình bị ốm.
+我觉得很累，头也很疼。|Mình thấy rất mệt, đầu cũng rất đau.
+第二天早上，我去了医院。|Sáng hôm sau, mình đi bệnh viện.
+医生问我哪儿不舒服。|Bác sĩ hỏi mình khó chịu ở đâu.
+他说我感冒了，不是大问题。|Ông ấy nói mình bị cảm, không có gì nghiêm trọng.
+医生让我多喝水，多休息。|Bác sĩ bảo mình uống nhiều nước, nghỉ ngơi nhiều.
+我吃了三天药，身体就好了。|Mình uống thuốc ba ngày, cơ thể đã khoẻ lại.
+从那以后，我更注意身体了。|Từ đó về sau, mình chú ý sức khoẻ hơn.

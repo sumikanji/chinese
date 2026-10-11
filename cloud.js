@@ -135,6 +135,9 @@
     async reset(email) { await ready; await fb.auth().sendPasswordResetEmail(email.trim()); },
     async signOut() { await ready; await fb.auth().signOut(); },
     syncNow: pull,
+    // Dùng cho góp ý: cơ sở dữ liệu và dấu thời gian của máy chủ
+    async db() { const f = await ready; return f ? f.database() : null; },
+    ts: () => fb ? fb.database.ServerValue.TIMESTAMP : Date.now(),
     _merge: merge
   };
 })();
