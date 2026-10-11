@@ -35,274 +35,137 @@
       } catch (e) { res(); }
     });
   }
-  // recRow(host, playModel, {maxMs}) — thêm hàng: [Ghi âm để so] [Nghe mình] [So sánh]
+  const mmss = s => Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+  // recRow(host, playModel, {maxMs}) — một nút "Ghi âm giọng bạn"; ghi xong: So sánh với mẫu · Nghe lại · Ghi lại
   function recRow(host, playModel, o) {
     o = o || {};
-    if (!canRec()) return;
-    host.insertAdjacentHTML('beforeend', '<div class="rec-row"><button class="btn small rec-b" data-a="rec">Ghi âm để so</button><button class="btn small" data-a="me" disabled>Nghe mình</button><button class="btn small" data-a="cmp" disabled>So sánh</button><div class="rec-lbl">Ghi âm giọng bạn, rồi bấm So sánh: nghe giọng mẫu, ngay sau đó là giọng bạn.</div></div>');
-    const row = host.lastElementChild, bRec = $('[data-a=rec]', row), bMe = $('[data-a=me]', row), bCmp = $('[data-a=cmp]', row), lbl = $('.rec-lbl', row);
-    let url = null, mr = null, stream = null, tm = null;
-    const stopRec = () => { clearTimeout(tm); try { mr && mr.state !== 'inactive' && mr.stop(); } catch (e) { } };
-    bRec.onclick = async () => {
-      if (mr && mr.state === 'recording') return stopRec();
+    if (!canRec() || !host) return;
+    host.insertAdjacentHTML('beforeend', '<div class="rec"></div>');
+    const box = host.lastElementChild;
+    let url = null, mr = null, stream = null, tm = null, tick = null, secs = 0;
+    const idle = msg => {
+      box.className = 'rec';
+      box.innerHTML = '<button class="rec-btn" data-a="rec"><i class="rec-dot"></i>Ghi âm giọng bạn</button>' + (msg ? '<span class="rec-msg">' + esc(msg) + '</span>' : '');
+      $('[data-a=rec]', box).onclick = start;
+    };
+    const done = () => {
+      box.className = 'rec done';
+      box.innerHTML = '<span class="rec-len"><i class="rec-dot"></i>' + mmss(secs) + '</span><button class="rec-cmp" data-a="cmp">So sánh</button><button class="rec-sm" data-a="me">Nghe lại</button><button class="rec-sm" data-a="again">Ghi lại</button>';
+      $('[data-a=cmp]', box).onclick = async e => { const b = e.currentTarget; b.classList.add('on'); b.textContent = 'Giọng mẫu…'; await playModel(); await wait(300); b.textContent = 'Giọng bạn…'; await playUrl(url); b.classList.remove('on'); b.textContent = 'So sánh'; };
+      $('[data-a=me]', box).onclick = () => playUrl(url);
+      $('[data-a=again]', box).onclick = start;
+    };
+    const stopRec = () => { clearTimeout(tm); clearInterval(tick); try { mr && mr.state !== 'inactive' && mr.stop(); } catch (e) { } };
+    async function start() {
       if (recStop) recStop();
       SP().stop(); SP().stopListening();
       try { stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } }); }
-      catch (e) { lbl.textContent = 'Hãy cho phép dùng micro trong trình duyệt để ghi âm.'; return; }
+      catch (e) { idle('Hãy cho phép dùng micro để ghi âm.'); return; }
       const mime = pickMime(), chunks = [];
       try { mr = new MediaRecorder(stream, mime ? { mimeType: mime } : undefined); } catch (e) { mr = new MediaRecorder(stream); }
       mr.ondataavailable = e => e.data && e.data.size && chunks.push(e.data);
       mr.onstop = () => {
         stream.getTracks().forEach(t => t.stop());
         recStop = null;
-        bRec.classList.remove('on'); bRec.textContent = 'Ghi lại';
-        if (!chunks.length) { lbl.textContent = 'Chưa ghi được âm thanh, thử lại nhé.'; return; }
+        if (!chunks.length) return idle('Chưa ghi được, thử lại nhé.');
         if (url) URL.revokeObjectURL(url);
         url = URL.createObjectURL(new Blob(chunks, { type: mr.mimeType || mime || 'audio/webm' })); urls.push(url);
-        bMe.disabled = bCmp.disabled = false;
-        lbl.textContent = 'Đã ghi. Bấm So sánh để nghe giọng mẫu rồi tới giọng bạn.';
+        done();
       };
       mr.start();
-      recStop = stopRec;
-      bRec.classList.add('on'); bRec.textContent = 'Dừng ghi';
-      lbl.textContent = 'Đang ghi âm… nói xong bấm Dừng ghi.';
+      recStop = stopRec; secs = 0;
+      box.className = 'rec on';
+      box.innerHTML = '<button class="rec-btn" data-a="stop"><i class="rec-dot"></i>Đang ghi <b>0:00</b> · bấm để dừng</button>';
+      $('[data-a=stop]', box).onclick = stopRec;
+      tick = setInterval(() => { secs++; const t = $('b', box); if (t) t.textContent = mmss(secs); }, 1000);
       tm = setTimeout(stopRec, o.maxMs || 20000);
-    };
-    bMe.onclick = () => url && playUrl(url);
-    bCmp.onclick = async () => { if (!url) return; lbl.textContent = 'Giọng mẫu…'; await playModel(); await wait(350); lbl.textContent = 'Giọng bạn…'; await playUrl(url); lbl.textContent = 'Nghe ra chỗ khác nhau chưa? Ghi lại để thử tiếp.'; };
+    }
+    idle();
   }
   window.addEventListener('hashchange', () => { if (recStop) recStop(); try { myAudio && myAudio.pause(); } catch (e) { } while (urls.length > 4) URL.revokeObjectURL(urls.shift()); });
 
-  // Gắn vào ô luyện nói (speakBox): hàng ghi âm + nút góp ý
+  // Gắn vào ô luyện nói (speakBox): nút ghi âm để so
   function decorate(say, o) {
     if (!say) return;
     const model = () => o.onListen ? o.onListen(false) : SP().speak(o.en, { who: o.who });
     recRow(say, model, { maxMs: o.long ? 150000 : 20000 });
-    if (fbEnabled() && !o.long && o.en) {
-      say.insertAdjacentHTML('beforeend', '<div class="fb-line"><button class="linkb" data-fb>Góp ý câu này</button></div>');
-      $('[data-fb]', say).onclick = () => openFeedback({ s: o.en, v: o.vi, tk: o.tk });
-    }
   }
 
-  // ================= 5. GÓP Ý DẠNG BÌNH LUẬN =================
+  // ================= 5. GÓP Ý DẠNG BÌNH LUẬN (cuối mỗi bài / đoạn) =================
+  // Lưu ở feedback/<en|zh>/<mã bài>/<mã bình luận>: {uid, name, kind, msg, n (số câu, -1 = cả bài), s (câu), v, t (tên bài), at}
   const fbEnabled = () => !!(CL() && CL().enabled());
   const KINDS = ZH
-    ? [['text', 'Câu tiếng Trung sai / không tự nhiên'], ['py', 'Pinyin sai'], ['vi', 'Dịch nghĩa chưa đúng'], ['audio', 'Giọng AI đọc sai'], ['other', 'Khác']]
-    : [['text', 'Câu tiếng Anh sai / không tự nhiên'], ['vi', 'Dịch nghĩa chưa đúng'], ['audio', 'Giọng AI đọc sai'], ['other', 'Khác']];
-  const kindName = k => (KINDS.find(x => x[0] === k) || [k, 'Khác'])[1];
-  const fbKey = s => SP().keyOf('A', s);
-  const when = t => { if (!t) return ''; const d = new Date(t); return d.toLocaleDateString('vi-VN') + ' ' + d.toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }); };
-  function commentHtml(id, c, mine) {
-    return '<div class="fb-c" data-id="' + esc(id) + '"><div class="fb-h"><b>' + esc(c.name || 'Người học') + '</b><span class="fb-k">' + esc(kindName(c.kind)) + '</span><small>' + when(c.at) + '</small></div><p>' + esc(c.msg) + '</p>' + (mine ? '<button class="linkb fb-del">Xoá</button>' : '') + '</div>';
+    ? [['text', 'Câu tiếng Trung sai / không tự nhiên'], ['py', 'Pinyin sai'], ['vi', 'Dịch nghĩa chưa đúng'], ['audio', 'Giọng AI đọc sai'], ['other', 'Ý kiến khác']]
+    : [['text', 'Câu tiếng Anh sai / không tự nhiên'], ['vi', 'Dịch nghĩa chưa đúng'], ['audio', 'Giọng AI đọc sai'], ['other', 'Ý kiến khác']];
+  const kindName = k => (KINDS.find(x => x[0] === k) || [k, 'Ý kiến khác'])[1];
+  const when = t => {
+    if (!t) return '';
+    const m = Math.round((Date.now() - t) / 60000);
+    if (m < 1) return 'vừa xong'; if (m < 60) return m + ' phút trước'; if (m < 1440) return Math.round(m / 60) + ' giờ trước'; if (m < 10080) return Math.round(m / 1440) + ' ngày trước';
+    return new Date(t).toLocaleDateString('vi-VN');
+  };
+  const avatar = n => '<span class="cmt-av">' + esc((n || '?').trim().charAt(0).toUpperCase()) + '</span>';
+  function cmtItem(id, c, mine) {
+    return '<div class="cmt-i" data-id="' + esc(id) + '">' + avatar(c.name) + '<div class="cmt-b"><div class="cmt-h"><b>' + esc(c.name || 'Người học') + '</b><small>' + when(c.at) + '</small></div>' +
+      '<div class="cmt-tags"><span class="cmt-k">' + esc(kindName(c.kind)) + '</span>' + (c.n >= 0 ? '<span class="cmt-n">Câu ' + (c.n + 1) + '</span>' : '') + '</div>' +
+      (c.s ? '<div class="cmt-q">' + esc(c.s) + '</div>' : '') +
+      '<p>' + esc(c.msg) + '</p>' + (mine ? '<button class="linkb cmt-del">Xoá</button>' : '') + '</div></div>';
   }
-  function closeSheet() { const o = $('#fb-ov'); if (o) o.remove(); document.body.classList.remove('noscroll'); }
-  async function openFeedback(it) {
-    closeSheet();
+  // comments(host, {key, title, lines: [{t, v}]})
+  async function comments(host, it) {
+    if (!host || !fbEnabled()) return;
     const u = CL().user();
-    document.body.insertAdjacentHTML('beforeend', '<div class="fb-ov" id="fb-ov"><div class="fb-sheet" role="dialog" aria-label="Góp ý câu"><div class="fb-top"><b>Góp ý câu này</b><button class="btn small" id="fb-x">Đóng</button></div>' +
-      '<div class="fb-s">' + sent(it.s, it.tk) + (it.v ? '<small>' + esc(it.v) + '</small>' : '') + '</div>' +
-      '<div class="fb-list" id="fb-list"><p class="muted">Đang tải góp ý…</p></div>' +
-      (u ? '<div class="fb-form"><div class="fb-kinds" id="fb-k">' + KINDS.map((k, i) => '<button class="chip' + (i ? '' : ' on') + '" data-k="' + k[0] + '">' + k[1] + '</button>').join('') + '</div>' +
-        '<textarea id="fb-m" maxlength="500" rows="3" placeholder="Viết góp ý, ví dụ: nên nói … thay vì …"></textarea><div class="row"><button class="btn primary" id="fb-send">Gửi góp ý</button><span class="muted" id="fb-msg"></span></div></div>'
-        : '<div class="fb-login"><p class="muted">Đăng nhập để viết góp ý. Ai cũng xem được các góp ý.</p><a class="btn small primary" href="#/account">Đăng nhập</a></div>') +
-      '</div></div>');
-    document.body.classList.add('noscroll');
-    $('#fb-x').onclick = closeSheet;
-    $('#fb-ov').onclick = e => { if (e.target.id === 'fb-ov') closeSheet(); };
+    host.innerHTML = '<section class="cmt"><div class="cmt-top"><h3>Góp ý <span class="muted" id="cmt-n"></span></h3><p class="muted">Thấy câu sai, dịch chưa đúng hay giọng AI đọc sai? Bình luận để cùng sửa.</p></div>' +
+      '<div class="cmt-list" id="cmt-list"><p class="muted cmt-empty">Đang tải…</p></div>' +
+      (u ? '<div class="cmt-form">' + avatar(u.name || u.email) + '<div class="cmt-fb"><textarea id="cmt-m" maxlength="500" rows="2" placeholder="Viết góp ý…"></textarea>' +
+          '<div class="cmt-ctl"><select class="sel" id="cmt-s"><option value="-1">Cả bài</option>' + it.lines.map((l, i) => '<option value="' + i + '">Câu ' + (i + 1) + ': ' + esc(l.t.length > 38 ? l.t.slice(0, 36) + '…' : l.t) + '</option>').join('') + '</select>' +
+          '<select class="sel" id="cmt-k">' + KINDS.map(k => '<option value="' + k[0] + '">' + k[1] + '</option>').join('') + '</select>' +
+          '<button class="btn small primary" id="cmt-send">Gửi</button></div><div class="muted cmt-msg" id="cmt-msg"></div></div></div>'
+        : '<div class="cmt-login"><a class="btn small" href="#/account">Đăng nhập để bình luận</a></div>') + '</section>';
     const db = await CL().db();
-    const list = $('#fb-list');
-    if (!db) { if (list) list.innerHTML = '<p class="muted">Chưa kết nối được máy chủ góp ý.</p>'; return; }
-    const ref = db.ref('feedback/' + SITE + '/' + fbKey(it.s));
+    const list = () => $('#cmt-list', host);
+    if (!db) { if (list()) list().innerHTML = '<p class="muted cmt-empty">Chưa kết nối được máy chủ góp ý.</p>'; return; }
+    const ref = db.ref('feedback/' + SITE + '/' + it.key);
     const load = async () => {
       try {
-        const snap = await ref.once('value'), v = snap.val() || {};
+        const v = (await ref.once('value')).val() || {};
         const arr = Object.entries(v).sort((a, b) => (a[1].at || 0) - (b[1].at || 0));
-        if (!$('#fb-list')) return;
-        $('#fb-list').innerHTML = arr.length ? arr.map(([id, c]) => commentHtml(id, c, u && c.uid === u.uid)).join('') : '<p class="muted">Chưa có góp ý nào cho câu này.</p>';
-        $$('.fb-del', $('#fb-list')).forEach(b => b.onclick = async () => { if (!confirm('Xoá góp ý này?')) return; await ref.child(b.closest('.fb-c').dataset.id).remove(); load(); });
-      } catch (e) { if ($('#fb-list')) $('#fb-list').innerHTML = '<p class="muted">Không tải được góp ý (' + esc(e.code || e.message) + ').</p>'; }
+        if (!list()) return;
+        $('#cmt-n', host).textContent = arr.length ? '(' + arr.length + ')' : '';
+        list().innerHTML = arr.length ? arr.map(([id, c]) => cmtItem(id, c, u && c.uid === u.uid)).join('') : '<p class="muted cmt-empty">Chưa có góp ý nào. Hãy là người đầu tiên!</p>';
+        $$('.cmt-del', list()).forEach(b => b.onclick = async () => { if (!confirm('Xoá góp ý này?')) return; await ref.child(b.closest('.cmt-i').dataset.id).remove(); load(); });
+      } catch (e) { if (list()) list().innerHTML = '<p class="muted cmt-empty">Không tải được góp ý (' + esc(e.code || e.message) + ').</p>'; }
     };
     load();
     if (!u) return;
-    let kind = KINDS[0][0];
-    $$('#fb-k .chip').forEach(b => b.onclick = () => { kind = b.dataset.k; $$('#fb-k .chip').forEach(x => x.classList.toggle('on', x === b)); });
-    $('#fb-send').onclick = async () => {
-      const msg = $('#fb-m').value.trim();
-      if (!msg) { $('#fb-msg').textContent = 'Hãy viết nội dung góp ý.'; return; }
-      $('#fb-send').disabled = true; $('#fb-msg').textContent = 'Đang gửi…';
+    $('#cmt-send', host).onclick = async () => {
+      const msg = $('#cmt-m', host).value.trim(), n = +$('#cmt-s', host).value, line = it.lines[n];
+      if (!msg) { $('#cmt-msg', host).textContent = 'Hãy viết nội dung góp ý.'; return; }
+      $('#cmt-send', host).disabled = true; $('#cmt-msg', host).textContent = 'Đang gửi…';
       try {
-        await ref.push({ uid: u.uid, name: (u.name || (u.email || '').split('@')[0] || 'Người học').slice(0, 40), kind, msg: msg.slice(0, 500), s: String(it.s).slice(0, 400), v: String(it.v || '').slice(0, 400), at: CL().ts() });
-        $('#fb-m').value = ''; $('#fb-msg').textContent = 'Cảm ơn bạn đã góp ý!'; UI().toast('Đã gửi góp ý');
+        await ref.push({ uid: u.uid, name: (u.name || (u.email || '').split('@')[0] || 'Người học').slice(0, 40), kind: $('#cmt-k', host).value, msg: msg.slice(0, 500), n, s: line ? String(line.t).slice(0, 400) : '', v: line ? String(line.v || '').slice(0, 400) : '', t: String(it.title || '').slice(0, 100), at: CL().ts() });
+        $('#cmt-m', host).value = ''; $('#cmt-msg', host).textContent = ''; UI().toast('Đã gửi góp ý, cảm ơn bạn!');
         load();
-      } catch (e) { $('#fb-msg').textContent = 'Chưa gửi được: ' + (e.code === 'PERMISSION_DENIED' ? 'máy chủ chưa mở quyền góp ý.' : (e.message || 'lỗi')); }
-      $('#fb-send').disabled = false;
+      } catch (e) { $('#cmt-msg', host).textContent = 'Chưa gửi được: ' + (e.code === 'PERMISSION_DENIED' ? 'máy chủ chưa mở quyền góp ý.' : (e.message || 'lỗi')); }
+      $('#cmt-send', host).disabled = false;
     };
-  }
-  // Chế độ góp ý cho danh sách câu (bước Nghe của bài, Shadowing): bật chip → chạm câu để góp ý
-  function fbChip() { return fbEnabled() ? '<button class="chip" data-fbmode>Góp ý</button>' : ''; }
-  function bindFbMode(root, container, itemSel, getItem) {
-    const chip = $('[data-fbmode]', root); if (!chip || !container) return;
-    chip.onclick = () => { const on = container.classList.toggle('fb-mode'); chip.classList.toggle('on', on); if (on) UI().toast('Chạm vào câu muốn góp ý'); };
-    container.addEventListener('click', e => {
-      if (!container.classList.contains('fb-mode')) return;
-      const el = e.target.closest(itemSel); if (!el || !container.contains(el)) return;
-      e.preventDefault(); e.stopPropagation();
-      const it = getItem(el); if (it) openFeedback(it);
-    }, true);
   }
   // Trang tổng hợp góp ý
   async function viewFeedback(app) {
-    app.innerHTML = '<a class="back" href="#/settings">← Cài đặt</a><section class="card panel pop"><div class="panel-h"><h2>Góp ý của người học</h2><p>Các góp ý mới nhất về câu ' + LANG_NAME + ', nghĩa tiếng Việt và giọng AI. Chạm vào một góp ý để xem cả cuộc trao đổi của câu đó.</p></div></section><div id="fba"><p class="muted">Đang tải…</p></div>';
+    app.innerHTML = '<a class="back" href="#/settings">← Cài đặt</a><section class="card panel pop"><div class="panel-h"><h2>Góp ý của người học</h2><p>Các góp ý mới nhất ở cuối mỗi bài hội thoại và đoạn Shadowing. Chạm vào góp ý để mở bài đó.</p></div></section><div id="fba"><p class="muted">Đang tải…</p></div>';
     if (!fbEnabled()) { $('#fba').innerHTML = '<p class="muted">Trang này chưa bật đăng nhập nên chưa dùng được góp ý.</p>'; return; }
-    const db = await CL().db(); if (!db) { $('#fba').innerHTML = '<p class="muted">Chưa kết nối được máy chủ.</p>'; return; }
+    const db = await CL().db(); if (!db) { if ($('#fba')) $('#fba').innerHTML = '<p class="muted">Chưa kết nối được máy chủ.</p>'; return; }
     try {
       const v = (await db.ref('feedback/' + SITE).once('value')).val() || {};
       const all = [];
-      for (const k in v) for (const id in v[k]) all.push(Object.assign({ k, id }, v[k][id]));
+      for (const k in v) for (const id in v[k]) if (v[k][id] && v[k][id].msg) all.push(Object.assign({ k, id }, v[k][id]));
       all.sort((a, b) => (b.at || 0) - (a.at || 0));
       const el = $('#fba'); if (!el) return;
-      el.innerHTML = all.length ? '<div class="fb-all">' + all.slice(0, 200).map((c, i) => '<button class="card fb-item" data-i="' + i + '"><span class="fb-s1">' + esc(c.s) + '</span><span class="fb-h"><b>' + esc(c.name || 'Người học') + '</b><span class="fb-k">' + esc(kindName(c.kind)) + '</span><small>' + when(c.at) + '</small></span><span class="fb-m">' + esc(c.msg) + '</span></button>').join('') + '</div>' : '<p class="muted">Chưa có góp ý nào.</p>';
-      $$('.fb-item', el).forEach(b => b.onclick = () => { const c = all[+b.dataset.i]; openFeedback({ s: c.s, v: c.v, tk: ZH ? tokOf(c.s) : null }); });
-    } catch (e) { $('#fba').innerHTML = '<p class="muted">Không tải được (' + esc(e.code || e.message) + '). Hãy kiểm tra luật Realtime Database.</p>'; }
-  }
-  // Tìm lại tokens pinyin của một câu tiếng Trung (để hiện pinyin trong trang góp ý)
-  let TOKMAP = null;
-  function tokOf(s) {
-    if (!TOKMAP) {
-      TOKMAP = new Map();
-      levels().forEach(L => L.lessons.forEach(l => l.d.forEach(d => d[3] && TOKMAP.set(d[1], d[3]))));
-      (window.SE_SHADOW || []).forEach(x => x.s.forEach(r => r[2] && TOKMAP.set(r[0], r[2])));
-      (window.SE_QA || []).forEach(q => { q.qt && TOKMAP.set(q.q, q.qt); q.at && TOKMAP.set(q.a, q.at); });
-    }
-    return TOKMAP.get(s) || null;
+      const href = k => /^sh-/.test(k) ? '#/shadow/' + k : '#/lesson/' + k + '/1';
+      el.innerHTML = all.length ? '<div class="cmt cmt-all">' + all.slice(0, 200).map(c => '<a class="cmt-link" href="' + href(c.k) + '"><span class="cmt-where">' + esc(c.t || c.k) + '</span>' + cmtItem(c.id, c, false) + '</a>').join('') + '</div>' : '<p class="muted">Chưa có góp ý nào.</p>';
+    } catch (e) { if ($('#fba')) $('#fba').innerHTML = '<p class="muted">Không tải được (' + esc(e.code || e.message) + '). Hãy kiểm tra luật Realtime Database.</p>'; }
   }
 
-  // ================= 2. NGHE LIÊN TỤC =================
-  // Nguồn: done (bài đã học) · lv:<cấp> · sh:<cấp> · qa:<cấp>
-  function sourceList() {
-    const S = ST().get(), out = [];
-    const done = lessonsAll().filter(l => S.done[l.id]);
-    out.push(['done', 'Các bài đã học (' + done.length + ' bài)']);
-    levels().forEach(L => out.push(['lv:' + L.id, 'Hội thoại cấp ' + L.name + ' (' + L.lessons.length + ' bài)']));
-    const sh = window.SE_SHADOW || [];
-    [...new Set(sh.map(x => x.lv))].forEach(lv => out.push(['sh:' + lv, 'Shadowing cấp ' + lvName(lv) + ' (' + sh.filter(x => x.lv === lv).length + ' đoạn)']));
-    const qa = window.SE_QA || [];
-    [...new Set(qa.map(x => x.lv))].forEach(lv => out.push(['qa:' + lv, 'Hỏi – đáp cấp ' + lvName(lv)]));
-    return out;
-  }
-  function buildGroups(src) {
-    const S = ST().get();
-    const fromLesson = l => ({ title: lvNameOfLesson(l) + ' · ' + l.t, lines: l.d.map(d => ({ t: d[1], who: d[0], vi: d[2], tk: d[3] })) });
-    if (src === 'done') return lessonsAll().filter(l => S.done[l.id]).map(fromLesson);
-    if (src.startsWith('lv:')) { const L = levels().find(x => x.id === src.slice(3)); return L ? L.lessons.map(fromLesson) : []; }
-    if (src.startsWith('sh:')) return (window.SE_SHADOW || []).filter(x => x.lv === src.slice(3)).map(x => ({ title: 'Shadowing · ' + x.t, lines: x.s.map(r => ZH ? { t: r[0], who: 'A', vi: r[1], tk: r[2] } : { t: r[0], who: 'A', vi: r[1] }) }));
-    if (src.startsWith('qa:')) return (window.SE_QA || []).filter(x => x.lv === src.slice(3)).map(x => ({ title: 'Hỏi – đáp · ' + x.qv, lines: [{ t: x.q, who: 'A', vi: x.qv, tk: x.qt }, { t: x.a, who: 'B', vi: x.av, tk: x.at }] }));
-    return [];
-  }
-  function lvNameOfLesson(l) { return l.level ? l.level.name : ''; }
-  let LP = null; // trình phát đang chạy
-  function viewListen(app) {
-    const cfg = Object.assign({ src: 'done', reps: 1, gap: 1500, rate: 1, shuf: false, loop: true, vi: true, sleep: 0 }, ST().cfg('lsn') || {});
-    const save = () => ST().cfg('lsn', Object.assign({}, cfg, { sleep: 0 }));
-    const srcs = sourceList();
-    if (cfg.src === 'done' && !lessonsAll().some(l => ST().get().done[l.id])) cfg.src = 'lv:' + (levels()[0] || {}).id;
-    const chips = (id, arr, cur) => '<div class="row ls-opt" id="' + id + '">' + arr.map(x => '<button class="chip' + (x[0] === cur ? ' on' : '') + '" data-v="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>';
-    app.innerHTML = '<a class="back" href="#/">← Trang chủ</a><section class="card panel pop"><div class="panel-h"><h2>Nghe liên tục</h2><p>Bật danh sách câu rồi để điện thoại nghe khi đang nấu ăn, đi tàu hay đi bộ. Tắt màn hình vẫn nghe được, điều khiển bằng nút trên màn hình khoá. Càng nhiều giờ nghe, tai càng quen.</p></div>' +
-      '<label class="ls-l">Nghe gì</label><select class="sel" id="ls-src">' + srcs.map(s => '<option value="' + s[0] + '"' + (s[0] === cfg.src ? ' selected' : '') + '>' + esc(s[1]) + '</option>').join('') + '</select>' +
-      '<label class="ls-l">Đọc mỗi câu</label>' + chips('ls-reps', [[1, '1 lần'], [2, '2 lần'], [3, '3 lần']], cfg.reps) +
-      '<label class="ls-l">Nghỉ giữa các câu (để nói theo)</label>' + chips('ls-gap', [[400, 'Ngắn'], [1500, 'Vừa'], [3500, 'Dài']], cfg.gap) +
-      '<label class="ls-l">Tốc độ</label>' + chips('ls-rate', [[0.8, 'Chậm'], [1, 'Bình thường'], [1.15, 'Nhanh']], cfg.rate) +
-      '<label class="ls-l">Tuỳ chọn</label><div class="row ls-opt"><button class="chip' + (cfg.shuf ? ' on' : '') + '" id="ls-shuf">Xáo trộn bài</button><button class="chip' + (cfg.loop ? ' on' : '') + '" id="ls-loop">Lặp lại danh sách</button><button class="chip' + (cfg.vi ? ' on' : '') + '" id="ls-vi">Hiện nghĩa</button></div>' +
-      '<label class="ls-l">Hẹn giờ tắt</label>' + chips('ls-sleep', [[0, 'Không'], [15, '15 phút'], [30, '30 phút'], [60, '60 phút']], 0) +
-      '<div class="voice-row">' + UI().voiceChips() + '</div></section>' +
-      '<section class="card ls-now" id="ls-now"><div class="ls-title" id="ls-title">Chưa phát</div><div class="ls-text" id="ls-text"></div><div class="ls-vi" id="ls-vi"></div><div class="ls-cnt muted" id="ls-cnt"></div>' +
-      '<div class="ls-ctrl"><button class="btn" id="ls-prev">← Câu trước</button><button class="btn primary ls-play" id="ls-play">Phát</button><button class="btn" id="ls-next">Câu sau →</button></div><div class="muted ls-sl" id="ls-sl"></div></section>' +
-      '<h2 class="sec">Danh sách</h2><div class="ls-list" id="ls-list"></div>';
-    UI().bindVoice(app);
-    let groups = [], items = [], i = 0, rep = 0, playing = false, timer = null, sleepAt = 0, sleepTm = null;
-    const A = new Audio(); A.preload = 'auto';
-    const nowEl = $('#ls-now');
-    function build() {
-      groups = buildGroups(cfg.src);
-      if (cfg.shuf) groups = shuffle(groups);
-      items = [];
-      groups.forEach((g, gi) => g.lines.forEach(ln => { const u = SP().urlOf(ln.t, ln.who); if (u) items.push(Object.assign({ g: gi, title: g.title, u }, ln)); }));
-      i = 0; rep = 0;
-      $('#ls-list').innerHTML = groups.length ? groups.map((g, gi) => '<button class="card ls-g" data-g="' + gi + '"><b>' + esc(g.title) + '</b><small class="muted">' + g.lines.length + ' câu</small></button>').join('') : '<p class="muted">Chưa có câu nào. Học xong một bài thì bài đó sẽ vào danh sách "Các bài đã học".</p>';
-      $$('.ls-g').forEach(b => b.onclick = () => { const k = items.findIndex(x => x.g === +b.dataset.g); if (k >= 0) { i = k; rep = 0; play(); } });
-      show();
-    }
-    function show() {
-      const it = items[i];
-      $('#ls-title').textContent = it ? it.title : (items.length ? 'Sẵn sàng' : 'Không có câu');
-      $('#ls-text').innerHTML = it ? sent(it.t, it.tk) : '';
-      $('#ls-vi').textContent = it && cfg.vi ? it.vi : '';
-      $('#ls-cnt').textContent = items.length ? 'Câu ' + (i + 1) + ' / ' + items.length : '';
-      $$('.ls-g').forEach(b => b.classList.toggle('cur', it && +b.dataset.g === it.g));
-      $('#ls-play').textContent = playing ? 'Tạm dừng' : 'Phát';
-      nowEl.classList.toggle('on', playing);
-      if (it && 'mediaSession' in navigator) {
-        try { navigator.mediaSession.metadata = new MediaMetadata({ title: it.t, artist: it.title, album: ZH ? 'Sumi Chinese' : 'Sumi English' }); } catch (e) { }
-      }
-    }
-    function playCur() {
-      const it = items[i]; if (!it) return stop();
-      if (sleepAt && Date.now() >= sleepAt) { stop(); $('#ls-sl').textContent = 'Đã tắt theo hẹn giờ.'; return; }
-      show();
-      if (items[i + 1]) SP().prefetch(items[i + 1].t, items[i + 1].who);
-      A.src = it.u;
-      A.playbackRate = cfg.rate;
-      try { A.preservesPitch = true; A.webkitPreservesPitch = true; } catch (e) { }
-      const p = A.play(); if (p && p.catch) p.catch(() => { playing = false; show(); });
-    }
-    function advance() {
-      if (!playing) return;
-      if (rep + 1 < cfg.reps) rep++;
-      else { rep = 0; i++; if (i >= items.length) { if (cfg.loop) i = 0; else { stop(); i = 0; show(); return; } } }
-      const it = items[i], prev = items[i - 1];
-      let gap = cfg.gap;
-      if (rep === 0 && prev && it && prev.g !== it.g) gap += 1200;   // nghỉ dài hơn khi sang bài mới
-      if (document.hidden) gap = Math.min(gap, 300);
-      clearTimeout(timer); timer = setTimeout(playCur, gap);
-    }
-    A.onended = advance;
-    A.onerror = () => { if (playing) { rep = cfg.reps; advance(); } };
-    function play() {
-      if (!items.length) return;
-      SP().stop(); playing = true; LP = stop;
-      clearTimeout(timer); playCur();
-    }
-    function stop() { playing = false; clearTimeout(timer); try { A.pause(); } catch (e) { } show(); }
-    $('#ls-play').onclick = () => playing ? stop() : play();
-    $('#ls-prev').onclick = () => { i = Math.max(0, i - 1); rep = 0; playing ? (clearTimeout(timer), playCur()) : show(); };
-    $('#ls-next').onclick = () => { i = Math.min(items.length - 1, i + 1); rep = 0; playing ? (clearTimeout(timer), playCur()) : show(); };
-    if ('mediaSession' in navigator) {
-      const ms = navigator.mediaSession;
-      try {
-        ms.setActionHandler('play', () => play());
-        ms.setActionHandler('pause', () => stop());
-        ms.setActionHandler('previoustrack', () => $('#ls-prev') && $('#ls-prev').click());
-        ms.setActionHandler('nexttrack', () => $('#ls-next') && $('#ls-next').click());
-      } catch (e) { }
-    }
-    $('#ls-src').onchange = e => { cfg.src = e.target.value; save(); const was = playing; stop(); build(); if (was) play(); };
-    const bindChips = (id, key, after) => $$('#' + id + ' .chip').forEach(b => b.onclick = () => { cfg[key] = +b.dataset.v; $$('#' + id + ' .chip').forEach(x => x.classList.toggle('on', x === b)); save(); after && after(); });
-    bindChips('ls-reps', 'reps'); bindChips('ls-gap', 'gap'); bindChips('ls-rate', 'rate', () => { A.playbackRate = cfg.rate; });
-    $$('#ls-sleep .chip').forEach(b => b.onclick = () => {
-      $$('#ls-sleep .chip').forEach(x => x.classList.toggle('on', x === b));
-      const m = +b.dataset.v; clearTimeout(sleepTm);
-      sleepAt = m ? Date.now() + m * 60000 : 0;
-      $('#ls-sl').textContent = m ? 'Sẽ tắt sau ' + m + ' phút.' : '';
-      if (m) sleepTm = setTimeout(() => { if (playing) { stop(); if ($('#ls-sl')) $('#ls-sl').textContent = 'Đã tắt theo hẹn giờ.'; } }, m * 60000);
-    });
-    const tog = (id, key, after) => { $('#' + id).onclick = e => { cfg[key] = !cfg[key]; e.currentTarget.classList.toggle('on', cfg[key]); save(); after && after(); }; };
-    tog('ls-shuf', 'shuf', () => { const was = playing; stop(); build(); if (was) play(); });
-    tog('ls-loop', 'loop'); tog('ls-vi', 'vi', show);
-    build();
-    // Đếm thời gian nghe vào chuỗi ngày học
-    let heard = 0; const tick = setInterval(() => { if (playing && !A.paused) { heard++; if (heard % 60 === 0) { ST().touch(1); UI().refreshTop(); } } }, 1000);
-    return () => { stop(); clearInterval(tick); clearTimeout(sleepTm); LP = null; A.src = ''; };
-  }
 
   // ================= 3. HỎI – ĐÁP PHẢN XẠ =================
   function viewQA(app) {
@@ -326,7 +189,7 @@
         '<div class="row center qa-tools"><button class="btn small" id="qa-rep">Nghe lại câu hỏi</button><button class="chip' + (hideQ() ? '' : ' on') + '" id="qa-hq">Hiện chữ câu hỏi</button></div>' +
         '<div class="qa-ans">' + (can ? '<button class="mic" id="qa-mic">Trả lời</button><div class="mic-lbl" id="qa-ml">Bấm Trả lời, nói tự nhiên 1–3 câu, xong bấm Dừng</div>' : '<div class="note">Trình duyệt này chưa nghe được giọng nói. Bạn vẫn có thể nói to câu trả lời, ghi âm để nghe lại, rồi xem câu trả lời mẫu.</div>') +
         '<div class="heard qa-heard" id="qa-hd"></div><div class="qa-fb" id="qa-fb"></div><div id="qa-rec"></div></div>' +
-        '<div class="qa-sample" id="qa-s" hidden><div class="lbl">CÂU TRẢ LỜI MẪU</div><div class="qa-a">' + sent(q.a, q.at) + '</div><div class="muted">' + esc(q.av) + '</div><div class="row center"><button class="btn small" id="qa-sa">Nghe câu mẫu</button><button class="btn small" id="qa-ss">Nghe chậm</button>' + (fbEnabled() ? '<button class="linkb" id="qa-fbb">Góp ý câu mẫu</button>' : '') + '</div></div>' +
+        '<div class="qa-sample" id="qa-s" hidden><div class="lbl">CÂU TRẢ LỜI MẪU</div><div class="qa-a">' + sent(q.a, q.at) + '</div><div class="muted">' + esc(q.av) + '</div><div class="row center"><button class="btn small" id="qa-sa">Nghe câu mẫu</button><button class="btn small" id="qa-ss">Nghe chậm</button>' + '</div></div>' +
         '<div class="next-bar"><button class="btn" id="qa-show">Xem câu trả lời mẫu</button><button class="btn primary" id="qa-next">Câu khác →</button></div>';
       const sayQ = () => SP().speak(q.q, { who: 'A' });
       const sayA = slow => SP().speak(q.a, { who: 'B', slow });
@@ -335,7 +198,6 @@
       $('#qa-q').onclick = () => { $('#qa-q').classList.remove('hid'); };
       $('#qa-show').onclick = () => { $('#qa-s').hidden = false; $('#qa-q').classList.remove('hid'); sayA(false); $('#qa-s').scrollIntoView({ block: 'nearest', behavior: 'smooth' }); };
       $('#qa-sa').onclick = () => sayA(false); $('#qa-ss').onclick = () => sayA(true);
-      if ($('#qa-fbb')) $('#qa-fbb').onclick = () => openFeedback({ s: q.a, v: q.av, tk: q.at });
       $('#qa-next').onclick = next;
       recRow($('#qa-rec'), () => sayA(false), { maxMs: 60000 });
       SP().prefetch(q.a, 'B');
@@ -418,11 +280,9 @@
   // Thẻ "Luyện thêm" trên trang chủ
   function homeCards() {
     return '<h2 class="sec">Luyện thêm</h2><div class="more-grid">' +
-      '<a class="card more" href="#/listen"><b>Nghe liên tục</b><small>Phát cả danh sách, tắt màn hình vẫn nghe</small></a>' +
       '<a class="card more" href="#/qa"><b>Hỏi – đáp phản xạ</b><small>Nghe câu hỏi, tự trả lời bằng giọng nói</small></a>' +
       '<a class="card more" href="#/grammar"><b>Mẫu câu</b><small>' + (window.SE_GRAMMAR || []).length + ' cấu trúc, ví dụ từ bài học</small></a></div>';
   }
 
-  window.SEX = { recRow, decorate, openFeedback, fbChip, bindFbMode, viewFeedback, viewListen, viewQA, viewGrammar, lessonNotes, bindEx, homeCards, fbEnabled, closeSheet };
-  window.addEventListener('hashchange', closeSheet);
+  window.SEX = { recRow, decorate, comments, viewFeedback, viewQA, viewGrammar, lessonNotes, bindEx, homeCards, fbEnabled };
 })();

@@ -43,20 +43,18 @@ SHADOWING · TỰ KỂ CHUYỆN (tab "Shadowing")
      rồi chạy python3 tools/build.py (ghi ra data/shadow.js).
 
 LUYỆN THÊM (trang chủ → "Luyện thêm")
-  Nghe liên tục: chọn nguồn (bài đã học, hội thoại một cấp, Shadowing, Hỏi – đáp), đọc mỗi câu 1–3 lần,
-    nghỉ giữa câu để nói theo, tốc độ, xáo trộn, lặp lại, hẹn giờ tắt. Tắt màn hình vẫn nghe,
-    điều khiển bằng nút trên màn hình khoá.
   Hỏi – đáp phản xạ: 60 câu hỏi về bản thân (10 câu mỗi cấp HSK 1 → 6). Nghe câu hỏi, bấm Trả lời và nói
     tự do; máy ghi lại lời bạn, đếm số chữ, gợi ý nói dài hơn; xem câu trả lời mẫu có pinyin và giọng AI.
     Thêm câu hỏi: content/qa.txt (câu hỏi|nghĩa|câu trả lời mẫu|nghĩa) rồi chạy python3 tools/build.py.
   Mẫu câu: 49 cấu trúc (是, 了, 过, 把, 被, 比, 虽然…但是…), tự nhận diện trong câu của bài; mỗi bài hiện
     tối đa 3 mẫu mới ở bước Nghe. Sửa / thêm mẫu: data/grammar.js.
-  Ghi âm để so: có trong mọi ô luyện nói. Ghi giọng mình rồi bấm So sánh để nghe giọng mẫu, ngay sau đó
-    là giọng mình. Rất hợp để tự nghe thanh điệu.
-  Góp ý: bật chip "Góp ý" ở bước Nghe của bài hoặc trong Shadowing rồi chạm vào câu, hoặc bấm
-    "Góp ý câu này" dưới ô luyện nói. Có loại "Pinyin sai". Cần đăng nhập để viết.
+  Ghi âm để so: dưới mọi ô luyện nói có nút "Ghi âm giọng bạn". Ghi xong bấm So sánh để nghe
+    giọng mẫu, ngay sau đó là giọng mình.
+  Góp ý: phần bình luận nằm cuối bước Nghe của mỗi bài và cuối mỗi đoạn Shadowing. Chọn câu, loại góp ý
+    (câu sai, dịch sai, giọng AI đọc sai, pinyin sai) rồi viết. Cần đăng nhập để viết, ai cũng đọc được.
     Xem tất cả: Cài đặt → Xem góp ý của mọi người. Lưu ở Realtime Database, nhánh feedback/zh.
-    Luật trong database.rules.json dùng chung với Sumi English (cùng dự án Firebase), chỉ cần dán một lần.
+    Cần dán luật trong database.rules.json vào Firebase Console → Realtime Database → Rules → Publish
+    (dùng chung cho cả hai trang). Xoá góp ý không phù hợp ngay trong tab Data.
 
 CÀI ĐẶT (tab "Cài đặt")
   Giao diện Theo máy / Sáng / Tối · bật/tắt pinyin · giọng Nữ / Nam / Nam – Nữ · tốc độ đọc ·

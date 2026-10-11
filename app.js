@@ -103,7 +103,6 @@
     if (parts[0] === 'settings' || parts[0] === 'guide') return viewSettings();
     if (parts[0] === 'account') return viewAccount();
     const X = window.SEX;
-    if (X && parts[0] === 'listen') { cleanup = X.viewListen(app); return; }
     if (X && parts[0] === 'qa') { cleanup = X.viewQA(app); return; }
     if (X && parts[0] === 'grammar') return X.viewGrammar(app);
     if (X && parts[0] === 'feedback') return X.viewFeedback(app);
@@ -221,16 +220,19 @@
     const hideEn = ST.cfg('hideEn') !== false, hideVi = !!ST.cfg('hideVi'), showPy = ST.cfg('hidePy') !== true;
     P.innerHTML = head('Bước 1 · Nghe hội thoại', 'Lần đầu chỉ nghe, chữ Hán đang được làm mờ. Nghe 2–3 lần rồi mới bật chữ. Chạm vào một câu để nghe lại câu đó.') +
       '<div class="scene">' + esc(l.s) + '</div>' +
-      '<div class="toolbar"><button class="chip play" id="play">Phát cả bài</button><button class="chip" id="slow">Đọc chậm</button>' +
-      '<button class="chip' + (hideEn ? '' : ' on') + '" id="ten">Hiện chữ Hán</button><button class="chip' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="chip' + (hideVi ? '' : ' on') + '" id="tvi">Hiện nghĩa</button>' + (window.SEX ? window.SEX.fbChip() : '') + '</div>' +
-      '<div class="voice-row">' + voiceChips() + '</div>' +
+      '<div class="pbar"><button class="pbar-play" id="play">Phát cả bài</button><div class="tg"><button class="tg-b" id="slow">Đọc chậm</button></div>' +
+      '<div class="pbar-r2"><span class="tg-l">Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' +
       '<div class="chat' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="chat">' + l.d.map((d, i) => msgHtml(l, d, i)).join('') + '</div>' +
       (window.SEX ? window.SEX.lessonNotes(l) : '') +
       '<div class="tip">Trẻ em nghe hàng nghìn giờ trước khi nói. Hãy bật lại hội thoại này nhiều lần trong ngày, kể cả khi đang làm việc khác.</div>' +
       '<div class="next-bar"><button class="btn primary" id="nx">Tiếp: Ghép câu →</button></div>';
     const chat = $('#chat', P);
     bindVoice(P);
-    if (window.SEX) { window.SEX.bindFbMode(P, chat, '.bub', b => { const d = l.d[+b.dataset.i]; return d && { s: d[1], v: d[2], tk: d[3] }; }); window.SEX.bindEx(P); }
+    if (window.SEX) {
+      window.SEX.bindEx(P);
+      const cm = document.createElement('div'); P.after(cm);
+      window.SEX.comments(cm, { key: l.id, title: l.level.name + ' · ' + l.t, lines: l.d.map(d => ({ t: d[1], v: d[2] })) });
+    }
     let slow = false, run = 0, plays = 0;
     $('#slow', P).onclick = e => { slow = !slow; e.currentTarget.classList.toggle('on', slow); };
     $('#ten', P).onclick = e => { const on = chat.classList.toggle('hide-en'); e.currentTarget.classList.toggle('on', !on); ST.cfg('hideEn', on); };
@@ -613,7 +615,7 @@
         (noVoice ? '<div class="note">Máy chưa có giọng đọc tiếng Trung. iPhone: Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói → Tiếng Trung. Android: Chuyển văn bản thành giọng nói → Google → cài "Tiếng Trung (Quan thoại)". Windows: Giọng nói → Thêm giọng → 中文(简体).</div>' : '') +
         '<div class="row"><select id="vsel" class="sel"></select><button class="btn small" id="vtest">Nghe thử</button></div></div>' +
       '<div class="card set-card"><h2>Tài khoản</h2><p class="muted set-note" style="margin-top:0">' + acc + '</p><div class="row">' + (CL && CL.enabled() ? '<a class="btn small" href="#/account">' + (CL.user() ? 'Xem tài khoản' : 'Đăng nhập') + '</a>' : '') + '<button class="btn small ghost" id="reset">Xoá toàn bộ tiến độ</button></div></div>' +
-      (window.SEX && window.SEX.fbEnabled() ? '<div class="card set-card"><h2>Góp ý</h2><p class="muted set-note" style="margin-top:0">Thấy câu sai, dịch chưa đúng hay giọng AI đọc sai? Bật "Góp ý" ở bước Nghe của bài hoặc trong Shadowing, chạm vào câu để viết bình luận.</p><div class="row"><a class="btn small" href="#/feedback">Xem góp ý của mọi người</a></div></div>' : '') +
+      (window.SEX && window.SEX.fbEnabled() ? '<div class="card set-card"><h2>Góp ý</h2><p class="muted set-note" style="margin-top:0">Thấy câu sai, dịch chưa đúng hay giọng AI đọc sai? Kéo xuống cuối bước Nghe của mỗi bài hoặc cuối mỗi đoạn Shadowing để bình luận.</p><div class="row"><a class="btn small" href="#/feedback">Xem góp ý của mọi người</a></div></div>' : '') +
       '<div class="card set-card"><h2>Micro và chấm phát âm</h2><p class="muted set-note" style="margin-top:0">Dùng Chrome, Edge (máy tính, Android) hoặc Safari (iPhone). Lần đầu bấm Nói, chọn Cho phép dùng micro. Chữ <b style="color:var(--ok)">xanh</b> là chuẩn, <b style="color:var(--mid)">cam</b> là đúng âm nhưng sai thanh, <b style="color:var(--bad)">đỏ</b> cần luyện lại.</p></div>' +
       '<p class="muted" style="text-align:center;font-size:.78rem;margin:18px 0">© 2026 Sumi Chinese · Hiyo © Sumi Kanji · Miễn phí</p></div>';
     $$('#theme .seg-b').forEach(b => b.onclick = () => {

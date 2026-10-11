@@ -20,7 +20,7 @@
     const lvs = LV.filter(l => list.some(x => x.lv === l));
     app.innerHTML = '<section class="card panel pop"><div class="panel-h"><h2>Shadowing · Tự kể chuyện</h2><p>' + list.length + ' đoạn văn ngắn, mỗi đoạn là một câu chuyện kể ở ngôi "tôi": giới thiệu bản thân, gia đình, nơi mình sống, công việc, kỷ niệm… từ HSK 1 đến HSK 6. Nghe giọng AI, nói đuổi theo từng câu, rồi tự kể lại cả đoạn.</p></div>' +
       '<ol class="sd-how"><li><b>Nghe & nói đuổi:</b> nghe từng câu, ngay sau đó nói lại y hệt, cả ngữ điệu.</li><li><b>Nói từng câu:</b> máy chấm từng chữ và thanh điệu.</li><li><b>Kể lại cả đoạn:</b> nhìn gợi ý tiếng Việt và tự kể, như đang giới thiệu về mình.</li></ol></section>' +
-      '<div class="more-grid sd-more"><a class="card more" href="#/qa"><b>Hỏi – đáp phản xạ</b><small>Nghe câu hỏi về bạn, tự trả lời</small></a><a class="card more" href="#/listen"><b>Nghe liên tục</b><small>Phát cả cấp Shadowing khi đi đường</small></a></div>' +
+      '<div class="more-grid sd-more"><a class="card more" href="#/qa"><b>Hỏi – đáp phản xạ</b><small>Nghe câu hỏi về bạn, tự trả lời</small></a></div>' +
       '<div class="sd-filter" id="flt">' + [['all', 'Tất cả']].concat(lvs.map(l => [l, lvInfo(l).name])).map(x => '<button class="chip' + (cur === x[0] ? ' on' : '') + '" data-l="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>' +
       '<div id="sdl"></div>';
     const draw = l => {
@@ -53,6 +53,7 @@
       e.currentTarget.disabled = true; e.currentTarget.textContent = 'Đã thêm vào Ôn tập';
     };
     const P = $('#sp');
+    if (window.SEX) { app.insertAdjacentHTML('beforeend', '<div id="sd-cmt"></div>'); window.SEX.comments($('#sd-cmt'), { key: x.id, title: 'Shadowing · ' + x.t, lines: x.s.map(r => ({ t: r[0], v: r[1] })) }); }
     return { listen: modeListen, say: modeSay, tell: modeTell }[mode](P, x);
   }
 
@@ -60,17 +61,14 @@
   function modeListen(P, x) {
     const hideEn = !!ST().cfg('shHideEn'), hideVi = !!ST().cfg('shHideVi'), showPy = ST().cfg('hidePy') !== true;
     let slow = false, loop = false, gap = ST().cfg('shGap') !== false, run = 0, cur = -1;
-    P.innerHTML = '<div class="panel-h"><h2>Nghe và nói đuổi</h2><p>Bấm Phát cả đoạn. Bật "Chừa lúc để nói": sau mỗi câu sẽ có một khoảng lặng để bạn nói lại y hệt, bắt chước cả nhịp và ngữ điệu. Chạm vào một câu để nghe riêng câu đó.</p></div>' +
-      '<div class="toolbar"><button class="chip play" id="play">Phát cả đoạn</button><button class="chip' + (gap ? ' on' : '') + '" id="gap">Chừa lúc để nói</button><button class="chip" id="slow">Đọc chậm</button><button class="chip" id="loop">Lặp lại</button>' +
-      '<button class="chip' + (hideEn ? '' : ' on') + '" id="ten">Hiện chữ Hán</button><button class="chip' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="chip' + (hideVi ? '' : ' on') + '" id="tvi">Hiện nghĩa</button>' + (window.SEX ? window.SEX.fbChip() : '') + '</div>' +
-      '<div class="voice-row">' + UI().voiceChips() + '</div>' +
+    P.innerHTML = '<div class="panel-h"><h2>Nghe và nói đuổi</h2><p>Bấm Phát cả đoạn. Bật "Nói theo": sau mỗi câu có một khoảng lặng để bạn nói lại y hệt, bắt chước cả nhịp và ngữ điệu. Chạm vào một câu để nghe riêng câu đó.</p></div>' +
+      '<div class="pbar"><button class="pbar-play" id="play">Phát cả đoạn</button><div class="tg"><button class="tg-b" id="slow">Đọc chậm</button><button class="tg-b' + (gap ? ' on' : '') + '" id="gap">Nói theo</button></div>' +
+      '<div class="pbar-r2"><span class="tg-l">Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' +
       '<div class="sd-lines' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="ls">' + x.s.map((s, i) => '<button class="sd-line" data-i="' + i + '"><span class="n">' + (i + 1) + '</span><span class="tx"><span class="en zh">' + UI().zh(s[2]) + '</span><span class="vi">' + esc(s[1]) + '</span></span><span class="turnbar"><i></i></span></button>').join('') + '</div>';
     const ls = $('#ls', P), lines = $$('.sd-line', ls);
     UI().bindVoice(P);
-    if (window.SEX) window.SEX.bindFbMode(P, ls, '.sd-line', el => { const s = x.s[+el.dataset.i]; return s && { s: s[0], v: s[1], tk: s[2] }; });
     const tog = (id, f) => { $('#' + id, P).onclick = e => { const v = f(); e.currentTarget.classList.toggle('on', v); }; };
     tog('slow', () => (slow = !slow));
-    tog('loop', () => (loop = !loop));
     tog('gap', () => { gap = !gap; ST().cfg('shGap', gap); return gap; });
     tog('ten', () => { const h = ls.classList.toggle('hide-en'); ST().cfg('shHideEn', h); return !h; });
     tog('tvi', () => { const h = ls.classList.toggle('hide-vi'); ST().cfg('shHideVi', h); return !h; });
