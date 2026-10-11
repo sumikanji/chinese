@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="copyright" content="© 2026 Sumi Chinese. All rights reserved.">
+  <meta name="author" content="Sumi Chinese">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#fbf9f4">
+  <meta name="description" content="Sumi Chinese – học tiếng Trung giao tiếp cho người Việt, học hoàn toàn qua câu hội thoại như em bé tập nói. HSK 1 đến HSK 6, chữ giản thể kèm pinyin, chấm phát âm và thanh điệu, ôn tập ngắt quãng. Miễn phí.">
+  <title>Sumi Chinese</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Zen+Maru+Gothic:wght@700;900&family=Noto+Sans+SC:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>window.SE_LANG = "zh";</script>
+  <script src="data/levels.js" defer></script>
+  <script src="data/hsk1.js" defer></script>
+  <script src="data/hsk2.js" defer></script>
+  <script src="data/hsk3.js" defer></script>
+  <script src="data/hsk4.js" defer></script>
+  <script src="data/hsk5.js" defer></script>
+  <script src="data/hsk6.js" defer></script>
+  <script src="data/stats.js" defer></script>
+  <script src="data/py.js" defer></script>
+  <script src="data/sounds.js" defer></script>
+  <script src="data/vocab.js" defer></script>
+  <script src="data/scene_py.js" defer></script>
+  <script src="data/audio.js" defer></script>
+  <script src="hiyo.js" defer></script>
+  <script src="speech.js" defer></script>
+  <script src="store.js" defer></script>
+  <script src="firebase-config.js" defer></script>
+  <script src="cloud.js" defer></script>
+  <script src="scenes.js" defer></script>
+  <script src="vocab.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <div class="top-in">
+      <a href="#/" class="brand" aria-label="Sumi Chinese – Trang chủ">
+        <span class="brand-hiyo" id="brand-hiyo"></span>
+        <span class="brand-txt"><b>Sumi Chinese</b><small>Học tiếng Trung giao tiếp qua câu</small></span>
+      </a>
+      <div class="top-stats">
+        <span class="pill fire" id="st-streak" title="Chuỗi ngày học">0 ngày</span>
+        <span class="pill xp" id="st-xp" title="Điểm kinh nghiệm">0 XP</span>
+        <a class="pill acc" id="st-acc" href="#/account" hidden>Đăng nhập</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="wrap"></main>
+
+  <nav class="tabs" aria-label="Điều hướng">
+    <a href="#/" data-tab="home">Học</a>
+    <a href="#/vocab" data-tab="vocab">Từ vựng</a>
+    <a href="#/review" data-tab="review">Ôn tập<b class="badge" id="tab-due" hidden></b></a>
+    <a href="#/sounds" data-tab="sounds">Phát âm</a>
+    <a href="#/guide" data-tab="guide">Cách học</a>
+  </nav>
+  <div class="toast" id="toast"></div>
+</body>
+</html>

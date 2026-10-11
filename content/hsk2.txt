@@ -1,0 +1,582 @@
+@hsk2|HSK 2|Sinh hoạt hằng ngày|Đi lại, mua sắm, khám bệnh, so sánh và kể lại việc đã làm|#22c55e
+
+# h2-01|Một ngày của tôi|我的一天|Kể về thói quen hằng ngày|同事小林
+A|你每天几点起床？|Mỗi ngày bạn dậy lúc mấy giờ?
+B|我每天六点半起床。|Ngày nào tôi cũng dậy lúc sáu rưỡi.
+A|这么早！起床以后做什么？|Sớm thế! Dậy rồi làm gì?
+B|先跑步，然后洗澡、吃早饭。|Đầu tiên chạy bộ, sau đó tắm và ăn sáng.
+A|你怎么去公司？|Bạn đến công ty bằng gì?
+B|我坐地铁去，要四十分钟。|Tôi đi tàu điện ngầm, mất bốn mươi phút.
+A|在地铁上你做什么？|Trên tàu bạn làm gì?
+B|我常常听汉语，有时候看新闻。|Tôi thường nghe tiếng Trung, đôi khi đọc tin tức.
+A|晚上呢？|Còn buổi tối?
+B|晚上我做饭、看书，十一点睡觉。|Buổi tối tôi nấu ăn, đọc sách, mười một giờ đi ngủ.
+A|你的生活很有规律。|Cuộc sống của bạn rất nề nếp.
+B|是啊，这样身体才好。|Đúng vậy, như thế mới khoẻ được.
+
+# h2-02|Đi tàu điện ngầm|坐地铁|Hỏi đường ở ga tàu điện ngầm|工作人员
+B|您好，请问去天安门坐几号线？|Chào anh, xin hỏi đi Thiên An Môn thì đi tuyến số mấy?
+A|坐一号线，在天安门东站下车。|Đi tuyến số một, xuống ở ga Thiên An Môn Đông.
+B|要换车吗？|Có phải đổi tàu không?
+A|不用换，一直坐就到了。|Không cần đổi, cứ đi thẳng là đến.
+B|要坐几站？|Phải đi mấy ga?
+A|大概八站，二十多分钟。|Khoảng tám ga, hơn hai mươi phút.
+B|票在哪儿买？|Vé mua ở đâu ạ?
+A|那边有自动售票机，也可以用手机扫码。|Đằng kia có máy bán vé tự động, cũng có thể quét mã bằng điện thoại.
+B|多少钱？|Bao nhiêu tiền?
+A|四块钱。|Bốn tệ.
+B|谢谢您！|Cảm ơn anh!
+A|不客气，注意安全。|Không có gì, chú ý an toàn nhé.
+
+# h2-03|Đặt phòng khách sạn|我想订一个房间|Gọi điện đặt phòng|前台
+A|您好，北京饭店。|Xin chào, khách sạn Bắc Kinh xin nghe.
+B|你好，我想订一个房间。|Chào chị, tôi muốn đặt một phòng.
+A|您哪天入住？住几天？|Anh nhận phòng ngày nào? Ở mấy ngày?
+B|下个星期五，住三天。|Thứ Sáu tuần sau, ở ba ngày.
+A|您要单人间还是双人间？|Anh muốn phòng đơn hay phòng đôi?
+B|单人间。一个晚上多少钱？|Phòng đơn. Một đêm bao nhiêu tiền?
+A|四百八十块，包括早餐。|Bốn trăm tám mươi tệ, bao gồm bữa sáng.
+B|房间里能上网吗？|Trong phòng có mạng không?
+A|可以，无线网是免费的。|Có, wifi miễn phí ạ.
+B|好，我订了。|Được, tôi đặt.
+A|请告诉我您的名字和电话。|Xin cho biết tên và số điện thoại của anh.
+B|我叫阮文明，电话是一三九零零一二三四五六。|Tôi tên là Nguyễn Văn Minh, điện thoại là 139 0012 3456.
+
+# h2-04|Đi khám bệnh|你哪儿不舒服？|Ở phòng khám|医生
+A|请坐。你哪儿不舒服？|Mời ngồi. Anh khó chịu ở đâu?
+B|我咳嗽，嗓子也很疼。|Tôi bị ho, họng cũng đau lắm.
+A|多长时间了？|Bao lâu rồi?
+B|已经三天了。|Đã ba ngày rồi.
+A|发烧吗？|Có sốt không?
+B|昨天晚上有点儿发烧。|Tối qua hơi sốt.
+A|我看看。张开嘴，说"啊"。|Để tôi xem. Há miệng ra, nói "a".
+B|医生，严重吗？|Bác sĩ, có nghiêm trọng không?
+A|不严重，是感冒。我给你开点儿药。|Không nghiêm trọng, là cảm thôi. Tôi kê cho anh ít thuốc.
+B|这药怎么吃？|Thuốc này uống thế nào?
+A|一天三次，一次两片，饭后吃。|Một ngày ba lần, mỗi lần hai viên, uống sau bữa ăn.
+B|谢谢医生。|Cảm ơn bác sĩ.
+
+# h2-05|Mua vé tàu|我买一张去上海的票|Ở quầy bán vé|售票员
+B|你好，我买一张明天去上海的票。|Chào chị, tôi mua một vé đi Thượng Hải ngày mai.
+A|您要几点的？|Anh muốn chuyến mấy giờ?
+B|上午的，越早越好。|Buổi sáng, càng sớm càng tốt.
+A|七点二十有一趟高铁。|Bảy giờ hai mươi có một chuyến tàu cao tốc.
+B|几点到上海？|Mấy giờ đến Thượng Hải?
+A|十二点左右到。|Khoảng mười hai giờ đến.
+B|还有靠窗的座位吗？|Còn chỗ ngồi cạnh cửa sổ không?
+A|有。二等座五百五十三块。|Có. Ghế hạng hai năm trăm năm mươi ba tệ.
+B|好，就要这个。|Được, lấy vé này.
+A|请给我您的护照。|Cho tôi xin hộ chiếu của anh.
+B|给您。|Gửi chị.
+A|这是您的票，请拿好。|Đây là vé của anh, cầm cẩn thận nhé.
+
+# h2-06|So sánh|哪个更好？|Chọn mua điện thoại|朋友小陈
+A|你在看什么？|Bạn đang xem gì thế?
+B|我想买新手机，不知道买哪个。|Mình muốn mua điện thoại mới, không biết mua cái nào.
+A|这两个手机有什么不一样？|Hai cái điện thoại này có gì khác nhau?
+B|这个比那个大，可是那个比这个轻。|Cái này to hơn cái kia, nhưng cái kia nhẹ hơn cái này.
+A|价格呢？|Còn giá thì sao?
+B|这个比那个贵五百块。|Cái này đắt hơn cái kia năm trăm tệ.
+A|照相怎么样？|Chụp ảnh thế nào?
+B|贵的照得更清楚。|Cái đắt chụp rõ hơn.
+A|你常常照相吗？|Bạn hay chụp ảnh không?
+B|对，我特别喜欢照相。|Có, mình đặc biệt thích chụp ảnh.
+A|那就买贵的吧，好东西不便宜。|Vậy mua cái đắt đi, của tốt thì không rẻ.
+B|你说得对。|Bạn nói đúng.
+
+# h2-07|Bạn đã từng…?|你去过长城吗？|Nói về trải nghiệm|朋友马克
+A|你去过长城吗？|Bạn đã từng đi Vạn Lý Trường Thành chưa?
+B|去过，去年秋天去的。|Đi rồi, mùa thu năm ngoái.
+A|怎么样？累不累？|Thế nào? Có mệt không?
+B|很累，可是风景特别美。|Rất mệt, nhưng phong cảnh cực kỳ đẹp.
+A|我还没去过。|Mình vẫn chưa đi bao giờ.
+B|你应该去看看。|Bạn nên đi xem.
+A|你吃过北京烤鸭吗？|Bạn đã ăn vịt quay Bắc Kinh chưa?
+B|吃过两次，很好吃。|Ăn hai lần rồi, rất ngon.
+A|我也想吃。|Mình cũng muốn ăn.
+B|这个周末我们一起去吧，我知道一家很好的店。|Cuối tuần này mình cùng đi nhé, mình biết một quán rất ngon.
+A|太好了！|Tuyệt quá!
+
+# h2-08|Thể thao|你喜欢什么运动？|Ở phòng tập|教练
+A|你喜欢什么运动？|Bạn thích môn thể thao nào?
+B|我喜欢游泳和踢足球。|Tôi thích bơi và đá bóng.
+A|你游泳游得怎么样？|Bạn bơi thế nào?
+B|游得不太好，我刚学了一个月。|Bơi chưa giỏi lắm, tôi mới học được một tháng.
+A|你一个星期运动几次？|Một tuần bạn tập mấy lần?
+B|两三次，每次一个小时。|Hai ba lần, mỗi lần một tiếng.
+A|运动以后觉得怎么样？|Tập xong cảm thấy thế nào?
+B|觉得很舒服，睡得也好。|Thấy rất dễ chịu, ngủ cũng ngon.
+A|你想不想试试跑步？|Bạn có muốn thử chạy bộ không?
+B|想，可是我早上起不来。|Muốn, nhưng sáng tôi không dậy nổi.
+A|那可以晚上跑。|Vậy có thể chạy buổi tối.
+B|好主意！|Ý hay đấy!
+
+# h2-09|Gọi món|来一个宫保鸡丁|Ở nhà hàng|服务员
+A|您好，几位？|Xin chào, mấy người ạ?
+B|两位。|Hai người.
+A|这边请。这是菜单。|Mời bên này. Đây là thực đơn.
+B|你们这儿什么菜最有名？|Món gì ở đây nổi tiếng nhất?
+A|宫保鸡丁和麻婆豆腐都很受欢迎。|Gà xào Cung Bảo và đậu phụ Ma Bà đều được ưa chuộng.
+B|辣不辣？|Có cay không?
+A|有一点儿辣。|Hơi cay một chút.
+B|那来一个宫保鸡丁，少放辣椒。|Vậy cho một đĩa gà Cung Bảo, cho ít ớt thôi.
+A|好的。还要别的吗？|Vâng. Còn cần gì nữa không?
+B|再来一个青菜和两碗米饭。|Thêm một đĩa rau xanh và hai bát cơm.
+A|喝点儿什么？|Uống gì ạ?
+B|一壶茶就行了。|Một ấm trà là được.
+
+# h2-10|Ngân hàng|我想换钱|Đổi tiền ở ngân hàng|银行职员
+A|您好，您要办什么业务？|Xin chào, anh muốn làm thủ tục gì?
+B|我想把美元换成人民币。|Tôi muốn đổi đô la Mỹ sang Nhân dân tệ.
+A|您换多少？|Anh đổi bao nhiêu?
+B|五百美元。今天的汇率是多少？|Năm trăm đô. Tỷ giá hôm nay là bao nhiêu?
+A|一美元换七块一。|Một đô đổi được bảy tệ một hào.
+B|好的。|Được.
+A|请填一下这张表，再给我看一下您的护照。|Anh điền vào tờ đơn này, rồi cho tôi xem hộ chiếu.
+B|填好了。|Điền xong rồi.
+A|请您数一数，一共三千五百五十块。|Anh đếm lại nhé, tổng cộng ba nghìn năm trăm năm mươi tệ.
+B|没错。我还想开一个账户。|Không sai. Tôi còn muốn mở một tài khoản.
+A|请到三号窗口办理。|Mời anh sang cửa số ba làm thủ tục.
+
+# h2-11|Thuê nhà|我想租房子|Đi xem nhà thuê|房东
+A|这就是我说的房子，您看看。|Đây là căn nhà tôi nói, anh xem đi.
+B|房子很干净，也很亮。|Nhà rất sạch, cũng rất sáng.
+A|有两个卧室，一个客厅，厨房和洗手间都很新。|Có hai phòng ngủ, một phòng khách, bếp và nhà vệ sinh đều rất mới.
+B|一个月房租多少钱？|Tiền thuê một tháng bao nhiêu?
+A|四千块，水电费另外交。|Bốn nghìn tệ, tiền điện nước trả riêng.
+B|有点儿贵，能便宜一点儿吗？|Hơi đắt, có thể rẻ hơn chút không?
+A|如果您租一年，可以三千八。|Nếu anh thuê một năm thì ba nghìn tám.
+B|离地铁站远吗？|Có xa ga tàu điện ngầm không?
+A|很近，走路五分钟。|Rất gần, đi bộ năm phút.
+B|好，我租一年。什么时候能搬进来？|Được, tôi thuê một năm. Khi nào có thể dọn vào?
+A|下个月一号就可以。|Mùng một tháng sau là được.
+
+# h2-12|Mời dự tiệc|来参加我的生日晚会吧|Mời bạn đến tiệc sinh nhật|同学丽丽
+A|这个星期六是我的生日，你来参加我的生日晚会吧。|Thứ Bảy này là sinh nhật mình, bạn đến dự tiệc sinh nhật của mình nhé.
+B|好啊！晚会在哪儿开？|Được chứ! Tiệc tổ chức ở đâu?
+A|在我家，晚上六点开始。|Ở nhà mình, sáu giờ tối bắt đầu.
+B|还有谁去？|Còn ai đi nữa?
+A|我们班的同学都去。|Các bạn lớp mình đều đi.
+B|你想要什么礼物？|Bạn muốn quà gì?
+A|不用买礼物，你来我就很高兴了。|Không cần mua quà đâu, bạn đến là mình vui rồi.
+B|那怎么行？我一定要送你礼物。|Thế sao được? Mình nhất định phải tặng bạn quà.
+A|那你给我唱一首中文歌吧。|Vậy bạn hát cho mình một bài hát tiếng Trung đi.
+B|我唱得不好听。|Mình hát không hay đâu.
+A|没关系，大家一起唱。|Không sao, mọi người cùng hát.
+
+# h2-13|Mất đồ|我的钱包丢了|Báo mất ví|警察
+B|警察先生，我的钱包丢了。|Anh cảnh sát, tôi bị mất ví.
+A|别着急，慢慢说。在哪儿丢的？|Đừng sốt ruột, nói từ từ. Mất ở đâu?
+B|可能是在公共汽车上。|Có thể là trên xe buýt.
+A|几路车？什么时候？|Xe tuyến số mấy? Lúc nào?
+B|十五路，大概一个小时以前。|Tuyến mười lăm, khoảng một tiếng trước.
+A|钱包是什么颜色的？里边有什么？|Ví màu gì? Bên trong có gì?
+B|黑色的，里边有银行卡、学生证和三百块钱。|Màu đen, bên trong có thẻ ngân hàng, thẻ sinh viên và ba trăm tệ.
+A|你先给银行打电话，把卡停了。|Anh gọi cho ngân hàng trước, khoá thẻ lại.
+B|好的，我马上打。|Vâng, tôi gọi ngay.
+A|请留下你的电话，找到了我们通知你。|Để lại số điện thoại, tìm được chúng tôi sẽ báo anh.
+B|太感谢了。|Cảm ơn anh nhiều lắm.
+
+# h2-14|Kế hoạch nghỉ lễ|放假你打算去哪儿？|Bàn chuyện đi chơi|同事小周
+A|国庆节放七天假，你打算去哪儿？|Quốc khánh nghỉ bảy ngày, bạn định đi đâu?
+B|我打算去云南旅游。|Tôi định đi du lịch Vân Nam.
+A|听说云南很漂亮，天气也不冷不热。|Nghe nói Vân Nam rất đẹp, thời tiết cũng không nóng không lạnh.
+B|是啊，我想去大理和丽江看看。|Đúng vậy, tôi muốn đi Đại Lý và Lệ Giang xem thử.
+A|你买机票了吗？|Bạn mua vé máy bay chưa?
+B|还没买呢，现在机票有点儿贵。|Vẫn chưa mua, bây giờ vé hơi đắt.
+A|坐火车也可以，可以看外面的风景。|Đi tàu hoả cũng được, có thể ngắm cảnh bên ngoài.
+B|可是火车要坐一天一夜。|Nhưng tàu hoả phải ngồi một ngày một đêm.
+A|那还是坐飞机吧。|Vậy vẫn nên đi máy bay.
+B|你呢？你去哪儿？|Còn bạn? Bạn đi đâu?
+A|我回老家看父母。|Tôi về quê thăm bố mẹ.
+
+# h2-15|Học tiếng Trung|学汉语难吗？|Hỏi kinh nghiệm học|中国朋友
+A|你汉语说得真好！学了多长时间了？|Bạn nói tiếng Trung giỏi thật! Học bao lâu rồi?
+B|哪里哪里，我学了一年了。|Đâu có, tôi học được một năm rồi.
+A|你觉得什么最难？|Bạn thấy cái gì khó nhất?
+B|声调最难，我常常说错。|Thanh điệu khó nhất, tôi thường nói sai.
+A|汉字呢？|Còn chữ Hán?
+B|汉字也不容易，可是很有意思。|Chữ Hán cũng không dễ, nhưng rất thú vị.
+A|你平时怎么练习？|Bình thường bạn luyện tập thế nào?
+B|我每天听中文歌，看中国电视剧。|Mỗi ngày tôi nghe nhạc Trung, xem phim truyền hình Trung Quốc.
+A|这个办法很好。|Cách này rất hay.
+B|有时候我也跟中国朋友聊天。|Đôi khi tôi cũng trò chuyện với bạn người Trung Quốc.
+A|以后你可以常常跟我练习。|Sau này bạn có thể luyện tập với tôi thường xuyên.
+
+# h2-16|Gặp lại bạn cũ|好久不见！|Tình cờ gặp bạn cũ|老同学
+A|这不是阿明吗？好久不见！|Đây chẳng phải Minh sao? Lâu quá không gặp!
+B|是你啊！我们三年没见了吧？|Là cậu à! Chúng mình ba năm không gặp rồi nhỉ?
+A|差不多。你一点儿都没变。|Gần như vậy. Cậu chẳng thay đổi chút nào.
+B|你变了，比以前瘦了。|Cậu thay đổi rồi, gầy hơn trước.
+A|我最近每天跑步。你现在在哪儿工作？|Dạo này ngày nào mình cũng chạy bộ. Bây giờ cậu làm ở đâu?
+B|我在一家旅行社工作。你呢？|Mình làm ở một công ty du lịch. Còn cậu?
+A|我还在学校当老师。|Mình vẫn làm giáo viên ở trường.
+B|你结婚了吗？|Cậu kết hôn chưa?
+A|结了，去年结的。|Kết hôn rồi, năm ngoái.
+B|恭喜恭喜！我们加个微信吧。|Chúc mừng chúc mừng! Mình kết bạn WeChat nhé.
+A|好，有空一起吃饭。|Được, rảnh thì cùng đi ăn.
+
+# h2-17|Đi siêu thị|我们需要买什么？|Đi chợ cùng bạn cùng phòng|同屋大卫
+A|冰箱里什么都没有了，我们去超市吧。|Tủ lạnh chẳng còn gì nữa, mình đi siêu thị đi.
+B|好，我们需要买什么？|Được, mình cần mua gì?
+A|鸡蛋、牛奶、面包，还有一些水果。|Trứng, sữa, bánh mì, còn có ít trái cây.
+B|洗衣粉也用完了。|Bột giặt cũng hết rồi.
+A|对，我写下来，别忘了。|Đúng, mình ghi lại, kẻo quên.
+B|今天超市有活动，买一送一。|Hôm nay siêu thị có khuyến mãi, mua một tặng một.
+A|太好了，我们多买一点儿。|Tốt quá, mình mua nhiều một chút.
+B|这个牛奶快过期了，换一个吧。|Sữa này sắp hết hạn rồi, đổi hộp khác đi.
+A|你真细心。|Cậu cẩn thận thật.
+B|结账的人太多了，我们去自助收银台吧。|Người xếp hàng thanh toán đông quá, mình ra quầy tự thanh toán đi.
+
+# h2-18|Gửi bưu kiện|我想寄一个包裹|Ở bưu điện|工作人员
+B|你好，我想寄一个包裹到越南。|Chào chị, tôi muốn gửi một bưu kiện sang Việt Nam.
+A|里边是什么东西？|Bên trong là đồ gì?
+B|是几本书和一些衣服。|Là mấy cuốn sách và ít quần áo.
+A|请放在这儿，我称一下。|Đặt lên đây, tôi cân một chút.
+B|多重？|Nặng bao nhiêu?
+A|三公斤。您要寄航空还是海运？|Ba cân. Anh gửi đường hàng không hay đường biển?
+B|航空要多长时间？|Hàng không mất bao lâu?
+A|一个星期左右，海运要一个多月。|Khoảng một tuần, đường biển mất hơn một tháng.
+B|那寄航空吧，多少钱？|Vậy gửi hàng không, bao nhiêu tiền?
+A|二百六十块。请写一下地址。|Hai trăm sáu mươi tệ. Anh viết địa chỉ vào đây.
+B|写好了，谢谢。|Viết xong rồi, cảm ơn chị.
+
+# h2-19|Tìm việc làm thêm|你会说几种语言？|Phỏng vấn làm thêm ở quán cà phê|店长
+A|请坐。你为什么想来我们这儿工作？|Mời ngồi. Vì sao bạn muốn làm việc ở đây?
+B|我喜欢咖啡，也想练习汉语。|Tôi thích cà phê, cũng muốn luyện tiếng Trung.
+A|你会说几种语言？|Bạn biết nói mấy thứ tiếng?
+B|越南语、英语和一点儿汉语。|Tiếng Việt, tiếng Anh và một chút tiếng Trung.
+A|以前做过服务员吗？|Trước đây đã từng làm phục vụ chưa?
+B|做过，在越南的一家咖啡馆做过半年。|Từng làm rồi, làm nửa năm ở một quán cà phê ở Việt Nam.
+A|你一个星期能工作几天？|Một tuần bạn làm được mấy ngày?
+B|周末都可以，周一到周五只有晚上有时间。|Cuối tuần đều được, thứ Hai đến thứ Sáu chỉ rảnh buổi tối.
+A|好的，一个小时二十五块，可以吗？|Được, hai mươi lăm tệ một giờ, được không?
+B|可以，什么时候开始？|Được, khi nào bắt đầu ạ?
+A|下个星期六先来试一天。|Thứ Bảy tuần sau đến làm thử một ngày.
+
+# h2-20|Xem phim|那个电影怎么样？|Bàn về bộ phim vừa xem|朋友小雨
+A|昨天你看的那个电影怎么样？|Bộ phim hôm qua bạn xem thế nào?
+B|非常好看，我都哭了。|Cực hay, mình khóc luôn.
+A|是讲什么的？|Phim kể về cái gì?
+B|讲一个小女孩找妈妈的故事。|Kể câu chuyện một cô bé đi tìm mẹ.
+A|演员演得好吗？|Diễn viên diễn hay không?
+B|特别好，那个小女孩才八岁。|Cực kỳ hay, cô bé đó mới tám tuổi.
+A|你听得懂吗？|Bạn nghe hiểu không?
+B|有中文字幕，大部分都看得懂。|Có phụ đề tiếng Trung, phần lớn đều hiểu được.
+A|我也想去看。|Mình cũng muốn đi xem.
+B|你一定要带纸巾去！|Bạn nhớ mang theo khăn giấy nhé!
+
+# h2-21|Đến muộn|对不起，我来晚了|Đến muộn buổi hẹn|朋友安娜
+B|对不起，对不起，我来晚了。|Xin lỗi, xin lỗi, mình đến muộn.
+A|没关系，我也刚到。路上堵车了吗？|Không sao, mình cũng vừa đến. Trên đường tắc à?
+B|是啊，堵了半个小时。|Đúng vậy, tắc nửa tiếng.
+A|下次你可以坐地铁，比较快。|Lần sau bạn có thể đi tàu điện ngầm, nhanh hơn.
+B|你说得对。你等了很久吧？|Bạn nói đúng. Bạn đợi lâu lắm nhỉ?
+A|十几分钟，我一边等一边看书。|Mười mấy phút, mình vừa đợi vừa đọc sách.
+B|我请你喝咖啡吧。|Để mình mời bạn uống cà phê.
+A|好啊，那我就不客气了。|Được, vậy mình không khách sáo nữa.
+B|你想喝什么？|Bạn muốn uống gì?
+A|一杯拿铁，谢谢。|Một ly latte, cảm ơn.
+
+# h2-22|Chia tay về nước|我下个月回国|Tạm biệt bạn bè|中国朋友
+A|听说你下个月要回国了？|Nghe nói tháng sau bạn về nước?
+B|是的，我在这儿已经两年了。|Đúng vậy, mình ở đây đã hai năm rồi.
+A|时间过得真快！回国以后做什么？|Thời gian trôi nhanh thật! Về nước rồi làm gì?
+B|我想找一个用汉语的工作。|Mình muốn tìm một công việc dùng tiếng Trung.
+A|你汉语这么好，一定没问题。|Tiếng Trung bạn giỏi thế, chắc chắn không vấn đề gì.
+B|谢谢你这两年对我的帮助。|Cảm ơn bạn đã giúp đỡ mình hai năm qua.
+A|别客气，我们是好朋友嘛。|Đừng khách sáo, chúng ta là bạn tốt mà.
+B|以后你来越南，一定要找我。|Sau này bạn sang Việt Nam, nhất định phải tìm mình.
+A|一定！我们常联系。|Nhất định! Mình giữ liên lạc nhé.
+B|好，祝你一切顺利！|Ừ, chúc bạn mọi việc thuận lợi!
+A|一路平安！|Thượng lộ bình an!
+
+# h2-23|Mua thuốc|药店里|Mua thuốc cảm ở hiệu thuốc|药店店员
+A|您好，您需要什么药？|Xin chào, anh cần thuốc gì?
+B|我感冒了，鼻子不通，还一直打喷嚏。|Tôi bị cảm, nghẹt mũi, còn hắt hơi suốt.
+A|发烧吗？|Có sốt không?
+B|不发烧，就是嗓子有点儿干。|Không sốt, chỉ là họng hơi khô.
+A|这种感冒药效果很好，一天吃两次。|Loại thuốc cảm này hiệu quả lắm, một ngày uống hai lần.
+B|吃了以后会不会想睡觉？|Uống xong có bị buồn ngủ không?
+A|会有一点儿，所以吃药以后别开车。|Sẽ hơi buồn ngủ, nên uống thuốc xong đừng lái xe.
+B|我明白了。还有没有治嗓子的？|Tôi hiểu rồi. Còn có thuốc chữa họng không?
+A|有，这是润喉糖，不舒服的时候吃一颗。|Có, đây là kẹo ngậm họng, khó chịu thì ngậm một viên.
+B|好，两样都要。一共多少钱？|Được, lấy cả hai. Tổng cộng bao nhiêu tiền?
+A|四十六块。多喝热水，早点儿休息。|Bốn mươi sáu tệ. Uống nhiều nước ấm, nghỉ ngơi sớm nhé.
+B|谢谢你。|Cảm ơn chị.
+
+# h2-24|Hành lý thất lạc|我的行李没到|Ở quầy hành lý sân bay|机场工作人员
+B|你好，我的行李箱没出来。|Chào anh, vali của tôi chưa ra.
+A|您坐的是哪个航班？|Chị đi chuyến bay nào?
+B|从河内来的，VN五零二。|Từ Hà Nội đến, chuyến VN502.
+A|请给我看一下您的行李票。|Cho tôi xem phiếu hành lý của chị.
+B|在这儿。我的箱子是蓝色的，很大。|Đây ạ. Vali của tôi màu xanh dương, rất to.
+A|我查一下……您的箱子还在河内，没上飞机。|Để tôi tra… Vali của chị vẫn ở Hà Nội, chưa lên máy bay.
+B|啊？那怎么办？我的衣服都在里面。|Hả? Vậy phải làm sao? Quần áo của tôi đều ở bên trong.
+A|别担心，明天下午的飞机会送过来。|Đừng lo, chuyến bay chiều mai sẽ chuyển sang.
+B|我要来机场拿吗？|Tôi có phải đến sân bay lấy không?
+A|不用，我们送到您的酒店。请写一下地址和电话。|Không cần, chúng tôi sẽ đưa đến khách sạn của chị. Xin viết địa chỉ và số điện thoại.
+B|好的。今天晚上我得去买睡衣和牙刷了。|Được. Tối nay tôi phải đi mua đồ ngủ và bàn chải rồi.
+A|这些费用您可以留着发票，我们给您报销。|Những chi phí này chị giữ hoá đơn, chúng tôi sẽ hoàn lại cho chị.
+
+# h2-25|Thuê xe đạp|骑车去湖边|Thuê xe đạp đi dạo hồ|朋友小周
+A|今天天气这么好，我们骑车去湖边吧。|Hôm nay trời đẹp thế, mình đạp xe ra hồ đi.
+B|我没有自行车。|Mình không có xe đạp.
+A|没关系，路边有共享单车，扫一下就能骑。|Không sao, ven đường có xe đạp công cộng, quét mã là đi được.
+B|多少钱？|Bao nhiêu tiền?
+A|半个小时一块五，很便宜。|Nửa tiếng một tệ rưỡi, rẻ lắm.
+B|骑到湖边要多久？|Đạp đến hồ mất bao lâu?
+A|二十分钟左右，路上还能看到很多老房子。|Khoảng hai mươi phút, trên đường còn thấy nhiều nhà cổ.
+B|你骑慢一点儿，我骑得不太好。|Cậu đạp chậm chút, mình đạp không giỏi lắm.
+A|没问题。小心，前面有一个小孩子。|Không sao. Cẩn thận, phía trước có một đứa trẻ.
+B|到了！湖水真清，还有很多船。|Đến rồi! Nước hồ trong thật, còn có nhiều thuyền.
+A|我们去租一条小船吧。|Mình đi thuê một chiếc thuyền nhỏ đi.
+B|好啊，我来划！|Được đấy, để mình chèo!
+
+# h2-26|Đặt bàn nhà hàng|我想订一张桌子|Gọi điện đặt bàn|饭店服务员
+A|喂，您好，长城饭店。|Alô, xin chào, nhà hàng Trường Thành.
+B|你好，我想订一张桌子，明天晚上。|Chào chị, tôi muốn đặt một bàn, tối mai.
+A|几位？几点？|Mấy người? Mấy giờ?
+B|八个人，七点。|Tám người, bảy giờ.
+A|您要大厅还是包间？|Anh muốn ngồi sảnh hay phòng riêng?
+B|包间吧，我们要给朋友过生日。|Phòng riêng đi, chúng tôi tổ chức sinh nhật cho bạn.
+A|好的。包间最低消费一千元，可以吗？|Vâng. Phòng riêng chi tiêu tối thiểu một nghìn tệ, được không ạ?
+B|可以。你们能帮我们准备生日蛋糕吗？|Được. Các chị có thể chuẩn bị bánh sinh nhật giúp chúng tôi không?
+A|可以，蛋糕要什么口味的？|Được, bánh muốn vị gì ạ?
+B|巧克力的，上面写"生日快乐"。|Vị sô-cô-la, trên mặt viết "Chúc mừng sinh nhật".
+A|好的。请问您贵姓？|Vâng. Xin hỏi anh họ gì?
+B|我姓阮，电话是一八六零二二三三四四五。|Tôi họ Nguyễn, điện thoại là 186 0223 3445.
+
+# h2-27|Phòng gym|我想办健身卡|Đăng ký tập gym|健身房前台
+B|你好，我想了解一下健身卡。|Chào chị, tôi muốn tìm hiểu về thẻ tập.
+A|我们有月卡、季卡和年卡。年卡最划算，两千八。|Chúng tôi có thẻ tháng, thẻ quý và thẻ năm. Thẻ năm lợi nhất, hai nghìn tám.
+B|月卡多少钱？|Thẻ tháng bao nhiêu tiền?
+A|三百五。您可以先办一个月试试。|Ba trăm năm mươi. Anh có thể làm một tháng dùng thử trước.
+B|这儿几点开门？|Ở đây mấy giờ mở cửa?
+A|早上六点到晚上十一点，周末也开。|Sáu giờ sáng đến mười một giờ tối, cuối tuần cũng mở.
+B|有游泳池吗？|Có hồ bơi không?
+A|有，在地下一层。还有瑜伽课和跳舞课。|Có, ở tầng hầm một. Còn có lớp yoga và lớp nhảy.
+B|上课要另外交钱吗？|Học lớp có phải đóng tiền riêng không?
+A|不用，都包括在卡里。|Không cần, đều bao gồm trong thẻ.
+B|那我先办一张月卡。|Vậy tôi làm một thẻ tháng trước.
+A|好的，我带您看看里面。|Vâng, tôi dẫn anh vào xem bên trong.
+
+# h2-28|Tiệm hoa|买一束花|Mua hoa tặng bạn gái|花店老板
+A|欢迎光临！想买什么花？|Hoan nghênh! Muốn mua hoa gì?
+B|我想买一束花送给女朋友。|Tôi muốn mua một bó hoa tặng bạn gái.
+A|今天是什么日子？|Hôm nay là ngày gì vậy?
+B|是我们认识一周年。|Là kỷ niệm một năm quen nhau.
+A|那送红玫瑰最合适。九朵还是十一朵？|Vậy tặng hoa hồng đỏ là hợp nhất. Chín bông hay mười một bông?
+B|有什么不一样？|Có gì khác nhau?
+A|九朵是"长长久久"，十一朵是"一心一意"。|Chín bông là "mãi mãi lâu dài", mười một bông là "một lòng một dạ".
+B|哈哈，那就九朵吧。可以加一些白色的小花吗？|Haha, vậy chín bông đi. Có thể thêm ít hoa nhỏ màu trắng không?
+A|可以，我给您包得漂亮一点儿。要写卡片吗？|Được, tôi gói đẹp cho anh. Có viết thiệp không?
+B|要，我自己写。|Có, tôi tự viết.
+A|好了，一共一百八十八。祝你们幸福！|Xong rồi, tổng cộng một trăm tám mươi tám. Chúc hai bạn hạnh phúc!
+
+# h2-29|Bảo tàng|博物馆|Tham quan bảo tàng|讲解员
+A|欢迎来到历史博物馆。我们先从一楼开始。|Chào mừng đến bảo tàng lịch sử. Chúng ta bắt đầu từ tầng một.
+B|这里能照相吗？|Ở đây có được chụp ảnh không?
+A|可以照相，但是不能用闪光灯。|Được chụp ảnh, nhưng không được dùng đèn flash.
+B|这个碗是什么时候的？|Cái bát này có từ khi nào?
+A|这是两千多年前的，是用铜做的。|Đây là từ hơn hai nghìn năm trước, làm bằng đồng.
+B|真了不起！那边的画也很有名吗？|Thật đáng nể! Bức tranh bên kia cũng rất nổi tiếng à?
+A|对，画的是一千年前的城市，你看，街上有很多人。|Đúng, vẽ thành phố một nghìn năm trước, bạn xem, trên phố có rất nhiều người.
+B|有卖东西的，还有骑马的。|Có người bán hàng, còn có người cưỡi ngựa.
+A|二楼有很多古代的衣服。|Tầng hai có nhiều trang phục cổ đại.
+B|博物馆里有商店吗？我想买点儿纪念品。|Trong bảo tàng có cửa hàng không? Tôi muốn mua ít quà lưu niệm.
+A|有，在出口旁边。|Có, ở cạnh lối ra.
+
+# h2-30|Dự báo thời tiết|明天会下雪吗？|Xem dự báo thời tiết|室友
+A|你看天气预报了吗？明天怎么样？|Cậu xem dự báo thời tiết chưa? Mai thế nào?
+B|看了，明天有大风，晚上可能会下雪。|Xem rồi, mai có gió to, buổi tối có thể có tuyết.
+A|最低气温多少度？|Nhiệt độ thấp nhất bao nhiêu độ?
+B|零下八度。|Âm tám độ.
+A|这么冷！我的厚衣服还没买。|Lạnh thế! Áo dày của mình vẫn chưa mua.
+B|你可以先穿我的羽绒服，我有两件。|Cậu có thể mặc áo lông vũ của mình trước, mình có hai cái.
+A|太好了。路上会不会很滑？|Tốt quá. Đường có bị trơn không?
+B|会，走路要小心，最好穿运动鞋。|Có, đi bộ phải cẩn thận, tốt nhất đi giày thể thao.
+A|下雪以后我们去堆雪人吧！|Tuyết rơi rồi mình đi đắp người tuyết đi!
+B|好啊，我还想打雪仗。|Được đấy, mình còn muốn ném tuyết nữa.
+
+# h2-31|Sửa điện thoại|手机屏幕坏了|Ở tiệm sửa điện thoại|修理师傅
+B|师傅，我的手机掉在地上，屏幕坏了。|Anh ơi, điện thoại tôi rơi xuống đất, màn hình hỏng rồi.
+A|我看看……屏幕需要换一个新的。|Để tôi xem… Màn hình cần thay cái mới.
+B|换屏幕要多少钱？|Thay màn hình hết bao nhiêu tiền?
+A|原装的六百，普通的三百。|Hàng chính hãng sáu trăm, hàng thường ba trăm.
+B|有什么不同？|Có gì khác nhau?
+A|原装的颜色更好，用的时间也更长。|Hàng chính hãng màu đẹp hơn, dùng cũng lâu hơn.
+B|那换原装的吧。要多长时间？|Vậy thay hàng chính hãng đi. Mất bao lâu?
+A|一个小时。手机里的照片不会丢，您放心。|Một tiếng. Ảnh trong điện thoại sẽ không mất, anh yên tâm.
+B|好，我去附近吃个饭再回来。|Được, tôi đi ăn gần đây rồi quay lại.
+A|以后买个手机壳，再贴一张膜。|Sau này mua cái ốp điện thoại, dán thêm miếng dán màn hình.
+B|好的，这次我一定买。|Vâng, lần này tôi nhất định mua.
+
+# h2-32|Leo núi|爬山|Leo núi cuối tuần|同事老周
+A|还有多远到山顶？|Còn bao xa nữa thì đến đỉnh núi?
+B|地图上说还有一公里。|Bản đồ nói còn một ki-lô-mét.
+A|我走不动了，我们休息一下吧。|Tôi đi không nổi nữa, mình nghỉ một lát đi.
+B|好，喝点儿水，吃块巧克力。|Được, uống chút nước, ăn miếng sô-cô-la.
+A|你看，山下的城市变得那么小。|Anh xem, thành phố dưới núi trở nên bé tí.
+B|空气也比城里新鲜多了。|Không khí cũng trong lành hơn trong thành phố nhiều.
+A|上面有一个寺庙，很多人去那儿烧香。|Trên đó có một ngôi chùa, nhiều người đến đó thắp hương.
+B|我们到了山顶以后去看看。|Lên đến đỉnh rồi mình đi xem.
+A|下山的时候我们坐缆车吧。|Lúc xuống núi mình đi cáp treo đi.
+B|好，我的腿已经很累了。|Được, chân tôi mỏi lắm rồi.
+
+# h2-33|Gói sủi cảo|一起包饺子|Học gói sủi cảo với bạn|中国朋友小王
+A|今天我教你包饺子。|Hôm nay mình dạy bạn gói sủi cảo.
+B|太好了！先做什么？|Tuyệt quá! Làm gì trước?
+A|先和面，然后做饺子馅儿。|Nhào bột trước, sau đó làm nhân sủi cảo.
+B|馅儿里放什么？|Nhân cho những gì?
+A|猪肉、白菜、葱、姜，再放一点儿盐和酱油。|Thịt lợn, cải thảo, hành, gừng, cho thêm chút muối và xì dầu.
+B|皮怎么做？|Vỏ làm thế nào?
+A|把面切成小块，用这个擀成圆的。|Cắt bột thành miếng nhỏ, dùng cái này cán thành hình tròn.
+B|我的饺子皮不圆！|Vỏ sủi cảo của mình không tròn!
+A|没关系，第一次都这样。放一勺馅儿，然后捏紧。|Không sao, lần đầu ai cũng vậy. Cho một thìa nhân, rồi bóp chặt.
+B|我包好一个了，好看吗？|Mình gói xong một cái rồi, đẹp không?
+A|像一个小元宝，很好！|Giống một thỏi vàng nhỏ, đẹp lắm!
+B|什么时候能吃？|Khi nào ăn được?
+A|水开了以后煮十分钟就好了。|Nước sôi rồi luộc mười phút là xong.
+
+# h2-34|Đi xem phim|电影票|Mua vé xem phim|售票员
+B|你好，我要两张七点的电影票。|Chào chị, tôi lấy hai vé xem phim lúc bảy giờ.
+A|您看哪部电影？|Anh xem phim nào?
+B|那部新的动画片。|Bộ phim hoạt hình mới đó.
+A|好的。您想坐在哪儿？中间的位置还有。|Vâng. Anh muốn ngồi ở đâu? Vẫn còn chỗ ở giữa.
+B|第七排中间的两个。|Hai chỗ giữa hàng thứ bảy.
+A|一共九十块。要爆米花和可乐吗？|Tổng cộng chín mươi tệ. Có lấy bỏng ngô và cô-ca không?
+B|要一个大桶爆米花，两杯可乐。|Lấy một thùng bỏng ngô lớn, hai cốc cô-ca.
+A|套餐比单买便宜十块。|Mua combo rẻ hơn mua lẻ mười tệ.
+B|那就要套餐。电影多长时间？|Vậy lấy combo. Phim dài bao lâu?
+A|一个小时四十分钟。请在三号厅。|Một tiếng bốn mươi phút. Mời anh vào phòng chiếu số ba.
+B|谢谢！|Cảm ơn!
+
+# h2-35|Phòng khám thú y|我的狗生病了|Đưa chó đi khám|宠物医生
+B|医生，我的狗两天不吃东西了。|Bác sĩ, con chó của tôi hai ngày không ăn gì rồi.
+A|它几岁了？最近吃了什么特别的东西吗？|Nó mấy tuổi rồi? Gần đây có ăn thứ gì đặc biệt không?
+B|五岁。前天它吃了一块巧克力。|Năm tuổi. Hôm kia nó ăn một miếng sô-cô-la.
+A|狗不能吃巧克力，对它们的身体很不好。|Chó không được ăn sô-cô-la, rất có hại cho cơ thể chúng.
+B|我不知道，真后悔。严重吗？|Tôi không biết, hối hận quá. Có nghiêm trọng không?
+A|我先给它检查一下，再打一针。|Tôi kiểm tra cho nó trước, rồi tiêm một mũi.
+B|它会好吗？|Nó sẽ khỏi chứ?
+A|吃得不多，问题不大。这几天给它吃一点儿米粥。|Ăn không nhiều, không có vấn đề lớn. Mấy hôm nay cho nó ăn chút cháo.
+B|要不要住院？|Có cần nằm viện không?
+A|不用，三天以后再带它来看看。|Không cần, ba ngày sau đưa nó đến khám lại.
+B|谢谢医生，以后我一定注意。|Cảm ơn bác sĩ, sau này tôi nhất định chú ý.
+
+# h2-36|Giảm giá|商场打折|Đi trung tâm thương mại mùa giảm giá|闺蜜
+A|商场在打折，很多东西打五折！|Trung tâm thương mại đang giảm giá, nhiều đồ giảm năm mươi phần trăm!
+B|真的吗？我正好想买一件大衣。|Thật à? Mình đang muốn mua một cái áo khoác dài.
+A|你看这件灰色的，原价一千二，现在六百。|Cậu xem cái màu xám này, giá gốc một nghìn hai, giờ sáu trăm.
+B|样子不错，可是袖子有点儿长。|Kiểu dáng được đấy, nhưng tay áo hơi dài.
+A|可以请他们改短，不要钱。|Có thể nhờ họ sửa ngắn lại, không mất tiền.
+B|那我买了！你想买什么？|Vậy mình mua! Cậu muốn mua gì?
+A|我想买一个包和一条围巾。|Mình muốn mua một cái túi và một chiếc khăn quàng.
+B|那家店的围巾买二送一。|Cửa hàng kia khăn quàng mua hai tặng một.
+A|太好了，我们一人一条，还有一条送给妈妈。|Tuyệt quá, mỗi đứa một chiếc, còn một chiếc tặng mẹ.
+B|买东西真累，我们去喝杯奶茶吧。|Mua sắm mệt thật, mình đi uống cốc trà sữa đi.
+
+# h2-37|Thăm bạn nằm viện|去医院看朋友|Thăm bạn bị gãy chân|朋友小刚
+B|小刚，你好点儿了吗？我给你带了一些水果。|Tiểu Cương, cậu đỡ hơn chưa? Mình mang cho cậu ít trái cây.
+A|谢谢你来看我！好多了。|Cảm ơn cậu đến thăm mình! Đỡ nhiều rồi.
+B|你的腿是怎么受伤的？|Chân cậu bị thương thế nào?
+A|踢足球的时候，跟别人撞在一起了。|Lúc đá bóng, va vào người khác.
+B|医生说什么时候能出院？|Bác sĩ nói khi nào được ra viện?
+A|下个星期，可是要休息两个月才能走路。|Tuần sau, nhưng phải nghỉ hai tháng mới đi lại được.
+B|两个月不能上课怎么办？|Hai tháng không đi học được thì làm sao?
+A|老师让我在网上听课。|Thầy giáo cho mình học trên mạng.
+B|上课的笔记我每天拍照发给你。|Ghi chép trên lớp mỗi ngày mình chụp ảnh gửi cậu.
+A|你真是我的好朋友！|Cậu đúng là bạn tốt của mình!
+B|好好休息，我下次再来看你。|Nghỉ ngơi cho tốt, lần sau mình lại đến thăm cậu.
+
+# h2-38|Suối nước nóng|泡温泉|Đi suối nước nóng mùa đông|同事小雅
+A|冬天最舒服的事就是泡温泉！|Mùa đông việc dễ chịu nhất là ngâm suối nước nóng!
+B|我从来没泡过，要准备什么？|Mình chưa ngâm bao giờ, phải chuẩn bị gì?
+A|带游泳衣就行，毛巾和拖鞋那儿都有。|Mang đồ bơi là được, khăn và dép ở đó đều có.
+B|温泉的水很热吗？|Nước suối có nóng lắm không?
+A|四十度左右，泡二十分钟就要出来休息一下。|Khoảng bốn mươi độ, ngâm hai mươi phút thì phải ra nghỉ một lát.
+B|为什么？|Tại sao vậy?
+A|泡太久了会头晕。记得多喝水。|Ngâm lâu quá sẽ chóng mặt. Nhớ uống nhiều nước.
+B|那儿还有什么好玩儿的？|Ở đó còn có gì vui không?
+A|可以按摩，还可以吃当地的特色菜。|Có thể mát-xa, còn có thể ăn món đặc sản địa phương.
+B|听起来太棒了，我们什么时候去？|Nghe tuyệt quá, khi nào mình đi?
+A|这个周六早上出发，周日下午回来。|Sáng thứ Bảy này xuất phát, chiều Chủ nhật về.
+
+# h2-39|Tiệc làm quen|很高兴认识大家|Tự giới thiệu ở buổi gặp mặt|聚会主人
+A|大家好，这是我的越南朋友阿兰。|Chào mọi người, đây là bạn người Việt của mình, Lan.
+B|大家好！我叫阿兰，在大学学习中文。|Chào mọi người! Mình tên Lan, học tiếng Trung ở đại học.
+A|阿兰会说三种语言，越南语、英语和汉语。|Lan biết nói ba thứ tiếng, tiếng Việt, tiếng Anh và tiếng Trung.
+B|我的汉语说得还不太好，请大家多帮助。|Tiếng Trung của mình nói chưa giỏi lắm, mong mọi người giúp đỡ nhiều.
+A|你太谦虚了。你的爱好是什么？|Bạn khiêm tốn quá. Sở thích của bạn là gì?
+B|我喜欢做饭和旅游，最近在学摄影。|Mình thích nấu ăn và du lịch, gần đây đang học nhiếp ảnh.
+A|小张也喜欢摄影，你们可以一起去拍照。|Tiểu Trương cũng thích nhiếp ảnh, hai bạn có thể cùng đi chụp ảnh.
+B|太好了！小张，你一般用什么相机？|Tuyệt quá! Tiểu Trương, bạn thường dùng máy ảnh gì?
+A|他用手机也拍得很漂亮。来，大家先吃点儿东西。|Cậu ấy dùng điện thoại cũng chụp rất đẹp. Nào, mọi người ăn chút gì trước đã.
+B|这些菜都是你做的吗？|Mấy món này đều do bạn nấu à?
+A|一半是我做的，一半是买的。哈哈！|Một nửa mình nấu, một nửa là mua. Haha!
+
+# h2-40|Làm vỡ đồ|对不起，我把杯子打破了|Làm vỡ cốc nhà bạn|朋友家的阿姨
+B|对不起，阿姨，我不小心把杯子打破了。|Cháu xin lỗi cô, cháu vô ý làm vỡ cái cốc rồi.
+A|没关系，你的手没事吧？|Không sao, tay cháu không sao chứ?
+B|没事。我赔您一个新的吧。|Không sao ạ. Cháu đền cô một cái mới nhé.
+A|不用不用，一个杯子不贵。|Không cần không cần, một cái cốc không đắt.
+B|这个杯子很漂亮，是在哪儿买的？|Cái cốc này đẹp lắm, mua ở đâu vậy cô?
+A|是我女儿从景德镇带回来的。|Là con gái cô mang từ Cảnh Đức Trấn về.
+B|那一定很有意义，真不好意思。|Vậy chắc chắn rất có ý nghĩa, cháu thật ngại quá.
+A|别放在心上。小心地上，我拿扫帚来。|Đừng để trong lòng. Cẩn thận dưới đất, cô đi lấy chổi.
+B|我来扫吧。|Để cháu quét ạ.
+A|你坐着，别扎到脚。|Cháu cứ ngồi đi, kẻo đâm vào chân.
+
+# h2-41|Cắm trại|去郊外野营|Lên kế hoạch cắm trại|同学大海
+A|五一放假，我们去郊外野营吧！|Nghỉ lễ mùng một tháng năm, mình đi cắm trại ngoại ô đi!
+B|好啊！要带帐篷吗？|Được đấy! Có phải mang lều không?
+A|要，我有一个大帐篷，能住四个人。|Có, mình có một cái lều to, ở được bốn người.
+B|晚上会不会很冷？|Buổi tối có lạnh lắm không?
+A|山里晚上比较冷，要带睡袋和厚外套。|Trong núi buổi tối khá lạnh, phải mang túi ngủ và áo khoác dày.
+B|我们在哪儿做饭？|Mình nấu ăn ở đâu?
+A|营地可以烧烤，我们带点儿肉和蔬菜。|Khu cắm trại có thể nướng thịt, mình mang ít thịt và rau.
+B|晚上我们可以看星星，一定很美。|Buổi tối mình có thể ngắm sao, chắc chắn rất đẹp.
+A|对，那儿没有灯，星星特别多。|Đúng, ở đó không có đèn, sao cực kỳ nhiều.
+B|别忘了带手电筒和防蚊水。|Đừng quên mang đèn pin và thuốc chống muỗi.
+A|好，我写一个清单。|Được, mình viết một danh sách.
+
+# h2-42|Lớp học vẽ|我在学画画儿|Nói về lớp học vẽ|同事小美
+A|你周末去哪儿了？手上都是颜色。|Cuối tuần cậu đi đâu thế? Trên tay toàn màu vẽ.
+B|我参加了一个画画儿班，学画水彩画。|Mình tham gia một lớp vẽ, học vẽ tranh màu nước.
+A|难不难？|Có khó không?
+B|开始觉得很难，老师说要多练习。|Lúc đầu thấy rất khó, cô giáo nói phải luyện tập nhiều.
+A|你们画了什么？|Các cậu vẽ gì?
+B|画了一个苹果、一个花瓶，还有窗外的风景。|Vẽ một quả táo, một bình hoa, còn có phong cảnh ngoài cửa sổ.
+A|给我看看你的作品吧。|Cho mình xem tác phẩm của cậu đi.
+B|画得不好，你别笑我。|Vẽ không đẹp đâu, cậu đừng cười mình.
+A|很不错啊！颜色很漂亮，像真的一样。|Rất được mà! Màu sắc rất đẹp, giống như thật vậy.
+B|谢谢！下个月我们还要去公园画画儿。|Cảm ơn! Tháng sau bọn mình còn đi công viên vẽ tranh.
+A|我也想参加，还能报名吗？|Mình cũng muốn tham gia, còn đăng ký được không?
+B|能，我把老师的电话给你。|Được, mình đưa cậu số điện thoại của cô giáo.
+
+# h2-43|Lễ hội thuyền rồng|端午节|Xem đua thuyền rồng|中国同事
+A|明天是端午节，你知道这个节日吗？|Mai là Tết Đoan Ngọ, bạn biết ngày lễ này không?
+B|知道，越南也有，我们叫它"端午节"，五月初五。|Biết, Việt Nam cũng có, chúng tôi gọi là "Tết Đoan Ngọ", mùng năm tháng năm.
+A|中国人这天吃粽子，看龙舟比赛。|Người Trung Quốc ngày này ăn bánh ú, xem đua thuyền rồng.
+B|粽子是什么样子的？|Bánh ú trông như thế nào?
+A|用叶子包米，里面有肉或者红豆，有点儿像你们的粽子。|Dùng lá gói gạo, bên trong có thịt hoặc đậu đỏ, hơi giống bánh chưng của các bạn.
+B|龙舟比赛在哪儿看？|Đua thuyền rồng xem ở đâu?
+A|在河边，明天上午九点开始。|Ở bờ sông, chín giờ sáng mai bắt đầu.
+B|我们一起去吧，我想拍照片。|Mình cùng đi đi, tôi muốn chụp ảnh.
+A|好，人会很多，我们要早点儿去。|Được, sẽ rất đông người, mình phải đi sớm.
+B|我带几个越南的粽子给你尝尝。|Tôi mang mấy cái bánh ú Việt Nam cho bạn nếm thử.
+
+# h2-44|Thuê ô tô|我想租一辆车|Thuê xe đi du lịch|租车公司职员
+B|你好，我想租一辆车，用三天。|Chào anh, tôi muốn thuê một chiếc xe, dùng ba ngày.
+A|您有中国的驾照吗？|Chị có bằng lái xe Trung Quốc không?
+B|有，这是我的驾照。|Có, đây là bằng lái của tôi.
+A|您想要大车还是小车？|Chị muốn xe lớn hay xe nhỏ?
+B|小车就行，我们只有两个人。|Xe nhỏ là được, chúng tôi chỉ có hai người.
+A|这辆白色的不错，一天两百块，油费自己付。|Chiếc màu trắng này được đấy, một ngày hai trăm tệ, tiền xăng tự trả.
+B|还车的时候要加满油吗？|Lúc trả xe có phải đổ đầy xăng không?
+A|对，跟您拿车的时候一样。|Đúng, giống như lúc chị nhận xe.
+B|如果车坏了怎么办？|Nếu xe hỏng thì làm sao?
+A|给我们打电话，我们二十四小时都有人。|Gọi điện cho chúng tôi, hai mươi bốn giờ đều có người.
+B|好的，我们可以现在拿车吗？|Được, chúng tôi lấy xe bây giờ được không?
+A|可以，请先交五千块押金。|Được, mời chị đặt cọc năm nghìn tệ trước.

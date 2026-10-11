@@ -1,0 +1,77 @@
+SUMI CHINESE – Học tiếng Trung giao tiếp hoàn toàn qua câu, như em bé tập nói
+=============================================================================
+
+NỘI DUNG
+  225 bài hội thoại, 2.430 câu, chữ giản thể + pinyin + nghĩa tiếng Việt, chia 6 cấp:
+    HSK 1  70 bài · 749 câu · 1.024 từ
+    HSK 2  44 bài · 493 câu · 1.030 từ
+    HSK 3  38 bài · 417 câu · 1.039 từ
+    HSK 4  30 bài · 316 câu · 1.067 từ
+    HSK 5  25 bài · 262 câu · 1.103 từ
+    HSK 6  19 bài · 196 câu · 1.091 từ
+  (Từ = số từ khác nhau trong các câu của cấp đó, tách từ tự động, không tính tên riêng.)
+
+MỖI BÀI 4 BƯỚC
+  1. Nghe hội thoại (chữ Hán làm mờ; bật/tắt chữ Hán, pinyin, nghĩa; đọc chậm)
+  2. Ghép câu: nghe câu + xem nghĩa, xếp các từ (có pinyin) đúng thứ tự
+  3. Nói theo: nói từng câu, máy chấm từng chữ:
+       xanh = đúng, cam = đúng âm nhưng sai thanh điệu, đỏ = sai
+  4. Nhập vai: chỉ nhìn nghĩa tiếng Việt, tự nói câu tiếng Trung
+  Học xong, các câu vào hộp ÔN TẬP NGẮT QUÃNG (1-2-4-7-14-30-60-120 ngày).
+
+TỪ VỰNG THEO CHỦ ĐỀ (tab "Từ vựng")
+  24 chủ đề, 480 mục: bốn thanh điệu, âm dễ nhầm (zh/ch/sh, z/c/s, j/q/x, ü…), chữ số, ngày giờ,
+  màu sắc, động vật, cây cối, xe cộ, nhà bếp, phòng tắm, đồ đạc, trái cây, rau củ, đồ ăn, quần áo,
+  cơ thể, gia đình, nghề nghiệp, trường học, địa điểm, thời tiết, cảm xúc, tính từ trái nghĩa, động từ.
+  Chạm vào từ chỉ đọc từ; chạm vào câu ví dụ mới đọc câu.
+  Bài luyện 10 câu: nghe chọn thanh điệu · nghe chọn pinyin · nghe số gõ chữ số · nhìn số đọc to ·
+  nghe giờ chọn đồng hồ · nghe ngày tháng · nghe chọn nghĩa · nghe chọn chữ Hán · nhìn nghĩa nói từ.
+
+PHÁT ÂM
+  10 nhóm khó cho người Việt, mỗi nhóm 6 câu: bốn thanh, hai thanh 3 liền nhau, 不/一 đổi thanh,
+  zh ch sh r, z c s, j q x, ü, -n/-ng, e/er/儿, thanh nhẹ.
+
+KHÁM PHÁ BẰNG HÌNH (đầu tab "Từ vựng")
+  11 cảnh 2.5D: nhà bếp, phòng tắm, phòng khách, phòng ngủ, lớp học, khu rừng, nông trại,
+  dưới biển, đường phố, chợ rau quả, công viên – khoảng 160 đồ vật và con vật.
+  Khám phá: chạm vào đồ vật → sáng lên, hiện chữ Hán + pinyin + nghĩa, đọc to.
+  Tìm đồ vật: nghe tên rồi chạm đúng đồ vật trong hình (10 câu, lưu điểm cao nhất).
+  Trên điện thoại có nút "Phóng to" để xem hình to hơn.
+
+GIỌNG ĐỌC
+  Mọi câu cố định (bài học, từ vựng, phát âm, tên đồ vật) có giọng AI thu sẵn trong thư mục audio/:
+    audio/f = giọng nữ, audio/m = giọng nam. Chọn ở tab Cách học hoặc bước 1 của bài:
+    Nữ · Nam · Nam – Nữ (người nói chuyện giọng nam, bạn giọng nữ).
+  Giọng AI tạo bằng Kokoro (mô hình mã nguồn mở, giấy phép Apache 2.0, dùng miễn phí).
+  Câu sinh ngẫu nhiên (số, giờ, ngày tháng trong bài luyện) dùng giọng có sẵn trong máy.
+  Thêm hoặc sửa bài thì tạo lại giọng: node tools/audio_items.js > tools/audio_items.jsonl
+    rồi python3 tools/gen_audio.py . zh kokoro-v1.0.onnx voices-v1.0.bin (câu đã có sẽ bỏ qua).
+  Giọng có sẵn trong máy (dự phòng): nếu không nghe thấy gì, cài giọng tiếng Trung:
+    iPhone/iPad: Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói → Tiếng Trung (Trung Quốc đại lục)
+    Android: Cài đặt → Chuyển văn bản thành giọng nói → Công cụ của Google → cài "Tiếng Trung (Quan thoại)"
+    Windows: Cài đặt → Thời gian và ngôn ngữ → Giọng nói → Thêm giọng → 中文(简体)
+
+ĐƯA LÊN GITHUB PAGES
+  Tạo repo "chinese" trong tài khoản sumikanji. Thư mục audio/ có hàng nghìn file nhỏ, trang web
+  GitHub chỉ nhận khoảng 100 file mỗi lần kéo thả, nên dùng GitHub Desktop (miễn phí):
+    File → Clone repository → chọn sumikanji/chinese → chép toàn bộ nội dung thư mục này vào
+    → Commit to main → Push origin.
+  Settings → Pages → Branch: main, thư mục / (root) → Save.
+  Trang sẽ ở https://sumikanji.github.io/chinese/
+
+LƯU TIẾN ĐỘ VÀ ĐĂNG NHẬP
+  firebase-config.js đã điền sẵn cấu hình của dự án sumienglish-f4406 (dùng chung với Sumi English).
+  Tiến độ tiếng Trung lưu ở users/<uid>/chinese, tách riêng tiếng Anh. Một tài khoản dùng được cả hai trang.
+  Tên miền sumikanji.github.io đã thêm vào Authorized domains thì không cần làm gì thêm.
+
+SỬA HOẶC THÊM BÀI
+  1. Mở content/hsk1.txt … hsk6.txt. Mỗi bài:
+       # h1-25|Tên tiếng Việt|Tên tiếng Trung|Bối cảnh|Tên người nói chuyện
+       A|Câu tiếng Trung của người kia|Nghĩa tiếng Việt
+       B|Câu tiếng Trung của người học|Nghĩa tiếng Việt
+     Viết số bằng chữ Hán (二十五, không viết 25). Không dùng ký tự | trong câu.
+  2. Cài công cụ: pip install pypinyin jieba
+  3. Chạy: python3 tools/build.py  → tự tách từ, gắn pinyin, ghi lại thư mục data/.
+  Pinyin đọc sai thì thêm từ đó vào bảng FIX trong tools/build.py rồi chạy lại.
+
+© 2026 Sumi Chinese · Hiyo © Sumi Kanji

@@ -1,0 +1,313 @@
+@hsk5|HSK 5|Tranh luận và công việc|Đàm phán, trình bày, bàn chuyện xã hội, dùng thành ngữ thông dụng|#ef4444
+
+# h5-01|Đàm phán với đối tác|价格方面还有商量的余地吗？|Thương lượng hợp đồng|供应商代表
+A|这是我们根据贵公司的要求做的报价单，请您过目。|Đây là bảng báo giá chúng tôi làm theo yêu cầu của quý công ty, mời chị xem qua.
+B|谢谢。质量方面我们比较满意，但是价格比我们的预算高了百分之十五。|Cảm ơn. Về chất lượng chúng tôi khá hài lòng, nhưng giá cao hơn dự toán của chúng tôi mười lăm phần trăm.
+A|我们的原材料都是进口的，成本确实比较高。|Nguyên liệu của chúng tôi đều nhập khẩu, giá thành quả thực khá cao.
+B|我理解。不过如果我们签三年的长期合同，价格方面还有商量的余地吗？|Tôi hiểu. Nhưng nếu chúng tôi ký hợp đồng dài hạn ba năm, về giá còn có chỗ để thương lượng không?
+A|如果是长期合作，我们可以给您打九折。|Nếu là hợp tác lâu dài, chúng tôi có thể giảm cho chị mười phần trăm.
+B|九折还是有点儿高。另外，交货时间能不能提前一个星期？|Giảm mười phần trăm vẫn hơi cao. Ngoài ra, thời gian giao hàng có thể sớm hơn một tuần không?
+A|交货时间没问题。价格的话，我需要跟总部请示一下。|Thời gian giao hàng không vấn đề gì. Còn giá thì tôi cần xin ý kiến trụ sở chính.
+B|好的，我们也希望双方都能满意。|Được, chúng tôi cũng mong cả hai bên đều hài lòng.
+A|我明天上午之前一定给您答复。|Trước sáng mai tôi nhất định trả lời chị.
+B|那我们就等您的好消息了。|Vậy chúng tôi chờ tin tốt của anh.
+A|合作愉快！|Hợp tác vui vẻ!
+
+# h5-02|Già hoá dân số|养老问题越来越重要|Bàn chuyện chăm sóc cha mẹ già|同事老陈
+A|最近我父亲住院了，我每天下班都得去医院，真是身心疲惫。|Dạo này bố tôi nằm viện, ngày nào tan làm tôi cũng phải vào viện, thật sự kiệt sức cả thể xác lẫn tinh thần.
+B|辛苦你了。家里没有别人帮忙吗？|Vất vả cho anh rồi. Trong nhà không có ai khác giúp à?
+A|我是独生子，妻子也要上班，孩子还小。|Tôi là con một, vợ cũng phải đi làm, con còn nhỏ.
+B|现在很多家庭都面临这样的问题，社会老龄化越来越严重了。|Bây giờ nhiều gia đình đều đối mặt với vấn đề như vậy, già hoá xã hội ngày càng nghiêm trọng.
+A|我考虑过请护工，可是费用不低。|Tôi đã nghĩ đến việc thuê hộ lý, nhưng chi phí không thấp.
+B|你们社区有没有养老服务中心？有的提供上门照顾。|Khu dân cư của anh có trung tâm dịch vụ dưỡng lão không? Có nơi cung cấp chăm sóc tận nhà.
+A|我还真不知道，明天去问问。|Tôi thật sự không biết, mai sẽ đi hỏi.
+B|另外，你也要照顾好自己，你要是累倒了，全家都麻烦。|Ngoài ra, anh cũng phải chăm sóc tốt bản thân, anh mà ngã bệnh thì cả nhà đều khổ.
+A|你说得对。有什么需要我会跟领导请几天假。|Anh nói đúng. Có gì cần tôi sẽ xin lãnh đạo nghỉ vài ngày.
+B|有什么我能帮忙的，尽管开口。|Có gì tôi giúp được, anh cứ mở lời.
+
+# h5-03|Khởi nghiệp|我想自己创业|Xin lời khuyên khởi nghiệp|大学老师
+B|老师，我毕业以后不想找工作了，想自己创业。|Thầy ơi, tốt nghiệp xong em không muốn đi xin việc nữa, muốn tự khởi nghiệp.
+A|有勇气是好事。你打算做什么？|Có dũng khí là chuyện tốt. Em định làm gì?
+B|我想开一家网店，卖越南的咖啡和特产。|Em muốn mở một cửa hàng online, bán cà phê và đặc sản Việt Nam.
+A|你做过市场调查吗？竞争对手多不多？|Em đã làm khảo sát thị trường chưa? Đối thủ cạnh tranh có nhiều không?
+B|做过一些。卖咖啡的人不少，但是专门卖越南咖啡的不多。|Đã làm một ít. Người bán cà phê không ít, nhưng chuyên bán cà phê Việt Nam thì không nhiều.
+A|这是你的优势。资金从哪儿来？|Đó là lợi thế của em. Vốn lấy từ đâu?
+B|我自己存了一些，父母也愿意支持我一部分。|Em tự để dành được một ít, bố mẹ cũng sẵn lòng hỗ trợ một phần.
+A|我的建议是，一开始规模不要太大，先试一试市场的反应。|Lời khuyên của thầy là, lúc đầu quy mô đừng quá lớn, trước tiên thử phản ứng của thị trường.
+B|如果失败了怎么办？|Nếu thất bại thì sao ạ?
+A|失败是成功之母。年轻人失败了可以重新开始，最重要的是从中吸取教训。|Thất bại là mẹ thành công. Người trẻ thất bại có thể làm lại từ đầu, quan trọng nhất là rút ra bài học từ đó.
+B|谢谢老师，我心里有底了。|Cảm ơn thầy, trong lòng em đã có cơ sở rồi.
+
+# h5-04|Đông y|中医真的有用吗？|Đi khám Đông y lần đầu|中医大夫
+A|把手伸出来，我给你号号脉。|Đưa tay ra đây, tôi bắt mạch cho anh.
+B|大夫，我最近总是睡不好，白天也没精神。|Thưa bác sĩ, dạo này tôi toàn ngủ không ngon, ban ngày cũng không có tinh thần.
+A|你平时工作压力大吗？晚上几点睡？|Bình thường áp lực công việc của anh có lớn không? Tối mấy giờ ngủ?
+B|压力挺大的，一般一两点才睡。|Áp lực khá lớn, thường một hai giờ mới ngủ.
+A|你这是熬夜熬的，身体的平衡被打破了。|Anh đây là do thức khuya mà ra, sự cân bằng của cơ thể bị phá vỡ.
+B|需要吃中药吗？听说中药特别苦。|Có cần uống thuốc bắc không? Nghe nói thuốc bắc đắng lắm.
+A|我给你开一个星期的药，再配合针灸。|Tôi kê cho anh một tuần thuốc, kết hợp thêm châm cứu.
+B|针灸疼不疼？|Châm cứu có đau không?
+A|有一点儿酸胀，不疼。不过最关键的还是你自己要早睡。|Hơi tê tức một chút, không đau. Nhưng mấu chốt nhất vẫn là bản thân anh phải ngủ sớm.
+B|我明白了，药能治病，但是习惯更重要。|Tôi hiểu rồi, thuốc có thể chữa bệnh, nhưng thói quen quan trọng hơn.
+A|没错，中医讲究的就是预防为主。|Đúng vậy, Đông y coi trọng chính là lấy phòng bệnh làm chính.
+
+# h5-05|Mâu thuẫn trong nhóm|我们团队出了点儿问题|Báo cáo với trưởng phòng|部门经理
+B|经理，有件事想跟您汇报一下。我们项目组最近出了点儿问题。|Thưa trưởng phòng, có việc muốn báo cáo với chị. Nhóm dự án chúng tôi dạo này có chút vấn đề.
+A|什么问题？你坐下慢慢说。|Vấn đề gì? Anh ngồi xuống nói từ từ.
+B|小张和小李对设计方案的意见不一致，已经吵了好几次了。|Tiểu Trương và Tiểu Lý không thống nhất ý kiến về phương án thiết kế, đã cãi nhau mấy lần rồi.
+A|影响到工作进度了吗？|Có ảnh hưởng đến tiến độ công việc không?
+B|影响很大，原定这周五交的方案到现在还没定下来。|Ảnh hưởng rất lớn, phương án định nộp thứ Sáu tuần này đến giờ vẫn chưa chốt được.
+A|你作为组长，有什么想法？|Anh là trưởng nhóm, có ý tưởng gì?
+B|我觉得两个方案各有优点，可以取长补短，合成一个。|Tôi thấy hai phương án đều có ưu điểm, có thể lấy cái hay bù cái dở, gộp thành một.
+A|这个思路不错。你先分别跟他们谈谈，听听他们真正的担心是什么。|Hướng suy nghĩ này không tồi. Anh nói chuyện riêng với từng người trước, nghe xem điều họ thực sự lo lắng là gì.
+B|好的。如果还是解决不了呢？|Vâng. Nếu vẫn không giải quyết được thì sao?
+A|那就开个会，我也参加，大家把话说清楚。|Thì họp một buổi, tôi cũng tham gia, mọi người nói cho rõ ràng.
+B|明白了，我今天下午就去找他们。|Tôi hiểu rồi, chiều nay tôi sẽ đi gặp họ.
+
+# h5-06|Áp lực học hành|孩子的压力太大了|Hai người mẹ tâm sự|邻居王太太
+A|我女儿才上小学三年级，每天作业要写到晚上十点。|Con gái tôi mới học lớp ba, ngày nào bài tập cũng phải làm đến mười giờ tối.
+B|这么晚！周末呢？|Muộn thế! Còn cuối tuần?
+A|周末还有英语班、钢琴班、数学班，比我上班还累。|Cuối tuần còn có lớp tiếng Anh, lớp piano, lớp toán, còn mệt hơn tôi đi làm.
+B|这些班都是孩子自己想上的吗？|Những lớp này đều là con tự muốn học à?
+A|说实话，大部分是我给她报的。别人家的孩子都在学，我怕她落后。|Nói thật, phần lớn là tôi đăng ký cho nó. Con nhà người ta đều đang học, tôi sợ nó bị tụt lại.
+B|我能理解你的心情，但是孩子的童年只有一次。|Tôi hiểu tâm trạng của chị, nhưng tuổi thơ của con chỉ có một lần.
+A|我也知道，可是不报又不放心。|Tôi cũng biết, nhưng không đăng ký lại không yên tâm.
+B|不如问问她最喜欢哪个，只留一两个，其他的时间让她玩儿。|Chi bằng hỏi nó thích lớp nào nhất, chỉ giữ một hai lớp, thời gian còn lại để nó chơi.
+A|有道理。孩子开心，学习效率可能更高。|Có lý. Con vui vẻ thì hiệu quả học tập có khi còn cao hơn.
+B|对，身心健康比成绩更重要。|Đúng vậy, sức khoẻ thể chất và tinh thần quan trọng hơn thành tích.
+
+# h5-07|Du lịch và môi trường|旅游业是双刃剑|Bàn về du lịch ở quê|家乡的朋友
+A|这几年我们镇上的游客越来越多了，你感觉到了吗？|Mấy năm nay du khách đến thị trấn mình ngày càng đông, cậu có cảm nhận được không?
+B|当然。老街上开了很多民宿和咖啡馆，比以前热闹多了。|Tất nhiên. Phố cổ mở rất nhiều homestay và quán cà phê, náo nhiệt hơn trước nhiều.
+A|大家的收入提高了，年轻人也愿意回来工作了。|Thu nhập của mọi người tăng lên, người trẻ cũng sẵn lòng quay về làm việc.
+B|这是好的一面。可是你看河里的垃圾，比以前多多了。|Đó là mặt tốt. Nhưng cậu xem rác dưới sông, nhiều hơn trước rất nhiều.
+A|是啊，而且房租也涨了，本地的老人都住不起了。|Đúng vậy, hơn nữa tiền thuê nhà cũng tăng, người già bản địa đều không thuê nổi nữa.
+B|所以说，旅游业是一把双刃剑。|Cho nên mới nói, du lịch là con dao hai lưỡi.
+A|你觉得应该怎么办？|Cậu thấy nên làm thế nào?
+B|政府应该限制游客数量，收的钱一部分用来保护环境。|Chính quyền nên hạn chế số lượng du khách, một phần tiền thu được dùng để bảo vệ môi trường.
+A|我们也可以组织志愿者，定期清理河道。|Chúng ta cũng có thể tổ chức tình nguyện viên, định kỳ dọn dẹp lòng sông.
+B|好主意。发展经济不能以破坏环境为代价。|Ý hay đấy. Phát triển kinh tế không thể đánh đổi bằng việc phá hoại môi trường.
+
+# h5-08|An toàn thực phẩm|吃得放心才是最重要的|Đi chợ cùng mẹ chồng|婆婆
+A|买菜要看清楚，最好买当季的蔬菜。|Mua rau phải xem kỹ, tốt nhất mua rau đúng mùa.
+B|为什么？反季节的不是也挺新鲜的吗？|Tại sao ạ? Rau trái mùa chẳng phải cũng khá tươi sao?
+A|反季节的往往用了更多的农药和化肥，吃起来也没有味道。|Rau trái mùa thường dùng nhiều thuốc trừ sâu và phân bón hơn, ăn vào cũng không có vị.
+B|原来如此。那肉呢？|Thì ra là vậy. Còn thịt thì sao ạ?
+A|肉一定要去正规的店买，看看有没有检疫证明。|Thịt nhất định phải mua ở cửa hàng chính quy, xem có giấy chứng nhận kiểm dịch không.
+B|现在网上也有很多有机食品，就是价格贵一点儿。|Bây giờ trên mạng cũng có nhiều thực phẩm hữu cơ, chỉ là giá đắt hơn một chút.
+A|贵一点儿没关系，健康是最重要的。|Đắt một chút không sao, sức khoẻ là quan trọng nhất.
+B|我听说有的商家把普通的菜当成有机的卖。|Con nghe nói có người bán đem rau thường bán như rau hữu cơ.
+A|所以要选有信誉的商家，不能只看广告。|Cho nên phải chọn người bán có uy tín, không thể chỉ xem quảng cáo.
+B|妈，您懂得真多，以后买菜我就跟您学。|Mẹ biết nhiều thật, sau này đi chợ con sẽ học theo mẹ.
+
+# h5-09|Thói quen đọc sách|你多久没读完一本书了？|Thảo luận ở câu lạc bộ đọc sách|读书会成员
+A|今天我们讨论一个问题：你上一次读完一本纸质书是什么时候？|Hôm nay chúng ta thảo luận một câu hỏi: lần gần nhất bạn đọc hết một cuốn sách giấy là khi nào?
+B|说来惭愧，我差不多有半年没读完一本书了。|Nói ra thật hổ thẹn, gần nửa năm nay tôi chưa đọc hết cuốn sách nào.
+A|为什么呢？是没时间吗？|Vì sao vậy? Là không có thời gian à?
+B|也不完全是。时间都被手机占了，一拿起书就想看手机。|Cũng không hoàn toàn. Thời gian đều bị điện thoại chiếm mất, cứ cầm sách lên là muốn xem điện thoại.
+A|很多人都有同样的问题。电子阅读虽然方便，但是容易分心。|Rất nhiều người có cùng vấn đề. Đọc điện tử tuy tiện, nhưng dễ phân tâm.
+B|我觉得读纸质书的时候，思考得更深。|Tôi thấy khi đọc sách giấy, mình suy nghĩ sâu hơn.
+A|有什么办法能让自己多读书？|Có cách nào giúp bản thân đọc sách nhiều hơn?
+B|我打算每天早上提前半个小时起床，什么都不做，只读书。|Tôi định mỗi sáng dậy sớm hơn nửa tiếng, không làm gì cả, chỉ đọc sách.
+A|这个办法不错。我们读书会也可以每个月定一本书，互相监督。|Cách này không tồi. Câu lạc bộ đọc sách chúng ta cũng có thể mỗi tháng chọn một cuốn, giám sát lẫn nhau.
+B|我赞成！这个月读什么？|Tôi tán thành! Tháng này đọc gì?
+A|就读老舍的《骆驼祥子》吧。|Đọc "Lạc đà Tường Tử" của Lão Xá đi.
+
+# h5-10|Khiếu nại dịch vụ|我要投诉|Gọi tổng đài chăm sóc khách hàng|客服
+A|您好，很高兴为您服务，请问有什么可以帮您？|Xin chào, rất vui được phục vụ quý khách, xin hỏi tôi có thể giúp gì?
+B|我上个星期在你们网站上买了一台洗衣机，到现在还没送到。|Tuần trước tôi mua một chiếc máy giặt trên trang web của các anh, đến giờ vẫn chưa giao tới.
+A|非常抱歉，请您提供一下订单号。|Vô cùng xin lỗi, xin quý khách cung cấp mã đơn hàng.
+B|订单号是二零二六一零零五八八。我已经打了三次电话了，每次都说马上处理。|Mã đơn hàng là 2026100588. Tôi đã gọi ba lần rồi, lần nào cũng nói sẽ xử lý ngay.
+A|我查到了，因为仓库缺货，所以耽误了。|Tôi đã tra được rồi, vì kho hết hàng nên bị chậm trễ.
+B|缺货为什么不早点儿通知我？这种服务态度太让人失望了。|Hết hàng sao không thông báo sớm cho tôi? Thái độ phục vụ thế này thật khiến người ta thất vọng.
+A|这确实是我们的失误。我们现在有两个解决办法：一是全额退款，二是换同价位的其他型号，明天就能送到。|Đây quả thật là sai sót của chúng tôi. Hiện giờ chúng tôi có hai cách giải quyết: một là hoàn tiền toàn bộ, hai là đổi sang mẫu khác cùng mức giá, ngày mai có thể giao.
+B|我急着用，那就换别的型号吧。|Tôi đang cần gấp, vậy đổi mẫu khác đi.
+A|好的。另外，为了表示歉意，我们送您一张一百元的优惠券。|Vâng. Ngoài ra, để bày tỏ lời xin lỗi, chúng tôi tặng quý khách một phiếu giảm giá một trăm tệ.
+B|好吧，希望明天别再出问题了。|Thôi được, hy vọng ngày mai đừng có vấn đề gì nữa.
+
+# h5-11|Mua nhà|买房还是租房？|Hai vợ chồng tính chuyện nhà cửa|妻子
+A|我们结婚三年了，一直租房子，是不是该考虑买房了？|Chúng ta kết hôn ba năm rồi, vẫn luôn thuê nhà, có phải nên tính đến chuyện mua nhà rồi không?
+B|我也想过，可是房价太高了，首付至少要一百万。|Anh cũng nghĩ rồi, nhưng giá nhà quá cao, trả trước ít nhất phải một triệu tệ.
+A|我们俩存了六十万，父母说可以帮一点儿。|Hai đứa mình để dành được sáu trăm nghìn, bố mẹ nói có thể giúp một ít.
+B|就算凑够了首付，每个月还要还一万多的贷款，压力太大了。|Cho dù gom đủ tiền trả trước, mỗi tháng còn phải trả hơn mười nghìn tiền vay, áp lực quá lớn.
+A|可是租房总觉得不踏实，房东随时可能让我们搬走。|Nhưng thuê nhà luôn cảm thấy không yên ổn, chủ nhà có thể bắt mình dọn đi bất cứ lúc nào.
+B|这倒是。而且以后有了孩子，上学也要看户口和房子。|Điều đó cũng đúng. Hơn nữa sau này có con, đi học còn phải xét hộ khẩu và nhà ở.
+A|要不我们先看看郊区的房子？价格能便宜三分之一。|Hay là mình xem nhà ở ngoại ô trước? Giá có thể rẻ hơn một phần ba.
+B|郊区离公司太远，每天通勤要两个小时。|Ngoại ô xa công ty quá, mỗi ngày đi làm mất hai tiếng.
+A|地铁明年就修到那儿了。|Năm sau tàu điện ngầm sẽ làm đến đó rồi.
+B|那这个周末我们去看看吧，不过别急着决定。|Vậy cuối tuần này mình đi xem đi, nhưng đừng vội quyết định.
+
+# h5-12|Thuyết trình|下面我来介绍一下我们的方案|Thuyết trình trước ban giám đốc|总经理
+B|各位领导，下面我来介绍一下我们部门明年的市场推广方案。|Thưa các vị lãnh đạo, sau đây tôi xin giới thiệu phương án quảng bá thị trường năm sau của bộ phận chúng tôi.
+A|好，请开始吧，时间控制在十五分钟以内。|Được, mời bắt đầu, thời gian trong vòng mười lăm phút.
+B|首先，我们分析了今年的销售数据。线上销售增长了百分之四十，线下却下降了百分之十。|Đầu tiên, chúng tôi đã phân tích số liệu bán hàng năm nay. Bán hàng trực tuyến tăng bốn mươi phần trăm, còn trực tiếp lại giảm mười phần trăm.
+A|线下下降的主要原因是什么？|Nguyên nhân chính của việc bán trực tiếp giảm là gì?
+B|主要是年轻顾客的购物习惯改变了，他们更喜欢在手机上下单。|Chủ yếu là thói quen mua sắm của khách hàng trẻ đã thay đổi, họ thích đặt hàng trên điện thoại hơn.
+A|那你们的建议是什么？|Vậy đề xuất của các anh là gì?
+B|我们建议把百分之六十的预算用在线上推广，同时把线下门店改造成体验店。|Chúng tôi đề xuất dùng sáu mươi phần trăm ngân sách cho quảng bá trực tuyến, đồng thời cải tạo cửa hàng trực tiếp thành cửa hàng trải nghiệm.
+A|体验店的投入大概需要多少？|Đầu tư cho cửa hàng trải nghiệm cần khoảng bao nhiêu?
+B|第一年大约五百万，我们预计两年内可以收回成本。|Năm đầu khoảng năm triệu tệ, chúng tôi dự tính trong hai năm có thể thu hồi vốn.
+A|思路很清楚。请把详细的预算表发给财务部，下周再讨论。|Hướng đi rất rõ ràng. Hãy gửi bảng dự toán chi tiết cho phòng tài chính, tuần sau thảo luận tiếp.
+
+# h5-13|Bỏ thuốc lá|我决定戒烟了|Quyết tâm cai thuốc|老朋友
+A|你怎么不抽烟了？以前你一天要抽一包呢。|Sao cậu không hút thuốc nữa? Trước kia một ngày cậu hút cả bao cơ mà.
+B|我决定戒烟了，已经坚持了一个月了。|Tớ quyết định cai thuốc rồi, đã kiên trì được một tháng.
+A|真了不起！是什么让你下了这么大的决心？|Giỏi thật! Điều gì khiến cậu hạ quyết tâm lớn như vậy?
+B|上个月我女儿问我："爸爸，你为什么要吃烟？那个很臭。"|Tháng trước con gái tớ hỏi: "Bố ơi, sao bố lại ăn thuốc lá? Cái đó hôi lắm."
+A|哈哈，孩子的话最有力量。戒烟难不难？|Haha, lời trẻ con có sức nặng nhất. Cai thuốc có khó không?
+B|头几天特别难受，脾气也变得很差，一闻到烟味就想抽。|Mấy ngày đầu cực kỳ khó chịu, tính khí cũng trở nên rất tệ, cứ ngửi thấy mùi thuốc là muốn hút.
+A|那你是怎么坚持下来的？|Vậy làm sao cậu kiên trì được?
+B|想抽的时候就嚼口香糖，或者出去跑步。慢慢地就不那么想了。|Lúc muốn hút thì nhai kẹo cao su, hoặc ra ngoài chạy bộ. Dần dần không còn thèm như thế nữa.
+A|身体有什么变化吗？|Cơ thể có thay đổi gì không?
+B|早上不咳嗽了，爬楼梯也不喘了，吃饭也觉得更香了。|Buổi sáng không ho nữa, leo cầu thang cũng không thở dốc, ăn cơm cũng thấy ngon hơn.
+A|看来我也该向你学习了。|Xem ra tớ cũng nên học tập cậu rồi.
+
+# h5-14|Tin tức|你看今天的新闻了吗？|Bàn luận tin tức buổi sáng|同事
+A|你看今天的新闻了吗？说是明年开始，退休年龄要逐步提高了。|Cậu đọc tin tức hôm nay chưa? Nói là bắt đầu từ năm sau, tuổi nghỉ hưu sẽ tăng dần.
+B|看到了。网上的讨论特别激烈，支持的和反对的都有。|Đọc rồi. Thảo luận trên mạng cực kỳ sôi nổi, người ủng hộ và phản đối đều có.
+A|你怎么看？|Cậu thấy thế nào?
+B|从国家的角度看，老人越来越多，年轻人越来越少，这么做也是没办法的办法。|Từ góc độ quốc gia mà nói, người già ngày càng nhiều, người trẻ ngày càng ít, làm vậy cũng là cách bất đắc dĩ.
+A|可是对体力劳动者来说，多干几年真的很辛苦。|Nhưng đối với người lao động chân tay, làm thêm mấy năm thật sự rất vất vả.
+B|没错，所以我觉得应该根据不同的行业区别对待。|Đúng vậy, nên tôi thấy nên đối xử khác nhau tuỳ theo các ngành nghề khác nhau.
+A|而且是"逐步"提高，不是一下子提高很多，大家还有时间适应。|Hơn nữa là tăng "dần dần", không phải tăng nhiều ngay một lúc, mọi người còn thời gian thích nghi.
+B|对。看新闻不能只看标题，要看具体内容。|Đúng. Đọc tin tức không thể chỉ đọc tiêu đề, phải xem nội dung cụ thể.
+A|说得好，现在很多人只看标题就开始骂了。|Nói hay lắm, bây giờ nhiều người chỉ đọc tiêu đề là bắt đầu chửi rồi.
+B|是啊，独立思考很重要。|Đúng vậy, tư duy độc lập rất quan trọng.
+
+# h5-15|Ngày đầu đi làm|入乡随俗|Hướng dẫn nhân viên mới người Việt|带教师傅
+A|小阮，你刚来公司，有什么不习惯的地方吗？|Tiểu Nguyễn, em mới vào công ty, có chỗ nào chưa quen không?
+B|大家都很热情，就是有些规矩我还不太清楚。|Mọi người đều rất nhiệt tình, chỉ là có một số quy tắc em chưa rõ lắm.
+A|比如说？|Ví dụ như?
+B|比如开会的时候，我不知道什么时候可以发言。|Ví dụ khi họp, em không biết khi nào thì có thể phát biểu.
+A|一般先听领导说，然后再提自己的意见。提意见的时候要委婉一点儿。|Thường thì nghe lãnh đạo nói trước, sau đó mới nêu ý kiến của mình. Khi góp ý phải khéo léo một chút.
+B|在越南也差不多，但是我怕自己的汉语说得不够客气。|Ở Việt Nam cũng gần như vậy, nhưng em sợ tiếng Trung của mình nói chưa đủ lịch sự.
+A|你可以多用"我觉得""是不是可以"这样的说法。|Em có thể dùng nhiều cách nói như "em thấy rằng", "liệu có thể… không".
+B|明白了。还有，同事请我吃饭，我要不要回请？|Em hiểu rồi. Còn nữa, đồng nghiệp mời em ăn cơm, em có nên mời lại không?
+A|最好找个机会回请，礼尚往来嘛。|Tốt nhất là tìm dịp mời lại, có qua có lại mà.
+B|我记住了，这就叫"入乡随俗"吧？|Em nhớ rồi, cái này gọi là "nhập gia tuỳ tục" phải không ạ?
+A|没错，你学得真快！|Đúng rồi, em học nhanh thật!
+
+# h5-16|Sống ở thành phố lớn|大城市还是小城市？|Tranh luận nên sống ở đâu|大学同学
+A|毕业以后你打算留在北京，还是回老家？|Tốt nghiệp xong cậu định ở lại Bắc Kinh hay về quê?
+B|我还在犹豫。北京机会多，但是生活成本太高了。|Tớ vẫn đang phân vân. Bắc Kinh nhiều cơ hội, nhưng chi phí sinh hoạt cao quá.
+A|我已经决定回老家了。在那儿我可以住在家里，压力小很多。|Tớ đã quyết định về quê rồi. Ở đó tớ có thể sống ở nhà, áp lực nhỏ hơn nhiều.
+B|可是小城市的工资比较低，发展空间也有限。|Nhưng lương ở thành phố nhỏ khá thấp, không gian phát triển cũng hạn chế.
+A|现在网络这么发达，很多工作在哪儿都能做。|Bây giờ mạng phát triển thế này, nhiều công việc ở đâu cũng làm được.
+B|这倒是。不过我还是想趁年轻在大城市闯一闯。|Cái đó cũng đúng. Nhưng tớ vẫn muốn tranh thủ lúc còn trẻ bon chen ở thành phố lớn một phen.
+A|每个人的选择不一样，没有对错。|Mỗi người một lựa chọn, không có đúng sai.
+B|你说得对。等我积累了经验，说不定也会回去。|Cậu nói đúng. Đợi tớ tích luỹ kinh nghiệm rồi, không chừng cũng sẽ quay về.
+A|到时候我们可以一起开公司。|Đến lúc đó chúng ta có thể cùng mở công ty.
+B|一言为定！|Quyết vậy nhé!
+
+# h5-17|Bảo hiểm|你买保险了吗？|Tư vấn bảo hiểm|保险顾问
+A|您好，听说您想了解一下医疗保险？|Xin chào, nghe nói anh muốn tìm hiểu về bảo hiểm y tế?
+B|是的。公司虽然有基本医疗保险，但是我听说报销比例有限。|Đúng vậy. Công ty tuy có bảo hiểm y tế cơ bản, nhưng tôi nghe nói tỷ lệ chi trả có hạn.
+A|没错，如果得了大病，自己还要承担很大一部分费用。|Đúng vậy, nếu mắc bệnh nặng, bản thân vẫn phải chịu một phần chi phí rất lớn.
+B|你们有什么产品比较适合我？我三十岁，身体还可以。|Các anh có sản phẩm nào phù hợp với tôi? Tôi ba mươi tuổi, sức khoẻ cũng tạm được.
+A|我建议您买一份重疾险，再加一份住院医疗险。|Tôi đề xuất anh mua một gói bảo hiểm bệnh hiểm nghèo, thêm một gói bảo hiểm nằm viện.
+B|一年大概要交多少钱？|Một năm khoảng phải đóng bao nhiêu tiền?
+A|两份加起来，每年大约五千块。|Hai gói cộng lại, mỗi năm khoảng năm nghìn tệ.
+B|有点儿贵。有没有什么情况是不赔的？|Hơi đắt. Có trường hợp nào không được bồi thường không?
+A|您问得很好。合同里的免责条款一定要仔细看，比如投保以前就有的病是不赔的。|Anh hỏi rất hay. Điều khoản miễn trừ trách nhiệm trong hợp đồng nhất định phải xem kỹ, ví dụ bệnh có từ trước khi mua bảo hiểm thì không được bồi thường.
+B|好的，你把合同发给我，我回家仔细研究一下。|Được, anh gửi hợp đồng cho tôi, tôi về nhà nghiên cứu kỹ.
+
+# h5-18|Cảm ơn người thầy|感谢您改变了我|Phát biểu trong buổi tri ân|主持人
+A|下面请我们的优秀毕业生代表阮文明同学发言。|Sau đây xin mời đại diện sinh viên tốt nghiệp xuất sắc, bạn Nguyễn Văn Minh phát biểu.
+B|尊敬的老师们、亲爱的同学们，大家好！|Kính thưa các thầy cô, các bạn thân mến, xin chào mọi người!
+B|四年前，我带着一个箱子和几句简单的汉语来到这里，心里充满了不安。|Bốn năm trước, tôi mang theo một chiếc vali và vài câu tiếng Trung đơn giản đến đây, trong lòng đầy bất an.
+B|是老师们耐心的帮助，让我从一个连菜单都看不懂的外国学生，变成了今天站在这里的毕业生代表。|Chính sự giúp đỡ kiên nhẫn của các thầy cô đã khiến tôi từ một sinh viên nước ngoài đến thực đơn cũng đọc không hiểu, trở thành đại diện sinh viên tốt nghiệp đứng ở đây hôm nay.
+B|我特别要感谢我的导师王教授。她常说："学语言就像爬山，不要只看山顶，要看脚下的路。"|Tôi đặc biệt muốn cảm ơn giáo sư hướng dẫn của tôi, giáo sư Vương. Cô thường nói: "Học ngôn ngữ giống như leo núi, đừng chỉ nhìn đỉnh núi, hãy nhìn con đường dưới chân."
+B|这句话陪我度过了最困难的日子。|Câu nói này đã đồng hành cùng tôi vượt qua những ngày khó khăn nhất.
+B|毕业以后，我会回到越南，做中越文化交流的桥梁。|Sau khi tốt nghiệp, tôi sẽ trở về Việt Nam, làm cầu nối giao lưu văn hoá Việt – Trung.
+B|最后，祝老师们身体健康，祝同学们前程似锦！谢谢大家！|Cuối cùng, kính chúc các thầy cô sức khoẻ, chúc các bạn tiền đồ rộng mở! Xin cảm ơn mọi người!
+A|谢谢阮文明同学精彩的发言！|Cảm ơn bài phát biểu tuyệt vời của bạn Nguyễn Văn Minh!
+
+# h5-19|Xe điện|要不要买电动汽车？|Tư vấn mua ô tô điện|汽车销售
+A|这款电动车充一次电能跑五百公里，日常上下班完全够用。|Mẫu xe điện này sạc một lần chạy được năm trăm ki-lô-mét, đi làm hằng ngày hoàn toàn đủ dùng.
+B|充电方便吗？我住的小区没有充电桩。|Sạc điện có tiện không? Khu tôi ở không có trụ sạc.
+A|您可以申请在车位上安装一个，我们免费提供。|Anh có thể đăng ký lắp một cái ở chỗ đậu xe, chúng tôi cung cấp miễn phí.
+B|跟汽油车比，养车成本差多少？|So với xe xăng, chi phí nuôi xe chênh nhau bao nhiêu?
+A|电费只是油费的五分之一左右，保养也简单得多。|Tiền điện chỉ khoảng một phần năm tiền xăng, bảo dưỡng cũng đơn giản hơn nhiều.
+B|电池能用多少年？更换贵不贵？|Pin dùng được bao nhiêu năm? Thay có đắt không?
+A|电池质保八年，一般正常使用十年没问题。|Pin bảo hành tám năm, dùng bình thường mười năm không vấn đề gì.
+B|冬天的时候续航会不会下降？|Mùa đông quãng đường đi được có giảm không?
+A|会下降百分之十五到二十，这是所有电动车的共同问题。|Sẽ giảm mười lăm đến hai mươi phần trăm, đây là vấn đề chung của mọi xe điện.
+B|长途旅行的时候怎么办？|Lúc đi đường dài thì làm sao?
+A|高速公路的服务区基本都有快充，半个小时能充到百分之八十。|Trạm dừng nghỉ trên cao tốc hầu hết đều có sạc nhanh, nửa tiếng sạc được tám mươi phần trăm.
+B|听起来不错，我能预约试驾吗？|Nghe cũng được, tôi có thể hẹn lái thử không?
+
+# h5-20|Kiến trúc sư|设计一座图书馆|Phỏng vấn kiến trúc sư|记者
+A|这座新图书馆一开放就成了网红打卡地，您设计的时候是怎么想的？|Thư viện mới này vừa mở cửa đã trở thành địa điểm check-in nổi tiếng, khi thiết kế anh nghĩ thế nào?
+B|我希望它不只是借书的地方，而是一个让人愿意停留的公共空间。|Tôi mong nó không chỉ là nơi mượn sách, mà là một không gian công cộng khiến người ta muốn nán lại.
+A|为什么大量使用木头和玻璃？|Vì sao dùng nhiều gỗ và kính như vậy?
+B|木头让人感到温暖，玻璃能把自然光引进来，节约能源。|Gỗ khiến người ta cảm thấy ấm áp, kính có thể đưa ánh sáng tự nhiên vào, tiết kiệm năng lượng.
+A|有人批评说，打卡拍照的人比读书的人还多。|Có người phê bình rằng người đến chụp ảnh check-in còn nhiều hơn người đọc sách.
+B|我不担心。先吸引人进来，总有一部分人会拿起一本书。|Tôi không lo. Thu hút người ta vào trước đã, sẽ luôn có một phần người cầm lên một cuốn sách.
+A|您在设计中最满意的是哪一部分？|Trong thiết kế anh hài lòng nhất phần nào?
+B|儿童区。孩子们可以坐在台阶上、躺在地毯上看书，没有人会说他们没礼貌。|Khu thiếu nhi. Bọn trẻ có thể ngồi trên bậc thềm, nằm trên thảm đọc sách, không ai nói chúng vô lễ.
+A|对年轻的建筑师，您有什么建议？|Với các kiến trúc sư trẻ, anh có lời khuyên gì?
+B|多观察人们怎么生活。建筑最终是为人服务的，而不是为了获奖。|Hãy quan sát nhiều hơn cách con người sống. Kiến trúc suy cho cùng là để phục vụ con người, chứ không phải để đoạt giải.
+
+# h5-21|Tình nguyện vùng cao|去山区支教|Kể về một năm dạy học tình nguyện|朋友
+A|听说你在山区支教了一年，感觉怎么样？|Nghe nói cậu đi dạy tình nguyện ở vùng núi một năm, cảm thấy thế nào?
+B|刚去的时候很不适应，交通不便，冬天教室里没有暖气。|Lúc mới đến rất không quen, đi lại bất tiện, mùa đông lớp học không có sưởi.
+A|孩子们怎么样？|Bọn trẻ thế nào?
+B|特别懂事，很多孩子的父母在外地打工，他们跟爷爷奶奶住。|Cực kỳ hiểu chuyện, nhiều đứa có bố mẹ đi làm thuê ở nơi khác, chúng sống với ông bà.
+A|你主要教什么？|Cậu chủ yếu dạy gì?
+B|英语和音乐。他们以前从来没上过音乐课。|Tiếng Anh và âm nhạc. Trước đây chúng chưa từng được học môn âm nhạc.
+A|有没有让你特别感动的事？|Có chuyện gì khiến cậu đặc biệt cảm động không?
+B|离开的那天，孩子们走了两个小时山路来送我，每个人都给我写了一封信。|Ngày tôi rời đi, bọn trẻ đi bộ hai tiếng đường núi để tiễn tôi, mỗi đứa đều viết cho tôi một lá thư.
+A|听得我都想哭了。|Nghe mà tớ cũng muốn khóc.
+B|这一年我付出的不多，收获的却比我想象的多得多。|Một năm này tôi bỏ ra không nhiều, nhưng thu hoạch được lại nhiều hơn tôi tưởng rất nhiều.
+A|你还会回去吗？|Cậu còn quay lại không?
+B|会，我打算每年暑假都回去看看他们。|Có, tôi định mỗi kỳ nghỉ hè đều về thăm chúng.
+
+# h5-22|Phòng thí nghiệm|实验失败了|Nghiên cứu sinh gặp giáo sư hướng dẫn|导师
+B|教授，这个月的实验又失败了，数据跟我们预测的完全相反。|Thưa giáo sư, thí nghiệm tháng này lại thất bại, số liệu hoàn toàn ngược với dự đoán của chúng ta.
+A|别灰心。你检查过实验条件了吗？温度、时间都控制好了？|Đừng nản lòng. Em đã kiểm tra điều kiện thí nghiệm chưa? Nhiệt độ, thời gian đều kiểm soát tốt chứ?
+B|检查了三遍，都没问题。|Kiểm tra ba lần rồi, đều không có vấn đề.
+A|那说不定我们的假设本身就有问题。|Vậy không chừng bản thân giả thuyết của chúng ta có vấn đề.
+B|可是我已经花了半年时间，现在要重新开始吗？|Nhưng em đã tốn nửa năm rồi, bây giờ phải làm lại từ đầu sao?
+A|科学研究就是这样，意外的结果有时候比预期的更有价值。|Nghiên cứu khoa học là như vậy, kết quả ngoài ý muốn đôi khi còn có giá trị hơn kết quả dự kiến.
+B|您的意思是，这可能是一个新发现？|Ý thầy là, đây có thể là một phát hiện mới?
+A|有可能。你把所有数据整理一下，我们一起分析原因。|Có thể. Em sắp xếp lại toàn bộ số liệu, chúng ta cùng phân tích nguyên nhân.
+B|好的，我这周五之前发给您。|Vâng, trước thứ Sáu tuần này em gửi thầy.
+A|另外，注意休息，研究是一场马拉松，不是短跑。|Ngoài ra, chú ý nghỉ ngơi, nghiên cứu là một cuộc chạy marathon, không phải chạy nước rút.
+
+# h5-23|Hôn nhân|婚礼要不要办大？|Hai bạn trẻ bàn chuyện đám cưới|未婚妻
+A|我妈说婚礼至少要请三百个客人，亲戚朋友一个都不能少。|Mẹ em nói đám cưới ít nhất phải mời ba trăm khách, họ hàng bạn bè không được thiếu ai.
+B|三百个？光酒席就要十几万，我们刚买了房，压力太大了。|Ba trăm? Riêng tiệc đã mất hơn chục vạn, mình vừa mua nhà, áp lực quá lớn.
+A|我也觉得没必要，可是老人很看重面子。|Em cũng thấy không cần thiết, nhưng người già rất coi trọng thể diện.
+B|要不我们办两场？一场在老家请亲戚，一场在城里请朋友，规模都小一点儿。|Hay là mình tổ chức hai buổi? Một buổi ở quê mời họ hàng, một buổi ở thành phố mời bạn bè, quy mô đều nhỏ hơn.
+A|这个办法不错，两边都照顾到了。|Cách này không tồi, chăm lo được cả hai bên.
+B|省下来的钱我们可以去旅行结婚。|Tiền tiết kiệm được mình có thể đi du lịch trăng mật.
+A|我想去海边，找一个安静的小岛。|Em muốn đi biển, tìm một hòn đảo nhỏ yên tĩnh.
+B|那我们先跟你爸妈好好沟通，别让他们觉得我们不尊重传统。|Vậy mình nói chuyện kỹ với bố mẹ em trước, đừng để họ nghĩ mình không tôn trọng truyền thống.
+A|对，态度一定要好，让他们参与决定。|Đúng, thái độ nhất định phải tốt, để họ cùng tham gia quyết định.
+B|结婚是两个家庭的事，大家都开心最重要。|Kết hôn là chuyện của hai gia đình, mọi người đều vui vẻ là quan trọng nhất.
+
+# h5-24|Nông nghiệp thông minh|种地也要靠科技|Thăm trang trại ứng dụng công nghệ|农场主
+A|欢迎参观！我们这个大棚里的温度、湿度都是电脑自动控制的。|Chào mừng tham quan! Nhiệt độ, độ ẩm trong nhà kính này đều do máy tính tự động điều khiển.
+B|真先进！需要多少工人？|Hiện đại thật! Cần bao nhiêu công nhân?
+A|以前要二十个人，现在只要五个。浇水、施肥都用手机就能操作。|Trước đây cần hai mươi người, bây giờ chỉ cần năm người. Tưới nước, bón phân đều thao tác bằng điện thoại.
+B|那天上飞的是什么？|Thứ đang bay trên trời kia là gì?
+A|是无人机，用来喷农药，又快又均匀，还能减少农药的用量。|Là máy bay không người lái, dùng để phun thuốc trừ sâu, vừa nhanh vừa đều, còn giảm được lượng thuốc dùng.
+B|投入这些设备花了不少钱吧？|Đầu tư những thiết bị này tốn không ít tiền nhỉ?
+A|一开始投入很大，但是产量提高了三成，三年就收回了成本。|Lúc đầu đầu tư rất lớn, nhưng sản lượng tăng ba mươi phần trăm, ba năm đã thu hồi vốn.
+B|你们的蔬菜卖到哪里？|Rau của các anh bán đi đâu?
+A|主要通过网上直接卖给城里的家庭，第二天早上就能送到。|Chủ yếu bán trực tiếp qua mạng cho các gia đình trong thành phố, sáng hôm sau là giao đến.
+B|没有中间商，农民的收入也提高了。|Không qua trung gian, thu nhập của nông dân cũng tăng lên.
+A|对，年轻人现在也愿意回农村创业了。|Đúng vậy, người trẻ bây giờ cũng sẵn lòng về nông thôn khởi nghiệp rồi.
+
+# h5-25|Mất ngủ|失眠的烦恼|Tâm sự chuyện mất ngủ|同事小林
+A|你的黑眼圈好重，昨晚又失眠了？|Quầng thâm mắt của cậu đậm quá, tối qua lại mất ngủ à?
+B|是啊，躺在床上翻来覆去，脑子里全是工作的事。|Đúng vậy, nằm trên giường trằn trọc, trong đầu toàn chuyện công việc.
+A|你睡前是不是一直在看手机？|Trước khi ngủ có phải cậu cứ xem điện thoại không?
+B|有时候回复工作消息，回着回着就十二点了。|Đôi khi trả lời tin nhắn công việc, trả lời mãi đã mười hai giờ.
+A|手机的蓝光会影响睡眠，而且工作的事会让大脑一直兴奋。|Ánh sáng xanh của điện thoại ảnh hưởng đến giấc ngủ, hơn nữa chuyện công việc khiến não bộ luôn hưng phấn.
+B|那我应该怎么办？|Vậy tớ nên làm thế nào?
+A|睡前一个小时别碰手机，可以泡泡脚、听听轻音乐。|Một tiếng trước khi ngủ đừng động vào điện thoại, có thể ngâm chân, nghe nhạc nhẹ.
+B|白天喝咖啡也会影响吗？|Ban ngày uống cà phê cũng ảnh hưởng à?
+A|下午三点以后最好别喝，咖啡因的作用能持续好几个小时。|Sau ba giờ chiều tốt nhất đừng uống, tác dụng của caffeine có thể kéo dài mấy tiếng.
+B|我每天下午都要喝两杯，看来得改一改了。|Chiều nào tớ cũng uống hai cốc, xem ra phải sửa rồi.
+A|如果一直睡不好，还是去医院看看，别硬撑。|Nếu cứ ngủ không ngon, vẫn nên đi bệnh viện khám, đừng cố chịu.

@@ -1,0 +1,71 @@
+// Nhóm âm khó.  ## id | Tên nhóm | mẹo   rồi các câu  中文|nghĩa
+## tones | Bốn thanh điệu | Tiếng Việt cũng có thanh, nên bạn có lợi thế. Thanh 1 (ā) giống thanh ngang nhưng cao và giữ đều. Thanh 2 (á) giống dấu sắc kéo lên. Thanh 3 (ǎ) gần với dấu hỏi nhưng xuống thấp hơn. Thanh 4 (à) rơi mạnh, gần với dấu nặng kéo dài. Đọc chậm, phóng đại thanh điệu ở mỗi chữ.
+妈妈骑马，马慢，妈妈骂马。|Mẹ cưỡi ngựa, ngựa chậm, mẹ mắng ngựa.
+我买了四本书。|Tôi đã mua bốn quyển sách.
+他是我的老师。|Ông ấy là thầy giáo của tôi.
+这碗汤太烫了。|Bát canh này nóng quá.
+请问，地铁站在哪儿？|Xin hỏi, ga tàu điện ngầm ở đâu?
+今天天气非常好。|Hôm nay thời tiết cực kỳ đẹp.
+## third | Thanh 3 đi liền nhau | Hai thanh 3 đứng cạnh nhau thì chữ đầu đọc thành thanh 2: 你好 đọc là ní hǎo, 很好 đọc là hén hǎo. Pinyin vẫn viết dấu thanh 3, nhưng miệng phải đọc lên giọng ở chữ đầu. Thanh 3 đứng trước thanh khác thì chỉ đọc nửa đầu (xuống thấp), không cần vòng lên.
+你好，我很好。|Chào bạn, tôi rất khoẻ.
+我也想买手表。|Tôi cũng muốn mua đồng hồ.
+请你给我两碗米饭。|Làm ơn cho tôi hai bát cơm.
+老李很早起床。|Ông Lý dậy rất sớm.
+我只有五把雨伞。|Tôi chỉ có năm cái ô.
+你可以给我你的手机号吗？|Bạn có thể cho tôi số điện thoại của bạn không?
+## buyi | 不 và 一 đổi thanh | 不 (bù) đứng trước thanh 4 thì đọc thành bú: 不是 bú shì, 不要 bú yào. 一 (yī) đứng trước thanh 4 đọc thành yí (一个 yí gè), đứng trước thanh 1, 2, 3 đọc thành yì (一天 yì tiān). Khi đếm số hoặc đứng cuối thì vẫn đọc yī.
+我不是老师，我是学生。|Tôi không phải giáo viên, tôi là học sinh.
+你不要不高兴。|Bạn đừng không vui nữa.
+我们一起去吧。|Chúng ta cùng đi nhé.
+请等一下。|Làm ơn đợi một chút.
+一年有十二个月。|Một năm có mười hai tháng.
+他一个人去，我不去。|Anh ấy đi một mình, tôi không đi.
+## zhchsh | zh, ch, sh, r (cong lưỡi) | Cong đầu lưỡi lên chạm phần cứng phía sau lợi trên. zh giống "tr" của miền Bắc nhưng không bật hơi, ch là zh có bật hơi mạnh, sh giống "s" miền Trung–Nam, r giống "r" nhẹ không rung. Đặt tay trước miệng: ch phải có luồng hơi.
+我知道这是十四。|Tôi biết đây là số mười bốn.
+老师说吃饭时不要说话。|Thầy giáo nói khi ăn cơm không được nói chuyện.
+这张桌子是谁的？|Cái bàn này của ai?
+今天是星期日，天气很热。|Hôm nay là Chủ nhật, trời rất nóng.
+商场里的衬衫真便宜。|Áo sơ mi trong trung tâm thương mại rẻ thật.
+春天出去散散步很舒服。|Mùa xuân ra ngoài đi dạo rất dễ chịu.
+## zcs | z, c, s (đầu lưỡi thẳng) | Đầu lưỡi thẳng, chạm sau răng cửa dưới, không cong. z giống "ch" nhẹ, c là z bật hơi mạnh (như "ts"), s giống "x" tiếng Việt. So sánh: 四 sì với 是 shì, 字 zì với 志 zhì, 次 cì với 吃 chī.
+我在四层，他在十层。|Tôi ở tầng bốn, anh ấy ở tầng mười.
+这个字怎么写？|Chữ này viết thế nào?
+我去过三次。|Tôi đã đi ba lần.
+早上做早操。|Buổi sáng tập thể dục.
+餐厅在左边。|Nhà hàng ở bên trái.
+四是四，十是十。|Bốn là bốn, mười là mười.
+## jqx | j, q, x (môi dẹt) | Mặt lưỡi áp lên ngạc cứng, môi kéo dẹt như đang cười. j gần giống "ch" nhẹ, q là j bật hơi mạnh, x gần với "x" tiếng Việt nhưng lưỡi dẹt hơn. Sau j, q, x chữ u thực ra là ü: 去 qù đọc như "chuy".
+我家在西边。|Nhà tôi ở phía tây.
+请你喝一杯茶。|Mời bạn uống một chén trà.
+星期七？没有星期七。|Thứ bảy à? Không có "thứ bảy" (星期七) đâu.
+我想去学校学习。|Tôi muốn đến trường học tập.
+今天几号？|Hôm nay ngày mấy?
+谢谢你，下次见。|Cảm ơn bạn, lần sau gặp.
+## yu | Âm ü | Tròn môi như khi nói "u", nhưng lưỡi đặt như khi nói "i". Giữ môi tròn suốt âm. Đừng đọc 女 nǚ thành "nủ" hay 绿 lǜ thành "lu".
+我女儿喜欢绿色。|Con gái tôi thích màu xanh lá.
+下雨了，我们去买雨伞。|Mưa rồi, chúng ta đi mua ô.
+我去年去了旅游。|Năm ngoái tôi đã đi du lịch.
+鱼在水里游。|Cá bơi trong nước.
+他住在一楼，我住在七楼。|Anh ấy ở tầng một, tôi ở tầng bảy.
+这句话的意思我不明白。|Ý nghĩa câu nói này tôi không hiểu.
+## nng | Đuôi -n và -ng | -n: đầu lưỡi chạm lợi trên, như "n" cuối tiếng Việt. -ng: cuống lưỡi nâng lên, miệng mở hơn, như "ng" trong "sáng". So sánh 饭 fàn – 放 fàng, 心 xīn – 星 xīng, 人 rén – 能 néng.
+晚上我们去饭店吃饭。|Buổi tối chúng ta đi nhà hàng ăn cơm.
+请把书放在桌子上。|Làm ơn để sách lên bàn.
+今天是星期天。|Hôm nay là Chủ nhật.
+他很开心，我很放心。|Anh ấy rất vui, tôi rất yên tâm.
+这个房间很安静。|Căn phòng này rất yên tĩnh.
+中国人很热情。|Người Trung Quốc rất nhiệt tình.
+## erhua | e, er và âm cuộn lưỡi 儿 | e (饿 è) đọc gần "ơ" nhưng miệng hơi dẹt. er (二 èr) đọc "ơ" rồi cong lưỡi lên. Người Bắc Kinh hay thêm 儿 vào cuối từ: 哪儿 nǎr, 一点儿 yìdiǎnr; chỉ cần cong lưỡi ở cuối âm, không đọc thành một chữ riêng.
+我饿了，我们去吃饭吧。|Tôi đói rồi, chúng ta đi ăn cơm đi.
+我的生日是二月二十号。|Sinh nhật tôi là ngày 20 tháng 2.
+你去哪儿玩儿？|Bạn đi đâu chơi?
+请说慢一点儿。|Làm ơn nói chậm một chút.
+他是我的儿子。|Nó là con trai tôi.
+这儿的东西有点儿贵。|Đồ ở đây hơi đắt.
+## neutral | Thanh nhẹ | Các trợ từ 的, 了, 吗, 呢, 吧 và âm tiết thứ hai của nhiều từ (妈妈, 朋友, 东西) đọc nhẹ, ngắn, không có thanh. Đọc mạnh những chữ này sẽ nghe rất nặng nề, không tự nhiên.
+这是我朋友的东西。|Đây là đồ của bạn tôi.
+你吃饭了吗？|Bạn ăn cơm chưa?
+我的妈妈是医生，你的呢？|Mẹ tôi là bác sĩ, còn mẹ bạn?
+我们走吧。|Chúng ta đi thôi.
+谢谢你，我知道了。|Cảm ơn bạn, tôi biết rồi.
+他们都是我的学生。|Họ đều là học sinh của tôi.

@@ -1,0 +1,235 @@
+@hsk6|HSK 6|Thành thạo|Phỏng vấn, tranh biện, học thuật, văn hoá và thành ngữ ở trình độ cao|#0f766e
+
+# h6-01|Phỏng vấn truyền hình|谈谈您的创业经历|Được phỏng vấn trên truyền hình|节目主持人
+A|欢迎您来到我们的节目。听说您的公司成立才五年，就已经在三个国家开了分公司？|Chào mừng anh đến với chương trình. Nghe nói công ty của anh mới thành lập năm năm mà đã mở chi nhánh ở ba quốc gia?
+B|谢谢邀请。其实我们走过不少弯路，现在的成绩是团队一起拼出来的。|Cảm ơn lời mời. Thực ra chúng tôi đã đi không ít đường vòng, thành tích hiện nay là cả đội cùng nhau dốc sức mà có.
+A|创业初期遇到的最大困难是什么？|Khó khăn lớn nhất gặp phải ở giai đoạn đầu khởi nghiệp là gì?
+B|资金链差点儿断了。有三个月，我们连员工的工资都发不出来。|Dòng vốn suýt nữa đứt gãy. Có ba tháng, chúng tôi đến lương nhân viên cũng không trả nổi.
+A|那您是怎么渡过难关的？|Vậy anh đã vượt qua cửa ải khó khăn đó như thế nào?
+B|我把实际情况原原本本地告诉了大家，结果没有一个人离开，有的人甚至主动提出降薪。|Tôi đã nói rõ đầu đuôi tình hình thực tế cho mọi người, kết quả không một ai rời đi, có người thậm chí còn chủ động đề nghị giảm lương.
+A|这种信任太难得了。|Sự tin tưởng như vậy thật hiếm có.
+B|所以我一直认为，企业最宝贵的财富不是技术，而是人。|Vì vậy tôi luôn cho rằng, tài sản quý giá nhất của doanh nghiệp không phải là công nghệ, mà là con người.
+A|对想创业的年轻人，您有什么建议？|Với những người trẻ muốn khởi nghiệp, anh có lời khuyên gì?
+B|别把创业想得太浪漫。要有承受失败的心理准备，但也不要因为害怕失败而不敢迈出第一步。|Đừng nghĩ khởi nghiệp quá lãng mạn. Phải có sự chuẩn bị tâm lý để chịu đựng thất bại, nhưng cũng đừng vì sợ thất bại mà không dám bước bước đầu tiên.
+A|非常感谢您的分享。|Vô cùng cảm ơn sự chia sẻ của anh.
+
+# h6-02|Di sản văn hoá|传统手艺该怎么传承？|Thăm xưởng gốm truyền thống|陶艺师傅
+B|师傅，您做陶瓷多少年了？|Thưa thầy, thầy làm gốm bao nhiêu năm rồi ạ?
+A|我十四岁跟着父亲学，到今天整整五十年了。|Tôi mười bốn tuổi theo cha học nghề, đến hôm nay tròn năm mươi năm rồi.
+B|现在愿意学这门手艺的年轻人多吗？|Bây giờ người trẻ muốn học nghề này có nhiều không ạ?
+A|寥寥无几。学会要十年，挣钱又不多，年轻人坐不住。|Lèo tèo vài người. Học thành nghề mất mười năm, kiếm tiền lại không nhiều, người trẻ không ngồi yên được.
+B|那您担心这门手艺会失传吗？|Vậy thầy có lo nghề này sẽ thất truyền không?
+A|担心啊。不过这两年情况有了一些变化。有人在网上直播我做陶瓷，看的人还真不少。|Lo chứ. Nhưng hai năm nay tình hình đã có chút thay đổi. Có người phát trực tiếp trên mạng cảnh tôi làm gốm, người xem cũng không ít.
+B|这倒是一个好办法，既能宣传，又能增加收入。|Đây đúng là một cách hay, vừa có thể quảng bá, vừa có thể tăng thu nhập.
+A|是啊，还有几个大学生专门来拜师，说要把传统和现代设计结合起来。|Đúng vậy, còn có mấy sinh viên đại học đến bái sư, nói muốn kết hợp truyền thống với thiết kế hiện đại.
+B|我觉得传承不等于一成不变，只要核心的技艺保留下来就好。|Cháu nghĩ truyền thừa không có nghĩa là bất biến, chỉ cần giữ lại được kỹ nghệ cốt lõi là tốt rồi.
+A|你说到我心里去了。手艺是活的，要跟着时代走。|Cháu nói đúng ý tôi rồi. Tay nghề là thứ sống, phải đi cùng thời đại.
+
+# h6-03|Tranh biện|网络让人更孤独吗？|Vòng tranh biện ở đại học|反方辩手
+A|我方认为，社交网络让人与人之间的距离越来越远。大家坐在一起，却各自低头看手机。|Phía chúng tôi cho rằng, mạng xã hội khiến khoảng cách giữa người với người ngày càng xa. Mọi người ngồi cùng nhau, nhưng ai nấy đều cúi đầu xem điện thoại.
+B|对方辩友举的例子确实存在，但这只是现象，不是本质。|Ví dụ bạn phản biện đưa ra quả thực có tồn tại, nhưng đó chỉ là hiện tượng, không phải bản chất.
+A|那请问，本质是什么？|Vậy xin hỏi, bản chất là gì?
+B|本质在于人怎么使用工具。对一个远离家乡的留学生来说，视频通话恰恰拉近了他和家人的距离。|Bản chất nằm ở cách con người sử dụng công cụ. Đối với một du học sinh xa quê, gọi video lại chính là thứ kéo gần khoảng cách giữa anh ấy và gia đình.
+A|可是研究表明，花在社交媒体上的时间越长，人的孤独感越强。|Nhưng nghiên cứu cho thấy, thời gian dành cho mạng xã hội càng dài, cảm giác cô đơn của con người càng mạnh.
+B|相关并不等于因果。也许是本来就孤独的人，更倾向于上网寻找安慰。|Tương quan không đồng nghĩa với nhân quả. Có thể chính những người vốn đã cô đơn mới có xu hướng lên mạng tìm an ủi.
+A|即便如此，网络上的交流往往停留在表面，无法代替面对面的情感联系。|Cho dù như vậy, giao lưu trên mạng thường dừng lại ở bề mặt, không thể thay thế sự kết nối tình cảm trực tiếp.
+B|我同意面对面的交流不可替代，但网络为很多原本不可能相遇的人创造了相识的机会。|Tôi đồng ý giao lưu trực tiếp là không thể thay thế, nhưng mạng đã tạo cơ hội quen biết cho rất nhiều người vốn không thể gặp nhau.
+A|那么问题的关键就在于平衡。|Vậy mấu chốt của vấn đề nằm ở sự cân bằng.
+B|没错。我方的观点正是：网络本身没有好坏，关键在于使用它的人。|Chính xác. Quan điểm của phía chúng tôi chính là: bản thân mạng không tốt cũng không xấu, mấu chốt là người sử dụng nó.
+
+# h6-04|Xử lý khủng hoảng|产品出了质量问题|Họp khẩn với ban lãnh đạo|总经理
+A|网上关于我们产品质量问题的帖子已经有几十万人转发了，大家说说怎么应对。|Bài đăng trên mạng về vấn đề chất lượng sản phẩm của chúng ta đã có mấy trăm nghìn người chia sẻ, mọi người nói xem nên ứng phó thế nào.
+B|我建议第一时间公开道歉，不要回避，也不要找借口。|Tôi đề nghị ngay lập tức công khai xin lỗi, không né tránh, cũng không tìm cớ.
+A|可是问题的原因还没有查清楚，现在道歉会不会太早？|Nhưng nguyên nhân vấn đề còn chưa điều tra rõ, bây giờ xin lỗi có quá sớm không?
+B|我们可以先为给消费者带来的困扰道歉，同时承诺尽快公布调查结果。|Chúng ta có thể xin lỗi trước vì những phiền toái gây ra cho người tiêu dùng, đồng thời cam kết sớm công bố kết quả điều tra.
+A|有道理。危机发生时，态度往往比事实更先被关注。|Có lý. Khi khủng hoảng xảy ra, thái độ thường được chú ý trước cả sự thật.
+B|另外，所有同批次的产品要立即下架，主动召回。|Ngoài ra, toàn bộ sản phẩm cùng lô phải lập tức rút khỏi kệ, chủ động thu hồi.
+A|召回的损失会很大。|Thiệt hại do thu hồi sẽ rất lớn.
+B|短期损失是钱，长期失去信任，损失的就是整个品牌。|Thiệt hại ngắn hạn là tiền, về lâu dài mất lòng tin, thứ mất đi chính là cả thương hiệu.
+A|好，就这么定。公关部负责声明，质检部二十四小时内给我初步报告。|Được, cứ quyết như vậy. Phòng quan hệ công chúng phụ trách tuyên bố, phòng kiểm định chất lượng trong vòng hai mươi bốn giờ đưa tôi báo cáo sơ bộ.
+B|明白，我马上去安排。|Tôi hiểu, tôi đi sắp xếp ngay.
+
+# h6-05|Văn học|你怎么看鲁迅的作品？|Thảo luận trong giờ văn học|教授
+A|读完《故乡》，大家最深的感受是什么？|Đọc xong "Cố hương", cảm nhận sâu sắc nhất của mọi người là gì?
+B|我印象最深的是闰土叫"我"老爷的那一刻，两个童年的朋友之间突然出现了一道看不见的墙。|Ấn tượng sâu sắc nhất với em là khoảnh khắc Nhuận Thổ gọi "tôi" là ông chủ, giữa hai người bạn thời thơ ấu đột nhiên xuất hiện một bức tường vô hình.
+A|很好。鲁迅为什么要写这道"墙"？|Rất tốt. Vì sao Lỗ Tấn lại viết về "bức tường" này?
+B|我认为他是在批判那个时代的等级观念，它不仅压迫人，还让人麻木。|Em cho rằng ông đang phê phán quan niệm đẳng cấp của thời đại đó, nó không chỉ áp bức con người mà còn khiến con người tê liệt.
+A|文章最后那句关于"路"的话，你怎么理解？|Câu nói về "con đường" ở cuối bài văn, em hiểu như thế nào?
+B|"其实地上本没有路，走的人多了，也便成了路。"我觉得这是一种希望，改变需要很多人一起去尝试。|"Thật ra trên mặt đất vốn không có đường, người đi nhiều thì thành đường thôi." Em thấy đây là một niềm hy vọng, sự thay đổi cần rất nhiều người cùng nhau thử nghiệm.
+A|这句话在越南也很有名吧？|Câu này ở Việt Nam cũng rất nổi tiếng nhỉ?
+B|是的，我们中学课本里也有这篇文章，很多人都会背最后一句。|Vâng, sách giáo khoa trung học của chúng em cũng có bài này, rất nhiều người thuộc lòng câu cuối.
+A|这说明好的文学是没有国界的。|Điều này cho thấy văn học hay thì không có biên giới.
+
+# h6-06|Đạo đức khoa học|基因技术的边界在哪里？|Hội thảo khoa học|生物学教授
+A|基因编辑技术已经可以治疗一些遗传病，这是医学的巨大进步。|Công nghệ chỉnh sửa gen đã có thể điều trị một số bệnh di truyền, đây là bước tiến to lớn của y học.
+B|我完全认同它的治疗价值。不过我担心的是，它会不会被用来"设计"婴儿？|Tôi hoàn toàn đồng tình với giá trị điều trị của nó. Nhưng điều tôi lo là, liệu nó có bị dùng để "thiết kế" em bé không?
+A|这正是伦理学界争论的焦点。治疗疾病和增强能力之间的界限，确实很难划定。|Đây chính là tâm điểm tranh luận của giới đạo đức học. Ranh giới giữa chữa bệnh và nâng cao năng lực quả thực rất khó vạch rõ.
+B|如果只有富人才能负担得起，社会的不平等会不会进一步扩大？|Nếu chỉ người giàu mới chi trả nổi, liệu bất bình đẳng xã hội có bị nới rộng thêm không?
+A|这种担忧不无道理。所以很多国家都制定了严格的法规。|Mối lo này không phải không có lý. Vì vậy nhiều quốc gia đều đã ban hành quy định nghiêm ngặt.
+B|可是技术发展的速度往往比法律快得多。|Nhưng tốc độ phát triển của công nghệ thường nhanh hơn luật pháp rất nhiều.
+A|所以科学家自身的责任感尤为重要，不能为了名利而突破底线。|Cho nên tinh thần trách nhiệm của bản thân các nhà khoa học đặc biệt quan trọng, không thể vì danh lợi mà vượt qua giới hạn.
+B|我想，公众也应该参与讨论，因为这关系到全人类的未来。|Tôi nghĩ công chúng cũng nên tham gia thảo luận, vì điều này liên quan đến tương lai của toàn nhân loại.
+A|说得好。科学不应该只是实验室里的事。|Nói hay lắm. Khoa học không nên chỉ là chuyện trong phòng thí nghiệm.
+
+# h6-07|Gọi vốn đầu tư|请给我五分钟|Trình bày dự án với nhà đầu tư|投资人
+B|感谢各位抽出时间。我们的产品是一款帮助外国人学习方言的应用。|Cảm ơn các vị đã dành thời gian. Sản phẩm của chúng tôi là một ứng dụng giúp người nước ngoài học tiếng địa phương.
+A|方言？市场是不是太小了？|Tiếng địa phương? Thị trường có phải quá nhỏ không?
+B|恰恰相反。每年有上百万外国人在中国工作，他们在日常生活中最头疼的往往不是普通话，而是听不懂当地人说话。|Hoàn toàn ngược lại. Mỗi năm có hơn một triệu người nước ngoài làm việc tại Trung Quốc, điều khiến họ đau đầu nhất trong cuộc sống hằng ngày thường không phải tiếng phổ thông, mà là không nghe hiểu người địa phương nói.
+A|你们的竞争优势在哪里？|Lợi thế cạnh tranh của các anh nằm ở đâu?
+B|我们和二十所地方大学合作，建立了目前最大的方言语音数据库。|Chúng tôi hợp tác với hai mươi trường đại học địa phương, xây dựng cơ sở dữ liệu giọng nói phương ngữ lớn nhất hiện nay.
+A|用户数据怎么样？|Số liệu người dùng thế nào?
+B|上线八个月，注册用户十五万，付费率百分之十二，每月增长百分之二十。|Ra mắt tám tháng, người dùng đăng ký một trăm năm mươi nghìn, tỷ lệ trả phí mười hai phần trăm, mỗi tháng tăng hai mươi phần trăm.
+A|数据不错。你们这一轮打算融资多少？用在哪些方面？|Số liệu không tồi. Vòng này các anh định gọi vốn bao nhiêu? Dùng vào những mặt nào?
+B|一千万人民币，主要用于技术研发和东南亚市场的推广。|Mười triệu Nhân dân tệ, chủ yếu dùng cho nghiên cứu phát triển công nghệ và quảng bá thị trường Đông Nam Á.
+A|我们很感兴趣。下周请把详细的财务报表发给我们，再约时间深入谈谈。|Chúng tôi rất quan tâm. Tuần sau hãy gửi báo cáo tài chính chi tiết cho chúng tôi, rồi hẹn thời gian bàn sâu hơn.
+B|非常感谢，期待与各位合作！|Vô cùng cảm ơn, mong được hợp tác với các vị!
+
+# h6-08|Tâm lý học|你是不是太完美主义了？|Buổi tư vấn tâm lý|心理咨询师
+A|你说最近总觉得自己做得不够好，能具体说说吗？|Bạn nói dạo này luôn cảm thấy mình làm chưa đủ tốt, có thể nói cụ thể hơn không?
+B|上周我做了一个报告，领导说不错，可我一直在想那几个小错误，好几天都睡不着。|Tuần trước tôi làm một bản báo cáo, lãnh đạo nói không tồi, nhưng tôi cứ nghĩ mãi về mấy lỗi nhỏ, mấy ngày liền không ngủ được.
+A|别人的肯定好像没有办法让你放心？|Sự công nhận của người khác dường như không thể khiến bạn yên tâm?
+B|对，我总觉得他们只是客气。|Đúng vậy, tôi luôn cảm thấy họ chỉ khách sáo thôi.
+A|这种感觉从什么时候开始的？|Cảm giác này bắt đầu từ khi nào?
+B|可能是从小吧。我考了九十八分，父亲第一句话总是问那两分是怎么丢的。|Có lẽ là từ nhỏ. Tôi thi được chín mươi tám điểm, câu đầu tiên của bố luôn là hỏi hai điểm kia mất thế nào.
+A|追求优秀本身不是坏事，但如果标准高到永远达不到，就会变成一种折磨。|Theo đuổi sự xuất sắc bản thân không phải chuyện xấu, nhưng nếu tiêu chuẩn cao đến mức không bao giờ đạt được, nó sẽ trở thành một sự giày vò.
+B|那我应该怎么改变？|Vậy tôi nên thay đổi thế nào?
+A|试着每天写下三件你做得好的事，不管多小。慢慢学会像对待朋友一样对待自己。|Hãy thử mỗi ngày viết ra ba việc bạn làm tốt, dù nhỏ đến đâu. Dần dần học cách đối xử với bản thân như đối xử với một người bạn.
+B|听起来很简单，但对我来说可能很难。|Nghe có vẻ đơn giản, nhưng đối với tôi có lẽ rất khó.
+A|改变本来就需要时间。我们一步一步来。|Thay đổi vốn dĩ cần thời gian. Chúng ta từng bước một.
+
+# h6-09|Quy hoạch đô thị|城市应该为谁而建？|Toạ đàm về quy hoạch thành phố|城市规划师
+A|过去二十年，我们的城市扩张得太快了，宽马路、高楼一个接一个。|Hai mươi năm qua, thành phố của chúng ta mở rộng quá nhanh, đường rộng, nhà cao tầng mọc lên hết cái này đến cái khác.
+B|可是走在这样的马路上，人反而觉得不方便，过个马路要走好几分钟。|Nhưng đi trên những con đường như vậy, người ta lại thấy bất tiện, qua một con đường phải đi mấy phút.
+A|没错。以前的规划更多考虑的是汽车，而不是人。|Đúng vậy. Quy hoạch trước đây chủ yếu tính đến ô tô, chứ không phải con người.
+B|现在提出的"十五分钟生活圈"是什么意思？|"Vòng sinh hoạt mười lăm phút" được đề xuất hiện nay nghĩa là gì?
+A|就是让居民在步行十五分钟的范围内，能找到学校、医院、菜市场和公园。|Tức là để cư dân trong phạm vi đi bộ mười lăm phút có thể tìm thấy trường học, bệnh viện, chợ và công viên.
+B|那老城区怎么办？很多老房子既有历史价值，生活条件又很差。|Vậy khu phố cũ thì sao? Rất nhiều nhà cũ vừa có giá trị lịch sử, điều kiện sống lại rất kém.
+A|一拆了之当然最省事，但城市的记忆也就没了。我们现在更倾向于微改造。|Phá đi cho xong tất nhiên đỡ việc nhất, nhưng ký ức của thành phố cũng mất theo. Hiện nay chúng tôi nghiêng về cải tạo nhỏ hơn.
+B|微改造具体指什么？|Cải tạo nhỏ cụ thể là gì?
+A|保留街道的格局和老建筑的外观，改善里面的水、电和卫生设施，同时听取居民的意见。|Giữ lại bố cục đường phố và diện mạo của kiến trúc cũ, cải thiện hệ thống điện nước và vệ sinh bên trong, đồng thời lắng nghe ý kiến cư dân.
+B|城市说到底是为生活在里面的人建的。|Suy cho cùng thành phố được xây dựng cho những người sống trong đó.
+
+# h6-10|Lịch sử|历史是一面镜子|Thăm bảo tàng cùng giáo sư|历史学教授
+A|你看这件青铜器，有三千多年的历史了。|Em xem chiếc đồ đồng này, có lịch sử hơn ba nghìn năm rồi.
+B|上面的花纹真精致！当时的人是怎么做出来的？|Hoa văn trên đó tinh xảo thật! Người thời đó làm ra bằng cách nào ạ?
+A|他们用的是一种叫"范铸法"的技术，先做模子，再把熔化的铜倒进去。|Họ dùng một kỹ thuật gọi là "đúc khuôn", trước tiên làm khuôn, sau đó đổ đồng nóng chảy vào.
+B|越南也出土过很多铜鼓，有些花纹和这个有点儿相似。|Việt Nam cũng khai quật được rất nhiều trống đồng, có những hoa văn hơi giống cái này.
+A|是的，古代中国南方和东南亚之间的交流比我们想象的要密切得多。|Đúng vậy, giao lưu giữa miền nam Trung Quốc cổ đại và Đông Nam Á mật thiết hơn chúng ta tưởng rất nhiều.
+B|老师，您觉得学习历史最大的意义是什么？|Thưa thầy, thầy thấy ý nghĩa lớn nhất của việc học lịch sử là gì?
+A|唐太宗说过："以史为镜，可以知兴替。"了解过去，才能更清楚地看待现在。|Đường Thái Tông từng nói: "Lấy sử làm gương, có thể biết hưng vong." Hiểu quá khứ thì mới nhìn nhận hiện tại rõ ràng hơn.
+B|可是历史书往往是胜利者写的。|Nhưng sách sử thường do kẻ chiến thắng viết.
+A|所以我们要多看不同的史料，学会独立判断，而不是全盘接受。|Vì vậy chúng ta phải xem nhiều sử liệu khác nhau, học cách phán đoán độc lập, chứ không phải tiếp nhận toàn bộ.
+B|我明白了，读历史也需要批判性思维。|Em hiểu rồi, đọc lịch sử cũng cần tư duy phản biện.
+
+# h6-11|Thưởng thức nghệ thuật|这幅画好在哪里？|Ở phòng triển lãm tranh thuỷ mặc|画家
+B|老师，说实话，我看不太懂这幅山水画，好像只是几笔墨。|Thưa thầy, nói thật, em không hiểu lắm bức tranh sơn thuỷ này, hình như chỉ là vài nét mực.
+A|很多人第一次看都有这种感觉。你注意到画上大片的空白了吗？|Nhiều người lần đầu xem đều có cảm giác này. Em có để ý những khoảng trống lớn trên tranh không?
+B|注意到了，我还以为画家没画完呢。|Có để ý ạ, em còn tưởng hoạ sĩ chưa vẽ xong.
+A|那叫"留白"。空白的地方可以是云，可以是水，也可以是你的想象。|Cái đó gọi là "để trống". Chỗ trống có thể là mây, có thể là nước, cũng có thể là trí tưởng tượng của em.
+B|原来空白也是画的一部分！|Thì ra khoảng trống cũng là một phần của bức tranh!
+A|对。中国画追求的不是像，而是意境，要"以少胜多"。|Đúng vậy. Tranh Trung Quốc không theo đuổi sự giống, mà là ý cảnh, phải "lấy ít thắng nhiều".
+B|这让我想起越南的诗歌，很多意思都在字外。|Điều này làm em nhớ đến thơ ca Việt Nam, nhiều ý nghĩa nằm ngoài câu chữ.
+A|艺术是相通的。你再站远一点儿看看，有什么感觉？|Nghệ thuật vốn tương thông. Em đứng xa thêm chút nữa xem, có cảm giác gì?
+B|好像真的能听到山里的风声和水声，心一下子就静下来了。|Hình như thật sự nghe được tiếng gió và tiếng nước trong núi, lòng bỗng chốc lặng xuống.
+A|你已经看懂了。|Em đã hiểu rồi đấy.
+
+# h6-12|Tư vấn pháp lý|合同里有陷阱吗？|Hỏi luật sư về hợp đồng|律师
+B|律师，我准备跟一家公司签合同，您能帮我看看有没有问题吗？|Thưa luật sư, tôi chuẩn bị ký hợp đồng với một công ty, ông có thể xem giúp có vấn đề gì không?
+A|当然。我先看看……第八条你注意到了吗？|Tất nhiên. Để tôi xem trước… Điều tám anh có để ý không?
+B|是关于违约金的那一条？|Là điều về tiền vi phạm hợp đồng ạ?
+A|对。如果你提前解除合同，要赔三倍的服务费，但对方违约只赔一倍。|Đúng vậy. Nếu anh chấm dứt hợp đồng trước thời hạn, phải bồi thường gấp ba phí dịch vụ, nhưng đối phương vi phạm chỉ bồi thường gấp một.
+B|这显然不公平。我可以要求修改吗？|Rõ ràng là không công bằng. Tôi có thể yêu cầu sửa không?
+A|完全可以。合同是双方协商的结果，不是一方说了算。|Hoàn toàn có thể. Hợp đồng là kết quả thương lượng của hai bên, không phải một bên nói là xong.
+B|还有别的需要注意的地方吗？|Còn chỗ nào khác cần chú ý không?
+A|关于知识产权的条款写得很模糊，你开发的软件到底归谁，没有说清楚。|Điều khoản về sở hữu trí tuệ viết rất mơ hồ, phần mềm anh phát triển rốt cuộc thuộc về ai, không nói rõ ràng.
+B|这一点对我来说非常关键。|Điểm này đối với tôi vô cùng then chốt.
+A|我建议你把这两条改好再签，签之前一定要逐字逐句地看清楚。|Tôi đề nghị anh sửa xong hai điều này rồi hẵng ký, trước khi ký nhất định phải xem kỹ từng câu từng chữ.
+B|谢谢您，否则我可能就吃大亏了。|Cảm ơn ông, nếu không có lẽ tôi đã chịu thiệt lớn rồi.
+
+# h6-13|Thành ngữ trong cuộc sống|塞翁失马，焉知非福|Động viên bạn bị mất việc|老朋友
+A|听说你们公司裁员，你也在名单里？|Nghe nói công ty cậu cắt giảm nhân sự, cậu cũng có tên trong danh sách?
+B|是啊，干了八年，说走就得走，心里真不是滋味。|Đúng vậy, làm tám năm, bảo đi là phải đi, trong lòng thật chẳng dễ chịu gì.
+A|我理解。不过古人说"塞翁失马，焉知非福"，说不定是个新的开始。|Tớ hiểu. Nhưng người xưa nói "Tái ông mất ngựa, biết đâu lại là phúc", không chừng đây là một khởi đầu mới.
+B|道理我都懂，可是房贷还要还，孩子还要上学。|Đạo lý tớ đều hiểu, nhưng tiền vay mua nhà vẫn phải trả, con vẫn phải đi học.
+A|你一直说想做自己的设计工作室，现在不正是机会吗？|Cậu luôn nói muốn mở studio thiết kế của riêng mình, bây giờ chẳng phải chính là cơ hội sao?
+B|我也想过，可是心里没底，怕竹篮打水一场空。|Tớ cũng nghĩ rồi, nhưng trong lòng không chắc, sợ dã tràng xe cát.
+A|你这些年积累了不少客户，人脉就是你的本钱。|Mấy năm nay cậu tích luỹ được không ít khách hàng, mối quan hệ chính là vốn liếng của cậu.
+B|你这么一说，我好像看到了一点儿希望。|Cậu nói vậy, tớ hình như thấy được một chút hy vọng.
+A|先给自己放个假，休息好了再从长计议。|Trước tiên cho mình nghỉ một thời gian, nghỉ ngơi xong rồi hãy tính kế lâu dài.
+B|好，谢谢你，有你这样的朋友真好。|Được, cảm ơn cậu, có người bạn như cậu thật tốt.
+
+# h6-14|Kinh tế|消费观念的变化|Phỏng vấn chuyên gia kinh tế|经济学家
+A|最近有一个说法叫"反向消费"，年轻人开始放弃名牌，追求性价比。您怎么看？|Gần đây có một cách nói gọi là "tiêu dùng ngược", người trẻ bắt đầu từ bỏ hàng hiệu, theo đuổi giá trị tương xứng với giá tiền. Ông nhìn nhận thế nào?
+B|这反映了消费观念从"面子"到"里子"的转变。|Điều này phản ánh sự chuyển biến quan niệm tiêu dùng từ "thể diện" sang "thực chất".
+A|是因为收入下降了吗？|Có phải vì thu nhập giảm không?
+B|有经济方面的原因，但更主要的是信息透明了。消费者知道一个包的成本是多少，就不愿意为品牌溢价买单了。|Có nguyên nhân về mặt kinh tế, nhưng chủ yếu hơn là thông tin đã minh bạch. Người tiêu dùng biết giá thành của một chiếc túi là bao nhiêu, nên không muốn trả tiền cho phần giá trội lên của thương hiệu nữa.
+A|这对企业来说意味着什么？|Điều này đối với doanh nghiệp có ý nghĩa gì?
+B|单靠广告和概念已经行不通了，企业必须在品质和服务上下真功夫。|Chỉ dựa vào quảng cáo và khái niệm đã không còn hiệu quả, doanh nghiệp phải dồn công sức thực sự vào chất lượng và dịch vụ.
+A|与此同时，旅游、演出这些"体验型消费"却在增长。|Đồng thời, những loại "tiêu dùng trải nghiệm" như du lịch, biểu diễn lại đang tăng trưởng.
+B|对，年轻人更愿意把钱花在让自己快乐的经历上，而不是物品上。|Đúng vậy, người trẻ sẵn lòng chi tiền cho những trải nghiệm mang lại niềm vui cho bản thân hơn, chứ không phải đồ vật.
+A|您认为这种趋势会持续下去吗？|Ông cho rằng xu hướng này có tiếp diễn không?
+B|我认为这是一种理性的回归，短期内不会改变。|Tôi cho rằng đây là sự trở về với lý trí, trong ngắn hạn sẽ không thay đổi.
+
+# h6-15|Đi làm xa quê|故乡越来越远|Tâm sự với mẹ qua điện thoại|母亲
+A|儿子，过年回来吗？你爸天天念叨你。|Con trai, Tết có về không? Bố con ngày nào cũng nhắc con.
+B|妈，今年项目紧，恐怕回不去了。|Mẹ ơi, năm nay dự án gấp, e là con không về được.
+A|又回不来？你都三年没回家过年了。|Lại không về à? Con đã ba năm không về nhà ăn Tết rồi.
+B|我知道，心里也很愧疚。等这个项目做完，我一定请假回去多住几天。|Con biết, trong lòng con cũng rất áy náy. Đợi dự án này làm xong, con nhất định xin nghỉ về ở thêm mấy ngày.
+A|你在外面要照顾好自己，别光顾着工作，饭要按时吃。|Con ở ngoài phải chăm sóc tốt bản thân, đừng chỉ mải làm việc, ăn uống phải đúng giờ.
+B|放心吧妈。你和爸身体怎么样？|Mẹ yên tâm đi. Bố mẹ sức khoẻ thế nào ạ?
+A|老毛病，没什么大事。就是家里太冷清了。|Bệnh cũ thôi, không có gì to tát. Chỉ là trong nhà quạnh quẽ quá.
+B|要不你们来我这儿过年吧？我带你们到处转转。|Hay là bố mẹ lên chỗ con ăn Tết đi? Con đưa bố mẹ đi chơi khắp nơi.
+A|我们年纪大了，坐车累。再说，家里的鸡啊狗啊谁管？|Bố mẹ già rồi, đi xe mệt. Vả lại, gà với chó ở nhà ai trông?
+B|妈，那我每天晚上给你们打视频电话，好不好？|Mẹ ơi, vậy tối nào con cũng gọi video cho bố mẹ, được không ạ?
+A|好，好。听到你的声音，妈就放心了。|Được, được. Nghe được giọng con, mẹ yên tâm rồi.
+
+# h6-16|Tổng kết hành trình|学无止境|Trò chuyện với thầy sau kỳ thi HSK 6|汉语老师
+A|恭喜你通过了HSK六级！从零开始到现在，你用了多长时间？|Chúc mừng em đã đỗ HSK cấp sáu! Từ con số không đến bây giờ, em mất bao lâu?
+B|整整四年。回头看，就像做了一场梦。|Tròn bốn năm. Nhìn lại, giống như vừa trải qua một giấc mơ.
+A|哪个阶段最难熬？|Giai đoạn nào khó vượt qua nhất?
+B|三级到四级的时候。词汇量一下子增加了很多，我常常觉得自己原地踏步。|Lúc từ cấp ba lên cấp bốn. Lượng từ vựng đột nhiên tăng lên rất nhiều, em thường cảm thấy mình giậm chân tại chỗ.
+A|很多人都在那个阶段放弃了。你是怎么坚持下来的？|Rất nhiều người bỏ cuộc ở giai đoạn đó. Em đã kiên trì bằng cách nào?
+B|我不再一个一个地背单词，而是大量地听和读，在句子里记词。|Em không học thuộc từng từ một nữa, mà nghe và đọc thật nhiều, nhớ từ trong câu.
+A|这个方法很对。语言本来就是在使用中学会的。|Phương pháp này rất đúng. Ngôn ngữ vốn dĩ là học được trong quá trình sử dụng.
+B|老师，考过六级以后，我应该怎么继续提高？|Thưa thầy, thi đỗ cấp sáu rồi, em nên tiếp tục nâng cao thế nào?
+A|学无止境。多读原著，多跟不同地方的人交流，试着用汉语表达复杂的思想。|Học không có điểm dừng. Đọc nhiều nguyên tác, giao lưu nhiều với người ở các vùng khác nhau, thử dùng tiếng Trung diễn đạt những tư tưởng phức tạp.
+B|我记住了。谢谢您这四年的指导！|Em nhớ rồi. Cảm ơn thầy đã chỉ dạy em suốt bốn năm qua!
+A|是你自己的努力。以后的路，就靠你自己走了。|Là do chính em nỗ lực. Con đường sau này phải dựa vào chính em mà đi.
+
+# h6-17|Khí hậu|气候变化离我们有多远？|Toạ đàm về biến đổi khí hậu|环境学者
+A|很多人觉得气候变化是遥远的事情，您怎么看？|Nhiều người cho rằng biến đổi khí hậu là chuyện xa vời, ông nhìn nhận thế nào?
+B|恰恰相反，它已经渗透到我们生活的方方面面。去年夏天的极端高温就是一个信号。|Hoàn toàn ngược lại, nó đã thâm nhập vào mọi mặt cuộc sống của chúng ta. Đợt nắng nóng cực đoan mùa hè năm ngoái chính là một tín hiệu.
+A|像越南这样的沿海国家，面临的风险是不是更大？|Những quốc gia ven biển như Việt Nam, rủi ro phải đối mặt có phải lớn hơn không?
+B|确实。海平面上升会导致湄公河三角洲的土地盐碱化，直接威胁粮食安全。|Quả thực vậy. Mực nước biển dâng sẽ dẫn đến đất đai đồng bằng sông Cửu Long bị nhiễm mặn, trực tiếp đe doạ an ninh lương thực.
+A|个人的努力真的有用吗？毕竟排放主要来自工业。|Nỗ lực của cá nhân có thật sự hữu ích không? Dù sao khí thải chủ yếu đến từ công nghiệp.
+B|个人的选择会汇聚成市场的力量。消费者越重视环保，企业就越有动力转型。|Lựa chọn của cá nhân sẽ hội tụ thành sức mạnh thị trường. Người tiêu dùng càng coi trọng bảo vệ môi trường, doanh nghiệp càng có động lực chuyển đổi.
+A|您认为政府应该扮演什么角色？|Ông cho rằng chính phủ nên đóng vai trò gì?
+B|制定明确的减排目标，同时通过补贴鼓励可再生能源的发展。|Đặt ra mục tiêu giảm phát thải rõ ràng, đồng thời khuyến khích phát triển năng lượng tái tạo thông qua trợ cấp.
+A|有人担心这会拖慢经济增长。|Có người lo điều này sẽ kéo chậm tăng trưởng kinh tế.
+B|短期内也许会有阵痛，但从长远看，绿色产业本身就是新的经济增长点。|Trong ngắn hạn có thể có những cơn đau, nhưng về lâu dài, bản thân ngành công nghiệp xanh chính là động lực tăng trưởng kinh tế mới.
+A|感谢您深入浅出的分析。|Cảm ơn những phân tích sâu sắc mà dễ hiểu của ông.
+
+# h6-18|Dịch thuật và văn hoá|翻译是再创作|Trò chuyện với dịch giả văn học|翻译家
+B|您把很多越南小说翻译成了中文，您觉得翻译最难的是什么？|Ông đã dịch nhiều tiểu thuyết Việt Nam sang tiếng Trung, ông thấy khó nhất trong dịch thuật là gì?
+A|不是词语，而是文化背后的东西。比如越南人的称呼，哥哥、姐姐、叔叔，中文很难一一对应。|Không phải từ ngữ, mà là những thứ đằng sau văn hoá. Ví dụ cách xưng hô của người Việt, anh, chị, chú, tiếng Trung rất khó đối ứng từng cái một.
+B|遇到这种情况，您怎么处理？|Gặp tình huống như vậy, ông xử lý thế nào?
+A|有时候保留原文的味道，加一个简短的注释；有时候干脆换一种中国读者熟悉的表达。|Đôi khi giữ lại hương vị của nguyên tác, thêm một chú thích ngắn; đôi khi dứt khoát đổi sang cách diễn đạt mà độc giả Trung Quốc quen thuộc.
+B|这样会不会失去原作的特色？|Làm vậy có làm mất đi nét đặc sắc của nguyên tác không?
+A|翻译永远是一种取舍。我常说，好的翻译不是照相，而是再创作。|Dịch thuật mãi mãi là sự cân nhắc được mất. Tôi thường nói, bản dịch hay không phải là chụp ảnh, mà là sáng tác lại.
+B|机器翻译越来越准确，您担心这个行业的未来吗？|Dịch máy ngày càng chính xác, ông có lo cho tương lai của nghề này không?
+A|应用文的翻译会被大量替代，但文学翻译需要对情感和节奏的敏感，机器暂时还做不到。|Dịch văn bản ứng dụng sẽ bị thay thế nhiều, nhưng dịch văn học cần sự nhạy cảm với cảm xúc và nhịp điệu, máy tạm thời chưa làm được.
+B|对想当翻译的年轻人，您有什么忠告？|Với người trẻ muốn làm dịch giả, ông có lời khuyên gì?
+A|母语要和外语一样好，甚至更好。很多人忽视了这一点。|Tiếng mẹ đẻ phải giỏi như ngoại ngữ, thậm chí còn giỏi hơn. Rất nhiều người đã xem nhẹ điểm này.
+B|这句话让我深受启发。|Câu nói này khiến tôi được gợi mở rất nhiều.
+
+# h6-19|Cuộc sống chậm|慢下来的生活|Bạn cũ kể về cuộc sống mới ở quê|老同学
+A|你辞掉大公司的工作回老家开茶馆，大家都觉得不可思议。|Cậu bỏ việc ở công ty lớn về quê mở quán trà, mọi người đều thấy khó tin.
+B|在城市里，我每天像一个上了发条的机器，忙得连抬头看天的时间都没有。|Ở thành phố, ngày nào tớ cũng như một cỗ máy đã lên dây cót, bận đến mức không có cả thời gian ngẩng đầu nhìn trời.
+A|现在呢？收入肯定少了很多吧？|Còn bây giờ? Thu nhập chắc chắn giảm nhiều lắm nhỉ?
+B|少了一大半，但是开销也少了。最重要的是，我又找回了生活的节奏。|Giảm hơn một nửa, nhưng chi tiêu cũng ít đi. Quan trọng nhất là tớ đã tìm lại được nhịp điệu của cuộc sống.
+A|你不怕被社会淘汰吗？|Cậu không sợ bị xã hội đào thải sao?
+B|淘汰的标准是谁定的呢？我觉得每个人对成功的定义都不一样。|Tiêu chuẩn đào thải do ai đặt ra? Tớ thấy mỗi người định nghĩa thành công khác nhau.
+A|话虽如此，可我还是没有勇气像你一样。|Nói thì nói vậy, nhưng tớ vẫn không có dũng khí như cậu.
+B|不一定要辞职。每天给自己留一点儿空白，读一页书、散一次步，也是一种慢下来。|Không nhất thiết phải nghỉ việc. Mỗi ngày dành cho mình một khoảng trống, đọc một trang sách, đi dạo một lần, cũng là một cách sống chậm lại.
+A|有空我一定去你的茶馆坐坐。|Rảnh tớ nhất định đến quán trà của cậu ngồi chơi.
+B|随时欢迎，茶管够！|Lúc nào cũng hoan nghênh, trà uống thoải mái!
