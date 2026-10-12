@@ -4,6 +4,7 @@
  */
 (function () {
   const FB_VER = '10.12.2';
+  const OWNER_KEY = (window.SE_LANG === 'zh' ? 'sumiChinese' : 'sumiEnglish') + '.owner';   // tài khoản đang giữ tiến độ trên máy này
   const SESSION_KEY = 'sumiChinese.session';
   const cfg = window.SUMI_FIREBASE;
   const providers = Object.assign({ google: true, email: true }, window.SUMI_AUTH_PROVIDERS || {});
@@ -45,6 +46,9 @@
     out.updatedAt = Math.max(a.updatedAt || 0, b.updatedAt || 0);
     return out;
   }
+  // Cài đặt của máy (giao diện, giọng, ảnh đại diện…) giữ lại khi đổi tài khoản; tiến độ học thì không
+  const DEVICE_CFG = ['theme', 'gender', 'rate', 'voice', 'hidePy', 'avMe', 'avThem', 'hideEn', 'hideVi', 'shGap', 'shHideEn', 'shHideVi', 'shLv'];
+  function keepCfg() { const c = (ST().get().cfg) || {}, o = {}; DEVICE_CFG.forEach(k => { if (c[k] !== undefined) o[k] = c[k]; }); return o; }
   // Firebase không lưu được khoá có dấu . # $ [ ] / — mã hoá khoá trước khi gửi
   const encKey = k => k.replace(/[.#$\[\]\/%]/g, c => '%' + c.charCodeAt(0).toString(16).toUpperCase());
   const decKey = k => k.replace(/%([0-9A-F]{2})/g, (_, h) => String.fromCharCode(parseInt(h, 16)));
@@ -57,9 +61,13 @@
     try {
       const snap = await r.once('value');
       const remote = mapKeys(snap.val(), decKey);
-      const merged = merge(ST().get(), remote);
+      // Tiến độ trên máy thuộc tài khoản khác → không gộp, chỉ lấy tiến độ của tài khoản vừa đăng nhập
+      let owner = null; try { owner = localStorage.getItem(OWNER_KEY); } catch (e) { }
+      const local = owner && owner !== user.uid ? { cfg: keepCfg() } : ST().get();
+      const merged = merge(local, remote) || { cfg: keepCfg() };
+      try { localStorage.setItem(OWNER_KEY, user.uid); } catch (e) { }
       applying = true; ST().replace(merged); applying = false;
-      await r.set(mapKeys(JSON.parse(JSON.stringify(merged)), encKey));
+      if (remote || Object.keys(merged.done || {}).length || Object.keys(merged.cards || {}).length) await r.set(mapKeys(JSON.parse(JSON.stringify(merged)), encKey));
       status = 'ok';
       window.dispatchEvent(new CustomEvent('sumi:synced'));
     } catch (e) { status = 'error'; console.warn('Đồng bộ:', e.message); }
@@ -127,13 +135,24 @@
     errMsg,
     async google() {
       await ready; const p = new fb.auth.GoogleAuthProvider();
+      p.setCustomParameters({ prompt: 'select_account' });   // luôn hỏi chọn tài khoản Google, không tự vào tài khoản cũ
       try { await fb.auth().signInWithPopup(p); }
       catch (e) { if (e && (e.code === 'auth/popup-blocked' || e.code === 'auth/operation-not-supported-in-this-environment')) await fb.auth().signInWithRedirect(p); else throw e; }
     },
     async signUp(name, email, pw) { await ready; const c = await fb.auth().createUserWithEmailAndPassword(email.trim(), pw); if (name) await c.user.updateProfile({ displayName: name.trim() }); user && (user.name = name.trim()); emit(); },
     async signIn(email, pw) { await ready; await fb.auth().signInWithEmailAndPassword(email.trim(), pw); },
     async reset(email) { await ready; await fb.auth().sendPasswordResetEmail(email.trim()); },
-    async signOut() { await ready; await fb.auth().signOut(); },
+    async signOut() {
+      await ready;
+      // Lưu nốt thay đổi lên tài khoản rồi mới đăng xuất
+      clearTimeout(pushTimer);
+      try { const r = ref(); if (r) await r.set(mapKeys(JSON.parse(JSON.stringify(ST().get())), encKey)); } catch (e) { }
+      await fb.auth().signOut();
+      // Xoá tiến độ của tài khoản vừa đăng xuất khỏi máy (đã lưu trên tài khoản), giữ cài đặt của máy
+      applying = true; ST().replace({ cfg: keepCfg() }); applying = false;
+      try { localStorage.removeItem(OWNER_KEY); } catch (e) { }
+      window.dispatchEvent(new CustomEvent('sumi:synced'));
+    },
     syncNow: pull,
     // Dùng cho góp ý: cơ sở dữ liệu và dấu thời gian của máy chủ
     async db() { const f = await ready; return f ? f.database() : null; },

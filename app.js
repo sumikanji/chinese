@@ -673,7 +673,7 @@
         '<p class="muted" style="font-size:.88rem;margin:14px 0">Tiến độ được tự động lưu lên tài khoản sau mỗi lần học. Đăng nhập cùng tài khoản trên máy khác là học tiếp được ngay.</p>' +
         '<div class="row center"><button class="btn" id="acc-now">Đồng bộ ngay</button><button class="btn ghost" id="acc-out">Đăng xuất</button></div></section>';
       $('#acc-now').onclick = async () => { await CL.syncNow(); toast('Đã đồng bộ'); };
-      $('#acc-out').onclick = async () => { if (!confirm('Đăng xuất? Tiến độ vẫn còn trên tài khoản và trên máy này.')) return; await CL.signOut(); route(); };
+      $('#acc-out').onclick = async () => { if (!confirm('Đăng xuất? Tiến độ đã được lưu trên tài khoản, đăng nhập lại là có ngay. Máy này sẽ trở về trạng thái chưa đăng nhập.')) return; await CL.signOut(); route(); };
       return;
     }
     let mode = 'in';
