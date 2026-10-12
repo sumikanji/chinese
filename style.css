@@ -1023,3 +1023,24 @@ body.noscroll { overflow: hidden; }
 .hy-edit { font-weight: 800; font-size: .85rem; color: var(--lc); text-decoration: none; }
 @media (min-width: 700px) { .hy-stage { width: 240px; height: 220px; } .hy-big { height: 190px; } .hy-big svg { width: 220px; height: 190px; } }
 @media (prefers-reduced-motion: reduce) { .hy-big, .hy-shadow, .hy-spark, .hy-stage.jump .hy-big { animation: none; } .hy-spark { opacity: .6; } }
+
+/* ---------- Trang chủ: Hiyo + Ôn tập trong một khung, mỗi bên một nửa ---------- */
+.rv2.hy-combo { background: radial-gradient(circle at 25% 60%, color-mix(in srgb, var(--lc) 22%, var(--card)) 0, var(--card) 62%); border-color: color-mix(in srgb, var(--lc) 35%, transparent); }
+.hc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center; }
+.hc-l { display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.hc-l .hy-bub { font-size: .82rem; padding: 8px 10px; max-width: 100%; border-radius: 14px; }
+.hc-l .hy-stage { width: 100%; max-width: 190px; height: 170px; margin-top: 4px; }
+.hc-l .hy-big { top: 10px; height: 145px; }
+.hc-l .hy-big svg { width: 100%; max-width: 170px; height: 145px; }
+.hc-l .hy-shadow { width: 90px; margin-left: -45px; bottom: 6px; }
+.hc-l .hy-spark.s1 { left: 0; } .hc-l .hy-spark.s2 { right: 0; }
+.hc-r { min-width: 0; }
+.hc-r .rv2-top { align-items: flex-start; gap: 6px; }
+.hc-r .rv2-t h2 { font-size: 1.05rem; line-height: 1.25; }
+.hc-r .rv2-btns { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+.hc-r .rv2-btns .btn { width: 100%; margin: 0; padding: 9px 10px; font-size: .9rem; line-height: 1.25; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.hc-r .rv2-btns .btn small { display: block; font-size: .72rem; font-weight: 700; opacity: .85; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.hc-r .hy-foot { flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 10px; }
+.hc-r .hy-lv { font-size: .74rem; padding: 3px 10px; }
+.hc-r .hy-edit { font-size: .8rem; }
+@media (min-width: 700px) { .hc-l .hy-stage { max-width: 230px; height: 200px; } .hc-l .hy-big { height: 175px; } .hc-l .hy-big svg { max-width: 200px; height: 175px; } .hc-r .rv2-t h2 { font-size: 1.3rem; } .hc-l .hy-bub { font-size: .92rem; } }

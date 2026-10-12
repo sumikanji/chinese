@@ -139,13 +139,10 @@
     A.push('Cố lên! Bạn làm được mà! ✨', 'Hôm nay học vui nhé!', 'Bấm vào mình đi, mình nhảy cho xem!');
     return A;
   }
-  function heroHtml(L, r, due) {
-    return '<section class="hy-hero pop" style="--lc:' + L.color + '">' +
-      '<div class="hy-bub" id="hy-bub">' + esc(heroMsgs(due)[0]) + '</div>' +
+  function heroLeft(due) {
+    return '<div class="hc-l"><div class="hy-bub" id="hy-bub">' + esc(heroMsgs(due)[0]) + '</div>' +
       '<button class="hy-stage" id="hy-stage" aria-label="Bấm vào Hiyo"><span class="hy-spark s1">✦</span><span class="hy-spark s2">✧</span><span class="hy-spark s3">✦</span>' +
-        '<span class="hy-big" id="hy-big">' + window.HIYO.svg(hiyoForm(), hyFace(), { acc: hyAcc() }) + '</span><i class="hy-shadow"></i></button>' +
-      '<div class="hy-foot"><span class="hy-lv">' + (r < 0 ? 'Trứng · ' + window.HIYO.NAMES[0] : esc(L.name) + ' · ' + window.HIYO.NAMES[hiyoForm()]) + '</span>' +
-        '<a class="hy-edit" href="#/account">Trang trí Hiyo →</a></div></section>';
+        '<span class="hy-big" id="hy-big">' + window.HIYO.svg(hiyoForm(), hyFace(), { acc: hyAcc() }) + '</span><i class="hy-shadow"></i></button></div>';
   }
   function bindHero(due) {
     const st = $('#hy-stage'); if (!st) return;
@@ -168,14 +165,15 @@
     const lbl = i => i === 0 ? 'Nay' : i === 1 ? 'Mai' : WD[new Date(Date.now() + i * 864e5).getDay()];
     const nl = LES[nextLessonId()];
     const started = totalDone() > 0;
-    const learn = '<a class="btn' + (due ? '' : ' rvh-go') + '" href="#/lesson/' + nl.id + '">' + (started ? 'Học tiếp' : 'Bắt đầu') + ': ' + esc(nl.t) + ' →</a>';
+    const learn = '<a class="btn' + (due ? '' : ' rvh-go') + '" href="#/lesson/' + nl.id + '">' + (started ? 'Học tiếp' : 'Bắt đầu') + ' →<small>' + esc(nl.t) + '</small></a>';
     const hr = lvReached(), HL = LEVELS[Math.max(0, hr)];
-    app.innerHTML = heroHtml(HL, hr, due) +
-      '<section class="card rv2 pop">' +
+    app.innerHTML =
+      '<section class="card rv2 hy-combo pop" style="--lc:' + HL.color + '"><div class="hc-row">' + heroLeft(due) + '<div class="hc-r">' +
         '<div class="rv2-top">' +
           '<div class="rv2-t"><h2>Ôn tập hôm nay</h2><p><b class="rv2-num">' + fmt(due) + '</b> câu đến hạn</p></div>' +
           '<button class="rv2-help" id="rvh-help" aria-label="Cách hoạt động">?</button></div>' +
         '<div class="rv2-btns">' + (due ? '<a class="btn rvh-go" href="#/review">Ôn ' + fmt(due) + ' câu →</a>' : '') + learn + '</div>' +
+        '<div class="hy-foot"><span class="hy-lv">' + (hr < 0 ? 'Trứng · ' + window.HIYO.NAMES[0] : esc(HL.name) + ' · ' + window.HIYO.NAMES[hiyoForm()]) + '</span><a class="hy-edit" href="#/account">Trang trí Hiyo →</a></div></div></div>' +
         '<div class="rvh-chart rv2-chart"><small>7 NGÀY TỚI</small><div class="rvh-bars">' + fc.map((n, i) =>
           '<div class="rvh-col' + (i === 0 ? ' now' : '') + '"><span class="v">' + (n || '') + '</span><i style="height:' + (n ? Math.max(8, 100 * n / mx) : 4) + '%"></i><span class="d">' + lbl(i) + '</span></div>').join('') + '</div></div>' +
         '<div class="rv2-stats"><div><b>' + ST.streak() + '</b><small>ngày học</small></div><div><b>' + totalDone() + '</b><small>bài đã học</small></div><div><b>' + fmt(Object.keys(S.cards).length) + '</b><small>câu đã gặp</small></div><div><b>' + fmt(ST.mastered()) + '</b><small>câu đã thuộc</small></div></div>' +
