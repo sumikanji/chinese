@@ -790,3 +790,41 @@ body.noscroll { overflow: hidden; }
 .cmt-all { display: grid; gap: 4px; }
 .cmt-link { display: block; text-decoration: none; padding: 10px 0; border-bottom: 1.5px solid var(--line); }
 .cmt-where { display: block; font-size: .78rem; font-weight: 800; color: var(--brown); margin-bottom: 6px; }
+
+/* ---------- Icon SVG ---------- */
+.ic { width: 1.15em; height: 1.15em; flex: none; vertical-align: -0.2em; }
+.pbar-play, .tg-b, .tg-l, .say-ctrl .btn, .rec-btn, .rec-cmp, .rec-sm, .cmt-send, .set-card h2, .voc-modes .chip, .cmt-top h3 { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.set-card h2 { justify-content: flex-start; }
+.set-card h2 .ic { color: var(--brown); width: 1.2em; height: 1.2em; }
+.pbar-play .ic { width: 1.05em; height: 1.05em; }
+.tg-b .ic { width: 1em; height: 1em; }
+.mic { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+.mic .ic { width: 1.6em; height: 1.6em; }
+.tabs a { flex-direction: column; gap: 2px; min-height: 54px; padding: 6px 2px; }
+.tabs a .ic { width: 22px; height: 22px; }
+.tabs a .badge { top: 2px; }
+.rec-btn .ic { color: #e11d48; }
+.rec.on .rec-btn .ic { animation: recblink 1s infinite; }
+
+/* ---------- Góp ý: tông xanh, khác hẳn phần hội thoại ---------- */
+.cmt { background: var(--sky-l); border: 1.5px solid color-mix(in srgb, var(--sky) 35%, transparent); }
+.cmt-top h3 { color: var(--sky); justify-content: flex-start; }
+.cmt-top h3 .ic { width: 1.3em; height: 1.3em; }
+.cmt-cnt:not(:empty) { background: var(--sky); color: #fff; border-radius: 999px; font-size: .75rem; padding: 1px 8px; }
+.cmt-top p { color: var(--sub); }
+.cmt-i { background: var(--card); border-radius: 16px; padding: 10px 12px; border: 1px solid color-mix(in srgb, var(--sky) 20%, transparent); }
+.cmt-av { background: var(--sky); color: #fff; }
+.cmt-n { background: color-mix(in srgb, var(--sky) 18%, transparent); }
+.cmt-form { background: var(--card); border-radius: 16px; padding: 12px; border-top: none; border: 1px solid color-mix(in srgb, var(--sky) 20%, transparent); }
+.cmt-fb textarea { background: var(--bg); }
+.cmt-send { border: none; border-radius: 12px; background: var(--sky); color: #fff; font-weight: 900; font-size: .88rem; padding: 9px 16px; text-decoration: none; }
+.cmt-login { border-top: none; padding-top: 4px; }
+.cmt-err { font-size: .86rem; color: var(--bad); background: var(--card); border-radius: 12px; padding: 10px 12px; }
+.cmt-msg .cmt-err, .cmt-msg { color: var(--bad); }
+.set-card h2 { display: flex; }
+.rec.done { gap: 2px; padding: 3px; flex-wrap: nowrap; max-width: 100%; }
+.rec-len { padding: 0 4px 0 8px; }
+.rec-cmp { padding: 8px 12px; }
+.rec-sm { padding: 8px 6px; font-size: .8rem; gap: 4px; }
+.rec-cmp, .rec-sm, .rec-btn { white-space: nowrap; }
+@media (max-width: 420px) { .rec-len { display: none; } }

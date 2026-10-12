@@ -11,7 +11,8 @@
   const best = (id, m) => ST().cfg('sh_' + id + '_' + m);
   const setBest = (id, m, v) => { if (v > (best(id, m) || 0)) ST().cfg('sh_' + id + '_' + m, v); };
   const WHO = 'A';
-  const MODES = [['listen', 'Nghe & nói đuổi'], ['say', 'Nói từng câu'], ['tell', 'Kể lại cả đoạn']];
+  const MODES = [['listen', 'Nghe & nói đuổi', 'speak'], ['say', 'Nói từng câu', 'mic'], ['tell', 'Kể lại cả đoạn', 'chat']];
+  const I = n => window.SEI ? window.SEI(n) : '';
 
   // ================= Danh sách =================
   function viewList(app) {
@@ -20,7 +21,6 @@
     const lvs = LV.filter(l => list.some(x => x.lv === l));
     app.innerHTML = '<section class="card panel pop"><div class="panel-h"><h2>Shadowing · Tự kể chuyện</h2><p>' + list.length + ' đoạn văn ngắn, mỗi đoạn là một câu chuyện kể ở ngôi "tôi": giới thiệu bản thân, gia đình, nơi mình sống, công việc, kỷ niệm… từ HSK 1 đến HSK 6. Nghe giọng AI, nói đuổi theo từng câu, rồi tự kể lại cả đoạn.</p></div>' +
       '<ol class="sd-how"><li><b>Nghe & nói đuổi:</b> nghe từng câu, ngay sau đó nói lại y hệt, cả ngữ điệu.</li><li><b>Nói từng câu:</b> máy chấm từng chữ và thanh điệu.</li><li><b>Kể lại cả đoạn:</b> nhìn gợi ý tiếng Việt và tự kể, như đang giới thiệu về mình.</li></ol></section>' +
-      '<div class="more-grid sd-more"><a class="card more" href="#/qa"><b>Hỏi – đáp phản xạ</b><small>Nghe câu hỏi về bạn, tự trả lời</small></a></div>' +
       '<div class="sd-filter" id="flt">' + [['all', 'Tất cả']].concat(lvs.map(l => [l, lvInfo(l).name])).map(x => '<button class="chip' + (cur === x[0] ? ' on' : '') + '" data-l="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>' +
       '<div id="sdl"></div>';
     const draw = l => {
@@ -44,7 +44,7 @@
     const nx = ALL()[ALL().indexOf(x) + 1];
     app.innerHTML = '<a class="back" href="#/shadow">← Shadowing</a>' +
       '<div class="sd-head"><span class="lvl-badge sm" style="background:' + L.color + '">' + L.name + '</span><div><h1>' + esc(x.t) + '</h1><span class="muted"><span class="zh-t">' + esc(x.en) + '</span> · Bài ' + (idx + 1) + '/' + list.length + '</span></div></div>' +
-      '<nav class="voc-modes">' + MODES.map(m => '<a class="chip' + (m[0] === mode ? ' on' : '') + '" href="#/shadow/' + x.id + '/' + m[0] + '">' + m[1] + (best(x.id, m[0]) != null ? ' · ' + best(x.id, m[0]) : '') + '</a>').join('') + '</nav>' +
+      '<nav class="voc-modes">' + MODES.map(m => '<a class="chip' + (m[0] === mode ? ' on' : '') + '" href="#/shadow/' + x.id + '/' + m[0] + '">' + I(m[2]) + m[1] + (best(x.id, m[0]) != null ? ' · ' + best(x.id, m[0]) : '') + '</a>').join('') + '</nav>' +
       '<section class="card panel" id="sp"></section>' +
       '<div class="sd-foot"><button class="btn" id="addrv">Thêm ' + x.s.length + ' câu vào Ôn tập</button>' + (nx ? '<a class="btn" href="#/shadow/' + nx.id + '">Bài tiếp: ' + esc(nx.t) + ' →</a>' : '') + '</div>';
     $('#addrv').onclick = e => {
@@ -62,8 +62,8 @@
     const hideEn = !!ST().cfg('shHideEn'), hideVi = !!ST().cfg('shHideVi'), showPy = ST().cfg('hidePy') !== true;
     let slow = false, loop = false, gap = ST().cfg('shGap') !== false, run = 0, cur = -1;
     P.innerHTML = '<div class="panel-h"><h2>Nghe và nói đuổi</h2><p>Bấm Phát cả đoạn. Bật "Nói theo": sau mỗi câu có một khoảng lặng để bạn nói lại y hệt, bắt chước cả nhịp và ngữ điệu. Chạm vào một câu để nghe riêng câu đó.</p></div>' +
-      '<div class="pbar"><button class="pbar-play" id="play">Phát cả đoạn</button><div class="tg"><button class="tg-b" id="slow">Đọc chậm</button><button class="tg-b' + (gap ? ' on' : '') + '" id="gap">Nói theo</button></div>' +
-      '<div class="pbar-r2"><span class="tg-l">Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' +
+      '<div class="pbar"><button class="pbar-play" id="play">' + I('play') + 'Phát cả đoạn</button><div class="tg"><button class="tg-b" id="slow">' + I('slow') + 'Đọc chậm</button><button class="tg-b' + (gap ? ' on' : '') + '" id="gap">' + I('mic') + 'Nói theo</button></div>' +
+      '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' +
       '<div class="sd-lines' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="ls">' + x.s.map((s, i) => '<button class="sd-line" data-i="' + i + '"><span class="n">' + (i + 1) + '</span><span class="tx"><span class="en zh">' + UI().zh(s[2]) + '</span><span class="vi">' + esc(s[1]) + '</span></span><span class="turnbar"><i></i></span></button>').join('') + '</div>';
     const ls = $('#ls', P), lines = $$('.sd-line', ls);
     UI().bindVoice(P);
@@ -94,11 +94,11 @@
       } else await wait(350);
     }
     const playBtn = $('#play', P);
-    const stopAll = () => { run++; SP().stop(); playBtn.textContent = 'Phát cả đoạn'; playBtn.classList.remove('on'); lines.forEach(b => b.classList.remove('yours')); };
+    const stopAll = () => { run++; SP().stop(); playBtn.innerHTML = I('play') + 'Phát cả đoạn'; playBtn.classList.remove('on'); lines.forEach(b => b.classList.remove('yours')); };
     playBtn.onclick = async () => {
       if (playBtn.classList.contains('on')) return stopAll();
       const my = ++run;
-      playBtn.textContent = 'Dừng'; playBtn.classList.add('on');
+      playBtn.innerHTML = I('stop') + 'Dừng'; playBtn.classList.add('on');
       SP().prefetch(x.s[0][0], WHO);
       do {
         for (let i = 0; i < x.s.length && my === run; i++) await line(i, my, gap);
@@ -178,7 +178,7 @@
       }
     });
     $('#se', P).style.display = 'none';
-    $('#li', P).textContent = 'Nghe cả đoạn';
+    $('#li', P).innerHTML = I('speak') + 'Nghe cả đoạn';
     return () => { run++; };
   }
 
