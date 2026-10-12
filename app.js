@@ -83,8 +83,6 @@
 
   function refreshTop() {
     const S = ST.get();
-    $('#st-streak').textContent = ST.streak() + ' ngày';
-    $('#st-xp').textContent = fmt(S.xp) + ' XP';
     const due = ST.dueIds().length;
     const b = $('#tab-due'); b.hidden = !due; b.textContent = due > 99 ? '99+' : due;
     $('#brand-hiyo').innerHTML = hiyo(hyFace());
@@ -95,7 +93,7 @@
         const u = CL.user(), st = CL.status();
         acc.hidden = false;
         acc.className = 'pill acc' + (u ? ' in' : '') + (st === 'error' ? ' err' : '');
-        acc.textContent = u ? ((u.name || u.email || '?').trim()[0].toUpperCase()) : 'Đăng nhập';
+        if (u) { const nm = (u.name || (u.email || '').split('@')[0] || 'Bạn').trim(); acc.innerHTML = '<i>' + esc(nm[0].toUpperCase()) + '</i><span>' + esc(nm) + '</span>'; } else acc.textContent = 'Đăng nhập';
         acc.title = u ? 'Tài khoản: ' + (u.name || u.email) + ' · ' + SYNC_TXT[st] : 'Đăng nhập để lưu tiến độ lên tài khoản';
       }
     }
@@ -176,7 +174,6 @@
         '<div class="hy-foot"><span class="hy-lv">' + (hr < 0 ? 'Trứng · ' + window.HIYO.NAMES[0] : esc(HL.name) + ' · ' + window.HIYO.NAMES[hiyoForm()]) + '</span><a class="hy-edit" href="#/account">Trang trí Hiyo →</a></div></div></div>' +
         '<div class="rvh-chart rv2-chart"><small>7 NGÀY TỚI</small><div class="rvh-bars">' + fc.map((n, i) =>
           '<div class="rvh-col' + (i === 0 ? ' now' : '') + '"><span class="v">' + (n || '') + '</span><i style="height:' + (n ? Math.max(8, 100 * n / mx) : 4) + '%"></i><span class="d">' + lbl(i) + '</span></div>').join('') + '</div></div>' +
-        '<div class="rv2-stats"><div><b>' + ST.streak() + '</b><small>ngày học</small></div><div><b>' + totalDone() + '</b><small>bài đã học</small></div><div><b>' + fmt(Object.keys(S.cards).length) + '</b><small>câu đã gặp</small></div><div><b>' + fmt(ST.mastered()) + '</b><small>câu đã thuộc</small></div></div>' +
         '<div class="rvh-explain rv2-ex" id="rvh-explain" hidden>Sumi không dạy từ vựng rời rạc: bạn học ' + fmt(LEVELS.reduce((x, L) => x + sentCount(L), 0)) + ' câu hội thoại thật, từ vựng tự đến qua câu. Mỗi câu đã học có một ngày ôn. Nhớ đúng thì lần ôn sau cách xa hơn: 1 → 2 → 4 → 7 → 14 → 30 → 60 → 120 ngày. Quên thì câu quay lại gần đầu và được hỏi lại vào ngày mai. Biểu đồ cho biết mỗi ngày tới có bao nhiêu câu đến hạn.</div>' +
       '</section>' +
       '<h2 class="sec">Lộ trình HSK 1 → HSK 6</h2>' +
