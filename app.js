@@ -129,6 +129,36 @@
 
   // ================= TRANG CHỦ =================
   const REPEAT_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l3 3-3 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 11V9a4 4 0 0 1 4-4h12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M7 22l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 13v2a4 4 0 0 1-4 4H4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+  // ================= Hiyo cổ vũ trên trang chủ =================
+  function heroMsgs(due) {
+    const st = ST.streak(), n = totalDone(), A = [];
+    if (!n) A.push('Chào bạn! Mình là Hiyo. Cùng học bài đầu tiên nhé!', 'Mỗi ngày một chút thôi, mình đi cùng bạn!');
+    if (due) A.push('Hôm nay có ' + due + ' câu cần ôn. Ôn xong là nhớ lâu lắm đó!', 'Ôn ' + due + ' câu thôi, cố lên nào! 💪');
+    if (st > 1) A.push('Bạn đã học ' + st + ' ngày liên tục rồi! Giỏi quá 🔥', 'Chuỗi ' + st + ' ngày! Đừng để đứt nha!');
+    if (n) A.push('Bạn đã học ' + n + ' bài rồi đó! 🎉', 'Học thêm một bài nữa nhé, mình tin bạn!', 'Nói to lên nào, sai cũng không sao!');
+    A.push('Cố lên! Bạn làm được mà! ✨', 'Hôm nay học vui nhé!', 'Bấm vào mình đi, mình nhảy cho xem!');
+    return A;
+  }
+  function heroHtml(L, r, due) {
+    return '<section class="hy-hero pop" style="--lc:' + L.color + '">' +
+      '<div class="hy-bub" id="hy-bub">' + esc(heroMsgs(due)[0]) + '</div>' +
+      '<button class="hy-stage" id="hy-stage" aria-label="Bấm vào Hiyo"><span class="hy-spark s1">✦</span><span class="hy-spark s2">✧</span><span class="hy-spark s3">✦</span>' +
+        '<span class="hy-big" id="hy-big">' + window.HIYO.svg(hiyoForm(), hyFace(), { acc: hyAcc() }) + '</span><i class="hy-shadow"></i></button>' +
+      '<div class="hy-foot"><span class="hy-lv">' + (r < 0 ? 'Trứng · ' + window.HIYO.NAMES[0] : esc(L.name) + ' · ' + window.HIYO.NAMES[hiyoForm()]) + '</span>' +
+        '<a class="hy-edit" href="#/account">Trang trí Hiyo →</a></div></section>';
+  }
+  function bindHero(due) {
+    const st = $('#hy-stage'); if (!st) return;
+    const msgs = heroMsgs(due); let k = 0, tm;
+    st.onclick = () => {
+      k = (k + 1) % msgs.length;
+      const bub = $('#hy-bub'); bub.textContent = msgs[k]; bub.classList.remove('pop-in'); void bub.offsetWidth; bub.classList.add('pop-in');
+      $('#hy-big').innerHTML = window.HIYO.svg(hiyoForm(), 'cheer', { acc: hyAcc() });
+      st.classList.remove('jump'); void st.offsetWidth; st.classList.add('jump');
+      clearTimeout(tm); tm = setTimeout(() => { const b = $('#hy-big'); if (b) b.innerHTML = window.HIYO.svg(hiyoForm(), hyFace(), { acc: hyAcc() }); }, 1400);
+    };
+  }
+
   function viewHome() {
     const S = ST.get();
     const fc = ST.forecast(7);
@@ -139,9 +169,10 @@
     const nl = LES[nextLessonId()];
     const started = totalDone() > 0;
     const learn = '<a class="btn' + (due ? '' : ' rvh-go') + '" href="#/lesson/' + nl.id + '">' + (started ? 'Học tiếp' : 'Bắt đầu') + ': ' + esc(nl.t) + ' →</a>';
-    app.innerHTML =
+    const hr = lvReached(), HL = LEVELS[Math.max(0, hr)];
+    app.innerHTML = heroHtml(HL, hr, due) +
       '<section class="card rv2 pop">' +
-        '<div class="rv2-top"><span class="rv2-hiyo">' + hiyo(due ? 'think' : 'joy') + '</span>' +
+        '<div class="rv2-top">' +
           '<div class="rv2-t"><h2>Ôn tập hôm nay</h2><p><b class="rv2-num">' + fmt(due) + '</b> câu đến hạn</p></div>' +
           '<button class="rv2-help" id="rvh-help" aria-label="Cách hoạt động">?</button></div>' +
         '<div class="rv2-btns">' + (due ? '<a class="btn rvh-go" href="#/review">Ôn ' + fmt(due) + ' câu →</a>' : '') + learn + '</div>' +
@@ -163,6 +194,7 @@
           '<span class="lvl-n' + (n === L.lessons.length ? ' full' : '') + '">' + n + '/' + L.lessons.length + '</span></a>';
       }).join('') + '</div>';
     $('#rvh-help').onclick = () => { const e = $('#rvh-explain'); e.hidden = !e.hidden; };
+    bindHero(due);
   }
 
   // Chọn giọng đọc nam / nữ (dùng chung)

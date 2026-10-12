@@ -998,3 +998,28 @@ body.noscroll { overflow: hidden; }
 .pf-st.now { background: color-mix(in srgb, var(--lc) 14%, var(--card)); box-shadow: inset 0 0 0 2px var(--lc); }
 .acc-card { margin-top: 0; }
 @media (max-width: 420px) { .pf-path { grid-template-columns: repeat(4, 1fr); row-gap: 8px; } .pf-st small { font-size: .62rem; } }
+
+/* ---------- Hiyo to trên trang chủ: nhảy nhảy cổ vũ ---------- */
+.hy-hero { position: relative; margin-bottom: 14px; padding: 16px 16px 12px; border-radius: 24px; text-align: center; overflow: hidden;
+  background: radial-gradient(circle at 50% 75%, color-mix(in srgb, var(--lc) 26%, var(--card)) 0, color-mix(in srgb, var(--lc) 10%, var(--card)) 55%, var(--card) 100%);
+  border: 1.5px solid color-mix(in srgb, var(--lc) 35%, transparent); }
+.hy-bub { position: relative; display: inline-block; max-width: 92%; padding: 10px 16px; border-radius: 18px; background: var(--card); border: 1.5px solid color-mix(in srgb, var(--lc) 40%, transparent); font-weight: 700; font-size: .98rem; line-height: 1.4; box-shadow: 0 4px 14px rgba(0, 0, 0, .06); }
+.hy-bub::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 14px; height: 14px; background: var(--card); border-right: 1.5px solid color-mix(in srgb, var(--lc) 40%, transparent); border-bottom: 1.5px solid color-mix(in srgb, var(--lc) 40%, transparent); transform: translateX(-50%) rotate(45deg); }
+.hy-bub.pop-in { animation: hyPop .35s ease; }
+@keyframes hyPop { 0% { transform: scale(.85); opacity: .3; } 100% { transform: scale(1); opacity: 1; } }
+.hy-stage { position: relative; display: block; margin: 8px auto 0; width: 210px; height: 200px; border: 0; background: none; padding: 0; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.hy-big { position: absolute; left: 0; right: 0; top: 14px; height: 168px; display: flex; justify-content: center; transform-origin: 50% 100%; animation: hyHop 1.5s cubic-bezier(.3, .7, .4, 1) infinite; }
+.hy-big svg { width: 190px; height: 170px; }
+.hy-shadow { position: absolute; left: 50%; bottom: 8px; width: 110px; height: 14px; margin-left: -55px; border-radius: 50%; background: rgba(0, 0, 0, .14); animation: hyShadow 1.5s cubic-bezier(.3, .7, .4, 1) infinite; }
+@keyframes hyHop { 0%, 100% { transform: translateY(0) scale(1.05, .95); } 12% { transform: translateY(0) scale(1, 1); } 40% { transform: translateY(-26px) scale(.97, 1.03) rotate(-3deg); } 60% { transform: translateY(-26px) scale(.97, 1.03) rotate(3deg); } 85% { transform: translateY(0) scale(1.06, .94); } }
+@keyframes hyShadow { 0%, 12%, 85%, 100% { transform: scale(1); opacity: 1; } 40%, 60% { transform: scale(.7); opacity: .5; } }
+.hy-stage.jump .hy-big { animation: hyJump .9s cubic-bezier(.3, .7, .4, 1), hyHop 1.5s cubic-bezier(.3, .7, .4, 1) .9s infinite; }
+@keyframes hyJump { 0% { transform: scale(1.1, .9); } 35% { transform: translateY(-60px) rotate(-12deg) scale(1.05); } 55% { transform: translateY(-64px) rotate(12deg) scale(1.05); } 80% { transform: translateY(0) scale(1.12, .88); } 100% { transform: none; } }
+.hy-spark { position: absolute; color: var(--lc); font-size: 1.2rem; opacity: 0; animation: hySpark 2.4s ease-in-out infinite; }
+.hy-spark.s1 { left: 8px; top: 40px; } .hy-spark.s2 { right: 10px; top: 22px; animation-delay: .8s; font-size: 1.5rem; } .hy-spark.s3 { right: 22px; bottom: 50px; animation-delay: 1.6s; }
+@keyframes hySpark { 0%, 100% { opacity: 0; transform: scale(.4) rotate(0); } 50% { opacity: 1; transform: scale(1) rotate(90deg); } }
+.hy-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.hy-lv { padding: 4px 12px; border-radius: 999px; background: var(--lc); color: #fff; font-weight: 800; font-size: .8rem; }
+.hy-edit { font-weight: 800; font-size: .85rem; color: var(--lc); text-decoration: none; }
+@media (min-width: 700px) { .hy-stage { width: 240px; height: 220px; } .hy-big { height: 190px; } .hy-big svg { width: 220px; height: 190px; } }
+@media (prefers-reduced-motion: reduce) { .hy-big, .hy-shadow, .hy-spark, .hy-stage.jump .hy-big { animation: none; } .hy-spark { opacity: .6; } }
