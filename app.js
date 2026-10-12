@@ -40,11 +40,15 @@
   // tokens [[từ,'pin yin'],…] → HTML: mỗi chữ Hán là <ruby> có pinyin; mỗi từ gói trong .wd; chữ Hán đánh số .w (để tô màu khi chấm)
   function zh(tk) {
     let k = 0;
-    return tk.map(([w, p]) => {
+    const out = [];
+    tk.forEach(([w, p]) => {
       const ps = p ? p.split(' ') : [];
       const inner = Array.from(w).map((c, i) => HAN.test(c) ? '<ruby class="w" data-k="' + (k++) + '">' + esc(c) + '<rt>' + esc(ps[i] || '') + '</rt></ruby>' : '<span class="pu">' + esc(c) + '</span>').join('');
-      return '<span class="wd">' + inner + '</span>';
-    }).join('');
+      // Dấu câu dính vào từ đứng trước để không bị rơi xuống dòng riêng
+      if (!p && out.length && !HAN.test(w) && !/^[“（《]/.test(w)) out[out.length - 1] = out[out.length - 1].slice(0, -7) + inner + '</span>';
+      else out.push('<span class="wd">' + inner + '</span>');
+    });
+    return out.join('');
   }
   // pinyin cả câu dạng chuẩn (các âm tiết trong một từ viết liền)
   const pyLine = tk => tk.map(([w, p]) => p ? p.split(' ').join('') : w).join(' ').replace(/ ([，。！？、；：”）…])/g, '$1').replace(/[，]/g, ', ').replace(/[。]/g, '. ').replace(/[！]/g, '! ').replace(/[？]/g, '? ').replace(/\s+/g, ' ').trim();
@@ -94,7 +98,7 @@
     SP.stop(); SP.stopListening();
     if (cleanup) { cleanup(); cleanup = null; }
     const parts = (location.hash.replace(/^#\/?/, '') || '').split('/').filter(Boolean);
-    const tab = { review: 'review', shadow: 'shadow', settings: 'settings', guide: 'settings', account: 'settings', feedback: 'settings', vocab: 'vocab' }[parts[0]] || 'home';
+    const tab = { review: 'review', shadow: 'shadow', settings: 'settings', guide: 'settings', account: 'settings', feedback: 'settings' }[parts[0]] || 'home';
     $$('.tabs a').forEach(a => a.classList.toggle('on', a.dataset.tab === tab));
     refreshTop();
     window.scrollTo(0, 0);
@@ -106,7 +110,6 @@
     const X = window.SEX;
     if (X && parts[0] === 'feedback') return X.viewFeedback(app);
     if (parts[0] === 'shadow' && window.SEShadow) { const c = window.SEShadow.view(app, parts[1], parts[2]); if (typeof c === 'function') cleanup = c; return; }
-    if (parts[0] === 'vocab' && window.SEVocab) return window.SEVocab.view(app, parts[1], parts[2]);
     viewHome();
   }
   window.addEventListener('hashchange', route);
@@ -340,9 +343,9 @@
     el.innerHTML = '<div class="say fix' + (o.long ? ' long' : '') + '">' +
       '<div class="say-en zh" id="se">' + zh(o.tk) + '</div>' +
       (o.vi ? '<div class="say-vi">' + esc(o.vi) + '</div>' : '') +
-      '<div class="say-ctrl"><button class="btn small" id="li">' + I('speak') + 'Nghe mẫu</button>' +
+      '<div class="say-ctrl"><button class="sbtn" id="li">' + I('speak') + '<span>Nghe mẫu</span></button>' +
       (can ? '<button class="mic" id="mc">' + I('mic') + '<span>Nói</span></button>' : '') +
-      '<button class="btn small" id="sl">' + I('slow') + 'Nghe chậm</button></div>' +
+      '<button class="sbtn" id="sl">' + I('slow') + '<span>Nghe chậm</span></button></div>' +
       '<div class="mic-lbl" id="ml">' + (can ? (o.continuous ? 'Bấm Nói, kể hết cả đoạn, nói xong bấm Dừng' : 'Nghe mẫu, rồi bấm Nói và đọc to cả câu') : '') + '</div>' +
       '<div class="heard" id="hd"></div><div class="score" id="sc"></div>' +
       (can ? '' : '<div class="note">Trình duyệt này chưa hỗ trợ chấm phát âm (hãy dùng Chrome, Edge hoặc Safari mới). Bạn vẫn có thể nghe, nói theo và tự đánh giá:</div><div class="self-rate"><button class="btn small" data-s="40">Chưa giống</button><button class="btn small" data-s="70">Khá giống</button><button class="btn small" data-s="95">Giống rồi</button></div>') +
@@ -700,7 +703,7 @@
       const s = $('#acc-sync'); if (s) s.textContent = SYNC_TXT[window.SECloud.status()];
       if (/^#\/account/.test(location.hash)) { const u = window.SECloud.user(), h = $('.acc-card h2'); if (!!u !== !!$('#acc-out')) route(); else if (u && h && h.textContent !== (u.name || 'Người học')) h.textContent = u.name || 'Người học'; }
     });
-    window.addEventListener('sumi:synced', () => { applyTheme(); setPy(ST.cfg('hidePy') !== true); if (!/lesson|review|shadow\/.|vocab\/.+\/./.test(location.hash)) route(); else refreshTop(); });
+    window.addEventListener('sumi:synced', () => { applyTheme(); setPy(ST.cfg('hidePy') !== true); if (!/lesson|review|shadow\/./.test(location.hash)) route(); else refreshTop(); });
   }
 
   // ---------- Khởi động ----------

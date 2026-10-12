@@ -874,3 +874,35 @@ body.noscroll { overflow: hidden; }
 .set-c .row { flex-wrap: wrap; gap: 8px; }
 .set-c .sel { flex: 1 1 180px; min-width: 0; }
 .set-c .btn .ic { margin-right: 4px; }
+
+/* ---------- Màn luyện nói (Nói theo) — gọn, cân đối ---------- */
+.progress-dots { gap: 4px; margin: 4px auto 14px; max-width: 420px; }
+.progress-dots i { flex: 1; max-width: 26px; height: 6px; border-radius: 3px; background: var(--line); cursor: pointer; transform: none; }
+.progress-dots i.ok { background: #4ade80; }
+.progress-dots i.bad { background: #fca5a5; }
+.progress-dots i.cur, .progress-dots i.cur.ok, .progress-dots i.cur.bad { background: var(--brown); transform: none; }
+.who-line { display: table; margin: 0 auto 4px; padding: 4px 12px; border-radius: 999px; background: var(--yellow-l); color: var(--brown); font-size: .74rem; letter-spacing: .04em; }
+.say { padding: 4px 0 2px; }
+.say-en { font-size: 1.55rem; margin: 8px 0 4px; }
+.say-vi { margin-bottom: 18px; font-size: .95rem; }
+.say-ctrl { gap: 26px; align-items: flex-start; }
+.sbtn { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 74px; border: none; background: none; padding: 0; color: var(--sub); font-weight: 800; font-size: .74rem; }
+.sbtn .ic { width: 54px; height: 54px; padding: 15px; border-radius: 50%; background: var(--card); border: 1.5px solid var(--line); color: var(--brown); box-shadow: var(--shadow); transition: transform .12s, border-color .15s; }
+.sbtn:hover .ic { border-color: var(--tile); }
+.sbtn:active .ic { transform: scale(.93); }
+.mic { width: 78px; height: 78px; margin-top: -6px; box-shadow: 0 8px 22px rgba(225, 29, 72, .28); font-size: .82rem; }
+.mic .ic { width: 1.7em; height: 1.7em; }
+.mic-lbl { margin-top: 12px; font-weight: 700; font-size: .78rem; }
+.heard { font-size: .86rem; }
+.score:not(:empty) { background: var(--bg); border-radius: 16px; padding: 10px 14px; width: fit-content; margin-left: auto; margin-right: auto; }
+.say.fix .score:empty { min-height: 0; margin-top: 0; }
+.say.fix .heard:empty { min-height: 0; margin-top: 0; }
+.rec { margin-top: 12px; }
+.rec-btn { border-style: dashed; background: transparent; color: var(--sub); font-size: .8rem; padding: 6px 14px; }
+.box-fix { min-height: 270px; }
+.pager { margin-top: 16px; padding-top: 14px; border-top: 1.5px solid var(--line); }
+.pager .btn:first-child { flex: 0 0 auto; background: transparent; border-color: transparent; color: var(--sub); box-shadow: none; }
+.pager .btn:first-child:disabled { opacity: .35; }
+.pager .cnt { font-size: .82rem; }
+.pager .btn.primary { flex: 0 1 200px; margin-left: auto; }
+@media (max-width: 420px) { .say-ctrl { gap: 18px; } .say-en { font-size: 1.4rem; } }

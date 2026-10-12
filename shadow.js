@@ -178,7 +178,7 @@
       }
     });
     $('#se', P).style.display = 'none';
-    $('#li', P).innerHTML = I('speak') + 'Nghe cả đoạn';
+    $('#li', P).innerHTML = I('speak') + '<span>Nghe cả đoạn</span>';
     return () => { run++; };
   }
 

@@ -19,14 +19,6 @@ MỖI BÀI 4 BƯỚC
   4. Nhập vai: chỉ nhìn nghĩa tiếng Việt, tự nói câu tiếng Trung
   Học xong, các câu vào hộp ÔN TẬP NGẮT QUÃNG (1-2-4-7-14-30-60-120 ngày).
 
-TỪ VỰNG THEO CHỦ ĐỀ (tab "Từ vựng")
-  24 chủ đề, 480 mục: bốn thanh điệu, âm dễ nhầm (zh/ch/sh, z/c/s, j/q/x, ü…), chữ số, ngày giờ,
-  màu sắc, động vật, cây cối, xe cộ, nhà bếp, phòng tắm, đồ đạc, trái cây, rau củ, đồ ăn, quần áo,
-  cơ thể, gia đình, nghề nghiệp, trường học, địa điểm, thời tiết, cảm xúc, tính từ trái nghĩa, động từ.
-  Chạm vào từ chỉ đọc từ; chạm vào câu ví dụ mới đọc câu.
-  Bài luyện 10 câu: nghe chọn thanh điệu · nghe chọn pinyin · nghe số gõ chữ số · nhìn số đọc to ·
-  nghe giờ chọn đồng hồ · nghe ngày tháng · nghe chọn nghĩa · nghe chọn chữ Hán · nhìn nghĩa nói từ.
-
 SHADOWING · TỰ KỂ CHUYỆN (tab "Shadowing")
   72 đoạn văn ngắn kể ở ngôi "tôi", 12 đoạn mỗi cấp HSK 1 → HSK 6, có chữ Hán, pinyin, nghĩa:
   giới thiệu bản thân, gia đình, nhà và nơi mình sống, một ngày của tôi, công việc, quê hương,
