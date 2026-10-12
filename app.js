@@ -40,7 +40,10 @@
   const lvReached = () => { const D = ST.get().done; let r = -1; LEVELS.forEach((L, i) => { if (L.lessons.some(l => D[l.id])) r = i; }); return r; };
   const hiyoForm = () => { const r = lvReached(); return r < 0 ? 0 : LEVELS[r].form; };
   const lvBadge = (L, reached) => '<span class="lvl-badge hy-b' + (reached ? '' : ' lock') + '" style="--lc:' + L.color + '">' + window.HIYO.svg(L.form, reached ? 'happy' : 'sleep') + '<em>' + esc(L.name) + '</em></span>';
-  const hiyo = (mood, f) => window.HIYO.svg(f == null ? hiyoForm() : f, mood || 'happy');
+  // Hiyo của người học: phụ kiện chọn ở trang cá nhân hiện ở mọi nơi; khuôn mặt chọn riêng hiện ở logo và trang cá nhân
+  const hyAcc = () => ST.cfg('hyAcc') || 'none';
+  const hyFace = () => ST.cfg('hyFace') || 'happy';
+  const hiyo = (mood, f) => window.HIYO.svg(f == null ? hiyoForm() : f, mood || 'happy', { acc: hyAcc() });
   const initial = n => esc((n || '?').trim()[0].toUpperCase());
   // ---------- Chữ Hán + pinyin ----------
   const HAN = /[\u4e00-\u9fff]/;
@@ -84,7 +87,7 @@
     $('#st-xp').textContent = fmt(S.xp) + ' XP';
     const due = ST.dueIds().length;
     const b = $('#tab-due'); b.hidden = !due; b.textContent = due > 99 ? '99+' : due;
-    $('#brand-hiyo').innerHTML = hiyo('happy');
+    $('#brand-hiyo').innerHTML = hiyo(hyFace());
     const CL = window.SECloud, acc = $('#st-acc');
     if (acc) {
       if (!CL || !CL.enabled()) acc.hidden = true;
@@ -664,6 +667,49 @@
   }
 
   // ================= TÀI KHOẢN =================
+  // ================= TRANG CÁ NHÂN: Hiyo của bạn =================
+  const HY_FACES = [['happy', 'Vui'], ['joy', 'Cười tươi'], ['cheer', 'Hào hứng'], ['wink', 'Nháy mắt'], ['cool', 'Ngầu'], ['calm', 'Bình yên'], ['wow', 'Ngạc nhiên'], ['think', 'Suy nghĩ']];
+  const HY_ACCS = [['none', 'Không'], ['glasses', 'Kính'], ['ribbon', 'Nơ'], ['sakura', 'Hoa anh đào'], ['leaf', 'Lá non'], ['band', 'Băng đô'], ['headphones', 'Tai nghe'], ['cap', 'Mũ lưỡi trai'], ['bowtie', 'Nơ cổ'], ['scarf', 'Khăn quàng'], ['star', 'Ngôi sao'], ['crown', 'Vương miện'], ['graduate', 'Mũ tốt nghiệp']].filter(a => window.HIYO.ACC.includes(a[0]));
+  let pfTab = 'face';
+  function profileHtml(u, CL) {
+    const S = ST.get(), r = lvReached(), L = LEVELS[Math.max(0, r)], f = hiyoForm();
+    const name = u ? (u.name || 'Người học') : 'Bạn';
+    return '<section class="card pf-hero pop" style="--lc:' + L.color + '">' +
+        '<div class="pf-hy" id="pf-hy">' + window.HIYO.svg(f, hyFace(), { acc: hyAcc() }) + '</div>' +
+        '<h1>' + esc(name) + '</h1>' +
+        (u ? '<p class="muted pf-mail">' + esc(u.email || '') + ' · ' + (u.provider === 'google.com' ? 'Google' : 'Email') + '</p>' : '') +
+        '<div class="pf-pills"><span class="pf-lv">' + (r < 0 ? 'Chưa bắt đầu · ' + window.HIYO.NAMES[0] : esc(L.name) + ' · ' + window.HIYO.NAMES[f]) + '</span>' +
+        (u && CL ? '<span class="acc-sync" id="acc-sync">' + SYNC_TXT[CL.status()] + '</span>' : '') + '</div>' +
+        '<div class="rvh-stats pf-stats"><div><b>' + totalDone() + '</b><small>bài đã học</small></div><div><b>' + fmt(Object.keys(S.cards).length) + '</b><small>câu ôn tập</small></div><div><b>' + fmt(S.xp) + '</b><small>XP</small></div><div><b>' + ST.streak() + '</b><small>ngày học</small></div></div>' +
+      '</section>' + (u ? '' : '<!--LOGIN-->') +
+      '<section class="card pf-sec pop" style="--lc:' + L.color + '"><h2>Trang trí Hiyo</h2>' +
+        '<div class="pf-tabs"><button data-t="face">Khuôn mặt</button><button data-t="acc">Phụ kiện</button></div>' +
+        '<div class="pf-grid" id="pf-grid"></div>' +
+        '<p class="muted pf-note">Phụ kiện sẽ đi theo Hiyo ở mọi nơi trong trang. Khuôn mặt hiện ở logo và trang cá nhân.</p></section>' +
+      '<section class="card pf-sec pop"><h2>Hành trình tiến hóa</h2><div class="pf-path">' +
+        '<div class="pf-st' + (r < 0 ? ' now' : ' ok') + '" style="--lc:#a8a29e">' + window.HIYO.svg(0, 'sleep') + '<b>Trứng</b><small>' + window.HIYO.NAMES[0] + '</small></div>' +
+        LEVELS.map((X, i) => '<div class="pf-st' + (i === r ? ' now' : i < r ? ' ok' : ' lock') + '" style="--lc:' + X.color + '">' + window.HIYO.svg(X.form, i <= r ? 'happy' : 'sleep') + '<b>' + esc(X.name) + '</b><small>' + window.HIYO.NAMES[X.form] + '</small></div>').join('') +
+      '</div><p class="muted pf-note">Học bài đầu tiên của cấp mới là Hiyo tiến hóa.</p></section>';
+  }
+  function bindProfile() {
+    const grid = $('#pf-grid'); if (!grid) return;
+    const draw = () => {
+      $$('.pf-tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === pfTab));
+      const f = hiyoForm(), list = pfTab === 'face' ? HY_FACES : HY_ACCS, cur = pfTab === 'face' ? hyFace() : hyAcc();
+      grid.innerHTML = list.map(x => '<button class="pf-opt' + (x[0] === cur ? ' on' : '') + '" data-v="' + x[0] + '">' +
+        window.HIYO.svg(f, pfTab === 'face' ? x[0] : hyFace(), { acc: pfTab === 'acc' ? x[0] : hyAcc() }) + '<small>' + x[1] + '</small></button>').join('');
+      $$('.pf-opt', grid).forEach(b => b.onclick = () => {
+        ST.cfg(pfTab === 'face' ? 'hyFace' : 'hyAcc', b.dataset.v);
+        $('#pf-hy').innerHTML = window.HIYO.svg(f, hyFace(), { acc: hyAcc() });
+        $('#pf-hy').classList.remove('bounce'); void $('#pf-hy').offsetWidth; $('#pf-hy').classList.add('bounce');
+        $('#brand-hiyo').innerHTML = hiyo(hyFace());
+        draw();
+      });
+    };
+    $$('.pf-tabs button').forEach(b => b.onclick = () => { pfTab = b.dataset.t; draw(); });
+    draw();
+  }
+
   function viewAccount() {
     const CL = window.SECloud;
     if (!CL || !CL.enabled()) {
@@ -672,26 +718,24 @@
     }
     const u = CL.user();
     if (u) {
-      const S = ST.get();
-      app.innerHTML = '<a class="back" href="#/settings">← Cài đặt</a><section class="card panel pop acc-card"><div class="acc-av">' + esc((u.name || u.email || '?').trim()[0].toUpperCase()) + '</div>' +
-        '<h2>' + esc(u.name || 'Người học') + '</h2><p class="muted">' + esc(u.email) + ' · đăng nhập bằng ' + (u.provider === 'google.com' ? 'Google' : 'Email') + '</p>' +
-        '<div class="acc-sync" id="acc-sync">' + SYNC_TXT[CL.status()] + '</div>' +
-        '<div class="rvh-stats"><div><b>' + totalDone() + '</b><small>bài đã học</small></div><div><b>' + fmt(Object.keys(S.cards).length) + '</b><small>câu ôn tập</small></div><div><b>' + fmt(S.xp) + '</b><small>XP</small></div><div><b>' + ST.streak() + '</b><small>ngày học</small></div></div>' +
-        '<p class="muted" style="font-size:.88rem;margin:14px 0">Tiến độ được tự động lưu lên tài khoản sau mỗi lần học. Đăng nhập cùng tài khoản trên máy khác là học tiếp được ngay.</p>' +
+      app.innerHTML = '<a class="back" href="#/settings">← Cài đặt</a>' + profileHtml(u, CL) +
+        '<section class="card pf-sec pop"><p class="muted pf-note">Tiến độ được tự động lưu lên tài khoản sau mỗi lần học. Đăng nhập cùng tài khoản trên máy khác là học tiếp được ngay.</p>' +
         '<div class="row center"><button class="btn" id="acc-now">Đồng bộ ngay</button><button class="btn ghost" id="acc-out">Đăng xuất</button></div></section>';
+      bindProfile();
       $('#acc-now').onclick = async () => { await CL.syncNow(); toast('Đã đồng bộ'); };
       $('#acc-out').onclick = async () => { if (!confirm('Đăng xuất? Tiến độ đã được lưu trên tài khoản, đăng nhập lại là có ngay. Máy này sẽ trở về trạng thái chưa đăng nhập.')) return; await CL.signOut(); route(); };
       return;
     }
     let mode = 'in';
     const draw = () => {
-      app.innerHTML = '<a class="back" href="#/settings">← Cài đặt</a><section class="card panel pop acc-card"><div class="panel-h"><h2>' + (mode === 'in' ? 'Đăng nhập' : 'Tạo tài khoản') + '</h2><p>Đăng nhập để lưu tiến độ lên tài khoản và học tiếp trên mọi thiết bị. Tiến độ đang có trên máy này sẽ được gộp vào tài khoản.</p></div>' +
+      app.innerHTML = '<a class="back" href="#/settings">← Cài đặt</a>' + profileHtml(null).replace('<!--LOGIN-->', '<section class="card panel pop acc-card pf-sec"><div class="panel-h"><h2>' + (mode === 'in' ? 'Đăng nhập' : 'Tạo tài khoản') + '</h2><p>Đăng nhập để lưu tiến độ lên tài khoản và học tiếp trên mọi thiết bị. Tiến độ đang có trên máy này sẽ được gộp vào tài khoản.</p></div>' +
         (CL.providers.google ? '<button class="btn block acc-google" id="g">Tiếp tục với Google</button><div class="acc-or">hoặc dùng email</div>' : '') +
         (CL.providers.email ? '<form class="acc-form" id="f">' + (mode === 'up' ? '<input id="nm" placeholder="Tên của bạn" autocomplete="name">' : '') +
           '<input id="em" type="email" placeholder="Email" autocomplete="email" required><input id="pw" type="password" placeholder="Mật khẩu (ít nhất 6 ký tự)" autocomplete="' + (mode === 'in' ? 'current-password' : 'new-password') + '" required minlength="6">' +
           '<button class="btn primary block" type="submit">' + (mode === 'in' ? 'Đăng nhập' : 'Tạo tài khoản') + '</button></form>' +
           '<div class="row center acc-links"><button class="btn small ghost" id="sw">' + (mode === 'in' ? 'Chưa có tài khoản? Tạo mới' : 'Đã có tài khoản? Đăng nhập') + '</button>' + (mode === 'in' ? '<button class="btn small ghost" id="fg">Quên mật khẩu</button>' : '') + '</div>' : '') +
-        '<div class="acc-msg" id="msg"></div></section>';
+        '<div class="acc-msg" id="msg"></div></section>');
+      bindProfile();
       const msg = (t, bad) => { $('#msg').innerHTML = '<span class="' + (bad ? 'bad' : '') + '">' + esc(t) + '</span>'; };
       const go = async fn => { try { msg('Đang xử lý…'); await fn(); } catch (e) { msg(CL.errMsg(e), true); } };
       if ($('#g')) $('#g').onclick = () => go(() => CL.google());
