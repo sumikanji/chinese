@@ -930,3 +930,16 @@ body.noscroll { overflow: hidden; }
 .rv2-stats b { color: var(--ink); font-size: .9rem; }
 .rv2-ex { margin-top: 10px; font-size: .84rem; }
 @media (max-width: 420px) { .rv2-btns { flex-direction: column; } .rv2-stats { justify-content: flex-start; } }
+/* Ôn tập hôm nay: to hơn một chút, biểu đồ 7 ngày như cũ */
+.rv2 { padding: 16px 18px; }
+.rv2-hiyo { width: 64px; height: 64px; }
+.rv2-t h2 { font-size: 1.3rem; }
+.rv2-t p { font-size: .95rem; }
+.rv2-num { font-size: 1.5rem; }
+.rv2-btns { margin: 14px 0 12px; }
+.rv2-btns .btn { min-height: 48px; font-size: .95rem; }
+.rv2-chart { margin-top: 2px; }
+.rv2-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; justify-content: stretch; }
+.rv2-stats > div { background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 8px 4px; text-align: center; }
+.rv2-stats b { display: block; font-family: var(--head); font-size: 1.15rem; color: var(--ink); }
+.rv2-stats small { font-size: .7rem; color: var(--sub); font-weight: 700; }

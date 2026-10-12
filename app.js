@@ -135,9 +135,9 @@
           '<div class="rv2-t"><h2>Ôn tập hôm nay</h2><p><b class="rv2-num">' + fmt(due) + '</b> câu đến hạn</p></div>' +
           '<button class="rv2-help" id="rvh-help" aria-label="Cách hoạt động">?</button></div>' +
         '<div class="rv2-btns">' + (due ? '<a class="btn rvh-go" href="#/review">Ôn ' + fmt(due) + ' câu →</a>' : '') + learn + '</div>' +
-        '<div class="rv2-foot"><div class="rv2-bars" title="Số câu đến hạn 7 ngày tới">' + fc.map((n, i) =>
-          '<div class="rv2-col' + (i === 0 ? ' now' : '') + '"><i style="height:' + (n ? Math.max(18, 100 * n / mx) : 10) + '%"></i><span>' + lbl(i) + '</span></div>').join('') + '</div>' +
-          '<div class="rv2-stats"><span><b>' + ST.streak() + '</b> ngày</span><span><b>' + totalDone() + '</b> bài</span><span><b>' + fmt(Object.keys(S.cards).length) + '</b> câu đã gặp</span><span><b>' + fmt(ST.mastered()) + '</b> đã thuộc</span></div></div>' +
+        '<div class="rvh-chart rv2-chart"><small>7 NGÀY TỚI</small><div class="rvh-bars">' + fc.map((n, i) =>
+          '<div class="rvh-col' + (i === 0 ? ' now' : '') + '"><span class="v">' + (n || '') + '</span><i style="height:' + (n ? Math.max(8, 100 * n / mx) : 4) + '%"></i><span class="d">' + lbl(i) + '</span></div>').join('') + '</div></div>' +
+        '<div class="rv2-stats"><div><b>' + ST.streak() + '</b><small>ngày học</small></div><div><b>' + totalDone() + '</b><small>bài đã học</small></div><div><b>' + fmt(Object.keys(S.cards).length) + '</b><small>câu đã gặp</small></div><div><b>' + fmt(ST.mastered()) + '</b><small>câu đã thuộc</small></div></div>' +
         '<div class="rvh-explain rv2-ex" id="rvh-explain" hidden>Sumi không dạy từ vựng rời rạc: bạn học ' + fmt(LEVELS.reduce((x, L) => x + sentCount(L), 0)) + ' câu hội thoại thật, từ vựng tự đến qua câu. Mỗi câu đã học có một ngày ôn. Nhớ đúng thì lần ôn sau cách xa hơn: 1 → 2 → 4 → 7 → 14 → 30 → 60 → 120 ngày. Quên thì câu quay lại gần đầu và được hỏi lại vào ngày mai. Biểu đồ cho biết mỗi ngày tới có bao nhiêu câu đến hạn.</div>' +
       '</section>' +
       '<h2 class="sec">Lộ trình HSK 1 → HSK 6</h2>' +
