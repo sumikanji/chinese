@@ -943,3 +943,21 @@ body.noscroll { overflow: hidden; }
 .rv2-stats > div { background: var(--card); border: 1.5px solid var(--line); border-radius: 14px; padding: 8px 4px; text-align: center; }
 .rv2-stats b { display: block; font-family: var(--head); font-size: 1.15rem; color: var(--ink); }
 .rv2-stats small { font-size: .7rem; color: var(--sub); font-weight: 700; }
+
+/* ---------- Hiyo theo cấp độ (mỗi cấp một màu, một dạng Hiyo) ---------- */
+.lvl { grid-template-columns: 72px 1fr auto; border-left: 4px solid var(--lc, transparent); }
+.lvl .bar i { background: var(--lc); }
+.lvl-badge.hy-b { position: relative; width: 72px; height: 72px; flex: none; border-radius: 22px; padding: 0; box-shadow: none; display: flex; align-items: flex-start; justify-content: center; background: color-mix(in srgb, var(--lc) 15%, var(--card)); border: 2px solid color-mix(in srgb, var(--lc) 40%, transparent); }
+.hy-b svg { width: 62px; height: 56px; margin-top: 3px; }
+.hy-b em { position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); background: var(--lc); color: #fff; font-style: normal; font-family: var(--head); font-size: .72rem; font-weight: 900; line-height: 1.6; padding: 0 9px; border-radius: 99px; white-space: nowrap; }
+.hy-b.lock svg { filter: grayscale(1); opacity: .45; }
+.lvl-head { border-top: 4px solid var(--lc, transparent); padding-bottom: 20px; }
+.lvl-head .hy-b { width: 84px; height: 84px; }
+.lvl-head .hy-b svg { width: 74px; height: 66px; }
+.hy-note { font-size: .82rem !important; margin-top: 4px !important; color: var(--sub); }
+.hy-note b { color: var(--lc); }
+.hy-evo { display: flex; align-items: center; gap: 12px; text-align: left; margin: 0 0 14px; padding: 10px 14px; border-radius: 16px; background: color-mix(in srgb, var(--lc) 14%, var(--card)); border: 1.5px solid color-mix(in srgb, var(--lc) 45%, transparent); }
+.hy-evo-i svg { width: 64px; height: 58px; display: block; }
+.hy-evo b { display: block; color: var(--lc); font-size: 1.05rem; }
+.hy-evo span { font-size: .85rem; color: var(--sub); }
+@media (max-width: 420px) { .lvl { grid-template-columns: 64px 1fr auto; gap: 12px; } .lvl .hy-b { width: 64px; height: 64px; } .lvl .hy-b svg { width: 56px; height: 50px; } }

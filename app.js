@@ -32,7 +32,14 @@
     if (ch) ST.save();
   })();
   const totalDone = () => Object.keys(ST.get().done).length;
-  const hiyoForm = () => Math.min(8, 1 + Math.floor(totalDone() / 20));
+  // Mỗi cấp một màu + một dạng Hiyo: cấp 1 Piyo → cấp 6 Phượng hoàng
+  const LV_COLOR = ['#f59e0b', '#10b981', '#0ea5e9', '#6366f1', '#a855f7', '#e11d48'];
+  const LV_FORM = [1, 2, 3, 4, 7, 8];
+  LEVELS.forEach((L, i) => { L.color = LV_COLOR[i] || L.color; L.form = LV_FORM[i] == null ? 8 : LV_FORM[i]; L.i = i; });
+  // Cấp cao nhất đã học ít nhất 1 bài (-1 = chưa học gì → Hiyo còn là trứng)
+  const lvReached = () => { const D = ST.get().done; let r = -1; LEVELS.forEach((L, i) => { if (L.lessons.some(l => D[l.id])) r = i; }); return r; };
+  const hiyoForm = () => { const r = lvReached(); return r < 0 ? 0 : LEVELS[r].form; };
+  const lvBadge = (L, reached) => '<span class="lvl-badge hy-b' + (reached ? '' : ' lock') + '" style="--lc:' + L.color + '">' + window.HIYO.svg(L.form, reached ? 'happy' : 'sleep') + '<em>' + esc(L.name) + '</em></span>';
   const hiyo = (mood, f) => window.HIYO.svg(f == null ? hiyoForm() : f, mood || 'happy');
   const initial = n => esc((n || '?').trim()[0].toUpperCase());
   // ---------- Chữ Hán + pinyin ----------
@@ -142,10 +149,11 @@
       '</section>' +
       '<h2 class="sec">Lộ trình HSK 1 → HSK 6</h2>' +
       '<div class="levels">' + LEVELS.map(L => {
+        const rch = lvReached();
         const n = L.lessons.filter(l => S.done[l.id]).length;
         const voc = (window.SE_VOCAB || {})[L.id];
-        return '<a class="card lvl" href="#/level/' + L.id + '">' +
-          '<span class="lvl-badge hsk" style="background:' + L.color + '"><small>HSK</small>' + L.name.replace(/\D/g, '') + '</span>' +
+        return '<a class="card lvl" style="--lc:' + L.color + '" href="#/level/' + L.id + '">' +
+          lvBadge(L, L.i <= rch) +
           '<div><h3>' + esc(L.title) + '</h3><p>' + esc(L.sub) + '</p>' +
           '<p class="lvl-meta">' + L.lessons.length + ' bài · ' + fmt(sentCount(L)) + ' câu' + (voc ? ' · ' + fmt(voc) + ' từ vựng' : '') + '</p>' +
           '<div class="bar"><i style="width:' + (100 * n / L.lessons.length) + '%"></i></div></div>' +
@@ -175,8 +183,9 @@
     const S = ST.get();
     const voc = (window.SE_VOCAB || {})[L.id];
     app.innerHTML = '<a class="back" href="#/">← Lộ trình</a>' +
-      '<div class="card lvl-head pop"><span class="lvl-badge hsk" style="background:' + L.color + '"><small>HSK</small>' + L.name.replace(/\D/g, '') + '</span><div><h1>' + esc(L.title) + '</h1><p class="muted">' + esc(L.sub) + '</p>' +
-      '<p class="lvl-meta">' + L.lessons.length + ' bài · ' + fmt(sentCount(L)) + ' câu' + (voc ? ' · ' + fmt(voc) + ' từ vựng' : '') + '</p></div></div>' +
+      '<div class="card lvl-head pop" style="--lc:' + L.color + '">' + lvBadge(L, L.i <= lvReached()) + '<div><h1>' + esc(L.title) + '</h1><p class="muted">' + esc(L.sub) + '</p>' +
+      '<p class="lvl-meta">' + L.lessons.length + ' bài · ' + fmt(sentCount(L)) + ' câu' + (voc ? ' · ' + fmt(voc) + ' từ vựng' : '') + '</p>' +
+        '<p class="hy-note">Hiyo ở cấp này: <b>' + window.HIYO.NAMES[L.form] + '</b></p></div></div>' +
       '<div class="lessons">' + L.lessons.map((l, i) => {
         const d = S.done[l.id];
         return '<a class="card les" href="#/lesson/' + l.id + '"><span class="les-n" style="color:' + L.color + '">' + (i + 1) + '</span>' +
@@ -488,6 +497,7 @@
     const score = parts.length ? Math.round(parts.reduce((a, b) => a + b, 0) / parts.length) : 60;
     const stars = score >= 85 ? 3 : score >= 65 ? 2 : 1;
     const isNew = !ST.get().done[l.id];
+    const f0 = hiyoForm();
     if (!sc.saved) {
       sc.saved = true;
       ST.finishLesson(l.id, stars, score);
@@ -506,7 +516,8 @@
       '<p class="muted" style="font-size:.9rem;margin-bottom:14px">Ngày mai Sumi sẽ nhắc bạn ôn lại các câu này bằng bài ghép câu và nói câu. Ôn đúng lúc là bí quyết để nhớ lâu và nói được.</p>' +
       '<div class="row">' + (nl ? '<a class="btn primary" href="#/lesson/' + nl.id + '">Bài tiếp: ' + esc(nl.t) + ' →</a>' : '') +
       '<a class="btn" href="#/lesson/' + l.id + '/1">Học lại</a><a class="btn" href="#/level/' + l.level.id + '">Về cấp ' + l.level.name + '</a></div>';
-    if (isNew && totalDone() % 20 === 0) setTimeout(() => toast('Hiyo đã lớn thêm: ' + window.HIYO.NAMES[hiyoForm()] + '!'), 600);
+    const f1 = hiyoForm();
+    if (isNew && f1 !== f0) { const ev = document.createElement('div'); ev.className = 'hy-evo pop'; ev.style.setProperty('--lc', l.level.color); ev.innerHTML = '<div class="hy-evo-i">' + window.HIYO.svg(f1, 'cheer') + '</div><div><b>Hiyo đã tiến hóa!</b><span>Chào ' + window.HIYO.NAMES[f1] + ' · cấp ' + esc(l.level.name) + '</span></div>'; P.prepend(ev); refreshTop(); }
   }
 
   // ================= ÔN TẬP =================
