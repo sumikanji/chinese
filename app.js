@@ -128,6 +128,17 @@
   // ================= TRANG CHỦ =================
   const REPEAT_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 2l3 3-3 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 11V9a4 4 0 0 1 4-4h12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M7 22l-3-3 3-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 13v2a4 4 0 0 1-4 4H4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
   // ================= Hiyo cổ vũ trên trang chủ =================
+  // ----- Gợi ý cài app (ẩn khi đã cài hoặc người học bấm ×) -----
+  function pwaBanner() {
+    const P = window.SEPWA; if (!P || P.installed() || ST.cfg('pwaHide')) return '';
+    return '<div class="pwa-bn pop" id="pwa-bn"><img src="icon-192.png" alt=""><div><b>Cài Sumi ra màn hình chính</b><small>Mở nhanh bằng một chạm, như ứng dụng</small></div>' +
+      '<button class="btn small primary" id="pwa-go">Cài app</button><button class="pwa-x" id="pwa-x" aria-label="Ẩn">×</button></div>';
+  }
+  function bindPwaBanner() {
+    const bn = $('#pwa-bn'); if (!bn) return;
+    $('#pwa-go').onclick = async () => { if (await window.SEPWA.install()) { toast('Đã cài Sumi ra màn hình chính'); bn.remove(); } };
+    $('#pwa-x').onclick = () => { ST.cfg('pwaHide', 1); bn.remove(); };
+  }
   function heroMsgs(due) {
     const st = ST.streak(), n = totalDone(), A = [];
     if (!n) A.push('Chào bạn! Mình là Hiyo. Cùng học bài đầu tiên nhé!', 'Mỗi ngày một chút thôi, mình đi cùng bạn!');
@@ -176,6 +187,7 @@
           '<div class="rvh-col' + (i === 0 ? ' now' : '') + '"><span class="v">' + (n || '') + '</span><i style="height:' + (n ? Math.max(8, 100 * n / mx) : 4) + '%"></i><span class="d">' + lbl(i) + '</span></div>').join('') + '</div></div>' +
         '<div class="rvh-explain rv2-ex" id="rvh-explain" hidden>Sumi không dạy từ vựng rời rạc: bạn học ' + fmt(LEVELS.reduce((x, L) => x + sentCount(L), 0)) + ' câu hội thoại thật, từ vựng tự đến qua câu. Mỗi câu đã học có một ngày ôn. Nhớ đúng thì lần ôn sau cách xa hơn: 1 → 2 → 4 → 7 → 14 → 30 → 60 → 120 ngày. Quên thì câu quay lại gần đầu và được hỏi lại vào ngày mai. Biểu đồ cho biết mỗi ngày tới có bao nhiêu câu đến hạn.</div>' +
       '</section>' +
+      pwaBanner() +
       '<h2 class="sec">Lộ trình HSK 1 → HSK 6</h2>' +
       '<div class="levels">' + LEVELS.map(L => {
         const rch = lvReached();
@@ -190,6 +202,7 @@
       }).join('') + '</div>';
     $('#rvh-help').onclick = () => { const e = $('#rvh-explain'); e.hidden = !e.hidden; };
     bindHero(due);
+    bindPwaBanner();
   }
 
   // Chọn giọng đọc nam / nữ (dùng chung)
@@ -654,6 +667,7 @@
         row('user', '#f59e0b', 'Ảnh của bạn', 'Hiện bên cạnh câu bạn nói trong hội thoại và trong bình luận.', avGrid('avme', me, '<button class="av-b txt' + (me ? '' : ' on') + '" data-a="">Bạn</button>')) +
         row('chat', '#0ea5e9', 'Người nói chuyện', 'Chữ cái đầu tên, mỗi người một con vật, hoặc chọn một ảnh cho tất cả.',
           '<div class="seg" id="avmode"><button class="seg-b' + (them === 'letter' ? ' on' : '') + '" data-m="letter">Chữ cái</button><button class="seg-b' + (them === 'auto' ? ' on' : '') + '" data-m="auto">Mỗi người một con vật</button></div>' + avGrid('avthem', them))) +
+      (window.SEPWA && !window.SEPWA.installed() ? sec('Ứng dụng', row('install', '#c8102e', 'Cài app ra màn hình chính', 'Mở Sumi bằng một chạm từ màn hình điện thoại hoặc máy tính, toàn màn hình như ứng dụng.', '<button class="btn small primary" id="pwa-set">' + I('install') + 'Cài app</button>')) : '') +
       sec('Giao diện',
         row('theme', '#6366f1', 'Chế độ sáng / tối', 'Theo máy: tự đổi giống cài đặt của điện thoại.', '<div class="seg" id="theme">' + [['auto', 'Theo máy'], ['light', 'Sáng'], ['dark', 'Tối']].map(x => '<button class="seg-b' + (th === x[0] ? ' on' : '') + '" data-t="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>') +
       row('text', '#8b5cf6', 'Pinyin', 'Tắt pinyin khi đã quen mặt chữ Hán.', '<div class="seg" id="gpy"><button class="seg-b' + (ST.cfg('hidePy') !== true ? ' on' : '') + '" data-p="1">Hiện</button><button class="seg-b' + (ST.cfg('hidePy') === true ? ' on' : '') + '" data-p="0">Ẩn</button></div>') +
@@ -673,6 +687,7 @@
     const markThem = () => { const t = ST.cfg('avThem') || 'auto'; $$('#avmode .seg-b').forEach(x => x.classList.toggle('on', x.dataset.m === t)); $$('#avthem .av-b').forEach(x => x.classList.toggle('on', x.dataset.a === t)); refreshAv(); };
     $$('#avmode .seg-b').forEach(b => b.onclick = () => { ST.cfg('avThem', b.dataset.m); markThem(); });
     $$('#avthem .av-b').forEach(b => b.onclick = () => { ST.cfg('avThem', b.dataset.a); markThem(); });
+    if ($('#pwa-set')) $('#pwa-set').onclick = async () => { if (await window.SEPWA.install()) toast('Đã cài Sumi ra màn hình chính'); };
     $$('#theme .seg-b').forEach(b => b.onclick = () => {
       ST.cfg('theme', b.dataset.t === 'auto' ? '' : b.dataset.t); applyTheme();
       $$('#theme .seg-b').forEach(x => x.classList.toggle('on', x === b));
