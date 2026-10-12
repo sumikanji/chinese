@@ -264,7 +264,6 @@
       '<div class="pbar"><button class="pbar-play" id="play">' + I('play') + 'Phát cả bài</button><div class="tg"><button class="tg-b" id="slow">' + I('slow') + 'Đọc chậm</button></div>' +
       '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' + '</div>' +
       '<div class="chat' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="chat">' + l.d.map((d, i) => msgHtml(l, d, i)).join('') + '</div>' +
-      '<div class="tip">Trẻ em nghe hàng nghìn giờ trước khi nói. Hãy bật lại hội thoại này nhiều lần trong ngày, kể cả khi đang làm việc khác.</div>' +
       '<div class="next-bar"><button class="btn primary" id="nx">Tiếp: Ghép câu →</button></div>';
     const chat = $('#chat', P);
     bindVoice(P);
@@ -707,7 +706,6 @@
         (u ? '<p class="muted pf-mail">' + esc(u.email || '') + ' · ' + (u.provider === 'google.com' ? 'Google' : 'Email') + '</p>' : '') +
         '<div class="pf-pills"><span class="pf-lv">' + (r < 0 ? 'Chưa bắt đầu · ' + window.HIYO.NAMES[0] : esc(L.name) + ' · ' + window.HIYO.NAMES[f]) + '</span>' +
         (u && CL ? '<span class="acc-sync" id="acc-sync">' + SYNC_TXT[CL.status()] + '</span>' : '') + '</div>' +
-        '<div class="rvh-stats pf-stats"><div><b>' + totalDone() + '</b><small>bài đã học</small></div><div><b>' + fmt(Object.keys(S.cards).length) + '</b><small>câu ôn tập</small></div><div><b>' + fmt(S.xp) + '</b><small>XP</small></div><div><b>' + ST.streak() + '</b><small>ngày học</small></div></div>' +
       '</section>' + (u ? '' : '<!--LOGIN-->') +
       '<section class="card pf-sec pop" style="--lc:' + L.color + '"><h2>Trang trí Hiyo</h2>' +
         '<div class="pf-tabs"><button data-t="face">Khuôn mặt</button><button data-t="acc">Phụ kiện</button></div>' +
