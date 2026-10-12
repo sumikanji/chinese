@@ -207,19 +207,27 @@
     if (step === 'done') return stepDone(P, l, sc);
   }
   const head = (title, text) => '<div class="panel-h"><h2>' + title + '</h2><p>' + text + '</p></div>';
+  // Ảnh đại diện trong hội thoại: avMe (của bạn), avThem ('letter' chữ cái · 'auto' mỗi người một con vật · id cố định)
+  function avaHtml(name, me) {
+    const A = window.SEAV;
+    if (me) { const id = ST.cfg('avMe'); return id && A && A.svg(id) ? '<span class="ava img">' + A.svg(id) + '</span>' : '<span class="ava">Bạn</span>'; }
+    const m = ST.cfg('avThem') || 'auto';
+    const id = !A || m === 'letter' ? '' : m === 'auto' ? A.pick(name) : m;
+    return id && A.svg(id) ? '<span class="ava img">' + A.svg(id) + '</span>' : '<span class="ava">' + initial(name) + '</span>';
+  }
   function msgHtml(l, d, i, extra, side, name) {
     side = side || d[0];
     name = name || (d[0] === 'B' ? 'Bạn' : l.a);
-    return '<div class="msg ' + side + '"><span class="ava">' + (name === 'Bạn' ? 'Bạn' : initial(name)) + '</span><button class="bub' + (extra || '') + '" data-i="' + i + '"><div class="who">' + esc(name) + '</div><div class="en zh">' + zh(d[3]) + '</div><div class="vi">' + esc(d[2]) + '</div></button></div>';
+    return '<div class="msg ' + side + '">' + avaHtml(name, String(side).charAt(0) === 'B') + '<button class="bub' + (extra || '') + '" data-i="' + i + '"><div class="who">' + esc(name) + '</div><div class="en zh">' + zh(d[3]) + '</div><div class="vi">' + esc(d[2]) + '</div></button></div>';
   }
 
   // ----- Bước 1: Nghe hội thoại -----
   function stepListen(P, l, sc, next) {
     const hideEn = ST.cfg('hideEn') !== false, hideVi = !!ST.cfg('hideVi'), showPy = ST.cfg('hidePy') !== true;
-    P.innerHTML = head('Bước 1 · Nghe hội thoại', 'Lần đầu chỉ nghe, chữ Hán đang được làm mờ. Nghe 2–3 lần rồi mới bật chữ. Chạm vào một câu để nghe lại câu đó.') +
+    P.innerHTML = '<div class="intro">' + head('Bước 1 · Nghe hội thoại', 'Lần đầu chỉ nghe, chữ Hán đang được làm mờ. Nghe 2–3 lần rồi mới bật chữ. Chạm vào một câu để nghe lại câu đó.') +
       '<div class="scene">' + esc(l.s) + '</div>' +
       '<div class="pbar"><button class="pbar-play" id="play">' + I('play') + 'Phát cả bài</button><div class="tg"><button class="tg-b" id="slow">' + I('slow') + 'Đọc chậm</button></div>' +
-      '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' +
+      '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' + '</div>' +
       '<div class="chat' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="chat">' + l.d.map((d, i) => msgHtml(l, d, i)).join('') + '</div>' +
       '<div class="tip">Trẻ em nghe hàng nghìn giờ trước khi nói. Hãy bật lại hội thoại này nhiều lần trong ngày, kể cả khi đang làm việc khác.</div>' +
       '<div class="next-bar"><button class="btn primary" id="nx">Tiếp: Ghép câu →</button></div>';
@@ -596,30 +604,45 @@
   }
   function viewSettings() {
     const th = ST.cfg('theme') || 'auto';
-    const CL = window.SECloud;
-    const noVoice = SP.canSpeak() && !SP.hasVoice();
-    const acc = CL && CL.enabled() ? (CL.user() ? 'Đã đăng nhập: <b>' + esc(CL.user().name || CL.user().email) + '</b>. Tiến độ tự đồng bộ lên tài khoản.' : 'Tiến độ đang lưu trên máy này. Đăng nhập để học tiếp trên nhiều thiết bị.') : 'Tiến độ được lưu trên trình duyệt của máy này.';
+    const CL = window.SECloud, A = window.SEAV;
+    const u = CL && CL.enabled() ? CL.user() : null;
+    // Một dòng cài đặt: ô icon màu + tên + mô tả + phần điều khiển
+    const row = (ic, color, title, desc, ctl) => '<div class="set-row"><span class="set-ico" style="background:' + color + '">' + I(ic) + '</span><div class="set-main"><div class="set-t">' + title + '</div>' + (desc ? '<div class="set-d">' + desc + '</div>' : '') + (ctl ? '<div class="set-c">' + ctl + '</div>' : '') + '</div></div>';
+    const sec = (title, rows) => '<section class="set-sec"><h3>' + title + '</h3><div class="set-grp">' + rows + '</div></section>';
+    const avGrid = (id, cur, extra) => '<div class="av-grid" id="' + id + '">' + (extra || '') + (A ? A.list.map(a => '<button class="av-b' + (cur === a.id ? ' on' : '') + '" data-a="' + a.id + '" title="' + a.name + '" aria-label="' + a.name + '">' + A.svg(a.id) + '</button>').join('') : '') + '</div>';
+    const me = ST.cfg('avMe') || '', them = ST.cfg('avThem') || 'auto';
+    const preview = () => '<div class="av-prev"><span class="av-prev-i">' + avaHtml('Emma', false) + '<small>Người nói chuyện</small></span><span class="av-prev-i">' + avaHtml('Bạn', true) + '<small>Bạn</small></span></div>';
     app.innerHTML = '<div class="settings">' +
-      '<section class="card panel pop">' + head('Cài đặt', 'Giao diện, pinyin, giọng đọc và tài khoản.') + '</section>' +
-      '<div class="card set-card"><h2>' + I('theme') + 'Giao diện</h2><div class="seg" id="theme" role="group" aria-label="Giao diện">' +
-        [['auto', 'Theo máy'], ['light', 'Sáng'], ['dark', 'Tối']].map(x => '<button class="seg-b' + (th === x[0] ? ' on' : '') + '" data-t="' + x[0] + '">' + x[1] + '</button>').join('') +
-        '</div><p class="muted set-note">Theo máy: tự đổi sáng / tối giống cài đặt của điện thoại hoặc máy tính.</p></div>' +
-      '<div class="card set-card"><h2>' + I('text') + 'Pinyin</h2><div class="row"><button class="chip' + (ST.cfg('hidePy') !== true ? ' on' : '') + '" id="gpy">Hiện pinyin trên chữ Hán</button></div><p class="muted set-note">Khi đã quen mặt chữ, hãy tắt pinyin để mắt nhớ chữ Hán.</p></div>' +
-      '<div class="card set-card"><h2>' + I('speak') + 'Giọng đọc</h2><div class="row" id="vmode">' + voiceChips() + '</div><p class="muted set-note">Câu bài học, từ vựng và shadowing dùng giọng AI thu sẵn (' + fmt(SP.audioCount()) + ' câu). Nam – Nữ: người nói chuyện giọng nam, bạn giọng nữ.</p></div>' +
-      '<div class="card set-card"><h2>' + I('gauge') + 'Tốc độ đọc</h2><div class="row" id="rates">' + [[0.7, 'Chậm'], [0.9, 'Vừa'], [1.05, 'Nhanh']].map(r => '<button class="chip' + (Math.abs(SP.getRate() - r[0]) < .01 ? ' on' : '') + '" data-r="' + r[0] + '">' + r[1] + '</button>').join('') + '</div></div>' +
-      '<div class="card set-card"><h2>' + I('speak') + 'Giọng dự phòng của máy</h2><p class="muted set-note" style="margin-top:0">Dùng cho câu chưa có giọng AI (số, giờ sinh ngẫu nhiên…).</p>' +
-        (noVoice ? '<div class="note">Máy chưa có giọng đọc tiếng Trung. iPhone: Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói → Tiếng Trung. Android: Chuyển văn bản thành giọng nói → Google → cài "Tiếng Trung (Quan thoại)". Windows: Giọng nói → Thêm giọng → 中文(简体).</div>' : '') +
-        '<div class="row"><select id="vsel" class="sel"></select><button class="btn small" id="vtest">Nghe thử</button></div></div>' +
-      '<div class="card set-card"><h2>' + I('user') + 'Tài khoản</h2><p class="muted set-note" style="margin-top:0">' + acc + '</p><div class="row">' + (CL && CL.enabled() ? '<a class="btn small" href="#/account">' + (CL.user() ? 'Xem tài khoản' : 'Đăng nhập') + '</a>' : '') + '<button class="btn small ghost" id="reset">Xoá toàn bộ tiến độ</button></div></div>' +
-      (window.SEX && window.SEX.fbEnabled() ? '<div class="card set-card"><h2>' + I('chat') + 'Góp ý</h2><p class="muted set-note" style="margin-top:0">Thấy câu sai, dịch chưa đúng hay giọng AI đọc sai? Kéo xuống cuối bước Nghe của mỗi bài hoặc cuối mỗi đoạn Shadowing để bình luận.</p><div class="row"><a class="btn small" href="#/feedback">Xem góp ý của mọi người</a></div></div>' : '') +
-      '<div class="card set-card"><h2>' + I('mic') + 'Micro và chấm phát âm</h2><p class="muted set-note" style="margin-top:0">Dùng Chrome, Edge (máy tính, Android) hoặc Safari (iPhone). Lần đầu bấm Nói, chọn Cho phép dùng micro. Chữ <b style="color:var(--ok)">xanh</b> là chuẩn, <b style="color:var(--mid)">cam</b> là đúng âm nhưng sai thanh, <b style="color:var(--bad)">đỏ</b> cần luyện lại.</p></div>' +
+      '<div class="set-head">' + I('settings') + '<div><h1>Cài đặt</h1><p class="muted">Tuỳ chỉnh Sumi Chinese theo cách bạn thích.</p></div></div>' +
+      sec('Ảnh đại diện', '<div id="avprev">' + preview() + '</div>' +
+        row('user', '#f59e0b', 'Ảnh của bạn', 'Hiện bên cạnh câu bạn nói trong hội thoại và trong bình luận.', avGrid('avme', me, '<button class="av-b txt' + (me ? '' : ' on') + '" data-a="">Bạn</button>')) +
+        row('chat', '#0ea5e9', 'Người nói chuyện', 'Chữ cái đầu tên, mỗi người một con vật, hoặc chọn một ảnh cho tất cả.',
+          '<div class="seg" id="avmode"><button class="seg-b' + (them === 'letter' ? ' on' : '') + '" data-m="letter">Chữ cái</button><button class="seg-b' + (them === 'auto' ? ' on' : '') + '" data-m="auto">Mỗi người một con vật</button></div>' + avGrid('avthem', them))) +
+      sec('Giao diện',
+        row('theme', '#6366f1', 'Chế độ sáng / tối', 'Theo máy: tự đổi giống cài đặt của điện thoại.', '<div class="seg" id="theme">' + [['auto', 'Theo máy'], ['light', 'Sáng'], ['dark', 'Tối']].map(x => '<button class="seg-b' + (th === x[0] ? ' on' : '') + '" data-t="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>') +
+      row('text', '#8b5cf6', 'Pinyin', 'Tắt pinyin khi đã quen mặt chữ Hán.', '<div class="seg" id="gpy"><button class="seg-b' + (ST.cfg('hidePy') !== true ? ' on' : '') + '" data-p="1">Hiện</button><button class="seg-b' + (ST.cfg('hidePy') === true ? ' on' : '') + '" data-p="0">Ẩn</button></div>') +
+        '') +
+      sec('Giọng đọc',
+        row('speak', '#10b981', 'Giọng AI', 'Nam – Nữ: người nói chuyện giọng nam, bạn giọng nữ. Có ' + fmt(SP.audioCount()) + ' câu thu sẵn.', '<div id="vmode">' + voiceChips() + '</div>') +
+        row('gauge', '#f97316', 'Tốc độ đọc', '', '<div class="seg" id="rates">' + [[0.7, 'Chậm'], [0.9, 'Vừa'], [1.05, 'Nhanh']].map(r => '<button class="seg-b' + (Math.abs(SP.getRate() - r[0]) < .01 ? ' on' : '') + '" data-r="' + r[0] + '">' + r[1] + '</button>').join('') + '</div>') +
+        row('mic', '#64748b', 'Giọng dự phòng của máy', 'Dùng cho câu chưa có giọng AI.', '<div class="row"><select id="vsel" class="sel"></select><button class="btn small" id="vtest">' + I('play') + 'Nghe thử</button></div>' + (SP.canSpeak() && !SP.hasVoice() ? '<div class="note">Máy chưa có giọng đọc tiếng Trung. iPhone: Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói → Tiếng Trung. Android: Chuyển văn bản thành giọng nói → Google → cài "Tiếng Trung (Quan thoại)". Windows: Giọng nói → Thêm giọng → 中文(简体).</div>' : ''))) +
+      sec('Tài khoản',
+        (CL && CL.enabled() ? row('user', '#0ea5e9', u ? esc(u.name || u.email) : 'Chưa đăng nhập', u ? 'Tiến độ tự đồng bộ lên tài khoản.' : 'Đăng nhập để lưu tiến độ và học trên nhiều thiết bị.', '<a class="btn small" href="#/account">' + (u ? 'Xem tài khoản' : 'Đăng nhập') + '</a>') : row('user', '#0ea5e9', 'Lưu trên máy này', 'Tiến độ được lưu trên trình duyệt của máy này.', '')) +
+        (window.SEX && window.SEX.fbEnabled() ? row('chat', '#0284c7', 'Góp ý', 'Bình luận ở cuối bước Nghe của mỗi bài và cuối mỗi đoạn Shadowing.', '<a class="btn small" href="#/feedback">Xem góp ý của mọi người</a>') : '') +
+        row('trash', '#ef4444', 'Xoá tiến độ', 'Xoá toàn bộ bài đã học và câu ôn tập trên máy này.', '<button class="btn small ghost" id="reset">Xoá toàn bộ tiến độ</button>')) +
+      sec('Trợ giúp', row('mic', '#a855f7', 'Micro và chấm phát âm', 'Dùng Chrome, Edge (máy tính, Android) hoặc Safari (iPhone). Lần đầu bấm Nói, chọn Cho phép dùng micro.', '')) +
       '<p class="muted" style="text-align:center;font-size:.78rem;margin:18px 0">© 2026 Sumi Chinese · Hiyo © Sumi Kanji · Miễn phí</p></div>';
+    const refreshAv = () => { $('#avprev').innerHTML = preview(); };
+    $$('#avme .av-b').forEach(b => b.onclick = () => { ST.cfg('avMe', b.dataset.a); $$('#avme .av-b').forEach(x => x.classList.toggle('on', x === b)); refreshAv(); });
+    const markThem = () => { const t = ST.cfg('avThem') || 'auto'; $$('#avmode .seg-b').forEach(x => x.classList.toggle('on', x.dataset.m === t)); $$('#avthem .av-b').forEach(x => x.classList.toggle('on', x.dataset.a === t)); refreshAv(); };
+    $$('#avmode .seg-b').forEach(b => b.onclick = () => { ST.cfg('avThem', b.dataset.m); markThem(); });
+    $$('#avthem .av-b').forEach(b => b.onclick = () => { ST.cfg('avThem', b.dataset.a); markThem(); });
     $$('#theme .seg-b').forEach(b => b.onclick = () => {
       ST.cfg('theme', b.dataset.t === 'auto' ? '' : b.dataset.t); applyTheme();
       $$('#theme .seg-b').forEach(x => x.classList.toggle('on', x === b));
     });
-    $('#gpy').onclick = e => { const on = e.currentTarget.classList.toggle('on'); ST.cfg('hidePy', !on); setPy(on); };
-    $$('#rates .chip').forEach(b => b.onclick = () => { SP.setRate(+b.dataset.r); ST.cfg('rate', +b.dataset.r); $$('#rates .chip').forEach(x => x.classList.toggle('on', x === b)); SP.speak('这是我说话的速度。'); });
+    $$('#gpy .seg-b').forEach(b => b.onclick = () => { const on = b.dataset.p === '1'; ST.cfg('hidePy', !on); setPy(on); $$('#gpy .seg-b').forEach(x => x.classList.toggle('on', x === b)); });
+    $$('#rates .seg-b').forEach(b => b.onclick = () => { SP.setRate(+b.dataset.r); ST.cfg('rate', +b.dataset.r); $$('#rates .seg-b').forEach(x => x.classList.toggle('on', x === b)); SP.speak('这是我说话的速度。'); });
     const fillVoices = () => {
       const sel = $('#vsel'); if (!sel) return;
       const list = SP.voiceList();
@@ -630,8 +653,9 @@
     bindVoice($('#vmode'));
     $('#vsel').onchange = e => { SP.setVoice(e.target.value); ST.cfg('voice', e.target.value); SP.speak('你好！这是我的声音。'); };
     $('#vtest').onclick = () => SP.speak('你好！很高兴认识你。你今天怎么样？');
-    $('#reset').onclick = () => { if (confirm('Xoá toàn bộ tiến độ học và câu ôn tập?')) { const t = ST.cfg('theme'), hp = ST.cfg('hidePy'); ST.reset(); if (t) ST.cfg('theme', t); if (hp) ST.cfg('hidePy', hp); toast('Đã xoá tiến độ'); route(); } };
+    $('#reset').onclick = () => { if (confirm('Xoá toàn bộ tiến độ học và câu ôn tập?')) { const t = ST.cfg('theme'), am = ST.cfg('avMe'), at = ST.cfg('avThem'), hp = ST.cfg('hidePy'); ST.reset(); if (t) ST.cfg('theme', t); if (am) ST.cfg('avMe', am); if (at) ST.cfg('avThem', at); if (hp) ST.cfg('hidePy', hp); toast('Đã xoá tiến độ'); route(); } };
   }
+
   // ================= TÀI KHOẢN =================
   function viewAccount() {
     const CL = window.SECloud;

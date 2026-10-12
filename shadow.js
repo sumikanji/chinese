@@ -61,9 +61,9 @@
   function modeListen(P, x) {
     const hideEn = !!ST().cfg('shHideEn'), hideVi = !!ST().cfg('shHideVi'), showPy = ST().cfg('hidePy') !== true;
     let slow = false, loop = false, gap = ST().cfg('shGap') !== false, run = 0, cur = -1;
-    P.innerHTML = '<div class="panel-h"><h2>Nghe và nói đuổi</h2><p>Bấm Phát cả đoạn. Bật "Nói theo": sau mỗi câu có một khoảng lặng để bạn nói lại y hệt, bắt chước cả nhịp và ngữ điệu. Chạm vào một câu để nghe riêng câu đó.</p></div>' +
+    P.innerHTML = '<div class="intro"><div class="panel-h"><h2>Nghe và nói đuổi</h2><p>Bấm Phát cả đoạn. Bật "Nói theo": sau mỗi câu có một khoảng lặng để bạn nói lại y hệt, bắt chước cả nhịp và ngữ điệu. Chạm vào một câu để nghe riêng câu đó.</p></div>' +
       '<div class="pbar"><button class="pbar-play" id="play">' + I('play') + 'Phát cả đoạn</button><div class="tg"><button class="tg-b" id="slow">' + I('slow') + 'Đọc chậm</button><button class="tg-b' + (gap ? ' on' : '') + '" id="gap">' + I('mic') + 'Nói theo</button></div>' +
-      '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' +
+      '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' + '</div>' +
       '<div class="sd-lines' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="ls">' + x.s.map((s, i) => '<button class="sd-line" data-i="' + i + '"><span class="n">' + (i + 1) + '</span><span class="tx"><span class="en zh">' + UI().zh(s[2]) + '</span><span class="vi">' + esc(s[1]) + '</span></span><span class="turnbar"><i></i></span></button>').join('') + '</div>';
     const ls = $('#ls', P), lines = $$('.sd-line', ls);
     UI().bindVoice(P);

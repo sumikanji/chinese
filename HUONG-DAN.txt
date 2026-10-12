@@ -52,6 +52,8 @@ GHI ÂM VÀ GÓP Ý
     (dùng chung cho cả hai trang). Xoá góp ý không phù hợp ngay trong tab Data.
 
 CÀI ĐẶT (tab "Cài đặt")
+  Ảnh đại diện: chọn ảnh của bạn và của người nói chuyện (chữ cái, mỗi người một con vật, hoặc một ảnh
+    cố định) trong bộ 12 avatar vẽ riêng (avatars.js).
   Giao diện Theo máy / Sáng / Tối · bật/tắt pinyin · giọng Nữ / Nam / Nam – Nữ · tốc độ đọc ·
   giọng dự phòng của máy · tài khoản · xoá tiến độ.
 
