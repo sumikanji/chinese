@@ -906,3 +906,27 @@ body.noscroll { overflow: hidden; }
 .pager .cnt { font-size: .82rem; }
 .pager .btn.primary { flex: 0 1 200px; margin-left: auto; }
 @media (max-width: 420px) { .say-ctrl { gap: 18px; } .say-en { font-size: 1.4rem; } }
+
+/* ---------- Ôn tập hôm nay (gọn) ---------- */
+.rv2 { padding: 14px 16px; background: linear-gradient(135deg, var(--yellow-l), var(--card) 70%); border: 1.5px solid #fde68a; }
+:root[data-theme="dark"] .rv2 { border-color: #6b5413; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .rv2 { border-color: #6b5413; } }
+.rv2-top { display: flex; align-items: center; gap: 12px; }
+.rv2-hiyo { width: 52px; height: 52px; flex: none; }
+.rv2-t { flex: 1; min-width: 0; }
+.rv2-t h2 { font-family: var(--head); font-size: 1.12rem; line-height: 1.2; }
+.rv2-t p { color: var(--sub); font-size: .88rem; font-weight: 700; }
+.rv2-num { color: var(--brown); font-size: 1.15rem; font-family: var(--head); }
+.rv2-help { flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--card); color: var(--sub); font-weight: 900; }
+.rv2-btns { display: flex; gap: 8px; margin: 12px 0 10px; }
+.rv2-btns .btn { flex: 1; min-width: 0; min-height: 44px; padding: 10px 12px; font-size: .9rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rv2-foot { display: flex; align-items: flex-end; gap: 14px; padding-top: 10px; border-top: 1.5px dashed var(--line); }
+.rv2-bars { display: flex; align-items: flex-end; gap: 4px; height: 40px; flex: 0 0 auto; }
+.rv2-col { width: 16px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 2px; }
+.rv2-col i { width: 100%; border-radius: 4px 4px 2px 2px; background: #fde68a; }
+.rv2-col.now i { background: var(--brown); }
+.rv2-col span { font-size: .55rem; font-weight: 800; color: var(--sub); line-height: 1; }
+.rv2-stats { flex: 1; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: .78rem; color: var(--sub); font-weight: 700; justify-content: flex-end; }
+.rv2-stats b { color: var(--ink); font-size: .9rem; }
+.rv2-ex { margin-top: 10px; font-size: .84rem; }
+@media (max-width: 420px) { .rv2-btns { flex-direction: column; } .rv2-stats { justify-content: flex-start; } }
