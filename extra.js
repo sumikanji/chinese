@@ -106,9 +106,9 @@
     if (m < 1) return 'vừa xong'; if (m < 60) return m + ' phút trước'; if (m < 1440) return Math.round(m / 60) + ' giờ trước'; if (m < 10080) return Math.round(m / 1440) + ' ngày trước';
     return new Date(t).toLocaleDateString('vi-VN');
   };
-  const avatar = (n, av) => window.SEAV && av && window.SEAV.svg(av) ? '<span class="cmt-av img">' + window.SEAV.svg(av) + '</span>' : '<span class="cmt-av">' + esc((n || '?').trim().charAt(0).toUpperCase()) + '</span>';
+  const avatar = (n, av) => '<span class="cmt-av img hy">' + window.SEHY.svg(av) + '</span>';
   function cmtItem(id, c, mine) {
-    return '<div class="cmt-i" data-id="' + esc(id) + '">' + avatar(c.name, c.av) + '<div class="cmt-b"><div class="cmt-h"><b>' + esc(c.name || 'Người học') + '</b><small>' + when(c.at) + '</small></div>' +
+    return '<div class="cmt-i" data-id="' + esc(id) + '">' + avatar(c.name, window.SEHY.of(c)) + '<div class="cmt-b"><div class="cmt-h"><b>' + esc(c.name || 'Người học') + '</b><small>' + when(c.at) + '</small></div>' +
       '<div class="cmt-tags"><span class="cmt-k">' + esc(kindName(c.kind)) + '</span>' + (c.n >= 0 ? '<span class="cmt-n">Câu ' + (c.n + 1) + '</span>' : '') + '</div>' +
       (c.s ? '<div class="cmt-q">' + esc(c.s) + '</div>' : '') +
       '<p>' + esc(c.msg) + '</p>' + (mine ? '<button class="linkb cmt-del">Xoá</button>' : '') + '</div></div>';
@@ -123,7 +123,7 @@
     const u = CL().user();
     host.innerHTML = '<section class="cmt"><div class="cmt-top"><h3>' + IC('chat') + 'Góp ý <span class="cmt-cnt" id="cmt-n"></span></h3></div>' +
       '<div class="cmt-list" id="cmt-list"><p class="muted cmt-empty">Đang tải…</p></div>' +
-      (u ? '<div class="cmt-form">' + avatar(u.name || u.email, ST().cfg('avMe')) + '<div class="cmt-fb"><textarea id="cmt-m" maxlength="500" rows="2" placeholder="Góp ý…"></textarea>' +
+      (u ? '<div class="cmt-form">' + avatar(u.name || u.email, window.SEHY.code()) + '<div class="cmt-fb"><textarea id="cmt-m" maxlength="500" rows="2" placeholder="Góp ý…"></textarea>' +
           '<div class="cmt-ctl">' +
           '<button class="cmt-send" id="cmt-send">' + IC('send') + 'Gửi</button></div><div class="muted cmt-msg" id="cmt-msg"></div></div></div>'
         : '<div class="cmt-login"><a class="cmt-send" href="#/account">' + IC('user') + 'Đăng nhập để bình luận</a></div>') + '</section>';
@@ -148,7 +148,7 @@
       if (!msg) { $('#cmt-msg', host).textContent = 'Hãy viết nội dung góp ý.'; return; }
       $('#cmt-send', host).disabled = true; $('#cmt-msg', host).textContent = 'Đang gửi…';
       try {
-        await ref.push({ uid: u.uid, name: (u.name || (u.email || '').split('@')[0] || 'Người học').slice(0, 40), kind: 'other', msg: msg.slice(0, 500), n, s: line ? String(line.t).slice(0, 400) : '', v: line ? String(line.v || '').slice(0, 400) : '', t: String(it.title || '').slice(0, 100), av: String(ST().cfg('avMe') || '').slice(0, 20), at: CL().ts() });
+        await ref.push({ uid: u.uid, name: (u.name || (u.email || '').split('@')[0] || 'Người học').slice(0, 40), kind: 'other', msg: msg.slice(0, 500), n, s: line ? String(line.t).slice(0, 400) : '', v: line ? String(line.v || '').slice(0, 400) : '', t: String(it.title || '').slice(0, 100), av: window.SEHY.code().slice(0, 24), at: CL().ts() });
         $('#cmt-m', host).value = ''; $('#cmt-msg', host).textContent = ''; UI().toast('Đã gửi góp ý, cảm ơn bạn!');
         load();
       } catch (e) { $('#cmt-msg', host).innerHTML = errText(e); }

@@ -45,6 +45,13 @@
   const hyAcc = () => ST.cfg('hyAcc') || 'none';
   const hyFace = () => ST.cfg('hyFace') || 'happy';
   const hiyo = (mood, f) => window.HIYO.svg(f == null ? hiyoForm() : f, mood || 'happy', { acc: hyAcc() });
+
+  // Ảnh đại diện = Hiyo của người dùng, gửi kèm bài viết/bình luận dạng mã ngắn 'h<dạng>.<mặt>.<phụ kiện>'
+  window.SEHY = {
+    code: () => 'h' + hiyoForm() + '.' + hyFace() + '.' + hyAcc(),
+    svg: c => { const m = /^h(\d+)\.(\w+)\.(\w+)$/.exec(c || ''); return m ? window.HIYO.svg(+m[1], m[2], { acc: m[3] }) : window.HIYO.svg(1, 'happy', { acc: 'none' }); },
+    of: x => { const u = window.SECloud && window.SECloud.user && window.SECloud.user(); return x && u && x.uid === u.uid ? window.SEHY.code() : (x && x.av); }
+  };
   const initial = n => esc((n || '?').trim()[0].toUpperCase());
   // ---------- Chữ Hán + pinyin ----------
   const HAN = /[\u4e00-\u9fff]/;

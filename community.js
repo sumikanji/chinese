@@ -43,9 +43,7 @@
     if (m < 1) return 'vừa xong'; if (m < 60) return m + ' phút'; if (m < 1440) return Math.round(m / 60) + ' giờ'; if (m < 10080) return Math.round(m / 1440) + ' ngày';
     return new Date(t).toLocaleDateString('vi-VN');
   };
-  const avatar = (n, av, cls) => (window.SEAV && av && window.SEAV.svg(av))
-    ? '<span class="cm-av img ' + (cls || '') + '">' + window.SEAV.svg(av) + '</span>'
-    : '<span class="cm-av ' + (cls || '') + '">' + esc((n || '?').trim().charAt(0).toUpperCase()) + '</span>';
+  const avatar = (n, av, cls) => '<span class="cm-av img hy ' + (cls || '') + '">' + window.SEHY.svg(av) + '</span>';
   const nameOf = u => (u.name || (u.email || '').split('@')[0] || 'Người học').slice(0, 40);
   const fmtText = t => esc(t).replace(/\n{3,}/g, '\n\n').replace(/\n/g, '<br>');
   const errText = e => /PERMISSION|permission/.test((e && (e.code || e.message)) || '')
@@ -82,7 +80,7 @@
       const nc = Object.keys(D.comments[id] || {}).length;
       const own = u && p.uid === u.uid;
       return '<article class="cm-post' + (full ? ' full' : '') + '" data-id="' + esc(id) + '">' +
-        avatar(p.name, p.av) +
+        avatar(p.name, window.SEHY.of(p)) +
         '<div class="cm-pb">' +
           '<div class="cm-ph"><b>' + esc(p.name || 'Người học') + '</b><span class="cm-time">' + when(p.at) + '</span>' +
             '<button class="cm-more" aria-label="Thêm">' + IC('more') + '</button></div>' +
@@ -136,7 +134,7 @@
       };
       $('#cm-q', body).oninput = e => { qs[board] = e.target.value; drawFeed(e.target.value); };
       drawFeed(q0);
-      bindInput(text => root.child('posts').push({ uid: u.uid, name: nameOf(u), av: String(ST().cfg('avMe') || '').slice(0, 20), cat: B.cats[0][0], text: text.slice(0, 1000), at: CL().ts() }));
+      bindInput(text => root.child('posts').push({ uid: u.uid, name: nameOf(u), av: window.SEHY.code().slice(0, 24), cat: B.cats[0][0], text: text.slice(0, 1000), at: CL().ts() }));
     }
 
     function bindPosts(D) {
@@ -177,7 +175,7 @@
       if (!p || hidden(D, pid, p)) { body.innerHTML = '<p class="muted cm-empty">Bài viết không còn nữa.</p>'; return; }
       const cs = Object.entries(D.comments[pid] || {}).filter(([, c]) => c && c.text).sort((a, b) => (a[1].at || 0) - (b[1].at || 0));
       body.innerHTML = postHtml(D, pid, p, true) +
-        '<div class="cm-cmts">' + cs.map(([cid, c]) => '<div class="cm-c" data-cid="' + esc(cid) + '">' + avatar(c.name, c.av, 'sm') +
+        '<div class="cm-cmts">' + cs.map(([cid, c]) => '<div class="cm-c" data-cid="' + esc(cid) + '">' + avatar(c.name, window.SEHY.of(c), 'sm') +
           '<div class="cm-cbub"><div class="cm-ch"><b>' + esc(c.name || 'Người học') + '</b><span class="cm-time">' + when(c.at) + '</span>' +
           ((u && c.uid === u.uid) || admin ? '<button class="cm-cdel">Xoá</button>' : '') + '</div><div class="cm-ctext">' + fmtText(c.text) + '</div></div></div>').join('') + '</div>' +
         inputBar('Bình luận…');
@@ -186,7 +184,7 @@
         if (!confirm('Xoá bình luận này?')) return;
         try { await root.child('comments/' + pid + '/' + b.closest('.cm-c').dataset.cid).remove(); render(); } catch (e) { toast(errText(e).replace(/<[^>]+>/g, '')); }
       });
-      bindInput(text => root.child('comments/' + pid).push({ uid: u.uid, name: nameOf(u), av: String(ST().cfg('avMe') || '').slice(0, 20), text: text.slice(0, 500), at: CL().ts() }));
+      bindInput(text => root.child('comments/' + pid).push({ uid: u.uid, name: nameOf(u), av: window.SEHY.code().slice(0, 24), text: text.slice(0, 500), at: CL().ts() }));
     }
 
     document.addEventListener('click', e => { if (!e.target.closest('.cm-more,.cm-menu')) $$('.cm-menu', body).forEach(m => { m.hidden = true; }); });
@@ -207,7 +205,7 @@
         for (const id in likes) if (likes[id] && likes[id][u.uid] && posts[id] && posts[id].text) out.push(Object.assign({ id, bd }, posts[id]));
       }
       out.sort((a, b) => (b.at || 0) - (a.at || 0));
-      host.innerHTML = out.length ? out.map(p => '<a class="cm-lk" href="#/' + BOARDS[p.bd].route + '/' + esc(p.id) + '">' + avatar(p.name, p.av, 'sm') +
+      host.innerHTML = out.length ? out.map(p => '<a class="cm-lk" href="#/' + BOARDS[p.bd].route + '/' + esc(p.id) + '">' + avatar(p.name, window.SEHY.of(p), 'sm') +
         '<span><b>' + esc(p.name || 'Người học') + '</b><small>' + when(p.at) + ' · ' + BOARDS[p.bd].title + '</small><em>' + esc(p.text.length > 140 ? p.text.slice(0, 138) + '…' : p.text) + '</em></span></a>').join('')
         : '<p class="muted cm-empty sm">Chưa thích bài nào.</p>';
     } catch (e) { host.innerHTML = '<p class="muted cm-empty sm">' + errText(e) + '</p>'; }
