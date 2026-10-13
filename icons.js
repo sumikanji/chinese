@@ -34,6 +34,7 @@
     check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
     chevL: '<path d="M15 5l-7 7 7 7"/>',
     chevR: '<path d="M9 5l7 7-7 7"/>',
+    search: '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>',
     trash: '<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>'
   };
   window.SEI = (n, cls) => P[n] ? '<svg class="ic' + (cls ? ' ' + cls : '') + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + P[n] + '</svg>' : '';

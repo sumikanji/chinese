@@ -45,8 +45,8 @@
       '<div class="sd-head"><span class="lvl-badge sm" style="background:' + L.color + '">' + L.name + '</span><div><h1>' + esc(x.t) + '</h1><span class="muted"><span class="zh-t">' + esc(x.en) + '</span> · Bài ' + (idx + 1) + '/' + list.length + '</span></div></div>' +
       '<nav class="voc-modes">' + MODES.map(m => '<a class="chip' + (m[0] === mode ? ' on' : '') + '" href="#/shadow/' + x.id + '/' + m[0] + '">' + I(m[2]) + m[1] + (best(x.id, m[0]) != null ? ' · ' + best(x.id, m[0]) : '') + '</a>').join('') + '</nav>' +
       '<section class="card panel" id="sp"></section>' +
-      '<div class="sd-foot"><button class="btn primary sd-done" id="addrv">' + I('check') + (ST().cfg('sh_' + x.id + '_done') ? 'Đã học xong ✓' : 'Đã học xong') + '</button>' + (nx ? '<a class="btn" href="#/shadow/' + nx.id + '">Bài tiếp: ' + esc(nx.t) + ' →</a>' : '') + '</div>';
-    $('#addrv').onclick = e => {
+      '<div class="sd-foot">' + (mode === 'listen' ? '<a class="btn primary sd-next" href="#/shadow/' + x.id + '/say">Tiếp: Nói từng câu →</a>' : mode === 'say' ? '<a class="btn primary sd-next" href="#/shadow/' + x.id + '/tell">Tiếp: Kể lại cả đoạn →</a>' : '<button class="btn primary sd-done" id="addrv"' + (best(x.id, 'tell') != null ? '' : ' hidden') + '>' + I('check') + 'Đã học xong</button>') + '</div>';
+    if ($('#addrv')) $('#addrv').onclick = e => {
       ST().addCards(x.s.map((_, i) => 'h:' + x.id + ':' + i));
       ST().cfg('sh_' + x.id + '_done', 1); ST().touch(5);
       UI().refreshTop(); UI().toast('Đã học xong! ' + x.s.length + ' câu đã vào Ôn tập.');
@@ -184,6 +184,7 @@
       const sc = Math.max(0, r.score - (peek ? 15 : 0));
       UI().tkScore(card, sc);
       setBest(x.id, 'tell', sc); ST().touch(5); UI().refreshTop();
+      const dn = document.getElementById('addrv'); if (dn) dn.hidden = false;
       if (first && window.SEX && window.SEX.recRow) window.SEX.recRow($('#tkR', C), () => playAll(false), { maxMs: 150000 });
     };
     return () => { run++; };

@@ -14,6 +14,9 @@
   const SITE = window.SE_LANG === 'zh' ? 'zh' : 'en';
   const LANG = SITE === 'zh' ? 'tiếng Trung' : 'tiếng Anh';
   const HIDE_AT = 3;
+  const qs = {};
+  // So khớp không dấu: "cam on" tìm được "cảm ơn"
+  const norm = t => String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd');
 
   const BOARDS = {
     thread: {
@@ -120,9 +123,19 @@
       if (pid) return renderPost(D);
       const ids = Object.keys(D.posts).filter(id => D.posts[id] && D.posts[id].text && !hidden(D, id, D.posts[id]))
         .sort((a, b) => (D.posts[b].at || 0) - (D.posts[a].at || 0));
-      body.innerHTML = '<div class="cm-feed">' + (ids.length ? ids.map(id => postHtml(D, id, D.posts[id], false)).join('') : '<div class="cm-hello">' + IC(B.icon) + '</div>') + '</div>' + inputBar(B.ph);
-      $$('.cm-post', body).forEach(el => { el.querySelector('.cm-text').onclick = () => { location.hash = '#/' + B.route + '/' + el.dataset.id; }; });
-      bindPosts(D);
+      const q0 = qs[board] || '';
+      body.innerHTML = '<div class="cm-search">' + IC('search') + '<input id="cm-q" type="search" placeholder="Tìm kiếm" value="' + esc(q0) + '" autocomplete="off"></div>' +
+        '<div class="cm-feed" id="cm-feed"></div>' + inputBar(B.ph);
+      const feed = $('#cm-feed', body);
+      const drawFeed = q => {
+        const k = norm(q);
+        const list = k ? ids.filter(id => norm(D.posts[id].text + ' ' + (D.posts[id].name || '')).includes(k)) : ids;
+        feed.innerHTML = list.length ? list.map(id => postHtml(D, id, D.posts[id], false)).join('') : (k ? '<p class="muted cm-empty">Không tìm thấy</p>' : '<div class="cm-hello">' + IC(B.icon) + '</div>');
+        $$('.cm-post', feed).forEach(el => { el.querySelector('.cm-text').onclick = () => { location.hash = '#/' + B.route + '/' + el.dataset.id; }; });
+        bindPosts(D);
+      };
+      $('#cm-q', body).oninput = e => { qs[board] = e.target.value; drawFeed(e.target.value); };
+      drawFeed(q0);
       bindInput(text => root.child('posts').push({ uid: u.uid, name: nameOf(u), av: String(ST().cfg('avMe') || '').slice(0, 20), cat: B.cats[0][0], text: text.slice(0, 1000), at: CL().ts() }));
     }
 
@@ -180,5 +193,25 @@
     render();
   }
 
-  window.SECOM = { view, BOARDS };
+  // Bài đã thích (hiện ở trang cá nhân)
+  async function liked(host) {
+    if (!host || !(CL() && CL().enabled())) return;
+    const u = CL().user(); if (!u) { host.innerHTML = ''; return; }
+    host.innerHTML = '<p class="muted cm-empty sm">Đang tải…</p>';
+    try {
+      const db = await CL().db(); if (!db) { host.innerHTML = ''; return; }
+      const out = [];
+      for (const bd of Object.keys(BOARDS)) {
+        const root = db.ref('boards/' + SITE + '/' + bd);
+        const [likes, posts] = await Promise.all([root.child('likes').once('value').then(x => x.val() || {}), root.child('posts').orderByKey().limitToLast(300).once('value').then(x => x.val() || {})]);
+        for (const id in likes) if (likes[id] && likes[id][u.uid] && posts[id] && posts[id].text) out.push(Object.assign({ id, bd }, posts[id]));
+      }
+      out.sort((a, b) => (b.at || 0) - (a.at || 0));
+      host.innerHTML = out.length ? out.map(p => '<a class="cm-lk" href="#/' + BOARDS[p.bd].route + '/' + esc(p.id) + '">' + avatar(p.name, p.av, 'sm') +
+        '<span><b>' + esc(p.name || 'Người học') + '</b><small>' + when(p.at) + ' · ' + BOARDS[p.bd].title + '</small><em>' + esc(p.text.length > 140 ? p.text.slice(0, 138) + '…' : p.text) + '</em></span></a>').join('')
+        : '<p class="muted cm-empty sm">Chưa thích bài nào.</p>';
+    } catch (e) { host.innerHTML = '<p class="muted cm-empty sm">' + errText(e) + '</p>'; }
+  }
+
+  window.SECOM = { view, liked, BOARDS };
 })();

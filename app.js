@@ -885,9 +885,11 @@
     const u = CL.user();
     if (u) {
       app.innerHTML = '<a class="back" href="#/settings">← Cài đặt</a>' + profileHtml(u, CL) +
+        (window.SECOM ? '<section class="card pf-sec pop"><h2>' + I('heart') + 'Bài đã thích</h2><div id="pf-liked"></div></section>' : '') +
         '<section class="card pf-sec pop"><p class="muted pf-note">Tiến độ được tự động lưu lên tài khoản sau mỗi lần học. Đăng nhập cùng tài khoản trên máy khác là học tiếp được ngay.</p>' +
         '<div class="row center"><button class="btn" id="acc-now">Đồng bộ ngay</button><button class="btn ghost" id="acc-out">Đăng xuất</button></div></section>';
       bindProfile();
+      if (window.SECOM) window.SECOM.liked($('#pf-liked'));
       $('#acc-now').onclick = async () => { await CL.syncNow(); toast('Đã đồng bộ'); };
       $('#acc-out').onclick = async () => { if (!confirm('Đăng xuất? Tiến độ đã được lưu trên tài khoản, đăng nhập lại là có ngay. Máy này sẽ trở về trạng thái chưa đăng nhập.')) return; await CL.signOut(); route(); };
       return;

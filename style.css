@@ -1360,3 +1360,19 @@ body.bars-hide .tabs { transform: translateY(calc(100% + 40px)); }
 .l1chat .msg .bub { max-width: 100% !important; flex: 1 1 auto; }
 .l1chat .msg { max-width: 100% !important; }
 .sd-title { font-size: 1.5rem; margin: 6px 2px 12px; }
+
+/* ===== Cộng đồng: bài tách rời, ô tìm kiếm, bài đã thích ===== */
+.cm-feed { background: none !important; border: 0 !important; border-radius: 0; overflow: visible; display: grid; gap: 12px; }
+.cm-feed .cm-post, .cm-feed .cm-post:first-child { background: var(--card); border: 1.5px solid var(--line); border-radius: 20px; box-shadow: 0 1px 3px rgba(0, 0, 0, .04); }
+.cm-search { display: flex; align-items: center; gap: 8px; margin: 2px 0 12px; padding: 0 14px; height: 44px; border-radius: 22px; background: var(--card); border: 1.5px solid var(--line); }
+.cm-search .ic { width: 18px; height: 18px; color: var(--sub); flex: none; }
+.cm-search input { flex: 1; min-width: 0; border: 0; background: none; font: inherit; font-size: 1rem; color: var(--ink); outline: none; }
+.cm-search:focus-within { border-color: var(--tk); }
+.pf-sec h2 .ic { width: 1.1em; height: 1.1em; color: #e11d48; vertical-align: -3px; margin-right: 6px; }
+#pf-liked { display: grid; gap: 8px; }
+.cm-lk { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border-radius: 16px; border: 1.5px solid var(--line); text-decoration: none; color: inherit; }
+.cm-lk > span { min-width: 0; display: grid; gap: 1px; }
+.cm-lk b { font-size: .9rem; }
+.cm-lk small { font-size: .75rem; color: var(--sub); }
+.cm-lk em { font-style: normal; font-size: .92rem; line-height: 1.4; overflow-wrap: anywhere; }
+.sd-next, .sd-done { min-width: 240px; }
