@@ -22,11 +22,10 @@
   function save(it) {
     const S = ST().get(); S.custom = S.custom || {};
     if (S.gone) delete S.gone[nid(it.k)];
-    S.custom[nid(it.k)] = { en: it.w, vi: it.vi || '', src: 'Sổ tay', ph: it.ph || '', word: 1, at: Date.now() };
-    if (!S.cards[nid(it.k)]) S.cards[nid(it.k)] = { b: 0, due: Date.now(), r: 0, w: 0 };
+    S.custom[nid(it.k)] = { en: it.w, vi: it.vi || '', src: 'Sổ tay', ph: it.ph || '', word: 1, at: Date.now(), t: Date.now() };
     ST().save();
   }
-  function unsave(k) { const S = ST().get(); if (S.custom) delete S.custom[nid(k)]; delete S.cards[nid(k)]; S.gone = S.gone || {}; S.gone[nid(k)] = Date.now(); ST().save(); }
+  function unsave(k) { const S = ST().get(); if (S.custom) delete S.custom[nid(k)]; S.gone = S.gone || {}; S.gone[nid(k)] = Date.now(); ST().save(); }
   const list = () => Object.entries(ST().get().custom || {}).filter(([id, c]) => /^w:/.test(id) && c.word).map(([id, c]) => Object.assign({ id, k: id.slice(2) }, c)).sort((a, b) => (b.at || 0) - (a.at || 0));
 
   // ---------- Khung tra nghĩa ----------
@@ -82,59 +81,68 @@
   window.addEventListener('hashchange', close);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
-  // ---------- Ôn tập Sổ tay bằng flashcard ----------
-  const dueWords = () => { const C = ST().get().cards, now = Date.now(); return list().filter(c => !C[c.id] || C[c.id].due <= now); };
-  function flash(app) {
-    const due = dueWords();
-    const deck = (due.length ? due : list().slice().sort(() => Math.random() - .5)).slice(0, 20);
-    const graded = due.length > 0;
-    let i = 0, good = 0, flipped = false;
+  // ---------- Ôn tập Sổ tay bằng flashcard (riêng, không theo lịch ôn của bài học) ----------
+  // Bấm "Chưa nhớ" → từ vào nhóm Chưa thuộc; "Nhớ rồi" → ra khỏi nhóm
+  const missList = () => list().filter(c => c.miss);
+  function mark(id, miss) { const S = ST().get(), c = (S.custom || {})[id]; if (!c) return; c.miss = miss ? 1 : 0; c.t = Date.now(); ST().save(); }
+  function flash(app, only) {
+    const deck = (only === 'miss' ? missList() : list()).slice().reverse();
     if (!deck.length) { location.hash = '#/sotay'; return; }
-    const card = c => '<div class="fc-in"><div class="fc-face fc-front"><div class="fc-w' + (ZH ? ' zh' : '') + '">' + esc(c.en) + '</div>' + (c.ph && !ZH ? '<div class="fc-ph">' + esc(c.ph) + '</div>' : '') + '</div>' +
+    let i = 0, good = 0, bad = 0;
+    const back = '#/sotay' + (only === 'miss' ? '/miss' : '');
+    const card = c => { const L = lookup(c.en); return '<div class="fc-in"><div class="fc-face fc-front">' + (c.miss ? '<span class="fc-tag">Chưa thuộc</span>' : '') + '<div class="fc-w' + (ZH ? ' zh' : '') + '">' + esc(c.en) + '</div>' + (c.ph && !ZH ? '<div class="fc-ph">' + esc(c.ph) + '</div>' : '') + '<div class="fc-tip">' + IC('review') + '</div></div>' +
       '<div class="fc-face fc-back"><div class="fc-w sm' + (ZH ? ' zh' : '') + '">' + esc(c.en) + '</div>' + (c.ph ? '<div class="fc-ph">' + esc(c.ph) + '</div>' : '') +
-      (lookup(c.en).pos ? '<div class="fc-pos">' + esc(POS[lookup(c.en).pos] || '') + '</div>' : '') + '<div class="fc-vi">' + esc(c.vi || lookup(c.en).vi || '') + '</div></div></div>';
-    const show = () => {
-      const c = deck[i]; flipped = false;
-      app.innerHTML = '<div class="fc"><div class="fc-top"><a class="fc-x" href="#/sotay" aria-label="Đóng">' + IC('chevL') + '</a><div class="fc-bar"><i style="width:' + (i / deck.length * 100) + '%"></i></div><span class="fc-n">' + (i + 1) + '/' + deck.length + '</span></div>' +
-        '<button class="fc-card" id="fc">' + card(c) + '</button>' +
+      (L.pos ? '<div class="fc-pos">' + esc(POS[L.pos] || '') + '</div>' : '') + '<div class="fc-vi">' + esc(c.vi || L.vi || '') + '</div></div></div>'; };
+    const show = dir => {
+      const c = deck[i];
+      app.innerHTML = '<div class="fc"><div class="fc-top"><a class="fc-x" href="' + back + '" aria-label="Đóng">' + IC('chevL') + '</a><div class="fc-bar"><i style="width:' + ((i + 1) / deck.length * 100) + '%"></i></div><span class="fc-n">' + (i + 1) + '/' + deck.length + '</span></div>' +
+        '<div class="fc-stage"><button class="fc-nav l" id="fc-prev" aria-label="Từ trước"' + (i ? '' : ' disabled') + '>' + IC('chevL') + '</button>' +
+        '<button class="fc-card' + (dir ? ' in-' + dir : '') + '" id="fc">' + card(c) + '</button>' +
+        '<button class="fc-nav r" id="fc-next" aria-label="Từ sau">' + IC('chevR') + '</button></div>' +
         '<div class="fc-act"><button class="fc-say" id="fc-say" aria-label="Nghe">' + IC('speak') + '</button></div>' +
-        '<div class="fc-btns" id="fc-btns"><button class="fc-b no" id="fc-no">Chưa nhớ</button><button class="fc-b ok" id="fc-ok">Nhớ rồi</button></div></div>';
-      const el = $('#fc', app), btns = $('#fc-btns', app);
-      const flip = () => { flipped = !flipped; el.classList.toggle('on', flipped); btns.classList.add('in'); };
-      el.onclick = flip;
+        '<div class="fc-btns"><button class="fc-b no" id="fc-no">Chưa nhớ</button><button class="fc-b ok" id="fc-ok">Nhớ rồi</button></div></div>';
+      const el = $('#fc', app);
+      let moved = false;
+      el.onclick = () => { if (!moved) el.classList.toggle('on'); };
       $('#fc-say', app).onclick = () => SP().speak(c.en, { who: 'A' });
-      const ans = ok => { if (graded) ST().grade(c.id, ok); if (ok) good++; el.classList.add(ok ? 'out-r' : 'out-l'); setTimeout(() => { i++; i < deck.length ? show() : end(); }, 260); };
+      const go = d => { if (d < 0 && !i) return; if (d > 0 && i === deck.length - 1) return end(); i += d; show(d > 0 ? 'r' : 'l'); };
+      $('#fc-prev', app).onclick = () => go(-1);
+      $('#fc-next', app).onclick = () => go(1);
+      const ans = ok => { mark(c.id, !ok); c.miss = ok ? 0 : 1; ok ? good++ : bad++; el.classList.add(ok ? 'out-r' : 'out-l'); setTimeout(() => go(1), 240); };
       $('#fc-ok', app).onclick = () => ans(true);
       $('#fc-no', app).onclick = () => ans(false);
-      let x0 = null, dx = 0;
-      el.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; dx = 0; }, { passive: true });
-      el.addEventListener('touchmove', e => { if (x0 == null) return; dx = e.touches[0].clientX - x0; if (flipped) el.style.transform = 'translateX(' + dx + 'px) rotate(' + dx / 20 + 'deg)'; }, { passive: true });
-      el.addEventListener('touchend', () => { el.style.transform = ''; if (flipped && Math.abs(dx) > 80) { ans(dx > 0); } x0 = null; });
+      // Vuốt trái: từ sau · vuốt phải: từ trước
+      let x0 = null, y0 = 0, dx = 0;
+      el.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; dx = 0; moved = false; el.style.transition = 'none'; }, { passive: true });
+      el.addEventListener('touchmove', e => { if (x0 == null) return; dx = e.touches[0].clientX - x0; if (Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(e.touches[0].clientY - y0)) { moved = true; el.style.transform = 'translateX(' + dx + 'px) rotate(' + dx / 25 + 'deg)'; } }, { passive: true });
+      el.addEventListener('touchend', () => { el.style.transition = ''; el.style.transform = ''; if (moved && Math.abs(dx) > 70) go(dx < 0 ? 1 : -1); x0 = null; setTimeout(() => { moved = false; }, 50); });
       SP().speak(c.en, { who: 'A' });
     };
     const end = () => {
-      const left = dueWords().length;
-      app.innerHTML = '<div class="fc fc-end"><div class="hy">' + (UI() && UI().hiyo ? UI().hiyo(good === deck.length ? 'cheer' : 'joy') : '') + '</div><h2>Ôn xong ' + deck.length + ' từ!</h2><p class="muted">Nhớ: <b>' + good + '</b> · Chưa nhớ: <b>' + (deck.length - good) + '</b></p>' +
-        '<div class="fc-endb">' + (left ? '<button class="btn primary" id="fc-more">Ôn tiếp ' + left + ' từ</button>' : '<button class="btn primary" id="fc-more">Ôn lại</button>') + '<a class="btn" href="#/sotay">Về Sổ tay</a></div></div>';
-      $('#fc-more', app).onclick = () => flash(app);
-      UI() && UI().refreshTop && UI().refreshTop();
+      const miss = missList().length;
+      app.innerHTML = '<div class="fc fc-end"><div class="hy">' + (UI() && UI().hiyo ? UI().hiyo(!bad ? 'cheer' : 'joy') : '') + '</div><h2>Xong ' + deck.length + ' từ!</h2>' + (good + bad ? '<p class="muted">Nhớ: <b>' + good + '</b> · Chưa nhớ: <b>' + bad + '</b></p>' : '') +
+        '<div class="fc-endb">' + (miss ? '<a class="btn primary" href="#/sotay/the/miss">Ôn ' + miss + ' từ chưa thuộc</a>' : '') + '<button class="btn' + (miss ? '' : ' primary') + '" id="fc-more">Ôn lại</button><a class="btn" href="' + back + '">Về Sổ tay</a></div></div>';
+      $('#fc-more', app).onclick = () => flash(app, only);
     };
     show();
   }
 
   // ---------- Trang Sổ tay ----------
-  function view(app) {
-    const L = list();
+  function view(app, tab) {
+    const all = list(), miss = missList(), M = tab === 'miss';
+    const L = M ? miss : all;
     app.innerHTML = '<div class="nb"><h1 class="sd-title">Sổ tay</h1>' +
-      (L.length ? '<div class="nb-top"><span class="muted">' + L.length + ' từ</span><a class="btn primary small" href="#/sotay/the">' + IC('review') + (dueWords().length ? 'Ôn ' + dueWords().length + ' từ' : 'Ôn tập') + '</a></div><div class="nb-list">' +
-        L.map(c => '<div class="nb-i" data-k="' + esc(c.k) + '"><button class="nb-say" aria-label="Nghe">' + IC('speak') + '</button><div class="nb-t"><b>' + esc(c.en) + '</b>' + (c.ph ? '<small>' + esc(c.ph) + '</small>' : '') + '<span>' + esc(c.vi || '') + '</span></div><button class="nb-del" aria-label="Bỏ khỏi sổ tay">' + IC('star') + '</button></div>').join('') + '</div>'
+      (all.length ? '<div class="nb-tabs"><a class="nb-tab' + (M ? '' : ' on') + '" href="#/sotay">Tất cả <b>' + all.length + '</b></a><a class="nb-tab' + (M ? ' on' : '') + '" href="#/sotay/miss">Chưa thuộc <b>' + miss.length + '</b></a></div>' +
+        (L.length ? '<a class="nb-go" href="#/sotay/the' + (M ? '/miss' : '') + '">' + IC('review') + (M ? 'Ôn từ chưa thuộc' : 'Ôn tập bằng flashcard') + '</a><div class="nb-list">' +
+        L.map(c => '<div class="nb-i' + (c.miss ? ' miss' : '') + '" data-k="' + esc(c.k) + '"><button class="nb-say" aria-label="Nghe">' + IC('speak') + '</button><div class="nb-t"><b>' + esc(c.en) + '</b>' + (c.ph ? '<small>' + esc(c.ph) + '</small>' : '') + '<span>' + esc(c.vi || '') + '</span></div><button class="nb-del" aria-label="Bỏ khỏi sổ tay">' + IC('star') + '</button></div>').join('') + '</div>'
+        : '<div class="nb-empty">' + IC('check') + '<p class="muted">Không còn từ chưa thuộc.</p></div>')
         : '<div class="nb-empty">' + IC('star') + '<p class="muted">Chạm vào một từ trong bài, bấm ⭐ để lưu vào đây.</p></div>') + '</div>';
     $$('.nb-i', app).forEach(r => {
       const c = L.find(x => x.k === r.dataset.k);
       $('.nb-say', r).onclick = () => SP().speak(c.en, { who: 'A' });
-      $('.nb-del', r).onclick = () => { unsave(c.k); r.remove(); UI() && UI().toast('Đã bỏ khỏi Sổ tay'); if (!$('.nb-i', app)) view(app); };
+      $('.nb-del', r).onclick = () => { unsave(c.k); r.remove(); UI() && UI().toast('Đã bỏ khỏi Sổ tay'); view(app, tab); };
     });
   }
 
-  window.SEDICT = { lookup, sheet, close, view, flash, list, saved, dueWords };
+  window.SEDICT = { lookup, sheet, close, view, flash, list, saved, missList };
 })();

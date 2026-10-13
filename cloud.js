@@ -22,7 +22,8 @@
     if (!a) return b; if (!b) return a;
     // Đã xoá toàn bộ tiến độ ở một máy → bỏ dữ liệu cũ hơn lần xoá đó ở máy/tài khoản kia
     const ra = a.resetAt || 0, rb = b.resetAt || 0;
-    const wipe = x => Object.assign({}, x, { cards: {}, done: {}, custom: {}, days: {}, xp: 0, streak: { last: '', n: 0 } });
+    const nbOnly = c => { const o = {}; for (const k in (c || {})) if (k.startsWith('w:')) o[k] = c[k]; return o; };   // Sổ tay không bị xoá cùng tiến độ
+    const wipe = x => Object.assign({}, x, { cards: {}, done: {}, custom: nbOnly(x.custom), days: {}, xp: 0, streak: { last: '', n: 0 } });
     if (ra > rb) b = wipe(b); else if (rb > ra) a = wipe(a);
     const out = Object.assign({}, a, b);
     out.cards = Object.assign({}, a.cards);
@@ -40,6 +41,7 @@
     out.days = Object.assign({}, a.days);
     for (const d in (b.days || {})) out.days[d] = Math.max(out.days[d] || 0, b.days[d]);
     out.custom = Object.assign({}, a.custom, b.custom);
+    for (const id in (a.custom || {})) { const x = a.custom[id], y = (b.custom || {})[id]; if (y && (x.t || 0) > (y.t || 0)) out.custom[id] = x; }   // bản sửa mới hơn (Chưa thuộc) thắng
     out.xp = Math.max(a.xp || 0, b.xp || 0);
     const sa = a.streak || {}, sb = b.streak || {};
     out.streak = (sb.last || '') > (sa.last || '') ? sb : (sa.last || '') > (sb.last || '') ? sa : { last: sa.last || '', n: Math.max(sa.n || 0, sb.n || 0) };

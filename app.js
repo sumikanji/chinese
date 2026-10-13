@@ -28,7 +28,7 @@
   // Dọn dữ liệu của phiên bản cũ (thẻ từ vựng)
   (function migrate() {
     const S = ST.get(); let ch = false;
-    for (const id in S.cards) if (!card(id)) { delete S.cards[id]; ch = true; }
+    for (const id in S.cards) if (!card(id) || id.startsWith('w:')) { delete S.cards[id]; ch = true; }   // từ Sổ tay ôn riêng bằng flashcard
     for (const id in S.done) if (!LES[id]) { delete S.done[id]; ch = true; }
     if (ch) ST.save();
   })();
@@ -126,7 +126,7 @@
     const X = window.SEX;
     if (X && parts[0] === 'feedback') return X.viewFeedback(app);
     if (window.SECOM && parts[0] === 'congdong') return window.SECOM.view(app, 'thread', parts[1]);
-    if (window.SEDICT && parts[0] === 'sotay') return parts[1] === 'the' ? window.SEDICT.flash(app) : window.SEDICT.view(app);
+    if (window.SEDICT && parts[0] === 'sotay') return parts[1] === 'the' ? window.SEDICT.flash(app, parts[2]) : window.SEDICT.view(app, parts[1]);
     if (window.SECOM && parts[0] === 'gopy') return window.SECOM.view(app, 'ideas', parts[1]);
     if (parts[0] === 'shadow' && window.SEShadow) { const c = window.SEShadow.view(app, parts[1], parts[2]); if (typeof c === 'function') cleanup = c; return; }
     viewHome();
@@ -798,7 +798,7 @@
         (CL && CL.enabled() ? row('user', '#0ea5e9', u ? esc(u.name || u.email) : 'Chưa đăng nhập', u ? 'Tiến độ tự đồng bộ lên tài khoản.' : 'Đăng nhập để lưu tiến độ và học trên nhiều thiết bị.', '<a class="btn small" href="#/account">' + (u ? 'Xem tài khoản' : 'Đăng nhập') + '</a>') : row('user', '#0ea5e9', 'Lưu trên máy này', 'Tiến độ được lưu trên trình duyệt của máy này.', '')) +
         (window.SEX && window.SEX.fbEnabled() ? row('bulb', '#f59e0b', 'Góp ý cho Sumi', 'Trang cần cải thiện gì, thêm tính năng gì.', '<a class="btn small" href="#/gopy">Mở</a>') +
         row('chat', '#0284c7', 'Góp ý từng câu', 'Bình luận câu sai, dịch chưa đúng ở cuối bước Nghe và cuối mỗi đoạn Shadowing.', '<a class="btn small" href="#/feedback">Xem</a>') : '') +
-        row('trash', '#ef4444', 'Xoá tiến độ', 'Xoá toàn bộ bài đã học và câu ôn tập trên máy này.', '<button class="btn small ghost" id="reset">Xoá toàn bộ tiến độ</button>')) +
+        row('trash', '#ef4444', 'Xoá tiến độ', 'Xoá toàn bộ bài đã học và câu ôn tập. Từ trong Sổ tay vẫn giữ nguyên.', '<button class="btn small ghost" id="reset">Xoá toàn bộ tiến độ</button>')) +
       sec('Trợ giúp', row('mic', '#a855f7', 'Micro và chấm phát âm', 'Dùng Chrome, Edge (máy tính, Android) hoặc Safari (iPhone). Lần đầu bấm Nói, chọn Cho phép dùng micro.', '')) +
       '<p class="muted" style="text-align:center;font-size:.78rem;margin:18px 0">© 2026 Sumi Chinese · Hiyo © Sumi Kanji · Miễn phí</p></div>';
     if ($('#pwa-set')) $('#pwa-set').onclick = async () => { if (await window.SEPWA.install()) toast('Đã cài Sumi ra màn hình chính'); };
@@ -818,7 +818,7 @@
     bindVoice($('#vmode'));
     $('#vsel').onchange = e => { SP.setVoice(e.target.value); ST.cfg('voice', e.target.value); SP.speak('你好！这是我的声音。'); };
     $('#vtest').onclick = () => SP.speak('你好！很高兴认识你。你今天怎么样？');
-    $('#reset').onclick = () => { if (confirm('Xoá toàn bộ tiến độ học và câu ôn tập?')) { const t = ST.cfg('theme'), am = ST.cfg('avMe'), at = ST.cfg('avThem'), hp = ST.cfg('hidePy'); ST.reset(); ST.get().resetAt = Date.now(); ST.save(); if (t) ST.cfg('theme', t); if (am) ST.cfg('avMe', am); if (at) ST.cfg('avThem', at); if (hp) ST.cfg('hidePy', hp); toast('Đã xoá tiến độ'); if (window.SECloud && window.SECloud.user && window.SECloud.user()) window.SECloud.syncNow(); route(); } };
+    $('#reset').onclick = () => { if (confirm('Xoá toàn bộ tiến độ học và câu ôn tập?')) { const t = ST.cfg('theme'), am = ST.cfg('avMe'), at = ST.cfg('avThem'), hp = ST.cfg('hidePy'); const nbW = {}; const C0 = ST.get().custom || {}; for (const k in C0) if (k.startsWith('w:')) nbW[k] = C0[k]; ST.reset(); ST.get().custom = nbW; ST.get().resetAt = Date.now(); ST.save(); if (t) ST.cfg('theme', t); if (am) ST.cfg('avMe', am); if (at) ST.cfg('avThem', at); if (hp) ST.cfg('hidePy', hp); toast('Đã xoá tiến độ'); if (window.SECloud && window.SECloud.user && window.SECloud.user()) window.SECloud.syncNow(); route(); } };
   }
 
   // ================= TÀI KHOẢN =================

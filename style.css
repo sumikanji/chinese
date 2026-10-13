@@ -1459,3 +1459,28 @@ body.bars-hide .tabs { transform: translateY(calc(100% + 40px)); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .fc-b.no { background: #4c1d1d; color: #fca5a5; } :root:not([data-theme="light"]) .fc-b.ok { background: #14361f; color: #86efac; } }
 :root[data-theme="dark"] .fc-b.no { background: #4c1d1d; color: #fca5a5; }
 :root[data-theme="dark"] .fc-b.ok { background: #14361f; color: #86efac; }
+/* ===== Flashcard v2: vừa màn hình, nút to, vuốt chuyển từ ===== */
+.fc { min-height: 0; padding-bottom: 44px; }
+.fc-top { margin-bottom: 14px; }
+.fc-stage { position: relative; display: flex; align-items: center; }
+.fc-card { flex: 1; height: clamp(230px, 42dvh, 400px); min-height: 0; max-height: none; touch-action: pan-y; }
+.fc-in { min-height: 0; height: 100%; }
+.fc-card.in-r { animation: fcInR .26s ease-out; } .fc-card.in-l { animation: fcInL .26s ease-out; }
+@keyframes fcInR { from { transform: translateX(40%); opacity: 0; } } @keyframes fcInL { from { transform: translateX(-40%); opacity: 0; } }
+.fc-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--card); color: var(--sub); display: flex; align-items: center; justify-content: center; padding: 0; }
+.fc-nav.l { left: -10px; } .fc-nav.r { right: -10px; }
+.fc-nav:disabled { opacity: 0; pointer-events: none; }
+.fc-nav .ic { width: 18px; height: 18px; }
+.fc-tag { position: absolute; top: 16px; left: 16px; font-size: .75rem; font-weight: 800; color: #b91c1c; background: #fee2e2; padding: 3px 10px; border-radius: 99px; }
+.fc-tip { position: absolute; bottom: 16px; color: var(--sub); opacity: .45; } .fc-tip .ic { width: 20px; height: 20px; }
+.fc-act { margin: 14px 0; }
+.fc-btns, .fc-btns.in { opacity: 1; pointer-events: auto; transform: none; }
+.fc-b { min-height: 76px; font-size: 1.15rem; border-radius: 22px; }
+.fc-b:active { transform: scale(.97); }
+.nb-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px; border-radius: 18px; background: var(--card); border: 1.5px solid var(--line); margin-bottom: 12px; }
+.nb-tab { text-align: center; padding: 10px; border-radius: 13px; font-weight: 800; color: var(--sub); text-decoration: none; }
+.nb-tab b { margin-left: 4px; font-size: .85rem; padding: 1px 8px; border-radius: 99px; background: var(--line); color: var(--ink); }
+.nb-tab.on { background: color-mix(in srgb, var(--tk) 14%, var(--card)); color: var(--tk); }
+.nb-go { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 58px; border-radius: 18px; background: var(--tk); color: #fff; font-weight: 900; font-size: 1.05rem; text-decoration: none; margin-bottom: 12px; }
+.nb-go .ic { width: 20px; height: 20px; }
+.nb-i.miss { border-color: #fecaca; }
