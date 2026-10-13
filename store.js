@@ -50,7 +50,7 @@
   }
   function dueIds() {
     const now = Date.now();
-    return Object.keys(S.cards).filter(id => S.cards[id].due <= now).sort((a, b) => S.cards[a].due - S.cards[b].due);
+    return Object.keys(S.cards).filter(id => S.cards[id].due <= now && !/^w:/.test(id)).sort((a, b) => S.cards[a].due - S.cards[b].due);
   }
   function nextDue() {
     let m = Infinity;

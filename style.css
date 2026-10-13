@@ -1420,3 +1420,42 @@ body.bars-hide .tabs { transform: translateY(calc(100% + 40px)); }
 .nb-t span { font-size: .95rem; }
 .nb-empty { text-align: center; padding: 60px 20px; color: var(--sub); }
 .nb-empty .ic { width: 56px; height: 56px; color: color-mix(in srgb, #d97706 45%, transparent); margin-bottom: 10px; }
+
+/* ===== Ôn tập Sổ tay: flashcard ===== */
+.ava.hy { background: none; border: 0; width: 46px; height: 46px; }
+.ava.hy .hiyo { width: 46px; height: 44px; }
+.fc { max-width: 520px; margin: 0 auto; display: flex; flex-direction: column; min-height: calc(100vh - 160px); min-height: calc(100dvh - 160px); }
+.fc-top { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.fc-x { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--sub); background: var(--card); border: 1.5px solid var(--line); flex: none; }
+.fc-x .ic { width: 20px; height: 20px; }
+.fc-bar { flex: 1; height: 8px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.fc-bar i { display: block; height: 100%; background: var(--tk); border-radius: 99px; transition: width .3s; }
+.fc-n { font-weight: 800; color: var(--sub); font-size: .9rem; min-width: 44px; text-align: right; }
+.fc-card { flex: 1; min-height: 300px; max-height: 440px; border: 0; padding: 0; background: none; perspective: 1200px; cursor: pointer; transition: transform .26s, opacity .26s; -webkit-tap-highlight-color: transparent; }
+.fc-in { position: relative; width: 100%; height: 100%; min-height: 300px; transition: transform .45s cubic-bezier(.3,.7,.3,1); transform-style: preserve-3d; }
+.fc-card.on .fc-in { transform: rotateY(180deg); }
+.fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 28px; background: var(--card); border: 1.5px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,.08); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 24px; text-align: center; color: var(--ink); }
+.fc-back { transform: rotateY(180deg); background: color-mix(in srgb, var(--tk) 7%, var(--card)); border-color: color-mix(in srgb, var(--tk) 35%, var(--line)); }
+.fc-w { font-family: var(--head); font-weight: 900; font-size: 2.4rem; line-height: 1.15; word-break: break-word; }
+.fc-w.zh { font-size: 3.2rem; letter-spacing: .04em; }
+.fc-w.sm { font-size: 1.5rem; color: var(--sub); }
+.fc-w.sm.zh { font-size: 2rem; }
+.fc-ph { color: var(--sub); font-size: 1.05rem; }
+.fc-pos { font-size: .8rem; font-weight: 800; color: var(--tk); background: color-mix(in srgb, var(--tk) 14%, transparent); padding: 3px 10px; border-radius: 99px; }
+.fc-vi { font-size: 1.6rem; font-weight: 800; line-height: 1.3; }
+.fc-card.out-r { transform: translateX(120%) rotate(12deg); opacity: 0; }
+.fc-card.out-l { transform: translateX(-120%) rotate(-12deg); opacity: 0; }
+.fc-act { display: flex; justify-content: center; margin: 16px 0 10px; }
+.fc-say { width: 56px; height: 56px; border-radius: 50%; border: 0; background: color-mix(in srgb, var(--tk) 14%, var(--card)); color: var(--tk); display: flex; align-items: center; justify-content: center; }
+.fc-say .ic { width: 26px; height: 26px; }
+.fc-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; opacity: 0; pointer-events: none; transform: translateY(8px); transition: .25s; }
+.fc-btns.in { opacity: 1; pointer-events: auto; transform: none; }
+.fc-b { border: 0; border-radius: 18px; padding: 16px; font-weight: 900; font-size: 1.05rem; font-family: inherit; }
+.fc-b.no { background: #fee2e2; color: #b91c1c; }
+.fc-b.ok { background: #dcfce7; color: #15803d; }
+.fc-end { align-items: center; justify-content: center; text-align: center; gap: 6px; }
+.fc-end .hy svg { width: 140px; height: 130px; }
+.fc-endb { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 14px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .fc-b.no { background: #4c1d1d; color: #fca5a5; } :root:not([data-theme="light"]) .fc-b.ok { background: #14361f; color: #86efac; } }
+:root[data-theme="dark"] .fc-b.no { background: #4c1d1d; color: #fca5a5; }
+:root[data-theme="dark"] .fc-b.ok { background: #14361f; color: #86efac; }

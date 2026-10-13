@@ -126,7 +126,7 @@
     const X = window.SEX;
     if (X && parts[0] === 'feedback') return X.viewFeedback(app);
     if (window.SECOM && parts[0] === 'congdong') return window.SECOM.view(app, 'thread', parts[1]);
-    if (window.SEDICT && parts[0] === 'sotay') return window.SEDICT.view(app);
+    if (window.SEDICT && parts[0] === 'sotay') return parts[1] === 'the' ? window.SEDICT.flash(app) : window.SEDICT.view(app);
     if (window.SECOM && parts[0] === 'gopy') return window.SECOM.view(app, 'ideas', parts[1]);
     if (parts[0] === 'shadow' && window.SEShadow) { const c = window.SEShadow.view(app, parts[1], parts[2]); if (typeof c === 'function') cleanup = c; return; }
     viewHome();
@@ -280,14 +280,8 @@
     if (step === 'done') return stepDone(P, l, sc);
   }
   const head = (title, text) => '<div class="panel-h"><h2>' + title + '</h2><p>' + text + '</p></div>';
-  // Ảnh đại diện trong hội thoại: avMe (của bạn), avThem ('letter' chữ cái · 'auto' mỗi người một con vật · id cố định)
-  function avaHtml(name, me) {
-    const A = window.SEAV;
-    if (me) { const id = ST.cfg('avMe'); return id && A && A.svg(id) ? '<span class="ava img">' + A.svg(id) + '</span>' : '<span class="ava">Bạn</span>'; }
-    const m = ST.cfg('avThem') || 'auto';
-    const id = !A || m === 'letter' ? '' : m === 'auto' ? A.pick(name) : m;
-    return id && A.svg(id) ? '<span class="ava img">' + A.svg(id) + '</span>' : '<span class="ava">' + initial(name) + '</span>';
-  }
+  // Ảnh trong hội thoại: câu của bạn hiện Hiyo của bạn, người nói chuyện chỉ hiện tên
+  function avaHtml(name, me) { return me ? '<span class="ava hy">' + hiyo(hyFace()) + '</span>' : ''; }
   function msgHtml(l, d, i, extra, side, name) {
     side = side || d[0];
     name = name || (d[0] === 'B' ? 'Bạn' : l.a);
@@ -789,15 +783,8 @@
     // Một dòng cài đặt: ô icon màu + tên + mô tả + phần điều khiển
     const row = (ic, color, title, desc, ctl) => '<div class="set-row"><span class="set-ico" style="background:' + color + '">' + I(ic) + '</span><div class="set-main"><div class="set-t">' + title + '</div>' + (desc ? '<div class="set-d">' + desc + '</div>' : '') + (ctl ? '<div class="set-c">' + ctl + '</div>' : '') + '</div></div>';
     const sec = (title, rows) => '<section class="set-sec"><h3>' + title + '</h3><div class="set-grp">' + rows + '</div></section>';
-    const avGrid = (id, cur, extra) => '<div class="av-grid" id="' + id + '">' + (extra || '') + (A ? A.list.map(a => '<button class="av-b' + (cur === a.id ? ' on' : '') + '" data-a="' + a.id + '" title="' + a.name + '" aria-label="' + a.name + '">' + A.svg(a.id) + '</button>').join('') : '') + '</div>';
-    const me = ST.cfg('avMe') || '', them = ST.cfg('avThem') || 'auto';
-    const preview = () => '<div class="av-prev"><span class="av-prev-i">' + avaHtml('Emma', false) + '<small>Người nói chuyện</small></span><span class="av-prev-i">' + avaHtml('Bạn', true) + '<small>Bạn</small></span></div>';
     app.innerHTML = '<div class="settings">' +
       '<div class="set-head">' + I('settings') + '<div><h1>Cài đặt</h1><p class="muted">Tuỳ chỉnh Sumi Chinese theo cách bạn thích.</p></div></div>' +
-      sec('Ảnh đại diện', '<div id="avprev">' + preview() + '</div>' +
-        row('user', '#f59e0b', 'Ảnh của bạn', 'Hiện bên cạnh câu bạn nói trong hội thoại và trong bình luận.', avGrid('avme', me, '<button class="av-b txt' + (me ? '' : ' on') + '" data-a="">Bạn</button>')) +
-        row('chat', '#0ea5e9', 'Người nói chuyện', 'Chữ cái đầu tên, mỗi người một con vật, hoặc chọn một ảnh cho tất cả.',
-          '<div class="seg" id="avmode"><button class="seg-b' + (them === 'letter' ? ' on' : '') + '" data-m="letter">Chữ cái</button><button class="seg-b' + (them === 'auto' ? ' on' : '') + '" data-m="auto">Mỗi người một con vật</button></div>' + avGrid('avthem', them))) +
       (window.SEPWA && !window.SEPWA.installed() ? sec('Ứng dụng', row('install', '#c8102e', 'Cài app ra màn hình chính', 'Mở Sumi bằng một chạm từ màn hình điện thoại hoặc máy tính, toàn màn hình như ứng dụng.', '<button class="btn small primary" id="pwa-set">' + I('install') + 'Cài app</button>')) : '') +
       sec('Giao diện',
         row('theme', '#6366f1', 'Chế độ sáng / tối', 'Theo máy: tự đổi giống cài đặt của điện thoại.', '<div class="seg" id="theme">' + [['auto', 'Theo máy'], ['light', 'Sáng'], ['dark', 'Tối']].map(x => '<button class="seg-b' + (th === x[0] ? ' on' : '') + '" data-t="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>') +
@@ -814,11 +801,6 @@
         row('trash', '#ef4444', 'Xoá tiến độ', 'Xoá toàn bộ bài đã học và câu ôn tập trên máy này.', '<button class="btn small ghost" id="reset">Xoá toàn bộ tiến độ</button>')) +
       sec('Trợ giúp', row('mic', '#a855f7', 'Micro và chấm phát âm', 'Dùng Chrome, Edge (máy tính, Android) hoặc Safari (iPhone). Lần đầu bấm Nói, chọn Cho phép dùng micro.', '')) +
       '<p class="muted" style="text-align:center;font-size:.78rem;margin:18px 0">© 2026 Sumi Chinese · Hiyo © Sumi Kanji · Miễn phí</p></div>';
-    const refreshAv = () => { $('#avprev').innerHTML = preview(); };
-    $$('#avme .av-b').forEach(b => b.onclick = () => { ST.cfg('avMe', b.dataset.a); $$('#avme .av-b').forEach(x => x.classList.toggle('on', x === b)); refreshAv(); });
-    const markThem = () => { const t = ST.cfg('avThem') || 'auto'; $$('#avmode .seg-b').forEach(x => x.classList.toggle('on', x.dataset.m === t)); $$('#avthem .av-b').forEach(x => x.classList.toggle('on', x.dataset.a === t)); refreshAv(); };
-    $$('#avmode .seg-b').forEach(b => b.onclick = () => { ST.cfg('avThem', b.dataset.m); markThem(); });
-    $$('#avthem .av-b').forEach(b => b.onclick = () => { ST.cfg('avThem', b.dataset.a); markThem(); });
     if ($('#pwa-set')) $('#pwa-set').onclick = async () => { if (await window.SEPWA.install()) toast('Đã cài Sumi ra màn hình chính'); };
     $$('#theme .seg-b').forEach(b => b.onclick = () => {
       ST.cfg('theme', b.dataset.t === 'auto' ? '' : b.dataset.t); applyTheme();

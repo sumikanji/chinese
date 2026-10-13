@@ -82,11 +82,51 @@
   window.addEventListener('hashchange', close);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 
+  // ---------- Ôn tập Sổ tay bằng flashcard ----------
+  const dueWords = () => { const C = ST().get().cards, now = Date.now(); return list().filter(c => !C[c.id] || C[c.id].due <= now); };
+  function flash(app) {
+    const due = dueWords();
+    const deck = (due.length ? due : list().slice().sort(() => Math.random() - .5)).slice(0, 20);
+    const graded = due.length > 0;
+    let i = 0, good = 0, flipped = false;
+    if (!deck.length) { location.hash = '#/sotay'; return; }
+    const card = c => '<div class="fc-in"><div class="fc-face fc-front"><div class="fc-w' + (ZH ? ' zh' : '') + '">' + esc(c.en) + '</div>' + (c.ph && !ZH ? '<div class="fc-ph">' + esc(c.ph) + '</div>' : '') + '</div>' +
+      '<div class="fc-face fc-back"><div class="fc-w sm' + (ZH ? ' zh' : '') + '">' + esc(c.en) + '</div>' + (c.ph ? '<div class="fc-ph">' + esc(c.ph) + '</div>' : '') +
+      (lookup(c.en).pos ? '<div class="fc-pos">' + esc(POS[lookup(c.en).pos] || '') + '</div>' : '') + '<div class="fc-vi">' + esc(c.vi || lookup(c.en).vi || '') + '</div></div></div>';
+    const show = () => {
+      const c = deck[i]; flipped = false;
+      app.innerHTML = '<div class="fc"><div class="fc-top"><a class="fc-x" href="#/sotay" aria-label="Đóng">' + IC('chevL') + '</a><div class="fc-bar"><i style="width:' + (i / deck.length * 100) + '%"></i></div><span class="fc-n">' + (i + 1) + '/' + deck.length + '</span></div>' +
+        '<button class="fc-card" id="fc">' + card(c) + '</button>' +
+        '<div class="fc-act"><button class="fc-say" id="fc-say" aria-label="Nghe">' + IC('speak') + '</button></div>' +
+        '<div class="fc-btns" id="fc-btns"><button class="fc-b no" id="fc-no">Chưa nhớ</button><button class="fc-b ok" id="fc-ok">Nhớ rồi</button></div></div>';
+      const el = $('#fc', app), btns = $('#fc-btns', app);
+      const flip = () => { flipped = !flipped; el.classList.toggle('on', flipped); btns.classList.add('in'); };
+      el.onclick = flip;
+      $('#fc-say', app).onclick = () => SP().speak(c.en, { who: 'A' });
+      const ans = ok => { if (graded) ST().grade(c.id, ok); if (ok) good++; el.classList.add(ok ? 'out-r' : 'out-l'); setTimeout(() => { i++; i < deck.length ? show() : end(); }, 260); };
+      $('#fc-ok', app).onclick = () => ans(true);
+      $('#fc-no', app).onclick = () => ans(false);
+      let x0 = null, dx = 0;
+      el.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; dx = 0; }, { passive: true });
+      el.addEventListener('touchmove', e => { if (x0 == null) return; dx = e.touches[0].clientX - x0; if (flipped) el.style.transform = 'translateX(' + dx + 'px) rotate(' + dx / 20 + 'deg)'; }, { passive: true });
+      el.addEventListener('touchend', () => { el.style.transform = ''; if (flipped && Math.abs(dx) > 80) { ans(dx > 0); } x0 = null; });
+      SP().speak(c.en, { who: 'A' });
+    };
+    const end = () => {
+      const left = dueWords().length;
+      app.innerHTML = '<div class="fc fc-end"><div class="hy">' + (UI() && UI().hiyo ? UI().hiyo(good === deck.length ? 'cheer' : 'joy') : '') + '</div><h2>Ôn xong ' + deck.length + ' từ!</h2><p class="muted">Nhớ: <b>' + good + '</b> · Chưa nhớ: <b>' + (deck.length - good) + '</b></p>' +
+        '<div class="fc-endb">' + (left ? '<button class="btn primary" id="fc-more">Ôn tiếp ' + left + ' từ</button>' : '<button class="btn primary" id="fc-more">Ôn lại</button>') + '<a class="btn" href="#/sotay">Về Sổ tay</a></div></div>';
+      $('#fc-more', app).onclick = () => flash(app);
+      UI() && UI().refreshTop && UI().refreshTop();
+    };
+    show();
+  }
+
   // ---------- Trang Sổ tay ----------
   function view(app) {
     const L = list();
     app.innerHTML = '<div class="nb"><h1 class="sd-title">Sổ tay</h1>' +
-      (L.length ? '<div class="nb-top"><span class="muted">' + L.length + ' từ</span><a class="btn primary small" href="#/review">' + IC('review') + 'Ôn tập</a></div><div class="nb-list">' +
+      (L.length ? '<div class="nb-top"><span class="muted">' + L.length + ' từ</span><a class="btn primary small" href="#/sotay/the">' + IC('review') + (dueWords().length ? 'Ôn ' + dueWords().length + ' từ' : 'Ôn tập') + '</a></div><div class="nb-list">' +
         L.map(c => '<div class="nb-i" data-k="' + esc(c.k) + '"><button class="nb-say" aria-label="Nghe">' + IC('speak') + '</button><div class="nb-t"><b>' + esc(c.en) + '</b>' + (c.ph ? '<small>' + esc(c.ph) + '</small>' : '') + '<span>' + esc(c.vi || '') + '</span></div><button class="nb-del" aria-label="Bỏ khỏi sổ tay">' + IC('star') + '</button></div>').join('') + '</div>'
         : '<div class="nb-empty">' + IC('star') + '<p class="muted">Chạm vào một từ trong bài, bấm ⭐ để lưu vào đây.</p></div>') + '</div>';
     $$('.nb-i', app).forEach(r => {
@@ -96,5 +136,5 @@
     });
   }
 
-  window.SEDICT = { lookup, sheet, close, view, list, saved };
+  window.SEDICT = { lookup, sheet, close, view, flash, list, saved, dueWords };
 })();
