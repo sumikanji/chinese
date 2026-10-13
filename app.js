@@ -319,7 +319,7 @@
       const b = $$('.bub', chat)[i];
       $$('.bub', chat).forEach(x => x.classList.remove('speaking'));
       b.classList.add('speaking');
-      b.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      { const r = b.getBoundingClientRect(); window.scrollTo({ top: Math.max(0, window.scrollY + r.top + r.height / 2 - window.innerHeight * 0.45), behavior: 'smooth' }); }   // câu đang đọc luôn ở giữa màn hình
       await SP.speak(l.d[i][1], { who: l.d[i][0], slow });
       b.classList.remove('speaking');
     };
