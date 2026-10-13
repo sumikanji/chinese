@@ -20,6 +20,10 @@
   // ---------- Gộp tiến độ máy này với tài khoản (giữ phần học nhiều hơn) ----------
   function merge(a, b) {
     if (!a) return b; if (!b) return a;
+    // Đã xoá toàn bộ tiến độ ở một máy → bỏ dữ liệu cũ hơn lần xoá đó ở máy/tài khoản kia
+    const ra = a.resetAt || 0, rb = b.resetAt || 0;
+    const wipe = x => Object.assign({}, x, { cards: {}, done: {}, custom: {}, days: {}, xp: 0, streak: { last: '', n: 0 } });
+    if (ra > rb) b = wipe(b); else if (rb > ra) a = wipe(a);
     const out = Object.assign({}, a, b);
     out.cards = Object.assign({}, a.cards);
     for (const id in (b.cards || {})) {
@@ -44,6 +48,15 @@
     out.cfg = Object.assign({}, older.cfg, newer.cfg);
     for (const k in (older.cfg || {})) if (/^(voc_|snd_)/.test(k) && typeof older.cfg[k] === 'number') out.cfg[k] = Math.max(older.cfg[k], (newer.cfg || {})[k] || 0);
     out.updatedAt = Math.max(a.updatedAt || 0, b.updatedAt || 0);
+    out.resetAt = Math.max(ra, rb);
+    // Từ đã bỏ khỏi Sổ tay: không để bản ở máy khác làm nó hiện lại
+    out.gone = Object.assign({}, a.gone);
+    for (const id in (b.gone || {})) out.gone[id] = Math.max(out.gone[id] || 0, b.gone[id]);
+    for (const id in out.gone) {
+      const c = out.custom[id];
+      if (c && (c.at || 0) > out.gone[id]) { delete out.gone[id]; continue; }
+      delete out.custom[id]; delete out.cards[id];
+    }
     return out;
   }
   // Cài đặt của máy (giao diện, giọng, ảnh đại diện…) giữ lại khi đổi tài khoản; tiến độ học thì không

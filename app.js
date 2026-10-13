@@ -836,7 +836,7 @@
     bindVoice($('#vmode'));
     $('#vsel').onchange = e => { SP.setVoice(e.target.value); ST.cfg('voice', e.target.value); SP.speak('你好！这是我的声音。'); };
     $('#vtest').onclick = () => SP.speak('你好！很高兴认识你。你今天怎么样？');
-    $('#reset').onclick = () => { if (confirm('Xoá toàn bộ tiến độ học và câu ôn tập?')) { const t = ST.cfg('theme'), am = ST.cfg('avMe'), at = ST.cfg('avThem'), hp = ST.cfg('hidePy'); ST.reset(); if (t) ST.cfg('theme', t); if (am) ST.cfg('avMe', am); if (at) ST.cfg('avThem', at); if (hp) ST.cfg('hidePy', hp); toast('Đã xoá tiến độ'); route(); } };
+    $('#reset').onclick = () => { if (confirm('Xoá toàn bộ tiến độ học và câu ôn tập?')) { const t = ST.cfg('theme'), am = ST.cfg('avMe'), at = ST.cfg('avThem'), hp = ST.cfg('hidePy'); ST.reset(); ST.get().resetAt = Date.now(); ST.save(); if (t) ST.cfg('theme', t); if (am) ST.cfg('avMe', am); if (at) ST.cfg('avThem', at); if (hp) ST.cfg('hidePy', hp); toast('Đã xoá tiến độ'); if (window.SECloud && window.SECloud.user && window.SECloud.user()) window.SECloud.syncNow(); route(); } };
   }
 
   // ================= TÀI KHOẢN =================

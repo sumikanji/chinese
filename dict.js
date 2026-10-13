@@ -21,11 +21,12 @@
   const saved = k => !!(ST().get().custom || {})[nid(k)];
   function save(it) {
     const S = ST().get(); S.custom = S.custom || {};
+    if (S.gone) delete S.gone[nid(it.k)];
     S.custom[nid(it.k)] = { en: it.w, vi: it.vi || '', src: 'Sổ tay', ph: it.ph || '', word: 1, at: Date.now() };
     if (!S.cards[nid(it.k)]) S.cards[nid(it.k)] = { b: 0, due: Date.now(), r: 0, w: 0 };
     ST().save();
   }
-  function unsave(k) { const S = ST().get(); if (S.custom) delete S.custom[nid(k)]; delete S.cards[nid(k)]; ST().save(); }
+  function unsave(k) { const S = ST().get(); if (S.custom) delete S.custom[nid(k)]; delete S.cards[nid(k)]; S.gone = S.gone || {}; S.gone[nid(k)] = Date.now(); ST().save(); }
   const list = () => Object.entries(ST().get().custom || {}).filter(([id, c]) => /^w:/.test(id) && c.word).map(([id, c]) => Object.assign({ id, k: id.slice(2) }, c)).sort((a, b) => (b.at || 0) - (a.at || 0));
 
   // ---------- Khung tra nghĩa ----------
