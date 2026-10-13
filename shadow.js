@@ -11,7 +11,7 @@
   const best = (id, m) => ST().cfg('sh_' + id + '_' + m);
   const setBest = (id, m, v) => { if (v > (best(id, m) || 0)) ST().cfg('sh_' + id + '_' + m, v); };
   const WHO = 'A';
-  const MODES = [['listen', 'Nghe & nói đuổi', 'speak'], ['say', 'Nói từng câu', 'mic'], ['tell', 'Kể lại cả đoạn', 'chat']];
+  const MODES = [['listen', 'Nghe', 'speak'], ['say', 'Nói từng câu', 'mic'], ['tell', 'Kể lại cả đoạn', 'chat']];
   const I = n => window.SEI ? window.SEI(n) : '';
 
   // ================= Danh sách =================
@@ -19,8 +19,7 @@
     const cur = ST().cfg('shLv') || 'all';
     const list = ALL();
     const lvs = LV.filter(l => list.some(x => x.lv === l));
-    app.innerHTML = '<section class="card panel pop"><div class="panel-h"><h2>Shadowing · Tự kể chuyện</h2><p>' + list.length + ' đoạn văn ngắn, mỗi đoạn là một câu chuyện kể ở ngôi "tôi": giới thiệu bản thân, gia đình, nơi mình sống, công việc, kỷ niệm… từ HSK 1 đến HSK 6. Nghe giọng AI, nói đuổi theo từng câu, rồi tự kể lại cả đoạn.</p></div>' +
-      '<ol class="sd-how"><li><b>Nghe & nói đuổi:</b> nghe từng câu, ngay sau đó nói lại y hệt, cả ngữ điệu.</li><li><b>Nói từng câu:</b> máy chấm từng chữ và thanh điệu.</li><li><b>Kể lại cả đoạn:</b> nhìn gợi ý tiếng Việt và tự kể, như đang giới thiệu về mình.</li></ol></section>' +
+    app.innerHTML = '<h1 class="sd-title">Shadowing</h1>' +
       '<div class="sd-filter" id="flt">' + [['all', 'Tất cả']].concat(lvs.map(l => [l, lvInfo(l).name])).map(x => '<button class="chip' + (cur === x[0] ? ' on' : '') + '" data-l="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>' +
       '<div id="sdl"></div>';
     const draw = l => {

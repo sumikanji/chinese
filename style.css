@@ -1347,3 +1347,16 @@ body.bars-hide .tabs { transform: translateY(calc(100% + 40px)); }
 .tk.tell .tk-stat { bottom: 112px; }
 .sd-done .ic { width: 1.1em; height: 1.1em; }
 .cmt-ctl { justify-content: flex-end; }
+
+/* ===== Bước 1 Nghe hội thoại: giống Shadowing, khung câu dài ra ===== */
+.l1-topic { font-weight: 800; font-size: 1.05rem; margin: 2px 2px 10px; color: var(--ink); }
+.l1chat { gap: 10px; margin-top: 12px; }
+.l1chat .msg { width: 100%; align-items: flex-start; }
+.l1chat .msg .bub { flex: 1; max-width: none; width: 100%; padding: 12px 16px; border-radius: 18px; }
+.l1chat .bub .en { font-size: 1.16rem; line-height: 1.45; }
+.l1chat .bub .vi { font-size: .92rem; }
+.l1chat .bub.speaking { box-shadow: 0 0 0 2px var(--tk); }
+.pbar-play.on { background: var(--bad); color: #fff; }
+.l1chat .msg .bub { max-width: 100% !important; flex: 1 1 auto; }
+.l1chat .msg { max-width: 100% !important; }
+.sd-title { font-size: 1.5rem; margin: 6px 2px 12px; }

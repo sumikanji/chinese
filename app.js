@@ -295,11 +295,11 @@
   // ----- Bước 1: Nghe hội thoại -----
   function stepListen(P, l, sc, next) {
     const hideEn = ST.cfg('hideEn') !== false, hideVi = !!ST.cfg('hideVi'), showPy = ST.cfg('hidePy') !== true;
-    P.innerHTML = '<div class="intro">' + head('Bước 1 · Nghe hội thoại', 'Lần đầu chỉ nghe, chữ Hán đang được làm mờ. Nghe 2–3 lần rồi mới bật chữ. Chạm vào một câu để nghe lại câu đó.') +
-      '<div class="scene">' + esc(l.s) + '</div>' +
+    P.className = 'card panel pop l1';
+    P.innerHTML = '<div class="sd-ctl"><div class="l1-topic">' + esc(l.s) + '</div>' +
       '<div class="pbar"><button class="pbar-play" id="play">' + I('play') + 'Phát cả bài</button><div class="tg"><button class="tg-b" id="slow">' + I('slow') + 'Đọc chậm</button></div>' +
       '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' + '</div>' +
-      '<div class="chat' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="chat">' + l.d.map((d, i) => msgHtml(l, d, i)).join('') + '</div>' +
+      '<div class="chat l1chat' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="chat">' + l.d.map((d, i) => msgHtml(l, d, i)).join('') + '</div>' +
       '<div class="next-bar"><button class="btn primary" id="nx">Tiếp: Ghép câu →</button></div>';
     const chat = $('#chat', P);
     bindVoice(P);
@@ -322,10 +322,12 @@
     };
     $$('.bub', chat).forEach((b, i) => b.onclick = () => { run++; b.classList.add('shown'); line(i); });
     $('#play', P).onclick = async e => {
+      if (e.currentTarget.classList.contains('on')) { run++; SP.stop(); e.currentTarget.classList.remove('on'); e.currentTarget.innerHTML = I('play') + 'Phát cả bài'; $$('.bub', chat).forEach(x => x.classList.remove('speaking')); return; }
+      e.currentTarget.classList.add('on');
       const my = ++run; plays++;
-      e.currentTarget.innerHTML = I('speak') + 'Đang phát…';
+      e.currentTarget.innerHTML = I('stop') + 'Dừng';
       for (let i = 0; i < l.d.length && my === run; i++) { await line(i); await wait(450); }
-      if (my === run) { e.currentTarget.innerHTML = I('repeat') + 'Phát lại'; ST.touch(1); refreshTop(); }
+      if (my === run) { e.currentTarget.classList.remove('on'); e.currentTarget.innerHTML = I('repeat') + 'Phát lại'; ST.touch(1); refreshTop(); }
     };
     $('#nx', P).onclick = next;
     cleanup = () => { run++; };
