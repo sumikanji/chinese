@@ -466,7 +466,9 @@
   }
   const tkDown = el => { el.scrollTo ? el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' }) : (el.scrollTop = el.scrollHeight); };
   // Bấm mic: trả về điểm (0–100) hoặc null. Máy không chấm được → tự đánh giá
-  async function tkSay(btn, stat, d) {
+  const youHtml = (t, live) => '<div class="tk-you' + (live ? ' live' : '') + '"><small>' + (live ? 'Đang nghe…' : 'Bạn nói') + '</small><b>' + esc(t || '…') + '</b></div>';
+  async function tkSay(btn, stat, d, o) {
+    o = o || {};
     if (!SP.canListen()) {
       return new Promise(res => {
         stat.innerHTML = '<span class="tk-self"><button data-s="40">Chưa giống</button><button data-s="70">Khá giống</button><button data-s="95">Giống rồi</button></span>';
@@ -476,11 +478,11 @@
     if (btn.classList.contains('rec')) { SP.stopListening(); return null; }
     SP.stop();
     btn.classList.add('rec'); btn.innerHTML = I('stop');
-    stat.textContent = 'Đang nghe…';
-    const r = await SP.listen(tkTarget(d), { onInterim: t => { stat.textContent = '“' + t + '”'; } });
+    stat.innerHTML = youHtml('', true);
+    const r = await SP.listen(tkTarget(d), { continuous: o.continuous, maxMs: o.maxMs, onInterim: t => { stat.innerHTML = youHtml(o.continuous && t.length > 220 ? '…' + t.slice(-220) : t, true); } });
     btn.classList.remove('rec'); btn.innerHTML = I('mic');
     if (r.error) { stat.textContent = MIC_ERR[r.error] == null ? 'Có lỗi micro, thử lại nhé.' : MIC_ERR[r.error]; return null; }
-    stat.textContent = '“' + r.heard + '”';
+    stat.innerHTML = youHtml(r.heard);
     beep(r.score >= 70);
     return r;
   }
@@ -489,8 +491,9 @@
     '<button class="tk-mic" id="tkM" aria-label="Nói">' + I('mic') + '</button>' +
     '<button class="tk-b" id="' + b[0] + '">' + I(b[1]) + '<small>' + b[2] + '</small></button></div>';
 
-  // ----- Bước 3: Nói theo từng câu (chỉ nghe, nói xong mới hiện chữ để đối chiếu) -----
-  function stepShadow(P, l, sc, next) {
+  // ----- Nói theo từng câu (dùng chung cho bài học và Shadowing) -----
+  // list: [[ai nói, câu, nghĩa, tokens?]]; o: {name(d), onScore(k, s), onEnd(), endLabel}
+  function tkOne(P, list, o) {
     let k = 0, play = 0;
     P.className = 'tk-panel pop';
     P.innerHTML = '<div class="tk one">' +
@@ -499,46 +502,50 @@
       tkDock(['tkL', 'speak', 'Nghe'], ['tkW', 'slow', 'Chậm']) + '</div>';
     const C = $('#tkC', P), S = $('#tkS', P), M = $('#tkM', P);
     const say = async slow => {
-      const my = ++play, d = l.d[k], v = $('#tkV', C);
+      const my = ++play, d = list[k], v = $('#tkV', C);
       if (v) v.classList.add('on');
       await SP.speak(d[1], { who: d[0], slow });
       if (my === play && v) v.classList.remove('on');
     };
     function show() {
       SP.stopListening();
-      const d = l.d[k];
-      C.innerHTML = '<div class="tk-card ask" id="tkCard"><div class="tk-who">' + esc(d[0] === 'B' ? 'Bạn' : l.a) + '</div>' +
-        '<div class="tk-wave" id="tkV"><i></i><i></i><i></i><i></i><i></i></div>' +
-        '<div class="tk-t">' + tkText(d) + '</div><div class="tk-vi">' + esc(d[2]) + '</div><span class="tk-sc"></span></div><div class="tk-rec" id="tkR"></div>';
-      $('#tkCard', C).onclick = () => say(false);
-      $('#tkB', P).style.width = (100 * (k + 1) / l.d.length) + '%';
-      $('#tkN', P).textContent = (k + 1) + '/' + l.d.length;
+      const d = list[k], nm = o.name ? o.name(d) : '';
+      C.innerHTML = '<div class="tk-card hid" id="tkCard">' + (nm ? '<div class="tk-who">' + esc(nm) + '</div>' : '') +
+        '<button class="tk-peek" id="tkK"><span class="tk-t">' + tkText(d) + '</span><span class="tk-vi">' + esc(d[2]) + '</span><em>' + I('eye') + 'Chạm để xem chữ</em></button>' +
+        '<button class="tk-wave" id="tkV" aria-label="Nghe lại"><i></i><i></i><i></i><i></i><i></i></button><span class="tk-sc"></span></div><div class="tk-rec" id="tkR"></div>';
+      $('#tkK', C).onclick = () => $('#tkCard', C).classList.remove('hid');
+      $('#tkV', C).onclick = () => say(false);
+      $('#tkB', P).style.width = (100 * (k + 1) / list.length) + '%';
+      $('#tkN', P).textContent = (k + 1) + '/' + list.length;
       $('#tkP', P).disabled = !k;
       S.innerHTML = '';
       say(false);
-      const nd = l.d[k + 1]; if (nd) SP.prefetch(nd[1], nd[0]);
+      const nd = list[k + 1]; if (nd) SP.prefetch(nd[1], nd[0]);
     }
-    const go = () => { if (k < l.d.length - 1) { k++; show(); } else next(); };
+    const go = () => { if (k < list.length - 1) { k++; show(); } else o.onEnd(); };
     $('#tkP', P).onclick = () => { if (k) { k--; show(); } };
     $('#tkX', P).onclick = go;
     $('#tkL', P).onclick = () => say(false);
     $('#tkW', P).onclick = () => say(true);
     M.onclick = async () => {
-      const kk = k, d = l.d[k];
+      const kk = k, d = list[k];
       const r = await tkSay(M, S, d);
       if (!r || kk !== k) return;
       const card = $('#tkCard', C);
-      const first = card.classList.contains('ask');
-      card.classList.remove('ask');
+      const first = !card.classList.contains('done');
+      card.classList.remove('hid'); card.classList.add('done');
       if (r.heard != null) tkMark(card, d, r);
       tkScore(card, r.score);
-      sc.s3[k] = Math.max(sc.s3[k] || 0, r.score);
-      S.innerHTML = (r.heard ? '<span class="tk-heard">“' + esc(r.heard) + '”</span>' : '') + '<button class="tk-go" id="tkG">' + (k < l.d.length - 1 ? 'Câu tiếp' : 'Sang Nhập vai') + I('chevR') + '</button>';
+      o.onScore && o.onScore(k, r.score);
+      S.insertAdjacentHTML('beforeend', '<button class="tk-go" id="tkG">' + (k < list.length - 1 ? 'Câu tiếp' : (o.endLabel || 'Xong')) + I('chevR') + '</button>');
       $('#tkG', P).onclick = go;
       if (first && window.SEX && window.SEX.recRow) window.SEX.recRow($('#tkR', C), () => SP.speak(d[1], { who: d[0] }), { maxMs: 15000 });
     };
-    cleanup = () => { play++; };
     show();
+    return () => { play++; };
+  }
+  function stepShadow(P, l, sc, next) {
+    cleanup = tkOne(P, l.d, { name: d => d[0] === 'B' ? 'Bạn' : l.a, onScore: (k, s) => { sc.s3[k] = Math.max(sc.s3[k] || 0, s); }, onEnd: next, endLabel: 'Sang Nhập vai' });
   }
 
   // ----- Bước 4: Nhập vai -----
@@ -566,9 +573,9 @@
           for (let j = i + 1; j < l.d.length; j++) if (l.d[j][0] !== me) { SP.prefetch(l.d[j][1], l.d[j][0]); break; }
           if (d[0] !== me) {
             lock(true); S.textContent = '';
-            C.insertAdjacentHTML('beforeend', tkBub(d, i, 'L', pName, ' speaking'));
+            C.insertAdjacentHTML('beforeend', tkBub(d, i, 'L', pName, ' speaking blur'));
             const b = C.lastElementChild.querySelector('.tk-bub');
-            b.onclick = () => SP.speak(d[1], { who: d[0] });
+            b.onclick = () => { b.classList.remove('blur'); SP.speak(d[1], { who: d[0] }); };
             tkDown(C);
             await SP.speak(d[1], { who: d[0] });
             b.classList.remove('speaking');
@@ -598,7 +605,7 @@
         let best = null, hint = 0, tm;
         const reveal = () => bub.classList.remove('ask');
         const done = () => { clearTimeout(tm); if (my !== run) return; reveal(); bub.classList.remove('cur'); resolve(Math.max(0, (best || 0) - (hint > 1 ? 10 : 0))); };
-        bub.onclick = () => { if (!bub.classList.contains('ask')) SP.speak(d[1], { who: me }); };
+        bub.onclick = () => { if (bub.classList.contains('ask')) { hint = Math.max(hint, 2); reveal(); } SP.speak(d[1], { who: me }); };
         $('#tkH', P).onclick = () => {
           hint++;
           if (hint === 1) bub.querySelector('.tk-hint').innerHTML = tkHint(d);
@@ -614,7 +621,7 @@
           tkScore(bub, r.score);
           best = Math.max(best || 0, r.score);
           if (r.score >= 70) tm = setTimeout(done, 1200);
-          else S.innerHTML = (r.heard ? '<span class="tk-heard">“' + esc(r.heard) + '”</span>' : '') + '<button class="tk-go" id="tkG">Tiếp' + I('chevR') + '</button>';
+          else S.insertAdjacentHTML('beforeend', '<button class="tk-go" id="tkG">Tiếp' + I('chevR') + '</button>');
           const g = $('#tkG', P); if (g) g.onclick = done;
         };
       });
@@ -915,7 +922,7 @@
   setPy(ST.cfg('hidePy') !== true);
   applyTheme();
   if (window.matchMedia) try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyTheme); } catch (e) { }
-  window.SEUI = { speakBox, toast, beep, esc, refreshTop, hiyo, voiceChips, bindVoice, zh, pyLine, setPy, head, wait };
+  window.SEUI = { tkOne, tkSay, tkMark, tkScore, tkText, tkDock, youHtml, speakBox, toast, beep, esc, refreshTop, hiyo, voiceChips, bindVoice, zh, pyLine, setPy, head, wait };
   route();
   // Âm báo đúng/sai: mở khoá AudioContext ở lần chạm đầu tiên
   const unlockAC = () => { try { AC = AC || new (window.AudioContext || window.webkitAudioContext)(); if (AC.state === 'suspended') AC.resume(); } catch (e) { } };

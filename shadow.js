@@ -85,22 +85,41 @@
       await SP().speak(x.s[i][0], { who: WHO, slow });
       if (my !== run) return;
       if (withGap) {
-        const ms = Math.min(9000, Math.max(1500, (Date.now() - t0) * 1.15 + 500));
-        const b = lines[i]; b.classList.add('yours'); const bar = $('.turnbar i', b);
-        bar.style.transition = 'none'; bar.style.width = '0%'; void bar.offsetWidth;
-        bar.style.transition = 'width ' + ms + 'ms linear'; bar.style.width = '100%';
-        await wait(ms);
-        b.classList.remove('yours'); bar.style.transition = 'none'; bar.style.width = '0%';
-        b.classList.add('shown');
+        const b = lines[i];
+        if (SP().canListen()) {
+          b.classList.add('yours');
+          b.insertAdjacentHTML('beforeend', '<span class="sd-you"><i></i><b></b></span>');
+          const you = b.lastElementChild;
+          const ms = Math.min(12000, Math.max(3000, (Date.now() - t0) * 1.6 + 1500));
+          const tgt = window.SE_LANG === 'zh' ? x.s[i][2] : x.s[i][0];
+          const r = await SP().listen(tgt, { maxMs: ms, onInterim: t => { $('b', you).textContent = t; } });
+          b.classList.remove('yours'); b.classList.add('shown');
+          if (my !== run) { you.remove(); return; }
+          if (r && !r.error) {
+            $('b', you).textContent = r.heard || '…';
+            const marks = SP().markWords(tgt, r);
+            $$('.en .w', b).forEach((w, j) => { const m = marks[j]; w.classList.remove('g', 'm', 'r'); if (m) w.classList.add(m.ok >= 0.99 ? 'g' : m.ok > 0 ? 'm' : 'r'); });
+            $('i', you).textContent = r.score; $('i', you).className = r.score >= 85 ? 'g' : r.score >= 60 ? 'm' : 'r';
+          } else you.remove();
+          await wait(600);
+        } else {
+          const ms = Math.min(9000, Math.max(1500, (Date.now() - t0) * 1.15 + 500));
+          const bar = $('.turnbar i', b); b.classList.add('yours');
+          bar.style.transition = 'none'; bar.style.width = '0%'; void bar.offsetWidth;
+          bar.style.transition = 'width ' + ms + 'ms linear'; bar.style.width = '100%';
+          await wait(ms);
+          b.classList.remove('yours'); bar.style.transition = 'none'; bar.style.width = '0%';
+          b.classList.add('shown');
+        }
       } else await wait(350);
     }
     const playBtn = $('#play', P);
-    const stopAll = () => { run++; SP().stop(); playBtn.innerHTML = I('play') + 'Phát cả đoạn'; playBtn.classList.remove('on'); lines.forEach(b => b.classList.remove('yours')); };
+    const stopAll = () => { run++; SP().stop(); SP().stopListening(); playBtn.innerHTML = I('play') + 'Phát cả đoạn'; playBtn.classList.remove('on'); lines.forEach(b => b.classList.remove('yours')); };
     playBtn.onclick = async () => {
       if (playBtn.classList.contains('on')) return stopAll();
       const my = ++run;
       playBtn.innerHTML = I('stop') + 'Dừng'; playBtn.classList.add('on');
-      if (gap) lines.forEach(b => b.classList.remove('shown'));
+      if (gap) lines.forEach(b => { b.classList.remove('shown'); $$('.sd-you', b).forEach(e => e.remove()); $$('.w', b).forEach(w => w.classList.remove('g', 'm', 'r')); });
       SP().prefetch(x.s[0][0], WHO);
       do {
         for (let i = 0; i < x.s.length && my === run; i++) await line(i, my, gap);
@@ -117,70 +136,57 @@
     return () => { run++; };
   }
 
-  // ----- Nói từng câu (chấm phát âm) -----
+  // ----- Nói từng câu (giống phần Nói theo của bài học) -----
   function modeSay(P, x) {
-    let k = 0;
     const sc = {};
-    P.innerHTML = '<div class="panel-h"><h2>Nói từng câu</h2><p>Nghe mẫu rồi nói ngay. Chữ xanh là chuẩn, cam là đúng âm nhưng sai thanh, đỏ cần luyện lại.</p></div>' +
-      '<div class="progress-dots">' + x.s.map((_, j) => '<i data-j="' + j + '"></i>').join('') + '</div>' +
-      '<div id="box" class="box-fix"></div>' +
-      '<div class="pager"><button class="btn" id="pv">← Trước</button><span class="cnt" id="cn"></span><button class="btn primary" id="nx"></button></div>';
-    const dots = $$('.progress-dots i', P);
-    const paint = () => dots.forEach((i, j) => { i.className = (sc[j] != null ? (sc[j] >= 70 ? 'ok' : 'bad') : '') + (j === k ? ' cur' : ''); });
-    function show() {
-      const s = x.s[k];
-      paint();
-      $('#cn', P).textContent = (k + 1) + '/' + x.s.length;
-      $('#pv', P).disabled = !k;
-      $('#nx', P).textContent = k < x.s.length - 1 ? 'Câu tiếp →' : 'Xong';
-      UI().speakBox($('#box', P), { en: s[0], tk: s[2], vi: s[1], who: WHO, onScore: v => { sc[k] = Math.max(sc[k] || 0, v); paint(); } });
-      SP().speak(s[0], { who: WHO });
-      if (x.s[k + 1]) SP().prefetch(x.s[k + 1][0], WHO);
-    }
-    dots.forEach(i => i.onclick = () => { k = +i.dataset.j; show(); });
-    $('#pv', P).onclick = () => { if (k) { k--; show(); } };
-    $('#nx', P).onclick = () => {
-      if (k < x.s.length - 1) { k++; show(); return; }
+    const list = x.s.map(s => [WHO, s[0], s[1], s[2]]);
+    const end = () => {
       const v = Object.values(sc);
       if (!v.length) { UI().toast('Hãy nói ít nhất một câu nhé'); return; }
       const avg = Math.round(v.reduce((a, b) => a + b, 0) / v.length);
       setBest(x.id, 'say', avg); ST().touch(v.length); UI().refreshTop();
       UI().beep(avg >= 70);
-      P.innerHTML = '<div class="result"><div class="hy">' + UI().hiyo(avg >= 85 ? 'cheer' : 'joy') + '</div><div class="panel-h"><h2>Điểm trung bình: ' + avg + '</h2><p>Đã nói ' + v.length + '/' + x.s.length + ' câu. Bước tiếp theo: tự kể lại cả đoạn.</p></div></div>' +
+      P.className = 'card panel pop';
+      P.innerHTML = '<div class="result"><div class="hy">' + UI().hiyo(avg >= 85 ? 'cheer' : 'joy') + '</div><h2 class="res-t">Điểm trung bình: ' + avg + '</h2></div>' +
         '<div class="next-bar"><button class="btn" id="ag">Luyện lại</button><a class="btn primary" href="#/shadow/' + x.id + '/tell">Kể lại cả đoạn →</a></div>';
       $('#ag', P).onclick = () => modeSay(P, x);
     };
-    show();
+    return UI().tkOne(P, list, { onScore: (k, v) => { sc[k] = Math.max(sc[k] || 0, v); }, onEnd: end, endLabel: 'Xong' });
   }
 
-  // ----- Kể lại cả đoạn -----
+  // ----- Kể lại cả đoạn (cùng kiểu giao diện) -----
   function modeTell(P, x) {
-    const full = x.s.map(s => s[0]).join('');
-    const ftk = [].concat(...x.s.map(s => s[2]));
-    const nw = Array.from(full).length;
-    let hint = 0, run = 0;
-    P.innerHTML = '<div class="panel-h"><h2>Kể lại cả đoạn</h2><p>Nhìn dàn ý tiếng Việt và tự kể bằng tiếng Trung, như đang giới thiệu về mình. Bí thì bật gợi ý. Bấm Nói, kể hết rồi bấm Dừng để chấm.</p></div>' +
-      '<ol class="sd-outline" id="ol">' + x.s.map(s => '<li><span class="vi">' + esc(s[1]) + '</span><span class="hint zh">' + UI().zh(s[2].slice(0, Math.min(3, Math.max(1, Math.ceil(s[2].length / 3))))) + ' …</span><span class="full zh">' + UI().zh(s[2]) + '</span></li>').join('') + '</ol>' +
-      '<div class="row center" style="margin:6px 0 14px"><button class="chip" id="h1">Gợi ý vài từ đầu</button><button class="chip" id="h2">Hiện cả đoạn</button></div>' +
-      '<div id="box" class="box-fix"></div>';
-    const ol = $('#ol', P);
-    $('#h1', P).onclick = e => { const on = ol.classList.toggle('show-hint'); e.currentTarget.classList.toggle('on', on); if (on) hint = Math.max(hint, 1); };
-    $('#h2', P).onclick = e => { const on = ol.classList.toggle('show-full'); e.currentTarget.classList.toggle('on', on); if (on) hint = 2; };
+    const ZH = window.SE_LANG === 'zh';
+    const full = x.s.map(s => s[0]).join(ZH ? '' : ' ');
+    const d = [WHO, full, '', ZH ? [].concat(...x.s.map(s => s[2] || [])) : null];
+    const nw = ZH ? Array.from(full).length : full.split(/\s+/).length;
+    let run = 0, peek = false;
+    P.className = 'tk-panel pop';
+    P.innerHTML = '<div class="tk one tell"><div class="tk-stage" id="tkC">' +
+      '<div class="tk-card hid" id="tkCard"><ol class="tk-ol">' + x.s.map(s => '<li>' + esc(s[1]) + '</li>').join('') + '</ol>' +
+      '<button class="tk-peek" id="tkK"><span class="tk-t">' + UI().tkText(d) + '</span><em>' + I('eye') + 'Chạm để xem cả đoạn</em></button><span class="tk-sc"></span></div>' +
+      '<div class="tk-rec" id="tkR"></div></div><div class="tk-stat" id="tkS"></div>' +
+      UI().tkDock(['tkL', 'speak', 'Nghe'], ['tkW', 'slow', 'Chậm']) + '</div>';
+    const C = $('#tkC', P), S = $('#tkS', P), M = $('#tkM', P), card = $('#tkCard', P);
     const playAll = async slow => {
       const my = ++run;
       for (let i = 0; i < x.s.length && my === run; i++) { if (x.s[i + 1]) SP().prefetch(x.s[i + 1][0], WHO); await SP().speak(x.s[i][0], { who: WHO, slow }); if (my === run) await wait(300); }
     };
-    UI().speakBox($('#box', P), {
-      en: full, tk: ftk, who: WHO, long: true, continuous: true, maxMs: Math.min(150000, 20000 + nw * 450),
-      onListen: slow => playAll(slow),
-      onScore: v => {
-        const sc = Math.max(0, v - (hint > 1 ? 15 : hint ? 5 : 0));
-        setBest(x.id, 'tell', sc); ST().touch(5); UI().refreshTop();
-        $('#se', P).style.display = '';
-      }
-    });
-    $('#se', P).style.display = 'none';
-    $('#li', P).innerHTML = I('speak') + '<span>Nghe cả đoạn</span>';
+    $('#tkK', P).onclick = () => { if (!card.classList.contains('done')) peek = true; card.classList.remove('hid'); };
+    $('#tkL', P).onclick = () => playAll(false);
+    $('#tkW', P).onclick = () => playAll(true);
+    M.onclick = async () => {
+      run++;
+      const r = await UI().tkSay(M, S, d, { continuous: true, maxMs: Math.min(150000, 20000 + nw * (ZH ? 450 : 700)) });
+      if (!r) return;
+      const first = !card.classList.contains('done');
+      card.classList.remove('hid'); card.classList.add('done');
+      if (r.heard != null) UI().tkMark(card, d, r);
+      const sc = Math.max(0, r.score - (peek ? 15 : 0));
+      UI().tkScore(card, sc);
+      setBest(x.id, 'tell', sc); ST().touch(5); UI().refreshTop();
+      if (first && window.SEX && window.SEX.recRow) window.SEX.recRow($('#tkR', C), () => playAll(false), { maxMs: 150000 });
+    };
     return () => { run++; };
   }
 
