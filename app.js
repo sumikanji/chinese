@@ -18,6 +18,7 @@
   const sentCount = L => L.lessons.reduce((a, l) => a + l.d.length, 0);
   // Thẻ ôn tập: s:<bài>:<số câu>
   function card(id) {
+    if (/^w:/.test(id)) { const c = (ST.get().custom || {})[id]; return c && { id, en: c.en, vi: c.vi, tk: [[c.en, c.ph || '']], l: null, src: 'Sổ tay', word: true }; }
     const h = /^h:([^:]+):(\d+)$/.exec(id);
     if (h) { const x = (window.SE_SHADOW || []).find(y => y.id === h[1]); const r = x && x.s[+h[2]]; return r && { id, en: r[0], vi: r[1], tk: r[2], l: null, src: x.t }; }
     const m = /^s:([^:]+):(\d+)$/.exec(id); if (!m) return null;
@@ -109,7 +110,7 @@
     const deep = parts[0] === 'lesson' || parts[0] === 'review' || (parts[0] === 'shadow' && !!parts[1]) || ((parts[0] === 'congdong' || parts[0] === 'gopy') && !!parts[1]);
     document.body.classList.toggle('focus', deep);
     document.body.classList.remove('bars-hide');
-    const tab = { review: 'home', shadow: 'shadow', congdong: 'thread', gopy: 'ideas', settings: 'settings', guide: 'settings', account: 'settings', feedback: 'settings' }[parts[0]] || 'home';
+    const tab = { review: 'home', shadow: 'shadow', congdong: 'thread', gopy: 'settings', sotay: 'notes', settings: 'settings', guide: 'settings', account: 'settings', feedback: 'settings' }[parts[0]] || 'home';
     $$('.tabs a').forEach(a => a.classList.toggle('on', a.dataset.tab === tab));
     refreshTop();
     window.scrollTo(0, 0);
@@ -125,6 +126,7 @@
     const X = window.SEX;
     if (X && parts[0] === 'feedback') return X.viewFeedback(app);
     if (window.SECOM && parts[0] === 'congdong') return window.SECOM.view(app, 'thread', parts[1]);
+    if (window.SEDICT && parts[0] === 'sotay') return window.SEDICT.view(app);
     if (window.SECOM && parts[0] === 'gopy') return window.SECOM.view(app, 'ideas', parts[1]);
     if (parts[0] === 'shadow' && window.SEShadow) { const c = window.SEShadow.view(app, parts[1], parts[2]); if (typeof c === 'function') cleanup = c; return; }
     viewHome();
@@ -289,7 +291,7 @@
   function msgHtml(l, d, i, extra, side, name) {
     side = side || d[0];
     name = name || (d[0] === 'B' ? 'Bạn' : l.a);
-    return '<div class="msg ' + side + '">' + avaHtml(name, String(side).charAt(0) === 'B') + '<button class="bub' + (extra || '') + '" data-i="' + i + '"><div class="who">' + esc(name) + '</div><div class="en zh">' + zh(d[3]) + '</div><div class="vi">' + esc(d[2]) + '</div></button></div>';
+    return '<div class="msg ' + side + '">' + avaHtml(name, String(side).charAt(0) === 'B') + '<button class="bub' + (extra || '') + '" data-i="' + i + '"><div class="who"><span>' + esc(name) + '</span><span class="b-spk" role="button" aria-label="Nghe">' + I('speak') + '</span></div><div class="en zh">' + zh(d[3]) + '</div><div class="vi">' + esc(d[2]) + '</div></button></div>';
   }
 
   // ----- Bước 1: Nghe hội thoại -----
@@ -320,7 +322,10 @@
       await SP.speak(l.d[i][1], { who: l.d[i][0], slow });
       b.classList.remove('speaking');
     };
-    $$('.bub', chat).forEach((b, i) => b.onclick = () => { run++; b.classList.add('shown'); line(i); });
+    $$('.bub', chat).forEach((b, i) => {
+      b.onclick = () => { if (chat.classList.contains('hide-en') && !b.classList.contains('shown')) b.classList.add('shown'); };
+      const sp = b.querySelector('.b-spk'); if (sp) sp.onclick = e => { e.stopPropagation(); run++; b.classList.add('shown'); line(i); };
+    });
     $('#play', P).onclick = async e => {
       if (e.currentTarget.classList.contains('on')) { run++; SP.stop(); e.currentTarget.classList.remove('on'); e.currentTarget.innerHTML = I('play') + 'Phát cả bài'; $$('.bub', chat).forEach(x => x.classList.remove('speaking')); return; }
       e.currentTarget.classList.add('on');
@@ -717,7 +722,7 @@
       const q = queue[0];
       const c = card(q.id);
       if (!c) { queue.shift(); return show(); }
-      const mode = can ? pick(['order', 'say', 'say']) : pick(['order', 'recall']);
+      const mode = c.word ? (can ? 'say' : 'recall') : can ? pick(['order', 'say', 'say']) : pick(['order', 'recall']);
       app.innerHTML = gate + '<div class="rv-top"><a class="rv-back" href="#/" aria-label="Về trang chủ">' + I('chevL') + '</a><span>Ôn tập</span><span>' + Math.min(done + 1, total) + '/' + total + (all.length > total ? ' · còn ' + (all.length - total) : '') + '</span></div><div class="bar" style="margin:-4px 0 12px"><i style="width:' + (100 * done / total) + '%"></i></div>' +
         '<section class="card rv-card pop" id="rc"></section>';
       const R = $('#rc');
@@ -733,7 +738,7 @@
         R.insertAdjacentHTML('beforeend', '<div class="next-bar"><button class="btn primary" id="nx">Tiếp →</button></div>');
         $('#nx', R).onclick = () => { finish(ok); show(); };
       };
-      const kind = '<span class="rv-kind">' + (c.l ? c.l.level.name + ' · ' + esc(c.l.t) : 'Shadowing · ' + esc(c.src || '')) + '</span>';
+      const kind = '<span class="rv-kind">' + (c.word ? 'Sổ tay' : c.l ? c.l.level.name + ' · ' + esc(c.l.t) : 'Shadowing · ' + esc(c.src || '')) + '</span>';
       if (mode === 'order') {
         R.innerHTML = kind + '<div class="rv-title">Nghe và ghép câu</div><div id="ob"></div>';
         let wrong = false;
@@ -804,7 +809,8 @@
         row('mic', '#64748b', 'Giọng dự phòng của máy', 'Dùng cho câu chưa có giọng AI.', '<div class="row"><select id="vsel" class="sel"></select><button class="btn small" id="vtest">' + I('play') + 'Nghe thử</button></div>' + (SP.canSpeak() && !SP.hasVoice() ? '<div class="note">Máy chưa có giọng đọc tiếng Trung. iPhone: Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói → Tiếng Trung. Android: Chuyển văn bản thành giọng nói → Google → cài "Tiếng Trung (Quan thoại)". Windows: Giọng nói → Thêm giọng → 中文(简体).</div>' : ''))) +
       sec('Tài khoản',
         (CL && CL.enabled() ? row('user', '#0ea5e9', u ? esc(u.name || u.email) : 'Chưa đăng nhập', u ? 'Tiến độ tự đồng bộ lên tài khoản.' : 'Đăng nhập để lưu tiến độ và học trên nhiều thiết bị.', '<a class="btn small" href="#/account">' + (u ? 'Xem tài khoản' : 'Đăng nhập') + '</a>') : row('user', '#0ea5e9', 'Lưu trên máy này', 'Tiến độ được lưu trên trình duyệt của máy này.', '')) +
-        (window.SEX && window.SEX.fbEnabled() ? row('chat', '#0284c7', 'Góp ý từng câu', 'Bình luận câu sai, dịch chưa đúng ở cuối bước Nghe và cuối mỗi đoạn Shadowing.', '<a class="btn small" href="#/feedback">Xem</a>') : '') +
+        (window.SEX && window.SEX.fbEnabled() ? row('bulb', '#f59e0b', 'Góp ý cho Sumi', 'Trang cần cải thiện gì, thêm tính năng gì.', '<a class="btn small" href="#/gopy">Mở</a>') +
+        row('chat', '#0284c7', 'Góp ý từng câu', 'Bình luận câu sai, dịch chưa đúng ở cuối bước Nghe và cuối mỗi đoạn Shadowing.', '<a class="btn small" href="#/feedback">Xem</a>') : '') +
         row('trash', '#ef4444', 'Xoá tiến độ', 'Xoá toàn bộ bài đã học và câu ôn tập trên máy này.', '<button class="btn small ghost" id="reset">Xoá toàn bộ tiến độ</button>')) +
       sec('Trợ giúp', row('mic', '#a855f7', 'Micro và chấm phát âm', 'Dùng Chrome, Edge (máy tính, Android) hoặc Safari (iPhone). Lần đầu bấm Nói, chọn Cho phép dùng micro.', '')) +
       '<p class="muted" style="text-align:center;font-size:.78rem;margin:18px 0">© 2026 Sumi Chinese · Hiyo © Sumi Kanji · Miễn phí</p></div>';

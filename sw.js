@@ -1,6 +1,6 @@
 /*! © 2026 Sumi — service worker: mở nhanh, dùng được khi mạng yếu */
-const V = 'sumi-zh-v2';
-const CORE = ["./", "index.html", "style.css", "manifest.webmanifest", "icon-192.png", "pwa.js", "data/levels.js", "data/hsk1.js", "data/hsk2.js", "data/hsk3.js", "data/hsk4.js", "data/hsk5.js", "data/hsk6.js", "data/stats.js", "data/py.js", "data/shadow.js", "data/audio.js", "icons.js", "avatars.js", "hiyo.js", "speech.js", "store.js", "firebase-config.js", "cloud.js", "extra.js", "community.js", "shadow.js", "app.js"];
+const V = 'sumi-zh-v3';
+const CORE = ["./", "index.html", "style.css", "manifest.webmanifest", "icon-192.png", "pwa.js", "data/levels.js", "data/hsk1.js", "data/hsk2.js", "data/hsk3.js", "data/hsk4.js", "data/hsk5.js", "data/hsk6.js", "data/stats.js", "data/py.js", "data/shadow.js", "data/audio.js", "icons.js", "avatars.js", "hiyo.js", "speech.js", "store.js", "firebase-config.js", "cloud.js", "extra.js", "data/dict-zh.js", "dict.js", "community.js", "shadow.js", "app.js"];
 self.addEventListener('install', e => { e.waitUntil(caches.open(V).then(c => c.addAll(CORE)).catch(() => { }).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('sumi-zh-') && k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {

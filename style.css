@@ -1376,3 +1376,47 @@ body.bars-hide .tabs { transform: translateY(calc(100% + 40px)); }
 .cm-lk small { font-size: .75rem; color: var(--sub); }
 .cm-lk em { font-style: normal; font-size: .92rem; line-height: 1.4; overflow-wrap: anywhere; }
 .sd-next, .sd-done { min-width: 240px; }
+
+/* ===== Tra nghĩa: chạm vào từ, khung trượt từ dưới lên ===== */
+.chat .w, .tk .w, .sd-lines .w, .rv-card .w, .chat .wd, .tk .wd, .sd-lines .wd, .rv-card .wd { cursor: pointer; border-radius: 6px; }
+.dict-on { background: color-mix(in srgb, var(--tk) 22%, transparent) !important; box-shadow: inset 0 -2px 0 var(--tk); }
+.dict-dim { position: fixed; inset: 0; z-index: 90; background: rgba(0, 0, 0, 0); transition: background .2s; }
+.dict-dim.in { background: rgba(0, 0, 0, .18); }
+.dict-sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 91; max-width: 640px; margin: 0 auto; background: var(--card); border-radius: 24px 24px 0 0; padding: 10px 20px calc(22px + env(safe-area-inset-bottom)); box-shadow: 0 -10px 30px rgba(0, 0, 0, .15); transform: translateY(105%); transition: transform .22s ease; }
+.dict-sheet.in { transform: none; }
+.dict-grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 0 auto 12px; }
+.dict-hd { display: flex; align-items: center; gap: 12px; }
+.dict-wt { min-width: 0; }
+.dict-w { font-size: 1.9rem; font-weight: 800; line-height: 1.15; overflow-wrap: anywhere; }
+.dict-pos { display: inline-block; margin-left: 8px; vertical-align: 5px; font-size: .72rem; font-weight: 800; color: var(--tk); background: color-mix(in srgb, var(--tk) 12%, var(--card)); border-radius: 99px; padding: 1px 8px; }
+.dict-ph { color: var(--sub); font-size: 1rem; margin-top: 2px; }
+.dict-ib { margin-left: auto; display: flex; gap: 8px; flex: none; }
+.dict-ib button { width: 46px; height: 46px; border-radius: 50%; border: 0; background: color-mix(in srgb, var(--tk) 13%, var(--card)); color: var(--tk); display: flex; align-items: center; justify-content: center; }
+.dict-ib .ic { width: 22px; height: 22px; }
+.dict-star.on { background: #fef3c7; color: #d97706; }
+.dict-star.on .ic { fill: currentColor; }
+.dict-vi { font-size: 1.15rem; font-weight: 700; margin: 12px 0 4px; }
+.dict-ex { margin-top: 10px; padding: 10px 14px; border-radius: 14px; background: var(--bg); font-size: .95rem; line-height: 1.45; }
+.dict-ex b { color: var(--tk); }
+.dict-ex small { display: block; color: var(--sub); }
+/* Nút loa nhỏ ở góc mỗi câu */
+.bub .who { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+.b-spk { flex: none; width: 30px; height: 30px; margin: -6px -8px -6px 0; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--tk); background: color-mix(in srgb, var(--tk) 10%, transparent); cursor: pointer; }
+.b-spk .ic { width: 17px; height: 17px; }
+/* ===== Sổ tay ===== */
+.nb { max-width: 640px; margin: 0 auto; }
+.nb-top { display: flex; align-items: center; justify-content: space-between; margin: -4px 2px 12px; }
+.nb-top .btn .ic { width: 1em; height: 1em; }
+.nb-list { display: grid; gap: 8px; }
+.nb-i { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 18px; background: var(--card); border: 1.5px solid var(--line); }
+.nb-say, .nb-del { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 0; display: flex; align-items: center; justify-content: center; }
+.nb-say { background: color-mix(in srgb, var(--tk) 12%, var(--card)); color: var(--tk); }
+.nb-del { background: none; color: #d97706; }
+.nb-del .ic { fill: currentColor; }
+.nb-say .ic, .nb-del .ic { width: 20px; height: 20px; }
+.nb-t { flex: 1; min-width: 0; display: grid; }
+.nb-t b { font-size: 1.15rem; }
+.nb-t small { color: var(--sub); font-size: .85rem; }
+.nb-t span { font-size: .95rem; }
+.nb-empty { text-align: center; padding: 60px 20px; color: var(--sub); }
+.nb-empty .ic { width: 56px; height: 56px; color: color-mix(in srgb, #d97706 45%, transparent); margin-bottom: 10px; }
