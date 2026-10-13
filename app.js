@@ -513,7 +513,7 @@
       C.innerHTML = '<div class="tk-card hid" id="tkCard">' + (nm ? '<div class="tk-who">' + esc(nm) + '</div>' : '') +
         '<button class="tk-peek" id="tkK"><span class="tk-t">' + tkText(d) + '</span><span class="tk-vi">' + esc(d[2]) + '</span><em>' + I('eye') + 'Chạm để xem chữ</em></button>' +
         '<button class="tk-wave" id="tkV" aria-label="Nghe lại"><i></i><i></i><i></i><i></i><i></i></button><span class="tk-sc"></span></div><div class="tk-rec" id="tkR"></div>';
-      $('#tkK', C).onclick = () => $('#tkCard', C).classList.remove('hid');
+      $('#tkK', C).onclick = () => $('#tkCard', C).classList.toggle('hid');
       $('#tkV', C).onclick = () => say(false);
       $('#tkB', P).style.width = (100 * (k + 1) / list.length) + '%';
       $('#tkN', P).textContent = (k + 1) + '/' + list.length;
@@ -575,7 +575,7 @@
             lock(true); S.textContent = '';
             C.insertAdjacentHTML('beforeend', tkBub(d, i, 'L', pName, ' speaking blur'));
             const b = C.lastElementChild.querySelector('.tk-bub');
-            b.onclick = () => { b.classList.remove('blur'); SP.speak(d[1], { who: d[0] }); };
+            b.onclick = () => { b.classList.toggle('blur'); if (!b.classList.contains('blur')) SP.speak(d[1], { who: d[0] }); };
             tkDown(C);
             await SP.speak(d[1], { who: d[0] });
             b.classList.remove('speaking');
@@ -605,7 +605,10 @@
         let best = null, hint = 0, tm;
         const reveal = () => bub.classList.remove('ask');
         const done = () => { clearTimeout(tm); if (my !== run) return; reveal(); bub.classList.remove('cur'); resolve(Math.max(0, (best || 0) - (hint > 1 ? 10 : 0))); };
-        bub.onclick = () => { if (bub.classList.contains('ask')) { hint = Math.max(hint, 2); reveal(); } SP.speak(d[1], { who: me }); };
+        bub.onclick = () => {
+          if (bub.classList.contains('ask')) { if (bub.classList.toggle('peek')) { hint = Math.max(hint, 2); SP.speak(d[1], { who: me }); } }
+          else if (bub.classList.toggle('blur')) { } else SP.speak(d[1], { who: me });
+        };
         $('#tkH', P).onclick = () => {
           hint++;
           if (hint === 1) bub.querySelector('.tk-hint').innerHTML = tkHint(d);

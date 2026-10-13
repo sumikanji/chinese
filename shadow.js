@@ -46,11 +46,12 @@
       '<div class="sd-head"><span class="lvl-badge sm" style="background:' + L.color + '">' + L.name + '</span><div><h1>' + esc(x.t) + '</h1><span class="muted"><span class="zh-t">' + esc(x.en) + '</span> · Bài ' + (idx + 1) + '/' + list.length + '</span></div></div>' +
       '<nav class="voc-modes">' + MODES.map(m => '<a class="chip' + (m[0] === mode ? ' on' : '') + '" href="#/shadow/' + x.id + '/' + m[0] + '">' + I(m[2]) + m[1] + (best(x.id, m[0]) != null ? ' · ' + best(x.id, m[0]) : '') + '</a>').join('') + '</nav>' +
       '<section class="card panel" id="sp"></section>' +
-      '<div class="sd-foot"><button class="btn" id="addrv">Thêm ' + x.s.length + ' câu vào Ôn tập</button>' + (nx ? '<a class="btn" href="#/shadow/' + nx.id + '">Bài tiếp: ' + esc(nx.t) + ' →</a>' : '') + '</div>';
+      '<div class="sd-foot"><button class="btn primary sd-done" id="addrv">' + I('check') + (ST().cfg('sh_' + x.id + '_done') ? 'Đã học xong ✓' : 'Đã học xong') + '</button>' + (nx ? '<a class="btn" href="#/shadow/' + nx.id + '">Bài tiếp: ' + esc(nx.t) + ' →</a>' : '') + '</div>';
     $('#addrv').onclick = e => {
       ST().addCards(x.s.map((_, i) => 'h:' + x.id + ':' + i));
-      UI().refreshTop(); UI().toast('Đã thêm ' + x.s.length + ' câu vào Ôn tập');
-      e.currentTarget.disabled = true; e.currentTarget.textContent = 'Đã thêm vào Ôn tập';
+      ST().cfg('sh_' + x.id + '_done', 1); ST().touch(5);
+      UI().refreshTop(); UI().toast('Đã học xong! ' + x.s.length + ' câu đã vào Ôn tập.');
+      location.hash = nx ? '#/shadow/' + nx.id : '#/shadow';
     };
     const P = $('#sp');
     if (window.SEX) { app.insertAdjacentHTML('beforeend', '<div id="sd-cmt"></div>'); window.SEX.comments($('#sd-cmt'), { key: x.id, title: 'Shadowing · ' + x.t, lines: x.s.map(r => ({ t: r[0], v: r[1] })) }); }
@@ -60,16 +61,15 @@
   // ----- Nghe & nói đuổi -----
   function modeListen(P, x) {
     const hideEn = !!ST().cfg('shHideEn'), hideVi = !!ST().cfg('shHideVi'), showPy = ST().cfg('hidePy') !== true;
-    let slow = false, loop = false, gap = ST().cfg('shGap') !== false, run = 0, cur = -1;
+    let slow = false, loop = false, gap = false, run = 0, cur = -1;
     P.innerHTML = '<div class="sd-ctl">' +
-      '<div class="pbar"><button class="pbar-play" id="play">' + I('play') + 'Phát cả đoạn</button><div class="tg"><button class="tg-b" id="slow">' + I('slow') + 'Đọc chậm</button><button class="tg-b' + (gap ? ' on' : '') + '" id="gap">' + I('mic') + 'Nói theo</button></div>' +
+      '<div class="pbar"><button class="pbar-play" id="play">' + I('play') + 'Phát cả đoạn</button><div class="tg"><button class="tg-b" id="slow">' + I('slow') + 'Đọc chậm</button></div>' +
       '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' + '</div>' +
       '<div class="sd-lines' + (gap ? ' gapmode' : '') + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="ls">' + x.s.map((s, i) => '<button class="sd-line" data-i="' + i + '"><span class="n">' + (i + 1) + '</span><span class="tx"><span class="en zh">' + UI().zh(s[2]) + '</span><span class="vi">' + esc(s[1]) + '</span></span><span class="turnbar"><i></i></span></button>').join('') + '</div>';
     const ls = $('#ls', P), lines = $$('.sd-line', ls);
     UI().bindVoice(P);
     const tog = (id, f) => { $('#' + id, P).onclick = e => { const v = f(); e.currentTarget.classList.toggle('on', v); }; };
     tog('slow', () => (slow = !slow));
-    tog('gap', () => { gap = !gap; ST().cfg('shGap', gap); ls.classList.toggle('gapmode', gap); return gap; });
     tog('ten', () => { const h = ls.classList.toggle('hide-en'); ST().cfg('shHideEn', h); return !h; });
     tog('tvi', () => { const h = ls.classList.toggle('hide-vi'); ST().cfg('shHideVi', h); return !h; });
     tog('tpy', () => { const on = ST().cfg('hidePy') === true; ST().cfg('hidePy', !on); UI().setPy(on); return on; });
@@ -172,7 +172,7 @@
       const my = ++run;
       for (let i = 0; i < x.s.length && my === run; i++) { if (x.s[i + 1]) SP().prefetch(x.s[i + 1][0], WHO); await SP().speak(x.s[i][0], { who: WHO, slow }); if (my === run) await wait(300); }
     };
-    $('#tkK', P).onclick = () => { if (!card.classList.contains('done')) peek = true; card.classList.remove('hid'); };
+    $('#tkK', P).onclick = () => { if (!card.classList.toggle('hid') && !card.classList.contains('done')) peek = true; };
     $('#tkL', P).onclick = () => playAll(false);
     $('#tkW', P).onclick = () => playAll(true);
     M.onclick = async () => {

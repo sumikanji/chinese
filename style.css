@@ -1333,3 +1333,17 @@ body.bars-hide .tabs { transform: translateY(calc(100% + 40px)); }
 .sd-you b { font-size: 1.15rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
 #sp.tk-panel .tk { height: calc(100dvh - 215px); min-height: 430px; }
 .tk-you b { max-height: 24vh; overflow-y: auto; }
+
+/* ===== v4: chạm hiện / chạm lần nữa ẩn; Kể lại cả đoạn rộng hơn ===== */
+.tk-bub.ask.peek .tk-t { filter: none; opacity: 1; }
+.tk-bub.blur .tk-t { filter: blur(7px); }
+#sp.tk-panel .tk.tell { height: auto; min-height: calc(100dvh - 215px); }
+.tk.tell .tk-stage { overflow: visible; padding: 6px 0 10px; }
+.tk.tell .tk-card { padding: 18px 16px; border-radius: 22px; }
+.tk.tell .tk-ol { margin-left: 22px; font-size: 1.05rem; gap: 8px; }
+.tk.tell .tk-peek .tk-t { font-size: 1.12rem; line-height: 1.6; }
+.tk.tell .tk-stat, .tk.tell .tk-dock { position: sticky; background: var(--bg); z-index: 3; }
+.tk.tell .tk-dock { bottom: 0; padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
+.tk.tell .tk-stat { bottom: 112px; }
+.sd-done .ic { width: 1.1em; height: 1.1em; }
+.cmt-ctl { justify-content: flex-end; }
