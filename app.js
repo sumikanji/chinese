@@ -106,6 +106,9 @@
     SP.stop(); SP.stopListening();
     if (cleanup) { cleanup(); cleanup = null; }
     const parts = (location.hash.replace(/^#\/?/, '') || '').split('/').filter(Boolean);
+    const deep = parts[0] === 'lesson' || parts[0] === 'review' || (parts[0] === 'shadow' && !!parts[1]) || ((parts[0] === 'congdong' || parts[0] === 'gopy') && !!parts[1]);
+    document.body.classList.toggle('focus', deep);
+    document.body.classList.remove('bars-hide');
     const tab = { review: 'home', shadow: 'shadow', congdong: 'thread', gopy: 'ideas', settings: 'settings', guide: 'settings', account: 'settings', feedback: 'settings' }[parts[0]] || 'home';
     $$('.tabs a').forEach(a => a.classList.toggle('on', a.dataset.tab === tab));
     refreshTop();
@@ -127,6 +130,20 @@
     viewHome();
   }
   window.addEventListener('hashchange', route);
+  // Thanh trên và thanh dưới tự ẩn khi cuộn xuống, hiện lại khi cuộn lên
+  (function () {
+    let y0 = window.scrollY, tk = false;
+    window.addEventListener('scroll', () => {
+      if (tk) return; tk = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY, dy = y - y0;
+        if (y < 60 || dy < -8) document.body.classList.remove('bars-hide');
+        else if (dy > 8) document.body.classList.add('bars-hide');
+        if (Math.abs(dy) > 8 || y < 60) y0 = y;
+        tk = false;
+      });
+    }, { passive: true });
+  })();
 
   const starsHtml = n => '<span class="stars" aria-label="' + n + ' sao">' + [1, 2, 3].map(i => '<i class="' + (i <= n ? 'on' : '') + '"></i>').join('') + '</span>';
   const nextLessonId = () => ORDER.find(id => !ST.get().done[id]) || ORDER[0];
@@ -333,13 +350,13 @@
     let tried = false;
     el.innerHTML = '<div class="game-q"><div class="row center"><button class="btn small primary" id="pl">Nghe câu</button><button class="btn small" id="sl">Nghe chậm</button></div>' +
       '<div class="q-vi">' + esc(o.vi) + '</div></div>' +
-      '<div class="build" id="bd"><span class="ph">Chạm vào các mảnh bên dưới theo đúng thứ tự</span></div><div class="pool" id="po">' + tiles.map((t, j) => '<button class="tilew zh" data-j="' + j + '">' + tileHtml(t.w) + '</button>').join('') + '</div>' +
+      '<div class="build" id="bd"><span class="ph"></span></div><div class="pool" id="po">' + tiles.map((t, j) => '<button class="tilew zh" data-j="' + j + '">' + tileHtml(t.w) + '</button>').join('') + '</div>' +
       '<div class="next-bar"><button class="btn" id="clr">Xếp lại</button><button class="btn primary" id="chk" disabled>Kiểm tra</button></div><div class="reveal" id="rv"></div>';
     const built = [];
     const bd = $('#bd', el);
     const say = slow => SP.speak(o.en, { who: o.who, slow });
     const draw = () => {
-      bd.innerHTML = built.length ? built.map((j, n) => '<button class="tilew zh" data-n="' + n + '">' + tileHtml(tiles[j].w) + '</button>').join('') : '<span class="ph">Chạm vào các mảnh bên dưới theo đúng thứ tự</span>';
+      bd.innerHTML = built.length ? built.map((j, n) => '<button class="tilew zh" data-n="' + n + '">' + tileHtml(tiles[j].w) + '</button>').join('') : '<span class="ph"></span>';
       $$('#po .tilew', el).forEach(b => b.classList.toggle('used', built.includes(+b.dataset.j)));
       $$('.tilew', bd).forEach(b => b.onclick = () => { built.splice(+b.dataset.n, 1); bd.classList.remove('ok', 'bad'); draw(); });
       $('#chk', el).disabled = built.length !== tiles.length;
@@ -373,15 +390,14 @@
     function show() {
       if (k >= idx.length) {
         sc.s2 = Math.round(100 * right / idx.length);
-        P.innerHTML = '<div class="result"><div class="hy">' + hiyo(right >= idx.length - 1 ? 'cheer' : 'joy') + '</div>' + head('Ghép đúng ngay ' + right + '/' + idx.length + ' câu', 'Mỗi lần nghe và ghép, não bạn tự học cách sắp xếp từ trong câu tiếng Trung, không cần học ngữ pháp.') + '</div>' +
+        P.innerHTML = '<div class="result"><div class="hy">' + hiyo(right >= idx.length - 1 ? 'cheer' : 'joy') + '</div>' + '<h2 class="res-t">Ghép đúng ' + right + '/' + idx.length + ' câu</h2>' + '</div>' +
           '<div class="next-bar"><button class="btn" id="again">Làm thêm 8 câu</button><button class="btn primary" id="nx">Tiếp: Nói theo →</button></div>';
         $('#again', P).onclick = () => stepOrder(P, l, sc, next);
         $('#nx', P).onclick = next;
         return;
       }
       const d = l.d[idx[k]];
-      P.innerHTML = head('Bước 2 · Nghe và ghép câu', 'Nghe câu rồi chạm vào các mảnh theo đúng thứ tự.') +
-        '<div class="progress-dots">' + idx.map((_, j) => '<i class="' + (j < k ? res[j] : j === k ? 'cur' : '') + '"></i>').join('') + '</div><div id="ob"></div>';
+      P.innerHTML = '<div class="progress-dots">' + idx.map((_, j) => '<i class="' + (j < k ? res[j] : j === k ? 'cur' : '') + '"></i>').join('') + '</div><div id="ob"></div>';
       orderBox($('#ob', P), { en: d[1], tk: d[3], vi: d[2], who: d[0], onDone: first => { if (first) right++; res[k] = first ? 'ok' : 'bad'; setTimeout(() => { k++; show(); }, 400); } });
     }
     show();
@@ -473,48 +489,55 @@
     '<button class="tk-mic" id="tkM" aria-label="Nói">' + I('mic') + '</button>' +
     '<button class="tk-b" id="' + b[0] + '">' + I(b[1]) + '<small>' + b[2] + '</small></button></div>';
 
-  // ----- Bước 3: Nói theo từng câu -----
+  // ----- Bước 3: Nói theo từng câu (chỉ nghe, nói xong mới hiện chữ để đối chiếu) -----
   function stepShadow(P, l, sc, next) {
-    let k = 0;
+    let k = 0, play = 0;
     P.className = 'tk-panel pop';
-    P.innerHTML = '<div class="tk">' +
+    P.innerHTML = '<div class="tk one">' +
       '<div class="tk-top"><button class="tk-nav" id="tkP" aria-label="Câu trước">' + I('chevL') + '</button><div class="tk-bar"><i id="tkB"></i></div><span class="tk-n" id="tkN"></span><button class="tk-nav" id="tkX" aria-label="Câu tiếp">' + I('chevR') + '</button></div>' +
-      '<div class="tk-chat" id="tkC"></div><div class="tk-stat" id="tkS"></div>' +
+      '<div class="tk-stage" id="tkC"></div><div class="tk-stat" id="tkS"></div>' +
       tkDock(['tkL', 'speak', 'Nghe'], ['tkW', 'slow', 'Chậm']) + '</div>';
     const C = $('#tkC', P), S = $('#tkS', P), M = $('#tkM', P);
-    let tm;
+    const say = async slow => {
+      const my = ++play, d = l.d[k], v = $('#tkV', C);
+      if (v) v.classList.add('on');
+      await SP.speak(d[1], { who: d[0], slow });
+      if (my === play && v) v.classList.remove('on');
+    };
     function show() {
-      clearTimeout(tm); SP.stopListening();
+      SP.stopListening();
       const d = l.d[k];
-      C.innerHTML = l.d.slice(0, k + 1).map((x, j) => tkBub(x, j, x[0] === 'B' ? 'R' : 'L', x[0] === 'B' ? 'Bạn' : l.a, j === k ? ' cur' : '')).join('');
-      l.d.slice(0, k).forEach((x, j) => { if (sc.s3[j] != null) tkScore($('.tk-bub[data-i="' + j + '"]', C), sc.s3[j]); });
-      $$('.tk-bub', C).forEach(b => b.onclick = () => { const x = l.d[+b.dataset.i]; SP.speak(x[1], { who: x[0] }); });
+      C.innerHTML = '<div class="tk-card ask" id="tkCard"><div class="tk-who">' + esc(d[0] === 'B' ? 'Bạn' : l.a) + '</div>' +
+        '<div class="tk-wave" id="tkV"><i></i><i></i><i></i><i></i><i></i></div>' +
+        '<div class="tk-t">' + tkText(d) + '</div><div class="tk-vi">' + esc(d[2]) + '</div><span class="tk-sc"></span></div><div class="tk-rec" id="tkR"></div>';
+      $('#tkCard', C).onclick = () => say(false);
       $('#tkB', P).style.width = (100 * (k + 1) / l.d.length) + '%';
       $('#tkN', P).textContent = (k + 1) + '/' + l.d.length;
       $('#tkP', P).disabled = !k;
       S.innerHTML = '';
-      tkDown(C);
-      SP.speak(d[1], { who: d[0] });
+      say(false);
       const nd = l.d[k + 1]; if (nd) SP.prefetch(nd[1], nd[0]);
     }
     const go = () => { if (k < l.d.length - 1) { k++; show(); } else next(); };
     $('#tkP', P).onclick = () => { if (k) { k--; show(); } };
     $('#tkX', P).onclick = go;
-    $('#tkL', P).onclick = () => SP.speak(l.d[k][1], { who: l.d[k][0] });
-    $('#tkW', P).onclick = () => SP.speak(l.d[k][1], { who: l.d[k][0], slow: true });
+    $('#tkL', P).onclick = () => say(false);
+    $('#tkW', P).onclick = () => say(true);
     M.onclick = async () => {
       const kk = k, d = l.d[k];
       const r = await tkSay(M, S, d);
       if (!r || kk !== k) return;
-      const bub = $('.tk-bub.cur', C);
-      if (r.heard != null) tkMark(bub, d, r);
-      tkScore(bub, r.score);
+      const card = $('#tkCard', C);
+      const first = card.classList.contains('ask');
+      card.classList.remove('ask');
+      if (r.heard != null) tkMark(card, d, r);
+      tkScore(card, r.score);
       sc.s3[k] = Math.max(sc.s3[k] || 0, r.score);
       S.innerHTML = (r.heard ? '<span class="tk-heard">“' + esc(r.heard) + '”</span>' : '') + '<button class="tk-go" id="tkG">' + (k < l.d.length - 1 ? 'Câu tiếp' : 'Sang Nhập vai') + I('chevR') + '</button>';
       $('#tkG', P).onclick = go;
-      if (r.score >= 85) tm = setTimeout(() => { if (kk === k) go(); }, 1400);
+      if (first && window.SEX && window.SEX.recRow) window.SEX.recRow($('#tkR', C), () => SP.speak(d[1], { who: d[0] }), { maxMs: 15000 });
     };
-    cleanup = () => { clearTimeout(tm); };
+    cleanup = () => { play++; };
     show();
   }
 
@@ -683,7 +706,7 @@
       const c = card(q.id);
       if (!c) { queue.shift(); return show(); }
       const mode = can ? pick(['order', 'say', 'say']) : pick(['order', 'recall']);
-      app.innerHTML = gate + '<div class="rv-top"><span>Ôn tập ngắt quãng</span><span>' + Math.min(done + 1, total) + '/' + total + (all.length > total ? ' · còn ' + (all.length - total) : '') + '</span></div><div class="bar" style="margin:-4px 0 12px"><i style="width:' + (100 * done / total) + '%"></i></div>' +
+      app.innerHTML = gate + '<div class="rv-top"><a class="rv-back" href="#/" aria-label="Về trang chủ">' + I('chevL') + '</a><span>Ôn tập</span><span>' + Math.min(done + 1, total) + '/' + total + (all.length > total ? ' · còn ' + (all.length - total) : '') + '</span></div><div class="bar" style="margin:-4px 0 12px"><i style="width:' + (100 * done / total) + '%"></i></div>' +
         '<section class="card rv-card pop" id="rc"></section>';
       const R = $('#rc');
       bindGate();

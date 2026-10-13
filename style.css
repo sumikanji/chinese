@@ -1235,3 +1235,56 @@ body { background-image: radial-gradient(var(--dot) 0.9px, transparent 0.9px); }
 .tk-done small { font-size: .78rem; font-weight: 700; opacity: .9; }
 .cm-pbtn { flex: none; border: 0; border-radius: 99px; background: var(--tk); color: #fff; font-weight: 800; padding: 9px 20px; font-size: .95rem; }
 .cm-pbtn:disabled { opacity: .5; }
+
+/* ================= Thanh trên / thanh dưới tự ẩn ================= */
+.top, .tabs { transition: transform .25s ease; }
+body.bars-hide .top { transform: translateY(-110%); }
+body.bars-hide .tabs { transform: translateY(110%); }
+body.focus .top, body.focus .tabs { display: none; }
+body.focus { padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+body.focus main, body.focus #app { padding-top: 10px; }
+body.focus .tk { height: calc(100dvh - 165px); }
+.rv-back { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-right: 6px; border-radius: 50%; background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .1); vertical-align: middle; }
+.rv-back .ic { width: 16px; height: 16px; }
+.res-t { text-align: center; font-size: 1.3rem; margin: 6px 0 12px; }
+.build .ph:empty { display: none; }
+
+/* ---------- Nói theo: một câu, nghe trước, nói xong mới hiện chữ ---------- */
+.tk-stage { flex: 1; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 14px 4px; }
+.tk-card { position: relative; background: var(--card); border-radius: 26px; padding: 22px 20px 24px; text-align: center; box-shadow: 0 0 0 2px var(--tk), 0 10px 26px rgba(0, 0, 0, .07); cursor: pointer; animation: tkIn .25s ease; }
+.tk-card .tk-who { margin-bottom: 8px; }
+.tk-card .tk-t { font-size: 1.5rem; line-height: 1.4; }
+.tk-card .tk-vi { font-size: .95rem; margin-top: 8px; }
+.tk-card .tk-sc { top: -12px; right: 14px; height: 30px; min-width: 40px; font-size: .95rem; border-radius: 15px; }
+.tk-card.ask .tk-t, .tk-card.ask .tk-vi { display: none; }
+.tk-wave { display: none; justify-content: center; align-items: center; gap: 6px; height: 56px; color: var(--tk); }
+.tk-card.ask .tk-wave { display: flex; }
+.tk-wave i { width: 7px; height: 14px; border-radius: 4px; background: currentColor; opacity: .45; }
+.tk-wave.on i { opacity: 1; animation: tkWave .9s ease-in-out infinite; }
+.tk-wave.on i:nth-child(2) { animation-delay: .12s; } .tk-wave.on i:nth-child(3) { animation-delay: .24s; } .tk-wave.on i:nth-child(4) { animation-delay: .36s; } .tk-wave.on i:nth-child(5) { animation-delay: .48s; }
+@keyframes tkWave { 0%, 100% { height: 14px; } 50% { height: 46px; } }
+.tk-rec { display: flex; justify-content: center; }
+.tk-rec .rec { margin: 0; }
+.tk-t .zh ruby { ruby-position: over; }
+
+/* ---------- Shadowing: bật "Nói theo" thì ẩn chữ, nói xong câu nào hiện câu đó ---------- */
+.sd-lines.gapmode .sd-line:not(.shown) .tx { filter: blur(8px); user-select: none; }
+.sd-lines.gapmode .sd-line .tx { transition: filter .35s ease; }
+
+/* ================= Cộng đồng & Góp ý: chỉ gõ và gửi ================= */
+.cm { padding-bottom: 90px; }
+.cm.detail { padding-top: 2px; }
+.cm-back { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; margin-bottom: 10px; border-radius: 50%; background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+.cm-back .ic { width: 20px; height: 20px; }
+.cm-hello { display: flex; justify-content: center; padding: 70px 0; color: color-mix(in srgb, var(--tk) 40%, transparent); }
+.cm-hello .ic { width: 72px; height: 72px; }
+.cm-feed:has(.cm-hello) { background: none; border: 0; }
+.cm-act { gap: 22px; }
+.cm-input { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(80px + env(safe-area-inset-bottom)); z-index: 35; width: min(640px, calc(100% - 24px)); display: flex; align-items: flex-end; gap: 8px; padding: 8px 8px 8px 16px; border-radius: 26px; background: var(--card); border: 1.5px solid var(--line); box-shadow: 0 8px 28px rgba(0, 0, 0, .12); transition: bottom .25s ease; }
+body.bars-hide .cm-input, body.focus .cm-input { bottom: calc(12px + env(safe-area-inset-bottom)); }
+.cm-input textarea { flex: 1; min-height: 40px; max-height: 160px; border: 0; background: none; resize: none; font: inherit; font-size: 1rem; line-height: 1.45; color: var(--ink); outline: none; padding: 8px 0; }
+.cm-input .cm-send { width: 40px; height: 40px; }
+.cm-input .cm-send:disabled { background: var(--line); color: var(--sub); opacity: 1; }
+.cm-input.off textarea { cursor: pointer; }
+.cm-cbox { display: none; }
+body.bars-hide .tabs { transform: translateY(calc(100% + 40px)); }

@@ -61,15 +61,15 @@
   function modeListen(P, x) {
     const hideEn = !!ST().cfg('shHideEn'), hideVi = !!ST().cfg('shHideVi'), showPy = ST().cfg('hidePy') !== true;
     let slow = false, loop = false, gap = ST().cfg('shGap') !== false, run = 0, cur = -1;
-    P.innerHTML = '<div class="intro"><div class="panel-h"><h2>Nghe và nói đuổi</h2><p>Bấm Phát cả đoạn. Bật "Nói theo": sau mỗi câu có một khoảng lặng để bạn nói lại y hệt, bắt chước cả nhịp và ngữ điệu. Chạm vào một câu để nghe riêng câu đó.</p></div>' +
+    P.innerHTML = '<div class="sd-ctl">' +
       '<div class="pbar"><button class="pbar-play" id="play">' + I('play') + 'Phát cả đoạn</button><div class="tg"><button class="tg-b" id="slow">' + I('slow') + 'Đọc chậm</button><button class="tg-b' + (gap ? ' on' : '') + '" id="gap">' + I('mic') + 'Nói theo</button></div>' +
       '<div class="pbar-r2"><span class="tg-l">' + I('eye') + 'Hiện</span><div class="tg"><button class="tg-b' + (hideEn ? '' : ' on') + '" id="ten">Chữ Hán</button><button class="tg-b' + (showPy ? ' on' : '') + '" id="tpy">Pinyin</button><button class="tg-b' + (hideVi ? '' : ' on') + '" id="tvi">Nghĩa</button></div></div></div>' + '</div>' +
-      '<div class="sd-lines' + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="ls">' + x.s.map((s, i) => '<button class="sd-line" data-i="' + i + '"><span class="n">' + (i + 1) + '</span><span class="tx"><span class="en zh">' + UI().zh(s[2]) + '</span><span class="vi">' + esc(s[1]) + '</span></span><span class="turnbar"><i></i></span></button>').join('') + '</div>';
+      '<div class="sd-lines' + (gap ? ' gapmode' : '') + (hideEn ? ' hide-en' : '') + (hideVi ? ' hide-vi' : '') + '" id="ls">' + x.s.map((s, i) => '<button class="sd-line" data-i="' + i + '"><span class="n">' + (i + 1) + '</span><span class="tx"><span class="en zh">' + UI().zh(s[2]) + '</span><span class="vi">' + esc(s[1]) + '</span></span><span class="turnbar"><i></i></span></button>').join('') + '</div>';
     const ls = $('#ls', P), lines = $$('.sd-line', ls);
     UI().bindVoice(P);
     const tog = (id, f) => { $('#' + id, P).onclick = e => { const v = f(); e.currentTarget.classList.toggle('on', v); }; };
     tog('slow', () => (slow = !slow));
-    tog('gap', () => { gap = !gap; ST().cfg('shGap', gap); return gap; });
+    tog('gap', () => { gap = !gap; ST().cfg('shGap', gap); ls.classList.toggle('gapmode', gap); return gap; });
     tog('ten', () => { const h = ls.classList.toggle('hide-en'); ST().cfg('shHideEn', h); return !h; });
     tog('tvi', () => { const h = ls.classList.toggle('hide-vi'); ST().cfg('shHideVi', h); return !h; });
     tog('tpy', () => { const on = ST().cfg('hidePy') === true; ST().cfg('hidePy', !on); UI().setPy(on); return on; });
@@ -91,6 +91,7 @@
         bar.style.transition = 'width ' + ms + 'ms linear'; bar.style.width = '100%';
         await wait(ms);
         b.classList.remove('yours'); bar.style.transition = 'none'; bar.style.width = '0%';
+        b.classList.add('shown');
       } else await wait(350);
     }
     const playBtn = $('#play', P);
@@ -99,6 +100,7 @@
       if (playBtn.classList.contains('on')) return stopAll();
       const my = ++run;
       playBtn.innerHTML = I('stop') + 'Dừng'; playBtn.classList.add('on');
+      if (gap) lines.forEach(b => b.classList.remove('shown'));
       SP().prefetch(x.s[0][0], WHO);
       do {
         for (let i = 0; i < x.s.length && my === run; i++) await line(i, my, gap);
