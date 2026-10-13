@@ -16,6 +16,47 @@
           }
         }
       }
+    },
+    "boards": {
+      "$site": {
+        "$board": {
+          ".read": true,
+          "posts": {
+            "$pid": {
+              ".write": "auth != null && ((!data.exists() && newData.child('uid').val() === auth.uid) || (data.exists() && !newData.exists() && (data.child('uid').val() === auth.uid || root.child('admins').child(auth.uid).val() === true)))",
+              ".validate": "newData.hasChildren(['uid','name','cat','text','at']) && newData.child('text').isString() && newData.child('text').val().length >= 1 && newData.child('text').val().length <= 1000 && newData.child('name').isString() && newData.child('name').val().length <= 40 && newData.child('cat').isString() && newData.child('cat').val().length <= 20 && newData.child('at').val() <= now"
+            }
+          },
+          "comments": {
+            "$pid": {
+              "$cid": {
+                ".write": "auth != null && ((!data.exists() && newData.child('uid').val() === auth.uid) || (data.exists() && !newData.exists() && (data.child('uid').val() === auth.uid || root.child('admins').child(auth.uid).val() === true)))",
+                ".validate": "newData.hasChildren(['uid','name','text','at']) && newData.child('text').isString() && newData.child('text').val().length >= 1 && newData.child('text').val().length <= 500 && newData.child('name').isString() && newData.child('name').val().length <= 40 && newData.child('at').val() <= now"
+              }
+            }
+          },
+          "likes": {
+            "$pid": {
+              "$uid": {
+                ".write": "auth != null && auth.uid === $uid",
+                ".validate": "newData.val() === true"
+              }
+            }
+          },
+          "reports": {
+            "$pid": {
+              "$uid": {
+                ".write": "auth != null && auth.uid === $uid",
+                ".validate": "newData.val() === true"
+              }
+            }
+          }
+        }
+      }
+    },
+    "admins": {
+      ".read": true,
+      ".write": false
     }
   }
 }

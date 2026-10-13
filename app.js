@@ -106,17 +106,23 @@
     SP.stop(); SP.stopListening();
     if (cleanup) { cleanup(); cleanup = null; }
     const parts = (location.hash.replace(/^#\/?/, '') || '').split('/').filter(Boolean);
-    const tab = { review: 'review', shadow: 'shadow', settings: 'settings', guide: 'settings', account: 'settings', feedback: 'settings' }[parts[0]] || 'home';
+    const tab = { review: 'home', shadow: 'shadow', congdong: 'thread', gopy: 'ideas', settings: 'settings', guide: 'settings', account: 'settings', feedback: 'settings' }[parts[0]] || 'home';
     $$('.tabs a').forEach(a => a.classList.toggle('on', a.dataset.tab === tab));
     refreshTop();
     window.scrollTo(0, 0);
     if (parts[0] === 'level' && parts[1]) return viewLevel(parts[1]);
-    if (parts[0] === 'lesson' && LES[parts[1]]) return viewLesson(parts[1], parts[2] || '1');
-    if (parts[0] === 'review') return viewReview();
+    if (parts[0] === 'lesson' && LES[parts[1]]) {
+      const st = parts[2] || '1';
+      if (st === '1' && !ST.get().done[parts[1]] && needReview()) { location.replace('#/review/' + parts[1]); return; }
+      return viewLesson(parts[1], st);
+    }
+    if (parts[0] === 'review') return viewReview(LES[parts[1]] ? parts[1] : '');
     if (parts[0] === 'settings' || parts[0] === 'guide') return viewSettings();
     if (parts[0] === 'account') return viewAccount();
     const X = window.SEX;
     if (X && parts[0] === 'feedback') return X.viewFeedback(app);
+    if (window.SECOM && parts[0] === 'congdong') return window.SECOM.view(app, 'thread', parts[1]);
+    if (window.SECOM && parts[0] === 'gopy') return window.SECOM.view(app, 'ideas', parts[1]);
     if (parts[0] === 'shadow' && window.SEShadow) { const c = window.SEShadow.view(app, parts[1], parts[2]); if (typeof c === 'function') cleanup = c; return; }
     viewHome();
   }
@@ -428,110 +434,174 @@
     };
   }
 
+  const tkText = d => '<span class="zh">' + zh(d[3]) + '</span>';
+  const tkTarget = d => d[3];
+  const tkHint = d => { const g = d[3].slice(0, Math.max(1, Math.ceil(d[3].length / 3))); return esc(g.map(x => x[0]).join('')) + ' … <small>' + esc(pyLine(g)) + ' …</small>'; };
+  // ================= Nói theo & Nhập vai: giao diện hội thoại tối giản =================
+  const MIC_ERR = { 'not-allowed': 'Hãy cho phép dùng micro trong trình duyệt.', 'service-not-allowed': 'Hãy cho phép dùng micro trong trình duyệt.', 'no-speech': 'Chưa nghe thấy gì, nói to hơn nhé.', 'network': 'Chấm phát âm cần có mạng Internet.', 'audio-capture': 'Không tìm thấy micro.', 'aborted': '' };
+  function tkBub(d, i, side, name, extra) {
+    return '<div class="tk-msg ' + side + '"><div class="tk-bub' + (extra || '') + '" data-i="' + i + '"><div class="tk-who">' + esc(name) + '</div>' +
+      '<div class="tk-t">' + tkText(d) + '</div><div class="tk-vi">' + esc(d[2]) + '</div><div class="tk-hint"></div><span class="tk-sc"></span></div></div>';
+  }
+  function tkScore(bub, s) { const e = bub.querySelector('.tk-sc'); e.textContent = s; e.className = 'tk-sc ' + (s >= 85 ? 'g' : s >= 60 ? 'm' : 'r'); }
+  function tkMark(bub, d, r) {
+    const marks = SP.markWords(tkTarget(d), r);
+    $$('.tk-t .w', bub).forEach((w, i) => { const m = marks[i]; w.classList.remove('g', 'm', 'r'); if (m) w.classList.add(m.ok >= 0.99 ? 'g' : m.ok > 0 ? 'm' : 'r'); });
+  }
+  const tkDown = el => { el.scrollTo ? el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' }) : (el.scrollTop = el.scrollHeight); };
+  // Bấm mic: trả về điểm (0–100) hoặc null. Máy không chấm được → tự đánh giá
+  async function tkSay(btn, stat, d) {
+    if (!SP.canListen()) {
+      return new Promise(res => {
+        stat.innerHTML = '<span class="tk-self"><button data-s="40">Chưa giống</button><button data-s="70">Khá giống</button><button data-s="95">Giống rồi</button></span>';
+        $$('button', stat).forEach(b => b.onclick = () => { stat.innerHTML = ''; beep(+b.dataset.s >= 70); res({ score: +b.dataset.s }); });
+      });
+    }
+    if (btn.classList.contains('rec')) { SP.stopListening(); return null; }
+    SP.stop();
+    btn.classList.add('rec'); btn.innerHTML = I('stop');
+    stat.textContent = 'Đang nghe…';
+    const r = await SP.listen(tkTarget(d), { onInterim: t => { stat.textContent = '“' + t + '”'; } });
+    btn.classList.remove('rec'); btn.innerHTML = I('mic');
+    if (r.error) { stat.textContent = MIC_ERR[r.error] == null ? 'Có lỗi micro, thử lại nhé.' : MIC_ERR[r.error]; return null; }
+    stat.textContent = '“' + r.heard + '”';
+    beep(r.score >= 70);
+    return r;
+  }
+  const tkDock = (a, b) => '<div class="tk-dock">' +
+    '<button class="tk-b" id="' + a[0] + '">' + I(a[1]) + '<small>' + a[2] + '</small></button>' +
+    '<button class="tk-mic" id="tkM" aria-label="Nói">' + I('mic') + '</button>' +
+    '<button class="tk-b" id="' + b[0] + '">' + I(b[1]) + '<small>' + b[2] + '</small></button></div>';
+
   // ----- Bước 3: Nói theo từng câu -----
-  // Khung cố định, mỗi câu chỉ thay phần bên trong để trang không bị giật
   function stepShadow(P, l, sc, next) {
     let k = 0;
-    P.innerHTML = head('Bước 3 · Nói theo', 'Nghe mẫu rồi nói ngay, bắt chước cả giai điệu. Chữ xanh là chuẩn, cam là đúng âm nhưng sai thanh, đỏ là cần luyện lại.') +
-      '<div class="progress-dots">' + l.d.map((_, j) => '<i data-j="' + j + '"></i>').join('') + '</div>' +
-      '<div class="who-line" id="wl"></div><div id="box" class="box-fix"></div>' +
-      '<div class="pager"><button class="btn" id="pv">← Trước</button><span class="cnt" id="cn"></span><button class="btn primary" id="nx"></button></div>';
-    const dots = $$('.progress-dots i', P);
-    const paint = () => dots.forEach((i, j) => { i.className = (sc.s3[j] != null ? (sc.s3[j] >= 70 ? 'ok' : 'bad') : '') + (j === k ? ' cur' : ''); });
+    P.className = 'tk-panel pop';
+    P.innerHTML = '<div class="tk">' +
+      '<div class="tk-top"><button class="tk-nav" id="tkP" aria-label="Câu trước">' + I('chevL') + '</button><div class="tk-bar"><i id="tkB"></i></div><span class="tk-n" id="tkN"></span><button class="tk-nav" id="tkX" aria-label="Câu tiếp">' + I('chevR') + '</button></div>' +
+      '<div class="tk-chat" id="tkC"></div><div class="tk-stat" id="tkS"></div>' +
+      tkDock(['tkL', 'speak', 'Nghe'], ['tkW', 'slow', 'Chậm']) + '</div>';
+    const C = $('#tkC', P), S = $('#tkS', P), M = $('#tkM', P);
+    let tm;
     function show() {
+      clearTimeout(tm); SP.stopListening();
       const d = l.d[k];
-      paint();
-      $('#wl', P).textContent = d[0] === 'B' ? 'Bạn nói' : l.a + ' nói';
-      $('#cn', P).textContent = (k + 1) + '/' + l.d.length;
-      $('#pv', P).disabled = !k;
-      $('#nx', P).textContent = k < l.d.length - 1 ? 'Câu tiếp →' : 'Tiếp: Nhập vai →';
-      speakBox($('#box', P), { en: d[1], tk: d[3], vi: d[2], who: d[0], onScore: s => { sc.s3[k] = Math.max(sc.s3[k] || 0, s); paint(); } });
+      C.innerHTML = l.d.slice(0, k + 1).map((x, j) => tkBub(x, j, x[0] === 'B' ? 'R' : 'L', x[0] === 'B' ? 'Bạn' : l.a, j === k ? ' cur' : '')).join('');
+      l.d.slice(0, k).forEach((x, j) => { if (sc.s3[j] != null) tkScore($('.tk-bub[data-i="' + j + '"]', C), sc.s3[j]); });
+      $$('.tk-bub', C).forEach(b => b.onclick = () => { const x = l.d[+b.dataset.i]; SP.speak(x[1], { who: x[0] }); });
+      $('#tkB', P).style.width = (100 * (k + 1) / l.d.length) + '%';
+      $('#tkN', P).textContent = (k + 1) + '/' + l.d.length;
+      $('#tkP', P).disabled = !k;
+      S.innerHTML = '';
+      tkDown(C);
       SP.speak(d[1], { who: d[0] });
       const nd = l.d[k + 1]; if (nd) SP.prefetch(nd[1], nd[0]);
     }
-    dots.forEach(i => i.onclick = () => { k = +i.dataset.j; show(); });
-    $('#pv', P).onclick = () => { if (k) { k--; show(); } };
-    $('#nx', P).onclick = () => { if (k < l.d.length - 1) { k++; show(); } else next(); };
+    const go = () => { if (k < l.d.length - 1) { k++; show(); } else next(); };
+    $('#tkP', P).onclick = () => { if (k) { k--; show(); } };
+    $('#tkX', P).onclick = go;
+    $('#tkL', P).onclick = () => SP.speak(l.d[k][1], { who: l.d[k][0] });
+    $('#tkW', P).onclick = () => SP.speak(l.d[k][1], { who: l.d[k][0], slow: true });
+    M.onclick = async () => {
+      const kk = k, d = l.d[k];
+      const r = await tkSay(M, S, d);
+      if (!r || kk !== k) return;
+      const bub = $('.tk-bub.cur', C);
+      if (r.heard != null) tkMark(bub, d, r);
+      tkScore(bub, r.score);
+      sc.s3[k] = Math.max(sc.s3[k] || 0, r.score);
+      S.innerHTML = (r.heard ? '<span class="tk-heard">“' + esc(r.heard) + '”</span>' : '') + '<button class="tk-go" id="tkG">' + (k < l.d.length - 1 ? 'Câu tiếp' : 'Sang Nhập vai') + I('chevR') + '</button>';
+      $('#tkG', P).onclick = go;
+      if (r.score >= 85) tm = setTimeout(() => { if (kk === k) go(); }, 1400);
+    };
+    cleanup = () => { clearTimeout(tm); };
     show();
   }
 
   // ----- Bước 4: Nhập vai -----
-  // Khung chat cuộn bên trong, ô lượt nói giữ nguyên chiều cao → không nhảy trang
   function stepRole(P, l, sc, next) {
     let me = sc.role || (l.d.some(d => d[0] === 'B') ? 'B' : 'A');
     let run = 0;
-    const toBottom = el => { el.scrollTo ? el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' }) : (el.scrollTop = el.scrollHeight); };
     function start() {
       const my = ++run;
       SP.stop(); SP.stopListening();
       sc.s4 = {};
       const pName = me === 'B' ? l.a : 'Bạn đồng hành';
-      const mName = me === 'B' ? 'Bạn' : 'Bạn (vai ' + l.a + ')';
-      P.innerHTML = head('Bước 4 · Nhập vai', 'Bạn trò chuyện thật với ' + esc(l.a) + '. Đến lượt bạn: nhìn nghĩa tiếng Việt và tự nói câu tiếng Trung. Bí thì bấm Gợi ý.') +
-        '<div class="role-pick"><button class="chip' + (me === 'B' ? ' on' : '') + '" data-r="B">Tôi đóng vai: Bạn</button><button class="chip' + (me === 'A' ? ' on' : '') + '" data-r="A">Tôi đóng vai: ' + esc(l.a) + '</button></div>' +
-        '<div class="chat role-chat" id="chat"></div><div id="turn" class="turn-slot"></div><div id="end"></div>';
-      $$('.role-pick .chip', P).forEach(b => b.onclick = () => { me = sc.role = b.dataset.r; start(); });
-      const chat = $('#chat', P), T = $('#turn', P);
-      const waitBox = () => { T.innerHTML = '<div class="turn wait"><div class="lbl">' + esc(pName) + ' đang nói…</div><div class="wait-dots"><i></i><i></i><i></i></div></div>'; };
-      const r0 = chat.getBoundingClientRect();
-      if (r0.top > window.innerHeight * 0.5) window.scrollTo({ top: window.scrollY + r0.top - 80, behavior: 'smooth' });
+      P.className = 'tk-panel pop';
+      P.innerHTML = '<div class="tk role">' +
+        '<div class="tk-top"><span class="tk-lbl">Vai của bạn</span><div class="tk-seg"><button data-r="B"' + (me === 'B' ? ' class="on"' : '') + '>Bạn</button><button data-r="A"' + (me === 'A' ? ' class="on"' : '') + '>' + esc(l.a) + '</button></div><span class="tk-n" id="tkN"></span></div>' +
+        '<div class="tk-chat" id="tkC"></div><div class="tk-stat" id="tkS"></div>' +
+        '<div id="tkD">' + tkDock(['tkH', 'bulb', 'Gợi ý'], ['tkK', 'skip', 'Bỏ qua']) + '</div></div>';
+      $$('.tk-seg button', P).forEach(b => b.onclick = () => { if (b.dataset.r !== me) { me = sc.role = b.dataset.r; start(); } });
+      const C = $('#tkC', P), S = $('#tkS', P), D = $('#tkD', P);
+      const lock = on => $$('.tk-dock button', D).forEach(b => { b.disabled = on; });
       (async () => {
         for (let i = 0; i < l.d.length; i++) {
           if (my !== run) return;
           const d = l.d[i];
+          $('#tkN', P).textContent = (i + 1) + '/' + l.d.length;
           for (let j = i + 1; j < l.d.length; j++) if (l.d[j][0] !== me) { SP.prefetch(l.d[j][1], l.d[j][0]); break; }
           if (d[0] !== me) {
-            waitBox();
-            chat.insertAdjacentHTML('beforeend', msgHtml(l, d, i, ' speaking', 'A in', pName));
-            const b = chat.lastElementChild.querySelector('.bub');
+            lock(true); S.textContent = '';
+            C.insertAdjacentHTML('beforeend', tkBub(d, i, 'L', pName, ' speaking'));
+            const b = C.lastElementChild.querySelector('.tk-bub');
             b.onclick = () => SP.speak(d[1], { who: d[0] });
-            toBottom(chat);
+            tkDown(C);
             await SP.speak(d[1], { who: d[0] });
             b.classList.remove('speaking');
             await wait(250);
           } else {
-            const s = await myTurn(d, my);
+            const s = await myTurn(d, i, my, C, S);
             if (my !== run) return;
-            chat.insertAdjacentHTML('beforeend', msgHtml(l, d, i, '', 'B in', mName));
-            toBottom(chat);
             sc.s4[i] = s;
           }
         }
         if (my !== run) return;
-        T.innerHTML = '';
-        T.classList.add('done');
         const arr = Object.values(sc.s4);
         const avg = arr.length ? Math.round(arr.reduce((a, b) => a + b, 0) / arr.length) : 0;
-        $('#end', P).innerHTML = '<div class="tip" style="text-align:center"><b>Bạn đã hoàn thành cuộc hội thoại!</b><br>Điểm nói trung bình: <b>' + avg + '</b>/100</div>' +
-          '<div class="next-bar"><button class="btn" id="again">Diễn lại</button><button class="btn primary" id="fin">Hoàn thành bài</button></div>';
-        $('#again', P).onclick = start;
-        $('#fin', P).onclick = next;
+        S.innerHTML = arr.length ? 'Điểm nói trung bình: <b>' + avg + '</b>' : '';
+        D.innerHTML = '<div class="tk-end"><button class="tk-again" id="tkA">' + I('redo') + 'Diễn lại</button><button class="tk-done" id="tkF">' + I('check') + '<span><b>Đã học xong</b><small>Sang bài mới →</small></span></button></div>';
+        $('#tkA', P).onclick = start;
+        $('#tkF', P).onclick = () => finishLesson(l, sc);
       })();
     }
-    function myTurn(d, my) {
+    function myTurn(d, i, my, C, S) {
       return new Promise(resolve => {
-        const T = $('#turn', P);
-        let best = null, hint = 0;
-        T.innerHTML = '<div class="turn"><div class="lbl">LƯỢT CỦA BẠN</div><div class="vi">“' + esc(d[2]) + '”</div><div class="hint-en" id="he"></div><div id="sb"></div>' +
-          '<div class="row center" style="margin-top:12px"><button class="btn small" id="hn">Gợi ý</button><button class="btn small primary" id="go" disabled>Tiếp →</button></div></div>';
-        const words = d[3];
-        const box = $('#sb', T);
-        speakBox(box, { en: d[1], tk: d[3], who: me, onScore: s => { best = Math.max(best || 0, s); $('#go', T).disabled = false; $('#he', T).textContent = ''; $('#se', box).style.visibility = ''; } });
-        const se = $('#se', box); se.style.visibility = 'hidden';
-        $('#hn', T).onclick = () => {
+        C.insertAdjacentHTML('beforeend', tkBub(d, i, 'R', me === 'B' ? 'Bạn' : 'Bạn (vai ' + l.a + ')', ' cur ask'));
+        const bub = C.lastElementChild.querySelector('.tk-bub');
+        tkDown(C);
+        $$('.tk-dock button', P).forEach(b => { b.disabled = false; });
+        S.textContent = '';
+        let best = null, hint = 0, tm;
+        const reveal = () => bub.classList.remove('ask');
+        const done = () => { clearTimeout(tm); if (my !== run) return; reveal(); bub.classList.remove('cur'); resolve(Math.max(0, (best || 0) - (hint > 1 ? 10 : 0))); };
+        bub.onclick = () => { if (!bub.classList.contains('ask')) SP.speak(d[1], { who: me }); };
+        $('#tkH', P).onclick = () => {
           hint++;
-          if (hint === 1) { const g = words.slice(0, Math.max(1, Math.ceil(words.length / 3))); $('#he', T).textContent = g.map(x => x[0]).join('') + ' … (' + pyLine(g) + ' …)'; }
-          else { $('#he', T).textContent = ''; se.style.visibility = ''; SP.speak(d[1], { who: me }); }
+          if (hint === 1) bub.querySelector('.tk-hint').innerHTML = tkHint(d);
+          else { bub.querySelector('.tk-hint').innerHTML = ''; reveal(); SP.speak(d[1], { who: me }); }
         };
-        $('#go', T).onclick = () => { if (my !== run) return; resolve(Math.max(0, (best || 0) - (hint > 1 ? 10 : 0))); };
+        $('#tkK', P).onclick = done;
+        const M = $('#tkM', P);
+        M.onclick = async () => {
+          const r = await tkSay(M, S, d);
+          if (!r || my !== run) return;
+          reveal(); bub.querySelector('.tk-hint').innerHTML = '';
+          if (r.heard != null) tkMark(bub, d, r);
+          tkScore(bub, r.score);
+          best = Math.max(best || 0, r.score);
+          if (r.score >= 70) tm = setTimeout(done, 1200);
+          else S.innerHTML = (r.heard ? '<span class="tk-heard">“' + esc(r.heard) + '”</span>' : '') + '<button class="tk-go" id="tkG">Tiếp' + I('chevR') + '</button>';
+          const g = $('#tkG', P); if (g) g.onclick = done;
+        };
       });
     }
     cleanup = () => { run++; };
     start();
   }
 
-  // ----- Hoàn thành -----
-  function stepDone(P, l, sc) {
+  // ----- Học xong: lưu bài, vào ôn tập nếu có câu đến hạn, rồi sang bài mới -----
+  function saveLesson(l, sc) {
     const parts = [];
     if (sc.s2 != null) parts.push(sc.s2);
     const v3 = Object.values(sc.s3 || {}); if (v3.length) parts.push(v3.reduce((a, b) => a + b, 0) / v3.length);
@@ -548,6 +618,21 @@
       ST.touch(sc.xp);
       refreshTop();
     }
+    return { score, stars, isNew, f0, f1: hiyoForm() };
+  }
+  function finishLesson(l, sc) {
+    const r = saveLesson(l, sc);
+    const nl = LES[ORDER[ORDER.indexOf(l.id) + 1]];
+    toast(r.isNew && r.f1 !== r.f0 ? 'Hiyo đã tiến hóa thành ' + window.HIYO.NAMES[r.f1] + '!' : 'Đã học xong! ' + (sc.added ? sc.added + ' câu vào ôn tập.' : ''));
+    location.hash = nl ? '#/lesson/' + nl.id : '#/';
+  }
+  // Ôn tập bắt buộc trước khi học bài mới (bỏ qua được trong ngày)
+  const todayKey = () => new Date().toLocaleDateString('sv');
+  const needReview = () => ST.dueIds().length > 0 && ST.cfg('rvSkip') !== todayKey();
+
+  // ----- Hoàn thành -----
+  function stepDone(P, l, sc) {
+    const { score, stars, isNew, f0 } = saveLesson(l, sc);
     const nl = LES[ORDER[ORDER.indexOf(l.id) + 1]];
     P.className = 'card done pop';
     P.innerHTML = '<div class="hy">' + hiyo(stars === 3 ? 'cheer' : 'joy') + '</div><h2>' + (stars === 3 ? 'Xuất sắc!' : stars === 2 ? 'Làm tốt lắm!' : 'Hoàn thành!') + '</h2>' +
@@ -563,8 +648,12 @@
   }
 
   // ================= ÔN TẬP =================
-  function viewReview() {
+  function viewReview(nextId) {
     const all = ST.dueIds();
+    const NL = nextId && LES[nextId];
+    if (!all.length && NL) { location.replace('#/lesson/' + nextId); return; }
+    const gate = NL ? '<div class="rv-gate">' + I('review') + '<div><b>Ôn tập trước khi học bài mới</b><small>Ôn xong ' + all.length + ' câu đến hạn là mở bài “' + esc(NL.t) + '”.</small></div><button class="rv-skip" id="rvSkip">Bỏ qua</button></div>' : '';
+    const bindGate = () => { const b = $('#rvSkip'); if (b) b.onclick = () => { if (!confirm('Bỏ qua ôn tập hôm nay và học bài mới luôn?')) return; ST.cfg('rvSkip', todayKey()); location.hash = '#/lesson/' + nextId; }; };
     const ids = all.slice(0, 20);
     if (!ids.length) {
       const nd = ST.nextDue();
@@ -584,18 +673,20 @@
       if (!queue.length) {
         ST.touch(good * 2); refreshTop();
         const left = ST.dueIds().length;
-        app.innerHTML = '<section class="card empty pop"><div class="hy">' + hiyo('cheer') + '</div><h2>Ôn xong ' + total + ' câu!</h2><p class="muted">Nhớ ngay: <b>' + good + '</b> · Cần ôn lại: <b>' + (total - good) + '</b>. Câu sai sẽ quay lại vào ngày mai.</p>' +
-          '<div class="row center" style="margin-top:16px">' + (left ? '<a class="btn primary" href="#/review" id="more">Ôn tiếp ' + left + ' câu</a>' : '<a class="btn primary" href="#/">Về trang chủ</a>') + '<a class="btn" href="#/lesson/' + nextLessonId() + '">Học bài mới</a></div></section>';
-        const m = $('#more'); if (m) m.onclick = e => { e.preventDefault(); viewReview(); };
+        app.innerHTML = (left ? gate : '') + '<section class="card empty pop"><div class="hy">' + hiyo('cheer') + '</div><h2>Ôn xong ' + total + ' câu!</h2><p class="muted">Nhớ ngay: <b>' + good + '</b> · Cần ôn lại: <b>' + (total - good) + '</b>. Câu sai sẽ quay lại vào ngày mai.</p>' +
+          '<div class="row center" style="margin-top:16px">' + (left ? '<a class="btn primary" href="#/review" id="more">Ôn tiếp ' + left + ' câu</a>' : (NL ? '<a class="btn primary" href="#/lesson/' + nextId + '">Học bài mới: ' + esc(NL.t) + ' →</a>' : '<a class="btn primary" href="#/">Về trang chủ</a>')) + (NL && !left ? '' : '<a class="btn" href="#/lesson/' + (nextId || nextLessonId()) + '">Học bài mới</a>') + '</div></section>';
+        const m = $('#more'); if (m) m.onclick = e => { e.preventDefault(); viewReview(nextId); };
+        bindGate();
         return;
       }
       const q = queue[0];
       const c = card(q.id);
       if (!c) { queue.shift(); return show(); }
       const mode = can ? pick(['order', 'say', 'say']) : pick(['order', 'recall']);
-      app.innerHTML = '<div class="rv-top"><span>Ôn tập ngắt quãng</span><span>' + Math.min(done + 1, total) + '/' + total + (all.length > total ? ' · còn ' + (all.length - total) : '') + '</span></div><div class="bar" style="margin:-4px 0 12px"><i style="width:' + (100 * done / total) + '%"></i></div>' +
+      app.innerHTML = gate + '<div class="rv-top"><span>Ôn tập ngắt quãng</span><span>' + Math.min(done + 1, total) + '/' + total + (all.length > total ? ' · còn ' + (all.length - total) : '') + '</span></div><div class="bar" style="margin:-4px 0 12px"><i style="width:' + (100 * done / total) + '%"></i></div>' +
         '<section class="card rv-card pop" id="rc"></section>';
       const R = $('#rc');
+      bindGate();
       const finish = ok => {
         if (!q.retry) { ST.grade(q.id, ok); done++; if (ok) good++; }
         queue.shift();
@@ -678,7 +769,7 @@
         row('mic', '#64748b', 'Giọng dự phòng của máy', 'Dùng cho câu chưa có giọng AI.', '<div class="row"><select id="vsel" class="sel"></select><button class="btn small" id="vtest">' + I('play') + 'Nghe thử</button></div>' + (SP.canSpeak() && !SP.hasVoice() ? '<div class="note">Máy chưa có giọng đọc tiếng Trung. iPhone: Cài đặt → Trợ năng → Nội dung được đọc → Giọng nói → Tiếng Trung. Android: Chuyển văn bản thành giọng nói → Google → cài "Tiếng Trung (Quan thoại)". Windows: Giọng nói → Thêm giọng → 中文(简体).</div>' : ''))) +
       sec('Tài khoản',
         (CL && CL.enabled() ? row('user', '#0ea5e9', u ? esc(u.name || u.email) : 'Chưa đăng nhập', u ? 'Tiến độ tự đồng bộ lên tài khoản.' : 'Đăng nhập để lưu tiến độ và học trên nhiều thiết bị.', '<a class="btn small" href="#/account">' + (u ? 'Xem tài khoản' : 'Đăng nhập') + '</a>') : row('user', '#0ea5e9', 'Lưu trên máy này', 'Tiến độ được lưu trên trình duyệt của máy này.', '')) +
-        (window.SEX && window.SEX.fbEnabled() ? row('chat', '#0284c7', 'Góp ý', 'Bình luận ở cuối bước Nghe của mỗi bài và cuối mỗi đoạn Shadowing.', '<a class="btn small" href="#/feedback">Xem góp ý của mọi người</a>') : '') +
+        (window.SEX && window.SEX.fbEnabled() ? row('chat', '#0284c7', 'Góp ý từng câu', 'Bình luận câu sai, dịch chưa đúng ở cuối bước Nghe và cuối mỗi đoạn Shadowing.', '<a class="btn small" href="#/feedback">Xem</a>') : '') +
         row('trash', '#ef4444', 'Xoá tiến độ', 'Xoá toàn bộ bài đã học và câu ôn tập trên máy này.', '<button class="btn small ghost" id="reset">Xoá toàn bộ tiến độ</button>')) +
       sec('Trợ giúp', row('mic', '#a855f7', 'Micro và chấm phát âm', 'Dùng Chrome, Edge (máy tính, Android) hoặc Safari (iPhone). Lần đầu bấm Nói, chọn Cho phép dùng micro.', '')) +
       '<p class="muted" style="text-align:center;font-size:.78rem;margin:18px 0">© 2026 Sumi Chinese · Hiyo © Sumi Kanji · Miễn phí</p></div>';
